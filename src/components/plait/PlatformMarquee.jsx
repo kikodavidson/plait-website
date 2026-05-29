@@ -19,7 +19,7 @@ export default function PlatformMarquee() {
       <div className="marquee-track">
         {doubled.map((p, i) => (
           <div key={i} className="flex items-center gap-10 px-10">
-            <img src={p.logo} alt={p.name} className="h-14 w-auto object-contain" style={{ maxWidth: '160px' }} />
+            <img src={p.logo} alt={p.name} className="h-28 w-auto object-contain" style={{ maxWidth: '320px' }} />
             <span className="text-[#D0D0D0] text-2xl">·</span>
           </div>
         ))}
