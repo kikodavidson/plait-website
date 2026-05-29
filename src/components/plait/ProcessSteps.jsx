@@ -40,7 +40,7 @@ export default function ProcessSteps() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <p className="text-xs font-bold text-[#4F46E5] uppercase tracking-widest mb-3">The Process</p>
+          <p className="text-xs font-bold text-[#4F46E5] uppercase tracking-widest mb-3">The Roadmap for Growth</p>
           <h2
             className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight leading-[1.1]"
             style={{ fontFamily: 'Manrope, sans-serif' }}

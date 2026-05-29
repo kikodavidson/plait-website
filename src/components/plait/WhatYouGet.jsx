@@ -6,32 +6,32 @@ const deliverables = [
   {
     icon: Globe,
     title: "A Full Funnel",
-    desc: "Top to bottom. Awareness through conversion. Every stage mapped, built, and connected — so nothing leaks.",
+    desc: "A cross-channel top to bottom funnel that generates and captures demand via paid and organic strategies.",
   },
   {
     icon: BarChart3,
     title: "Complete Attribution",
-    desc: "Pixel + Conversion API setup. Know exactly what's working, what isn't, and where every sale came from.",
+    desc: "iOS 14 f***ed up attribution, but a high EMQ score is possible (and necessary).",
   },
   {
     icon: TrendingUp,
     title: "Growth Opportunities",
-    desc: "Identify untapped channels, audiences, and angles your competitors haven't found yet.",
+    desc: "Identify untapped channels, audiences, and angles you and/or your competitors haven't found yet.",
   },
   {
     icon: Lightbulb,
-    title: "Creative Angles to Test",
-    desc: "Develop hooks, messaging, and formats built for your audience — not recycled templates.",
+    title: "Ideate Killer Content to Test",
+    desc: "Develop hooks, angles, messaging, offers, and formats, built for your audiences.",
   },
   {
     icon: Megaphone,
-    title: "Paid Ads — Launched & Optimized",
-    desc: "Launch new campaigns or take over existing ones. Meta, Google, TikTok, and beyond.",
+    title: "Paid Ads | Launch + Optimize",
+    desc: "Launch new campaigns or take over existing ones. Meta, Google, TikTok, and beyond — to generate and capture demand in the market.",
   },
   {
     icon: Target,
     title: "Website Buildout / Uplift",
-    desc: "From first impression to checkout — every page designed to convert, not just look good.",
+    desc: "Driving traffic to a poorly optimised site is burning money. Every page built to bring visitors across the finish line.",
   },
 ];
 
@@ -51,7 +51,32 @@ export default function WhatYouGet() {
             className="text-4xl sm:text-5xl font-extrabold text-[#0A0A0A] tracking-tight leading-[1.1] mb-4"
             style={{ fontFamily: 'Manrope, sans-serif' }}
           >
-            Turn generated attention<br />into revenue.
+            Turn{" "}
+            <span className="relative inline-block">
+              generated attention
+              <svg
+                className="absolute -bottom-2 left-0 w-full"
+                viewBox="0 0 300 12"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                preserveAspectRatio="none"
+              >
+                <path
+                  d="M2 8.5 C40 3, 80 10, 120 6 C160 2, 200 9, 240 5.5 C270 3, 290 7, 298 6"
+                  stroke="#4F46E5"
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  fill="none"
+                  style={{ filter: 'url(#pencil)' }}
+                />
+                <filter id="pencil">
+                  <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" result="noise" />
+                  <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.5" xChannelSelector="R" yChannelSelector="G" />
+                </filter>
+              </svg>
+            </span>
+            <br />into revenue.
           </h2>
           <p className="text-[#525252] text-base leading-relaxed">
             Not just ads. A complete system — from first click to closed sale — with the infrastructure to actually measure what's working.
