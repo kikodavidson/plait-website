@@ -3,7 +3,6 @@ import HeroSection from "../components/plait/HeroSection";
 import PlatformMarquee from "../components/plait/PlatformMarquee";
 import WhatYouGet from "../components/plait/WhatYouGet";
 import ProcessSteps from "../components/plait/ProcessSteps";
-import QuoteSection from "../components/plait/QuoteSection";
 import TestimonialsSection from "../components/plait/TestimonialsSection";
 import OrbitSection from "../components/plait/OrbitSection";
 import ResultsSection from "../components/plait/ResultsSection";
@@ -17,7 +16,6 @@ export default function Home() {
       <PlatformMarquee />
       <WhatYouGet />
       <ProcessSteps />
-      <QuoteSection />
       <TestimonialsSection />
       <OrbitSection />
       <ResultsSection />
