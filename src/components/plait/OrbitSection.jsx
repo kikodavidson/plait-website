@@ -87,7 +87,7 @@ export default function OrbitSection() {
               <img
                 src="https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/a52635986_Untitleddesign-2026-05-29T153256805.png"
                 alt="Orbit"
-                className="h-8 w-auto brightness-0 invert opacity-80"
+                className="h-16 w-auto brightness-0 invert opacity-90"
               />
               <span className="text-white/40 text-xs font-bold uppercase tracking-widest">MCP</span>
             </div>
@@ -123,11 +123,14 @@ export default function OrbitSection() {
             className="flex flex-col gap-10"
           >
             {/* Phone mockup image */}
-            <div className="flex justify-center">
+            <div className="flex justify-center relative">
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <div className="w-72 h-72 rounded-full bg-[#B8972A] opacity-25 blur-3xl" />
+              </div>
               <img
                 src="https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/d6c6a8615_Untitleddesign-2026-05-29T165457959.png"
                 alt="Orbit app"
-                className="w-full max-w-sm object-contain drop-shadow-2xl"
+                className="w-full max-w-sm object-contain drop-shadow-2xl relative z-10"
               />
             </div>
 
