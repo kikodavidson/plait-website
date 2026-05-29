@@ -7,7 +7,7 @@ const platforms = [
   { name: "LinkedIn", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/LinkedIn_Logo.svg/200px-LinkedIn_Logo.svg.png" },
   { name: "Apple Ads", logo: "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/f5b0265b5_Untitleddesign-2026-05-29T153159952.png" },
   { name: "Reddit", logo: "https://upload.wikimedia.org/wikipedia/en/thumb/5/58/Reddit_logo_new.svg/200px-Reddit_logo_new.svg.png" },
-  { name: "Snapchat", logo: "https://upload.wikimedia.org/wikipedia/en/thumb/a/ad/Snapchat_logo.svg/200px-Snapchat_logo.svg.png" },
+  { name: "Orbit", logo: "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/f9438ebe6_Untitleddesign-2026-05-29T153256805.png" },
   { name: "X", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/X_icon_2.svg/200px-X_icon_2.svg.png" },
 ];
 
