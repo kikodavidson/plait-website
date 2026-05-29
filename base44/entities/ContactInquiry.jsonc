@@ -1,0 +1,64 @@
+{
+  "name": "ContactInquiry",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Full name of the person"
+    },
+    "email": {
+      "type": "string",
+      "description": "Email address"
+    },
+    "company": {
+      "type": "string",
+      "description": "Company name"
+    },
+    "service_interest": {
+      "type": "string",
+      "enum": [
+        "seo",
+        "ppc",
+        "social_media",
+        "content_marketing",
+        "email_marketing",
+        "web_design",
+        "branding",
+        "other"
+      ],
+      "description": "Service they are interested in"
+    },
+    "budget": {
+      "type": "string",
+      "enum": [
+        "under_5k",
+        "5k_10k",
+        "10k_25k",
+        "25k_50k",
+        "50k_plus"
+      ],
+      "description": "Monthly budget range"
+    },
+    "message": {
+      "type": "string",
+      "description": "Message from the inquirer"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "new",
+        "contacted",
+        "qualified",
+        "proposal_sent",
+        "closed_won",
+        "closed_lost"
+      ],
+      "default": "new",
+      "description": "Lead status"
+    }
+  },
+  "required": [
+    "name",
+    "email"
+  ]
+}
