@@ -35,7 +35,7 @@ export default function Navbar() {
       <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
         {/* Logo — matches Draftr's bold wordmark */}
         <Link to="/" className="flex items-center gap-2.5">
-          <span className="text-[#0A0A0A] font-extrabold text-lg tracking-tight">PLAIT</span>
+          <img src="https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/9dbd7f3cd_logos4.png" alt="PLAIT" className="h-12 w-auto" />
         </Link>
 
         {/* Nav links — matches Draftr's minimal center nav */}
