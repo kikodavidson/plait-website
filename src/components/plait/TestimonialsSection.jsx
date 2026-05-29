@@ -1,82 +1,115 @@
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { motion } from "framer-motion";
+import { Play, Quote } from "lucide-react";
 
-const testimonials = [
+const videoTestimonials = [
   {
-    quote: "Luke doesn't just run ads — he owns the whole problem. CAC down 90%, acquisition finally makes sense at our margins.",
+    id: 1,
     name: "Jordan M.",
     role: "Founder, Extern",
+    thumbnail: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=400&fit=crop",
+    videoUrl: "#",
+    preview: "CAC down 90%, acquisition finally makes sense at our margins.",
   },
   {
-    quote: "We went from invisible to 30 million impressions on a campaign nobody expected to work. Luke found the angle everyone else missed.",
+    id: 2,
     name: "Sarah T.",
     role: "Marketing Lead, Airia",
-  },
-  {
-    quote: "Ivy's active user count jumped 345% in a quarter. I've worked with a lot of agencies. This is what an actual growth partner feels like.",
-    name: "Chris L.",
-    role: "CEO, Ivy Dating",
-  },
-  {
-    quote: "CPA dropped 70% in the first 60 days. Luke audited what we were doing, rebuilt the offer architecture, and the numbers followed.",
-    name: "Marcus W.",
-    role: "Founder, HG Training",
+    thumbnail: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&h=400&fit=crop",
+    videoUrl: "#",
+    preview: "30 million impressions on a campaign nobody expected to work.",
   },
 ];
 
-export default function TestimonialsSection() {
-  const [current, setCurrent] = useState(0);
+const writtenTestimonial = {
+  quote: "Ivy's active user count jumped 345% in a quarter. I've worked with a lot of agencies. This is what an actual growth partner feels like.",
+  name: "Chris L.",
+  role: "CEO, Ivy Dating",
+};
 
-  const prev = () => setCurrent((c) => (c - 1 + testimonials.length) % testimonials.length);
-  const next = () => setCurrent((c) => (c + 1) % testimonials.length);
+function VideoCard({ t, index, featured }) {
+  const [playing, setPlaying] = useState(false);
 
   return (
-    <section className="py-24 px-6 bg-white border-t border-gray-100">
+    <motion.div
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay: index * 0.12 }}
+      className={`relative rounded-3xl overflow-hidden shadow-xl ${featured ? "aspect-video" : "aspect-video"}`}
+    >
+      <img src={t.thumbnail} alt={t.name} className="w-full h-full object-cover" />
+      {/* Dark overlay */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+
+      {/* Play button */}
+      <button
+        onClick={() => setPlaying(true)}
+        className="absolute inset-0 flex items-center justify-center group"
+      >
+        <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 flex items-center justify-center group-hover:bg-[#4F46E5] group-hover:border-[#4F46E5] transition-all shadow-xl">
+          <Play className="w-6 h-6 text-white ml-1" fill="white" />
+        </div>
+      </button>
+
+      {/* Info */}
+      <div className="absolute bottom-0 left-0 right-0 p-6">
+        <p className="text-white/60 text-xs font-semibold uppercase tracking-wider mb-1">{t.role}</p>
+        <p className="text-white font-bold text-base" style={{ fontFamily: 'Manrope, sans-serif' }}>{t.name}</p>
+        <p className="text-white/70 text-sm mt-1 leading-relaxed line-clamp-2">"{t.preview}"</p>
+      </div>
+    </motion.div>
+  );
+}
+
+export default function TestimonialsSection() {
+  return (
+    <section className="py-28 px-6 bg-white border-t border-gray-100">
       <div className="max-w-6xl mx-auto">
-        <div className="mb-12">
-          <p className="text-xs font-semibold text-[#4F46E5] uppercase tracking-widest mb-3">Testimonials</p>
-          <h2 className="font-display text-4xl sm:text-5xl font-extrabold text-[#0A0A0A] tracking-tight">
+        <motion.div
+          className="mb-14"
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
+          <p className="text-xs font-bold text-[#4F46E5] uppercase tracking-widest mb-3">Testimonials</p>
+          <h2
+            className="text-4xl sm:text-5xl font-extrabold text-[#0A0A0A] tracking-tight"
+            style={{ fontFamily: 'Manrope, sans-serif' }}
+          >
             Don't take my word for it.
           </h2>
-        </div>
+        </motion.div>
 
-        <div className="relative overflow-hidden">
-          <AnimatePresence mode="wait">
+        {/* Stacked / dynamic layout: 2 videos + 1 quote card */}
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-5">
+          {/* Left video — larger */}
+          <div className="lg:col-span-3">
+            <VideoCard t={videoTestimonials[0]} index={0} featured />
+          </div>
+
+          {/* Right column — smaller video + written quote stacked */}
+          <div className="lg:col-span-2 flex flex-col gap-5">
+            <VideoCard t={videoTestimonials[1]} index={1} />
+
+            {/* Written testimonial card */}
             <motion.div
-              key={current}
-              initial={{ opacity: 0, x: 40 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -40 }}
-              transition={{ duration: 0.35 }}
-              className="bg-[#F8F7FF] rounded-3xl p-10 md:p-14 border border-indigo-100"
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.24 }}
+              className="bg-[#4F46E5] rounded-3xl p-8 flex flex-col justify-between flex-1"
             >
-              <p className="text-xl md:text-2xl text-[#0A0A0A] font-medium leading-relaxed mb-8 max-w-3xl">
-                "{testimonials[current].quote}"
+              <Quote className="w-8 h-8 text-indigo-300 mb-4" />
+              <p className="text-white text-base font-medium leading-relaxed flex-1 mb-6" style={{ fontFamily: 'Manrope, sans-serif' }}>
+                "{writtenTestimonial.quote}"
               </p>
               <div>
-                <p className="font-bold text-[#0A0A0A] text-sm">{testimonials[current].name}</p>
-                <p className="text-xs text-[#525252]">{testimonials[current].role}</p>
+                <p className="text-white font-extrabold text-sm">{writtenTestimonial.name}</p>
+                <p className="text-indigo-200 text-xs font-semibold">{writtenTestimonial.role}</p>
               </div>
             </motion.div>
-          </AnimatePresence>
-
-          <div className="flex items-center gap-3 mt-6">
-            <button onClick={prev} className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:border-[#4F46E5] hover:text-[#4F46E5] transition-colors">
-              <ChevronLeft className="w-4 h-4" />
-            </button>
-            <button onClick={next} className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:border-[#4F46E5] hover:text-[#4F46E5] transition-colors">
-              <ChevronRight className="w-4 h-4" />
-            </button>
-            <div className="flex gap-1.5 ml-2">
-              {testimonials.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => setCurrent(i)}
-                  className={`w-1.5 h-1.5 rounded-full transition-colors ${i === current ? "bg-[#4F46E5]" : "bg-gray-300"}`}
-                />
-              ))}
-            </div>
           </div>
         </div>
       </div>

@@ -1,12 +1,13 @@
 import React from "react";
 import HeroSection from "../components/plait/HeroSection";
 import PlatformMarquee from "../components/plait/PlatformMarquee";
-import ProcessSection from "../components/plait/ProcessSection";
-import WhyPlait from "../components/plait/WhyPlait";
+import WhatYouGet from "../components/plait/WhatYouGet";
+import ProcessSteps from "../components/plait/ProcessSteps";
+import QuoteSection from "../components/plait/QuoteSection";
+import TestimonialsSection from "../components/plait/TestimonialsSection";
 import OrbitSection from "../components/plait/OrbitSection";
 import ResultsSection from "../components/plait/ResultsSection";
 import PackagesSection from "../components/plait/PackagesSection";
-import TestimonialsSection from "../components/plait/TestimonialsSection";
 import ContactCTA from "../components/plait/ContactCTA";
 
 export default function Home() {
@@ -14,12 +15,13 @@ export default function Home() {
     <>
       <HeroSection />
       <PlatformMarquee />
-      <ProcessSection />
-      <WhyPlait />
+      <WhatYouGet />
+      <ProcessSteps />
+      <QuoteSection />
+      <TestimonialsSection />
       <OrbitSection />
       <ResultsSection />
       <PackagesSection />
-      <TestimonialsSection />
       <ContactCTA />
     </>
   );

@@ -2,23 +2,29 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 
-const ROTATING = ["Scale.", "Convert.", "Compound.", "Actually Grow."];
+const ROTATING = [
+  "Scale.",
+  "Convert.",
+  "Attract Attention.",
+  "Attribute.",
+  "Measure.",
+  "Improve Performance.",
+];
 
 export default function HeroSection() {
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
-    const t = setInterval(() => setIndex((i) => (i + 1) % ROTATING.length), 2400);
+    const t = setInterval(() => setIndex((i) => (i + 1) % ROTATING.length), 2200);
     return () => clearInterval(t);
   }, []);
 
   return (
     <section className="hero-gradient min-h-[92vh] flex flex-col items-center justify-center text-center px-6 pt-28 pb-20 relative overflow-hidden">
-      {/* Subtle radial glow blobs */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-indigo-200/30 rounded-full blur-3xl pointer-events-none" />
 
       <div className="relative max-w-4xl mx-auto flex flex-col items-center">
-        {/* Pill badge — matches Draftr's "New · Revolutionize…" badge */}
+        {/* Pill badge */}
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -26,23 +32,32 @@ export default function HeroSection() {
           className="inline-flex items-center gap-2 bg-[#0A0A0A] text-white text-xs font-semibold px-4 py-2 rounded-full mb-10 shadow-sm"
         >
           <span className="bg-[#4F46E5] text-white text-[10px] font-bold px-2 py-0.5 rounded-full tracking-wide uppercase">New</span>
-          Human strategy. AI velocity.
+          Battle Tested Marketing, Enhanced by AI.
         </motion.div>
 
-        {/* Big centered headline */}
+        {/* Static headline line 1 */}
         <motion.h1
-          className="text-[clamp(2.8rem,8vw,6rem)] font-extrabold text-[#0A0A0A] leading-[1.0] tracking-[-0.03em] mb-0"
+          className="text-[clamp(2.4rem,6.5vw,5rem)] font-extrabold text-[#0A0A0A] leading-[1.05] tracking-[-0.03em] mb-0"
           style={{ fontFamily: 'Manrope, sans-serif' }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
         >
-          Brands built to
+          Your Growth Partner,
+        </motion.h1>
+        <motion.h1
+          className="text-[clamp(2.4rem,6.5vw,5rem)] font-extrabold text-[#0A0A0A] leading-[1.05] tracking-[-0.03em] mb-2"
+          style={{ fontFamily: 'Manrope, sans-serif' }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.15 }}
+        >
+          Built to Help Brands
         </motion.h1>
 
-        {/* Rotating word on its own line */}
+        {/* Rotating word */}
         <div
-          className="text-[clamp(2.8rem,8vw,6rem)] font-extrabold text-[#4F46E5] leading-[1.1] tracking-[-0.03em] mb-8 h-[1.15em] flex items-center justify-center overflow-hidden"
+          className="text-[clamp(2.4rem,6.5vw,5rem)] font-extrabold text-[#4F46E5] leading-[1.15] tracking-[-0.03em] mb-8 h-[1.25em] flex items-center justify-center overflow-hidden"
           style={{ fontFamily: 'Manrope, sans-serif' }}
         >
           <AnimatePresence mode="wait">
@@ -59,7 +74,7 @@ export default function HeroSection() {
           </AnimatePresence>
         </div>
 
-        {/* Subtitle — matches Draftr's centered gray subtitle */}
+        {/* Subtitle */}
         <motion.p
           className="text-[#525252] text-lg max-w-xl leading-relaxed mb-10 font-medium"
           initial={{ opacity: 0, y: 16 }}
@@ -69,7 +84,7 @@ export default function HeroSection() {
           Battle Tested Marketing, Enhanced by AI.
         </motion.p>
 
-        {/* CTA pill — matches Draftr's rounded pill button */}
+        {/* CTA */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
@@ -84,7 +99,7 @@ export default function HeroSection() {
           </Link>
         </motion.div>
 
-        {/* Stats — dark strip like screenshot 1, with bold colored numbers */}
+        {/* Stats strip */}
         <motion.div
           className="mt-20 w-full max-w-2xl bg-[#0A0A0A] rounded-3xl px-6 py-8 grid grid-cols-3 gap-0 shadow-2xl"
           initial={{ opacity: 0, y: 30 }}
@@ -92,9 +107,9 @@ export default function HeroSection() {
           transition={{ duration: 0.7, delay: 0.5 }}
         >
           {[
-            { value: "$2M+", label: "Revenue Produced" },
+            { value: "$2M+", label: "Tested on Ads" },
             { value: "80+", label: "Brands Scaled" },
-            { value: "11+", label: "Channels" },
+            { value: "11+", label: "Growth Channels" },
           ].map((s, i) => (
             <div key={s.label} className={`flex flex-col items-center ${i > 0 ? "border-l border-white/10" : ""}`}>
               <p
