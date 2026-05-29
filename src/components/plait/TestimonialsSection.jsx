@@ -22,9 +22,9 @@ const videoTestimonials = [
 ];
 
 const writtenTestimonial = {
-  quote: "Ivy's active user count jumped 345% in a quarter. I've worked with a lot of agencies. This is what an actual growth partner feels like.",
-  name: "Chris L.",
-  role: "CEO, Ivy Dating",
+  quote: "At BluRevive we are prioneering wellness in 2026 and needed our Strategy Lead to have the right amount of Marketing knowledge combined with quickly evolving AI and social media integration and we've been blessed to have Luke at Plait meld it all together. ",
+  name: "Keith W.",
+  role: "CEO, BluRevive",
 };
 
 function VideoCard({ t, index, featured }) {
