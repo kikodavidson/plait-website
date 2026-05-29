@@ -11,8 +11,8 @@ const platforms = [
   { name: "Orbit", logo: "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/f9438ebe6_Untitleddesign-2026-05-29T153256805.png" },
 ];
 
-const ITEM_SPACING = 220;
-const SPEED = 0.5;
+const ITEM_SPACING = 240;
+const SPEED = 0.6;
 
 export default function PlatformMarquee() {
   const [offset, setOffset] = useState(0);
@@ -43,63 +43,59 @@ export default function PlatformMarquee() {
     return () => cancelAnimationFrame(rafRef.current);
   }, [totalWidth]);
 
-  // Build enough copies to fill the view multiple times
-  const copies = 6;
-  const items = Array.from({ length: copies }, () => platforms).flat();
+  // Generate enough copies to fill the screen multiple times
+  const copies = Math.ceil((viewWidth * 3) / totalWidth) + 2;
+  const items = Array.from({ length: copies }, (_, ci) =>
+    platforms.map((p, pi) => ({ ...p, key: `${ci}-${pi}`, x: (ci * totalWidth + pi * ITEM_SPACING - offset + totalWidth) % (totalWidth * copies) }))
+  ).flat();
 
   return (
     <div
       ref={containerRef}
-      className="bg-white border-y border-gray-100 overflow-hidden relative"
-      style={{ height: "160px", perspective: "600px", perspectiveOrigin: "50% 50%" }}
+      className="bg-white border-y border-gray-100 overflow-hidden relative select-none"
+      style={{ height: "180px" }}
       onMouseEnter={() => (pausedRef.current = true)}
       onMouseLeave={() => (pausedRef.current = false)}
     >
       {/* Edge fade masks */}
-      <div className="absolute inset-y-0 left-0 w-48 z-10 pointer-events-none"
-        style={{ background: "linear-gradient(to right, white 0%, transparent 100%)" }} />
-      <div className="absolute inset-y-0 right-0 w-48 z-10 pointer-events-none"
-        style={{ background: "linear-gradient(to left, white 0%, transparent 100%)" }} />
+      <div className="absolute inset-y-0 left-0 w-56 z-10 pointer-events-none"
+        style={{ background: "linear-gradient(to right, white 60%, transparent 100%)" }} />
+      <div className="absolute inset-y-0 right-0 w-56 z-10 pointer-events-none"
+        style={{ background: "linear-gradient(to left, white 60%, transparent 100%)" }} />
 
-      {items.map((p, i) => {
-        // Raw x position (moving left as offset increases)
-        const rawX = i * ITEM_SPACING - offset;
-        // Wrap into view
-        const wrappedX = ((rawX % totalWidth) + totalWidth * copies) % totalWidth - ITEM_SPACING;
+      {items.map((p) => {
+        // Position relative to center of viewport
+        const cx = p.x + ITEM_SPACING / 2 - viewWidth / 2;
+        // Normalise: 0 at center, 1 at edge
+        const dist = Math.abs(cx) / (viewWidth / 2);
 
-        // Center-relative position: -1 to 1 across the viewport
-        const centerX = wrappedX - viewWidth / 2 + ITEM_SPACING / 2;
-        const normalised = centerX / (viewWidth / 2); // -1 at left, 0 at center, 1 at right
+        if (dist > 1.2) return null;
 
-        // Skip items way off screen
-        if (Math.abs(normalised) > 1.3) return null;
-
-        // Use cosine so center is max, edges are small
-        const cosVal = Math.cos((normalised * Math.PI) / 2);
-        const scale = 0.25 + cosVal * 0.75;
-        const opacity = Math.max(0, cosVal * 1.1 - 0.1);
-        const translateZ = (cosVal - 1) * 250; // push edges back in Z
+        // Cosine gives smooth peak at center
+        const cos = Math.cos((dist * Math.PI) / 2);
+        const scale = 0.3 + cos * 0.7;       // 0.3 at edge, 1.0 at center
+        const opacity = 0.15 + cos * 0.85;   // 0.15 at edge, 1.0 at center
 
         return (
           <div
-            key={i}
-            className="absolute flex items-center justify-center"
+            key={p.key}
             style={{
+              position: "absolute",
+              left: `${p.x}px`,
               top: "50%",
-              left: `${wrappedX}px`,
               width: `${ITEM_SPACING}px`,
-              height: "100px",
-              marginTop: "-50px",
-              transform: `translateZ(${translateZ}px) scale(${scale})`,
+              transform: `translateY(-50%) scale(${scale})`,
               transformOrigin: "center center",
               opacity,
-              willChange: "transform, opacity",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
             }}
           >
             <img
               src={p.logo}
               alt={p.name}
-              style={{ height: "70px", width: "auto", maxWidth: "180px", objectFit: "contain" }}
+              style={{ height: "80px", width: "auto", maxWidth: "200px", objectFit: "contain" }}
             />
           </div>
         );
