@@ -19,7 +19,7 @@ export default function About() {
               Stewardship<br />Over Exploitation.
             </h1>
             <p className="text-[#525252] text-lg leading-relaxed max-w-xl">
-              I will pull spend that isn't earning even if it costs me the retainer. That's not a pitch — it's how I operate.
+              I will pull spend that isn't earning even if it costs me the retainer. That's not a pitch. It's how I operate.
             </p>
           </motion.div>
         </div>
@@ -79,7 +79,7 @@ export default function About() {
               to="/contact"
               className="inline-flex items-center gap-2 bg-[#4F46E5] text-white font-semibold px-7 py-4 rounded-full text-sm hover:bg-indigo-700 transition-colors"
             >
-              Work With Me →
+              Work With Me
             </Link>
           </div>
         </div>
@@ -92,7 +92,7 @@ export default function About() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {[
               { title: "I'll fire myself if your numbers don't work.", desc: "If a campaign isn't performing, I'll say so. I've walked away from retainers because the math didn't make sense for the client. I'll do it again." },
-              { title: "No hiding behind dashboards.", desc: "You'll know exactly what's working, what's not, and what we're doing about it. No vanity metrics. No 40-slide decks with three meaningful slides buried inside." },
+              { title: "No hiding behind dashboards.", desc: "You'll know exactly what's working, what's not, and what we're doing about it. No vanity metrics. No 40 slide decks with three meaningful slides buried inside." },
               { title: "One person. The whole funnel.", desc: "No handoffs to a junior account manager. No 'I just handle the ads.' I own the whole strategy, which means nothing falls through the cracks between departments." },
               { title: "Faith-driven, principle-led.", desc: "My faith isn't a brand prop. It's the thing that keeps me honest when it would be easier not to be. Stewardship over exploitation — in every client relationship." },
             ].map((v, i) => (

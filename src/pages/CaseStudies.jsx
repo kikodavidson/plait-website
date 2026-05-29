@@ -46,7 +46,7 @@ const studies = [
       "F1 fans can smell inauthenticity from the pit lane. The creative had to be built for the culture, not bolted onto it. We developed platform-native content that spoke the language of the sport — not a brand trying to capitalize on a sport.",
       "The campaign hit 30M+ reached. More importantly, it didn't feel like an ad. It felt like part of the conversation.",
     ],
-    results: [{ stat: "30M+", label: "Reached" }, { stat: "F1", label: "Partnership Vertical" }, { stat: "↑↑↑", label: "Brand Credibility" }],
+    results: [{ stat: "30M+", label: "Reached" }, { stat: "F1", label: "Partnership Vertical" }, { stat: "High", label: "Brand Credibility" }],
   },
   {
     slug: "hg-training",
@@ -67,7 +67,7 @@ const studies = [
     slug: "tsunami-bar-sports",
     client: "Tsunami Bar Sports",
     category: "Sports Equipment / D2C",
-    stat: "↑ 4.1x",
+    stat: "4.1x",
     statLabel: "ROAS",
     image: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=900&h=600&fit=crop",
     headline: "From bleeding spend to 4.1x ROAS on a specialist product.",
@@ -76,7 +76,7 @@ const studies = [
       "Broad targeting doesn't work for products like this. You need precision — audience discovery that finds the overlap between strength sport culture, equipment geeks, and people with disposable income and a home gym. Orbit ran the audience research. I built the strategy.",
       "Creative was highly product-forward, education-led — showing the product doing what nothing else does. We built an offer that justified the price point. ROAS went from barely break-even to 4.1x.",
     ],
-    results: [{ stat: "4.1x", label: "ROAS" }, { stat: "↓65%", label: "CAC" }, { stat: "Niche", label: "Market Domination" }],
+    results: [{ stat: "4.1x", label: "ROAS" }, { stat: "65% lower", label: "CAC" }, { stat: "Niche", label: "Market Domination" }],
   },
 ];
 
@@ -92,7 +92,7 @@ export default function CaseStudies() {
             onClick={() => setActive(null)}
             className="text-sm text-[#525252] hover:text-[#0A0A0A] mb-8 flex items-center gap-2 transition-colors"
           >
-            ← Back to Case Studies
+            Back to Case Studies
           </button>
 
           <div className="rounded-3xl overflow-hidden h-64 md:h-96 mb-12">
@@ -123,7 +123,7 @@ export default function CaseStudies() {
                 </div>
               </div>
               <Link to="/contact" className="mt-6 block text-center bg-[#4F46E5] text-white font-semibold px-6 py-3.5 rounded-full hover:bg-indigo-700 transition-colors text-sm">
-                Work With Me →
+                Work With Me
               </Link>
             </div>
           </div>
@@ -172,7 +172,7 @@ export default function CaseStudies() {
                 </div>
                 <h3 className="font-display text-xl font-extrabold text-[#0A0A0A] mb-2 leading-tight">{s.client}</h3>
                 <p className="text-sm text-[#525252] leading-relaxed">{s.headline}</p>
-                <p className="text-xs font-semibold text-[#4F46E5] mt-4 group-hover:underline">Read case study →</p>
+                <p className="text-xs font-semibold text-[#4F46E5] mt-4 group-hover:underline">Read case study</p>
               </div>
             </motion.button>
           ))}

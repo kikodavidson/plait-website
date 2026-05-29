@@ -6,12 +6,12 @@ const orbitCapabilities = [
   {
     icon: Clock,
     title: "Faster Campaign Execution",
-    desc: "Quicker turnaround time — campaigns go from brief to live in a fraction of the time.",
+    desc: "Quicker turnaround time. Campaigns go from brief to live in a fraction of the time.",
   },
   {
     icon: BarChart3,
     title: "Flawless Data in Every Report",
-    desc: "More data scraped and analyzed than the human eye can process — reports that are actually complete.",
+    desc: "More data scraped and analyzed than the human eye can process. Reports that are actually complete.",
   },
   {
     icon: Link2,
@@ -21,12 +21,12 @@ const orbitCapabilities = [
   {
     icon: Search,
     title: "Identifies Attribution Gaps",
-    desc: "Finds where you're losing signal — and fixes it before you waste another dollar on bad data.",
+    desc: "Finds where you're losing signal and fixes it before you waste another dollar on bad data.",
   },
   {
     icon: Zap,
     title: "More Time on Strategy",
-    desc: "Orbit handles execution overhead so the thinking stays human — where it matters most.",
+    desc: "Orbit handles execution overhead so the thinking stays human, where it matters most.",
   },
   {
     icon: Database,
@@ -49,7 +49,7 @@ export default function OrbitSection() {
             className="sticky top-32"
           >
             <div className="inline-flex items-center gap-2 bg-indigo-50 text-[#4F46E5] text-xs font-bold px-4 py-2 rounded-full mb-6 uppercase tracking-wider">
-              ◎ Orbit — AI Agent
+              ◎ Orbit AI Agent
             </div>
             <h2
               className="text-4xl sm:text-5xl font-extrabold text-[#0A0A0A] tracking-tight leading-tight mb-6"
@@ -58,10 +58,10 @@ export default function OrbitSection() {
               Faster output.<br />More robust results.<br />Real strategy stays<br />human.
             </h2>
             <p className="text-[#525252] text-base leading-relaxed mb-4">
-              Orbit doesn't replace strategy — it makes every output faster and more robust. The intelligence behind every decision is still mine. Orbit just removes the ceiling on what I can execute.
+              Orbit doesn't replace strategy. It makes every output faster and more robust. The intelligence behind every decision is still mine. Orbit just removes the ceiling on what I can execute.
             </p>
             <p className="text-[#525252] text-base leading-relaxed">
-              Everyone's prompting the same three models and wondering why their copy sounds identical. PLAIT uses Orbit to go deeper — more data, more angles, more signal — without sacrificing the human thinking that actually moves the needle.
+              Everyone's prompting the same three models and wondering why their copy sounds identical. PLAIT uses Orbit to go deeper: more data, more angles, more signal, without sacrificing the human thinking that actually moves the needle.
             </p>
 
             <div className="mt-8 bg-[#0A0A0A] rounded-2xl p-6">

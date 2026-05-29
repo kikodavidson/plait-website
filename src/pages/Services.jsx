@@ -12,7 +12,7 @@ const strands = [
     deliverables: [
       "Unique value proposition development",
       "Secondary and tertiary benefit mapping",
-      "Non-obvious connection points (psychology, behavior, culture)",
+      "Non obvious connection points (psychology, behavior, culture)",
       "Competitive differentiation analysis",
       "Audience language audits",
       "Message-market fit testing framework",
@@ -28,8 +28,8 @@ const strands = [
       "Hook and angle ideation",
       "Creative brief development",
       "Creator selection and direction",
-      "Platform-native format execution (Meta clean, TikTok native UGC)",
-      "Meta Andromeda-optimized creative structure",
+      "Platform native format execution (Meta clean, TikTok native UGC)",
+      "Meta Andromeda optimized creative structure",
       "Iterative creative testing framework",
     ],
     img: "https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=700&h=500&fit=crop",
@@ -43,9 +43,9 @@ const strands = [
       "First three seconds audits on existing creative",
       "Audience callout development",
       "Pattern interrupt ideation",
-      "Bait-and-switch frameworks",
-      "Question-driven and surprise-led openings",
-      "Hook split-test planning",
+      "Bait and switch frameworks",
+      "Question driven and surprise led openings",
+      "Hook split test planning",
     ],
     img: "https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=700&h=500&fit=crop",
   },
@@ -60,7 +60,7 @@ const strands = [
       "Cold vs warm segmented value props",
       "Urgency and scarcity mechanics",
       "Price sensitivity testing",
-      "Upsell and cross-sell architecture",
+      "Upsell and cross sell architecture",
     ],
     img: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=700&h=500&fit=crop",
   },
@@ -152,7 +152,7 @@ export default function Services() {
           <h2 className="font-display text-4xl font-extrabold text-[#0A0A0A] mb-4">Ready to plug the leaks?</h2>
           <p className="text-[#525252] mb-8 max-w-md mx-auto">Start with the Clarity Audit and we'll find exactly where your funnel is bleeding.</p>
           <Link to="/contact" className="inline-flex items-center gap-2 bg-[#4F46E5] text-white font-semibold px-8 py-4 rounded-full hover:bg-indigo-700 transition-colors">
-            Work With Me →
+            Work With Me
           </Link>
         </div>
       </div>

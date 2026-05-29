@@ -24,7 +24,7 @@ export default function ContactCTA() {
             to="/contact"
             className="inline-flex items-center gap-2 bg-[#4F46E5] text-white font-semibold px-8 py-4 rounded-full text-base hover:bg-indigo-700 transition-colors"
           >
-            Work With Me →
+            Work With Me
           </Link>
         </motion.div>
       </div>

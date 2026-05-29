@@ -60,13 +60,13 @@ export default function ResultsSection() {
             to="/contact"
             className="inline-flex items-center gap-2 bg-[#4F46E5] text-white font-bold text-sm px-7 py-3.5 rounded-full hover:bg-indigo-500 transition-colors shadow-lg shadow-indigo-900/40"
           >
-            Book a Strategy Session ↗
+            Book a Strategy Session
           </Link>
           <Link
             to="/case-studies"
             className="inline-flex items-center gap-2 bg-white/10 text-white font-bold text-sm px-7 py-3.5 rounded-full hover:bg-white/20 transition-colors border border-white/10"
           >
-            See Case Studies ↗
+            See Case Studies
           </Link>
         </motion.div>
       </div>

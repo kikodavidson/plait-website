@@ -48,7 +48,7 @@ export default function Contact() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-[#4F46E5] text-white text-sm font-semibold px-6 py-3 rounded-full hover:bg-indigo-700 transition-colors"
             >
-              Open Calendly →
+              Open Calendly
             </a>
           </div>
         </motion.div>
@@ -122,8 +122,8 @@ export default function Contact() {
                 onChange={(e) => set("service_interest", e.target.value)}
               >
                 <option value="">Pick one...</option>
-                <option value="clarity_audit">Clarity Audit ($500–$800)</option>
-                <option value="launch_system">Launch System ($2,500–$4,500)</option>
+                <option value="clarity_audit">Clarity Audit ($500 to $800)</option>
+                <option value="launch_system">Launch System ($2,500 to $4,500)</option>
                 <option value="growth_retainer">Growth Retainer (Custom)</option>
                 <option value="other">Not sure yet — let's talk</option>
               </select>
@@ -145,7 +145,7 @@ export default function Contact() {
               disabled={loading}
               className="w-full bg-[#4F46E5] text-white font-semibold py-4 rounded-full text-sm hover:bg-indigo-700 transition-colors flex items-center justify-center gap-2 disabled:opacity-70"
             >
-              {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : "Send It →"}
+              {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : "Send It"}
             </button>
           </motion.form>
 
@@ -167,7 +167,7 @@ export default function Contact() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 bg-[#4F46E5] text-white text-sm font-semibold px-6 py-3 rounded-full hover:bg-indigo-700 transition-colors"
               >
-                Book on Calendly →
+                Book on Calendly
               </a>
             </div>
 

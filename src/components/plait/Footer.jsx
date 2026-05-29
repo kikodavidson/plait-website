@@ -20,7 +20,7 @@ export default function Footer() {
             to="/contact"
             className="inline-flex items-center gap-2 bg-[#4F46E5] text-white text-sm font-semibold px-5 py-2.5 rounded-full hover:bg-indigo-700 transition-colors"
           >
-            Work With Me →
+            Work With Me
           </Link>
         </div>
         <div className="border-t border-gray-100 mt-10 pt-6 text-xs text-[#525252]">

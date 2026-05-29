@@ -15,12 +15,12 @@ const steps = [
   {
     num: "03",
     word: "Execute",
-    desc: "Launch campaigns, build pages, set up tracking — everything goes live with intention, not hope.",
+    desc: "Launch campaigns, build pages, set up tracking. Everything goes live with intention, not hope.",
   },
   {
     num: "04",
     word: "Optimize",
-    desc: "Iterate fast. Kill what's not working, double down on what is. Data-driven decisions, weekly.",
+    desc: "Iterate fast. Kill what's not working, double down on what is. Data driven decisions, weekly.",
   },
   {
     num: "05",
