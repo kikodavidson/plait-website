@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Syne:wght@700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,77 +6,42 @@
 
 @layer base {
   :root {
-    --font-heading: 'Space Grotesk', sans-serif;
+    --font-display: 'Syne', sans-serif;
     --font-body: 'Inter', sans-serif;
 
-    --background: 220 20% 4%;
-    --foreground: 210 20% 95%;
-    --card: 220 18% 7%;
-    --card-foreground: 210 20% 95%;
-    --popover: 220 18% 7%;
-    --popover-foreground: 210 20% 95%;
-    --primary: 245 80% 62%;
+    --background: 0 0% 100%;
+    --foreground: 0 0% 4%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 4%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 4%;
+    --primary: 243 75% 59%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 220 15% 12%;
-    --secondary-foreground: 210 20% 90%;
-    --muted: 220 15% 12%;
-    --muted-foreground: 220 10% 55%;
-    --accent: 190 90% 50%;
-    --accent-foreground: 220 20% 4%;
+    --secondary: 240 5% 96%;
+    --secondary-foreground: 0 0% 4%;
+    --muted: 240 5% 96%;
+    --muted-foreground: 0 0% 32%;
+    --accent: 243 75% 59%;
+    --accent-foreground: 0 0% 100%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 220 15% 14%;
-    --input: 220 15% 14%;
-    --ring: 245 80% 62%;
-    --chart-1: 245 80% 62%;
-    --chart-2: 190 90% 50%;
-    --chart-3: 280 70% 60%;
-    --chart-4: 340 75% 55%;
-    --chart-5: 30 80% 55%;
-    --radius: 0.75rem;
-    --sidebar-background: 220 18% 7%;
-    --sidebar-foreground: 210 20% 95%;
-    --sidebar-primary: 245 80% 62%;
+    --border: 240 6% 90%;
+    --input: 240 6% 90%;
+    --ring: 243 75% 59%;
+    --chart-1: 243 75% 59%;
+    --chart-2: 210 100% 56%;
+    --chart-3: 142 71% 45%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.5rem;
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 0 0% 4%;
+    --sidebar-primary: 243 75% 59%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 220 15% 12%;
-    --sidebar-accent-foreground: 210 20% 90%;
-    --sidebar-border: 220 15% 14%;
-    --sidebar-ring: 245 80% 62%;
-  }
-
-  .dark {
-    --background: 220 20% 4%;
-    --foreground: 210 20% 95%;
-    --card: 220 18% 7%;
-    --card-foreground: 210 20% 95%;
-    --popover: 220 18% 7%;
-    --popover-foreground: 210 20% 95%;
-    --primary: 245 80% 62%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 220 15% 12%;
-    --secondary-foreground: 210 20% 90%;
-    --muted: 220 15% 12%;
-    --muted-foreground: 220 10% 55%;
-    --accent: 190 90% 50%;
-    --accent-foreground: 220 20% 4%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 220 15% 14%;
-    --input: 220 15% 14%;
-    --ring: 245 80% 62%;
-    --chart-1: 245 80% 62%;
-    --chart-2: 190 90% 50%;
-    --chart-3: 280 70% 60%;
-    --chart-4: 340 75% 55%;
-    --chart-5: 30 80% 55%;
-    --sidebar-background: 220 18% 7%;
-    --sidebar-foreground: 210 20% 95%;
-    --sidebar-primary: 245 80% 62%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 220 15% 12%;
-    --sidebar-accent-foreground: 210 20% 90%;
-    --sidebar-border: 220 15% 14%;
-    --sidebar-ring: 245 80% 62%;
+    --sidebar-accent: 240 5% 96%;
+    --sidebar-accent-foreground: 0 0% 4%;
+    --sidebar-border: 240 6% 90%;
+    --sidebar-ring: 243 75% 59%;
   }
 }
 
@@ -86,9 +51,38 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
   }
 }
 
 html {
   scroll-behavior: smooth;
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.hero-gradient {
+  background: linear-gradient(180deg, #FFFFFF 0%, #EEF2FF 60%, #E0E7FF 100%);
+}
+
+.section-gradient {
+  background: linear-gradient(180deg, #FFFFFF 0%, #EEF2FF 100%);
+}
+
+.marquee-track {
+  display: flex;
+  animation: marquee 24s linear infinite;
+  width: max-content;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }

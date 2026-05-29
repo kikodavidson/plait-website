@@ -1,134 +1,160 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import {
-  Search, Target, Share2, FileText, Mail, Monitor,
-  ArrowRight, CheckCircle2, BarChart3, Palette
-} from "lucide-react";
+import { Check } from "lucide-react";
 
-const services = [
+const strands = [
   {
-    icon: Search,
-    title: "Search Engine Optimization",
-    desc: "We craft comprehensive SEO strategies that increase visibility, drive qualified organic traffic, and build lasting authority in your market.",
-    features: ["Technical SEO Audits", "Content Strategy", "Link Building", "Local SEO", "Analytics & Reporting"],
-    color: "from-primary to-primary/60",
+    num: "01",
+    title: "Messaging",
+    tagline: "Say something worth hearing.",
+    body: "Most brands say the same thing with slightly different fonts. Messaging strategy finds the angle that's actually true, actually differentiated, and actually makes someone stop scrolling.",
+    deliverables: [
+      "Unique value proposition development",
+      "Secondary and tertiary benefit mapping",
+      "Non-obvious connection points (psychology, behavior, culture)",
+      "Competitive differentiation analysis",
+      "Audience language audits",
+      "Message-market fit testing framework",
+    ],
+    img: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=700&h=500&fit=crop",
   },
   {
-    icon: Target,
-    title: "PPC & Paid Advertising",
-    desc: "Maximize every dollar with precision-targeted campaigns on Google Ads, Meta, LinkedIn, and beyond. We optimize relentlessly for ROAS.",
-    features: ["Google Ads Management", "Meta Ads (FB & IG)", "LinkedIn Advertising", "Retargeting Campaigns", "A/B Testing"],
-    color: "from-accent to-accent/60",
+    num: "02",
+    title: "Creative",
+    tagline: "Right hook. Right platform. Right creator.",
+    body: "Creative isn't art. It's a hypothesis. We test it like one. Platform-native formats, audience-matched creators, Meta's Andromeda model baked into the brief — not bolted on after.",
+    deliverables: [
+      "Hook and angle ideation",
+      "Creative brief development",
+      "Creator selection and direction",
+      "Platform-native format execution (Meta clean, TikTok native UGC)",
+      "Meta Andromeda-optimized creative structure",
+      "Iterative creative testing framework",
+    ],
+    img: "https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=700&h=500&fit=crop",
   },
   {
-    icon: Share2,
-    title: "Social Media Marketing",
-    desc: "Build authentic connections with your audience through strategic content, community management, and paid social campaigns.",
-    features: ["Content Calendar", "Community Management", "Influencer Partnerships", "Social Analytics", "Brand Voice Development"],
-    color: "from-chart-3 to-chart-3/60",
+    num: "03",
+    title: "Hooks",
+    tagline: "Three seconds to earn the next ten.",
+    body: "The first three seconds of an ad are the only seconds that matter if you blow them. Pattern interrupts, earned shock, audience callouts — engineered, not improvised.",
+    deliverables: [
+      "First three seconds audits on existing creative",
+      "Audience callout development",
+      "Pattern interrupt ideation",
+      "Bait-and-switch frameworks",
+      "Question-driven and surprise-led openings",
+      "Hook split-test planning",
+    ],
+    img: "https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=700&h=500&fit=crop",
   },
   {
-    icon: FileText,
-    title: "Content Marketing",
-    desc: "Tell your brand's story with content that ranks, engages, and converts. From blog posts to video production, we handle it all.",
-    features: ["Blog Writing", "Video Production", "Infographics", "Whitepapers & eBooks", "Content Distribution"],
-    color: "from-chart-4 to-chart-4/60",
+    num: "04",
+    title: "Offers",
+    tagline: "The best ad in the world can't fix a weak offer.",
+    body: "Offer architecture is one of the highest-leverage moves in paid media. A restructured offer can double conversion rates without touching a single pixel of creative.",
+    deliverables: [
+      "Offer architecture and bundle design",
+      "Discount strategy and promo calendar",
+      "Cold vs warm segmented value props",
+      "Urgency and scarcity mechanics",
+      "Price sensitivity testing",
+      "Upsell and cross-sell architecture",
+    ],
+    img: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=700&h=500&fit=crop",
   },
   {
-    icon: Mail,
-    title: "Email Marketing",
-    desc: "Nurture leads and drive repeat revenue with automated email sequences, segmentation, and compelling copy that gets clicks.",
-    features: ["Automation Workflows", "List Segmentation", "A/B Testing", "Template Design", "Deliverability Optimization"],
-    color: "from-chart-5 to-chart-5/60",
+    num: "05",
+    title: "CRO",
+    tagline: "Plug the leaks before you pour more in.",
+    body: "More traffic won't fix a broken funnel. CRO finds every point of friction between click and purchase and eliminates it systematically.",
+    deliverables: [
+      "Full funnel audit and friction mapping",
+      "Landing page teardown and redesign briefs",
+      "Education vs. speed funnel architecture",
+      "Checkout optimization",
+      "Heatmap and session recording analysis",
+      "A/B test roadmap and prioritization",
+    ],
+    img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=700&h=500&fit=crop",
   },
   {
-    icon: Monitor,
-    title: "Web Design & Development",
-    desc: "High-performance websites designed to convert. We combine stunning aesthetics with UX best practices and lightning-fast speed.",
-    features: ["Responsive Design", "Conversion Optimization", "Speed Optimization", "Custom Development", "UI/UX Design"],
-    color: "from-primary to-accent",
+    num: "06",
+    title: "Website",
+    tagline: "Your website is either your best closer or your worst leak.",
+    body: "First impressions, trust signals, navigation — it all has to work. A website that doesn't earn the sale is just an expensive place to send traffic.",
+    deliverables: [
+      "Homepage and key page audits",
+      "Trust signal and social proof strategy",
+      "Storytelling and education architecture",
+      "Navigation and UX optimization",
+      "Speed and performance improvements",
+      "Design direction and build (if needed)",
+    ],
+    img: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=700&h=500&fit=crop",
   },
 ];
 
 export default function Services() {
   return (
-    <div className="pt-28 pb-20">
-      {/* Header */}
-      <div className="max-w-7xl mx-auto px-6 mb-20">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="max-w-3xl"
-        >
-          <span className="text-xs font-heading font-semibold text-primary uppercase tracking-widest">Our Services</span>
-          <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold mt-3 leading-tight">
-            Everything you need to
-            <br />
-            <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              win online.
-            </span>
-          </h1>
-          <p className="text-lg text-muted-foreground mt-5 leading-relaxed">
-            From strategy to execution, we provide end-to-end digital marketing services that drive measurable growth for your business.
-          </p>
-        </motion.div>
+    <div className="pt-28 pb-24">
+      <div className="hero-gradient pb-16 px-6 pt-12">
+        <div className="max-w-6xl mx-auto">
+          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+            <p className="text-xs font-semibold text-[#4F46E5] uppercase tracking-widest mb-4">Services</p>
+            <h1 className="font-display text-6xl sm:text-7xl font-extrabold text-[#0A0A0A] tracking-tight leading-tight mb-6 max-w-3xl">
+              Six strands.<br />Every layer connected.
+            </h1>
+            <p className="text-[#525252] text-lg max-w-xl leading-relaxed">
+              A funnel that leaks anywhere leaks everywhere. PLAIT works all six strands so nothing falls through the gap between "that's not my department."
+            </p>
+          </motion.div>
+        </div>
       </div>
 
-      {/* Services grid */}
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="space-y-8">
-          {services.map((service, i) => (
+      <div className="max-w-6xl mx-auto px-6 py-16">
+        <div className="space-y-20">
+          {strands.map((s, i) => (
             <motion.div
-              key={service.title}
+              key={s.num}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: i * 0.1 }}
-              className="rounded-2xl border border-border bg-card/50 hover:border-primary/20 transition-all duration-300 overflow-hidden"
+              transition={{ duration: 0.6 }}
+              className={`grid grid-cols-1 lg:grid-cols-2 gap-16 items-start ${i % 2 !== 0 ? "lg:flex-row-reverse" : ""}`}
             >
-              <div className="p-8 lg:p-10 grid grid-cols-1 lg:grid-cols-5 gap-8 items-start">
-                <div className="lg:col-span-3">
-                  <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${service.color} flex items-center justify-center mb-5`}>
-                    <service.icon className="w-6 h-6 text-white" />
-                  </div>
-                  <h3 className="font-heading text-2xl font-bold text-foreground mb-3">{service.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed">{service.desc}</p>
-                </div>
-
-                <div className="lg:col-span-2">
-                  <p className="text-xs font-heading font-semibold text-muted-foreground uppercase tracking-wider mb-4">What's Included</p>
-                  <ul className="space-y-3">
-                    {service.features.map((f) => (
-                      <li key={f} className="flex items-center gap-3 text-sm text-foreground">
-                        <CheckCircle2 className="w-4 h-4 text-accent shrink-0" />
-                        {f}
+              <div className={i % 2 !== 0 ? "lg:order-2" : ""}>
+                <span className="text-[#4F46E5] text-xs font-bold uppercase tracking-widest">{s.num}</span>
+                <h2 className="font-display text-4xl sm:text-5xl font-extrabold text-[#0A0A0A] tracking-tight mt-2 mb-2">{s.title}</h2>
+                <p className="text-[#4F46E5] font-semibold text-sm mb-4 italic">{s.tagline}</p>
+                <p className="text-[#525252] leading-relaxed mb-8">{s.body}</p>
+                <div>
+                  <p className="text-xs font-bold uppercase tracking-widest text-[#0A0A0A] mb-4">Deliverables</p>
+                  <ul className="space-y-2">
+                    {s.deliverables.map((d) => (
+                      <li key={d} className="flex items-start gap-3 text-sm text-[#525252]">
+                        <Check className="w-4 h-4 text-[#4F46E5] shrink-0 mt-0.5" />
+                        {d}
                       </li>
                     ))}
                   </ul>
                 </div>
               </div>
+              <div className={`rounded-3xl overflow-hidden aspect-[4/3] ${i % 2 !== 0 ? "lg:order-1" : ""}`}>
+                <img src={s.img} alt={s.title} className="w-full h-full object-cover" loading="lazy" />
+              </div>
             </motion.div>
           ))}
         </div>
 
-        {/* CTA */}
-        <motion.div
-          className="mt-20 text-center"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-        >
-          <p className="text-muted-foreground mb-6 text-lg">Not sure which service is right for you?</p>
-          <Link to="/contact">
-            <Button size="lg" className="bg-primary hover:bg-primary/90 font-heading font-semibold text-base px-8 h-13 group">
-              Let's Talk Strategy
-              <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-            </Button>
+        <div className="mt-20 pt-16 border-t border-gray-100 text-center">
+          <h2 className="font-display text-4xl font-extrabold text-[#0A0A0A] mb-4">Ready to plug the leaks?</h2>
+          <p className="text-[#525252] mb-8 max-w-md mx-auto">Start with the Clarity Audit and we'll find exactly where your funnel is bleeding.</p>
+          <Link to="/contact" className="inline-flex items-center gap-2 bg-[#4F46E5] text-white font-semibold px-8 py-4 rounded-full hover:bg-indigo-700 transition-colors">
+            Work With Me →
           </Link>
-        </motion.div>
+        </div>
       </div>
     </div>
   );

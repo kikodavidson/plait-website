@@ -1,54 +1,21 @@
 import React, { useState } from "react";
 import { base44 } from "@/api/base44Client";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { motion } from "framer-motion";
-import { Send, Mail, Phone, MapPin, Clock, CheckCircle2, Loader2 } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
-
-const serviceOptions = [
-  { value: "seo", label: "SEO Optimization" },
-  { value: "ppc", label: "PPC Advertising" },
-  { value: "social_media", label: "Social Media Marketing" },
-  { value: "content_marketing", label: "Content Marketing" },
-  { value: "email_marketing", label: "Email Marketing" },
-  { value: "web_design", label: "Web Design" },
-  { value: "branding", label: "Branding" },
-  { value: "other", label: "Other" },
-];
-
-const budgetOptions = [
-  { value: "under_5k", label: "Under $5,000/mo" },
-  { value: "5k_10k", label: "$5,000 – $10,000/mo" },
-  { value: "10k_25k", label: "$10,000 – $25,000/mo" },
-  { value: "25k_50k", label: "$25,000 – $50,000/mo" },
-  { value: "50k_plus", label: "$50,000+/mo" },
-];
+import { Loader2, CheckCircle2 } from "lucide-react";
 
 export default function Contact() {
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    company: "",
-    service_interest: "",
-    budget: "",
-    message: "",
-  });
+  const [form, setForm] = useState({ name: "", email: "", company: "", service_interest: "", message: "" });
 
-  const handleChange = (field, value) => {
-    setForm((prev) => ({ ...prev, [field]: value }));
-  };
+  const set = (k, v) => setForm((p) => ({ ...p, [k]: v }));
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!form.name || !form.email) {
-      toast({ title: "Please fill in your name and email.", variant: "destructive" });
+      toast({ title: "Name and email are required.", variant: "destructive" });
       return;
     }
     setLoading(true);
@@ -59,199 +26,172 @@ export default function Contact() {
 
   if (submitted) {
     return (
-      <div className="pt-28 pb-20 min-h-screen flex items-center justify-center">
+      <div className="pt-28 min-h-screen flex items-center justify-center px-6">
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="text-center max-w-md mx-auto px-6"
+          className="text-center max-w-md"
         >
-          <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-6">
-            <CheckCircle2 className="w-8 h-8 text-accent" />
+          <div className="w-16 h-16 bg-indigo-50 rounded-full flex items-center justify-center mx-auto mb-6">
+            <CheckCircle2 className="w-8 h-8 text-[#4F46E5]" />
           </div>
-          <h2 className="font-heading text-3xl font-bold mb-3">Thank You!</h2>
-          <p className="text-muted-foreground leading-relaxed">
-            We've received your inquiry and will get back to you within 24 hours. Let's build something great together.
+          <h2 className="font-display text-4xl font-extrabold text-[#0A0A0A] mb-3">Got it.</h2>
+          <p className="text-[#525252] leading-relaxed">
+            I'll be in touch within 24 hours. If you want to skip the wait, grab a time on my calendar below.
           </p>
+          <div className="mt-8 bg-[#F8F7FF] border border-indigo-100 rounded-2xl p-6">
+            <p className="text-sm font-semibold text-[#0A0A0A] mb-2">Book a time directly</p>
+            <p className="text-xs text-[#525252] mb-4">30-minute strategy call, no strings attached.</p>
+            <a
+              href="https://calendly.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-[#4F46E5] text-white text-sm font-semibold px-6 py-3 rounded-full hover:bg-indigo-700 transition-colors"
+            >
+              Open Calendly →
+            </a>
+          </div>
         </motion.div>
       </div>
     );
   }
 
   return (
-    <div className="pt-28 pb-20">
-      <div className="max-w-7xl mx-auto px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="max-w-3xl mb-16"
-        >
-          <span className="text-xs font-heading font-semibold text-primary uppercase tracking-widest">Contact Us</span>
-          <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold mt-3 leading-tight">
-            Let's start your
-            <br />
-            <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              growth story.
-            </span>
-          </h1>
-          <p className="text-lg text-muted-foreground mt-5 leading-relaxed">
-            Fill out the form below and we'll reach out within 24 hours to schedule your free strategy consultation.
-          </p>
-        </motion.div>
+    <div className="pt-28 pb-24">
+      <div className="hero-gradient pb-16 px-6 pt-12">
+        <div className="max-w-6xl mx-auto">
+          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+            <p className="text-xs font-semibold text-[#4F46E5] uppercase tracking-widest mb-4">Contact</p>
+            <h1 className="font-display text-6xl sm:text-7xl font-extrabold text-[#0A0A0A] tracking-tight leading-tight mb-5">
+              Let's talk.
+            </h1>
+            <p className="text-[#525252] text-lg max-w-lg leading-relaxed">
+              No pressure. No sales pitch. Just an honest conversation about where your funnel is leaking and whether PLAIT is the right fit to fix it.
+            </p>
+          </motion.div>
+        </div>
+      </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
+      <div className="max-w-6xl mx-auto px-6 py-16">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-16">
           {/* Form */}
-          <motion.div
-            className="lg:col-span-3"
+          <motion.form
+            onSubmit={handleSubmit}
+            className="lg:col-span-3 space-y-5"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.15 }}
           >
-            <form onSubmit={handleSubmit} className="space-y-6 rounded-2xl border border-border bg-card/50 p-8">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                <div className="space-y-2">
-                  <Label className="text-sm font-medium">Full Name *</Label>
-                  <Input
-                    placeholder="John Doe"
-                    value={form.name}
-                    onChange={(e) => handleChange("name", e.target.value)}
-                    className="bg-secondary/50 border-border h-11"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label className="text-sm font-medium">Email *</Label>
-                  <Input
-                    type="email"
-                    placeholder="john@company.com"
-                    value={form.email}
-                    onChange={(e) => handleChange("email", e.target.value)}
-                    className="bg-secondary/50 border-border h-11"
-                  />
-                </div>
-              </div>
-
-              <div className="space-y-2">
-                <Label className="text-sm font-medium">Company</Label>
-                <Input
-                  placeholder="Your company name"
-                  value={form.company}
-                  onChange={(e) => handleChange("company", e.target.value)}
-                  className="bg-secondary/50 border-border h-11"
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div>
+                <label className="block text-xs font-bold text-[#0A0A0A] uppercase tracking-wider mb-2">Name *</label>
+                <input
+                  className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm text-[#0A0A0A] placeholder-gray-400 focus:outline-none focus:border-[#4F46E5] focus:ring-1 focus:ring-[#4F46E5] transition-colors"
+                  placeholder="Your name"
+                  value={form.name}
+                  onChange={(e) => set("name", e.target.value)}
                 />
               </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                <div className="space-y-2">
-                  <Label className="text-sm font-medium">Service Interest</Label>
-                  <Select value={form.service_interest} onValueChange={(v) => handleChange("service_interest", v)}>
-                    <SelectTrigger className="bg-secondary/50 border-border h-11">
-                      <SelectValue placeholder="Select a service" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {serviceOptions.map((opt) => (
-                        <SelectItem key={opt.value} value={opt.value}>{opt.label}</SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-                <div className="space-y-2">
-                  <Label className="text-sm font-medium">Monthly Budget</Label>
-                  <Select value={form.budget} onValueChange={(v) => handleChange("budget", v)}>
-                    <SelectTrigger className="bg-secondary/50 border-border h-11">
-                      <SelectValue placeholder="Select budget range" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {budgetOptions.map((opt) => (
-                        <SelectItem key={opt.value} value={opt.value}>{opt.label}</SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-              </div>
-
-              <div className="space-y-2">
-                <Label className="text-sm font-medium">Tell us about your project</Label>
-                <Textarea
-                  placeholder="What are your goals? Any specific challenges?"
-                  value={form.message}
-                  onChange={(e) => handleChange("message", e.target.value)}
-                  className="bg-secondary/50 border-border h-32 resize-none"
+              <div>
+                <label className="block text-xs font-bold text-[#0A0A0A] uppercase tracking-wider mb-2">Email *</label>
+                <input
+                  type="email"
+                  className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm text-[#0A0A0A] placeholder-gray-400 focus:outline-none focus:border-[#4F46E5] focus:ring-1 focus:ring-[#4F46E5] transition-colors"
+                  placeholder="you@company.com"
+                  value={form.email}
+                  onChange={(e) => set("email", e.target.value)}
                 />
               </div>
+            </div>
 
-              <Button
-                type="submit"
-                disabled={loading}
-                className="w-full bg-primary hover:bg-primary/90 font-heading font-semibold text-base h-12"
+            <div>
+              <label className="block text-xs font-bold text-[#0A0A0A] uppercase tracking-wider mb-2">Company</label>
+              <input
+                className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm text-[#0A0A0A] placeholder-gray-400 focus:outline-none focus:border-[#4F46E5] focus:ring-1 focus:ring-[#4F46E5] transition-colors"
+                placeholder="Brand name"
+                value={form.company}
+                onChange={(e) => set("company", e.target.value)}
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs font-bold text-[#0A0A0A] uppercase tracking-wider mb-2">What are you after?</label>
+              <select
+                className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm text-[#0A0A0A] focus:outline-none focus:border-[#4F46E5] focus:ring-1 focus:ring-[#4F46E5] transition-colors"
+                value={form.service_interest}
+                onChange={(e) => set("service_interest", e.target.value)}
               >
-                {loading ? (
-                  <Loader2 className="w-5 h-5 animate-spin" />
-                ) : (
-                  <>
-                    Send Inquiry
-                    <Send className="w-4 h-4 ml-2" />
-                  </>
-                )}
-              </Button>
-            </form>
-          </motion.div>
+                <option value="">Pick one...</option>
+                <option value="clarity_audit">Clarity Audit ($500–$800)</option>
+                <option value="launch_system">Launch System ($2,500–$4,500)</option>
+                <option value="growth_retainer">Growth Retainer (Custom)</option>
+                <option value="other">Not sure yet — let's talk</option>
+              </select>
+            </div>
 
-          {/* Contact info sidebar */}
+            <div>
+              <label className="block text-xs font-bold text-[#0A0A0A] uppercase tracking-wider mb-2">What's going on?</label>
+              <textarea
+                rows={5}
+                className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm text-[#0A0A0A] placeholder-gray-400 focus:outline-none focus:border-[#4F46E5] focus:ring-1 focus:ring-[#4F46E5] transition-colors resize-none"
+                placeholder="Where's the funnel leaking? What have you tried? What does success look like?"
+                value={form.message}
+                onChange={(e) => set("message", e.target.value)}
+              />
+            </div>
+
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full bg-[#4F46E5] text-white font-semibold py-4 rounded-full text-sm hover:bg-indigo-700 transition-colors flex items-center justify-center gap-2 disabled:opacity-70"
+            >
+              {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : "Send It →"}
+            </button>
+          </motion.form>
+
+          {/* Sidebar */}
           <motion.div
-            className="lg:col-span-2"
+            className="lg:col-span-2 space-y-6"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            <div className="space-y-6">
-              <div className="rounded-2xl border border-border bg-card/50 p-7">
-                <h3 className="font-heading font-semibold text-lg mb-5">Get in Touch</h3>
-                <ul className="space-y-5">
-                  <li className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-                      <Mail className="w-5 h-5 text-primary" />
-                    </div>
-                    <div>
-                      <p className="text-sm font-medium text-foreground">Email</p>
-                      <p className="text-sm text-muted-foreground">hello@pulsedigital.com</p>
-                    </div>
-                  </li>
-                  <li className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-                      <Phone className="w-5 h-5 text-primary" />
-                    </div>
-                    <div>
-                      <p className="text-sm font-medium text-foreground">Phone</p>
-                      <p className="text-sm text-muted-foreground">(555) 123-4567</p>
-                    </div>
-                  </li>
-                  <li className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-                      <MapPin className="w-5 h-5 text-primary" />
-                    </div>
-                    <div>
-                      <p className="text-sm font-medium text-foreground">Office</p>
-                      <p className="text-sm text-muted-foreground">123 Marketing Ave, NYC</p>
-                    </div>
-                  </li>
-                  <li className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-                      <Clock className="w-5 h-5 text-primary" />
-                    </div>
-                    <div>
-                      <p className="text-sm font-medium text-foreground">Hours</p>
-                      <p className="text-sm text-muted-foreground">Mon–Fri, 9AM–6PM EST</p>
-                    </div>
-                  </li>
-                </ul>
-              </div>
+            <div className="bg-[#F8F7FF] rounded-3xl border border-indigo-100 p-8">
+              <h3 className="font-display text-xl font-extrabold text-[#0A0A0A] mb-4">Prefer to book direct?</h3>
+              <p className="text-sm text-[#525252] mb-5 leading-relaxed">
+                Grab a free 30-minute strategy call. No pitch, no deck. Just an honest look at your funnel.
+              </p>
+              <a
+                href="https://calendly.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-[#4F46E5] text-white text-sm font-semibold px-6 py-3 rounded-full hover:bg-indigo-700 transition-colors"
+              >
+                Book on Calendly →
+              </a>
+            </div>
 
-              <div className="rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/5 to-accent/5 p-7">
-                <h3 className="font-heading font-semibold text-lg mb-2">Free Strategy Session</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  Every engagement starts with a complimentary 30-minute strategy call. We'll review your current marketing, identify opportunities, and outline a roadmap — no strings attached.
-                </p>
-              </div>
+            <div className="bg-white border border-gray-100 rounded-3xl p-8 space-y-4">
+              <h3 className="font-display text-lg font-extrabold text-[#0A0A0A]">What to expect</h3>
+              <ul className="space-y-3">
+                {[
+                  "Response within 24 hours (usually faster)",
+                  "No sales pitch — a real conversation",
+                  "Honest assessment of whether PLAIT is the right fit",
+                  "If we move forward, a clear plan before any commitment",
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-3 text-sm text-[#525252]">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#4F46E5] shrink-0 mt-2" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="bg-[#0A0A0A] text-white rounded-3xl p-8">
+              <p className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-3">Current availability</p>
+              <p className="font-display text-3xl font-extrabold mb-2">Taking on 2 new clients.</p>
+              <p className="text-sm text-gray-400">Retainer spots go fast. Audit spots are always open.</p>
             </div>
           </motion.div>
         </div>

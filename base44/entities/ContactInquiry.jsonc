@@ -3,45 +3,25 @@
   "type": "object",
   "properties": {
     "name": {
-      "type": "string",
-      "description": "Full name of the person"
+      "type": "string"
     },
     "email": {
-      "type": "string",
-      "description": "Email address"
+      "type": "string"
     },
     "company": {
-      "type": "string",
-      "description": "Company name"
+      "type": "string"
     },
     "service_interest": {
       "type": "string",
       "enum": [
-        "seo",
-        "ppc",
-        "social_media",
-        "content_marketing",
-        "email_marketing",
-        "web_design",
-        "branding",
+        "clarity_audit",
+        "launch_system",
+        "growth_retainer",
         "other"
-      ],
-      "description": "Service they are interested in"
-    },
-    "budget": {
-      "type": "string",
-      "enum": [
-        "under_5k",
-        "5k_10k",
-        "10k_25k",
-        "25k_50k",
-        "50k_plus"
-      ],
-      "description": "Monthly budget range"
+      ]
     },
     "message": {
-      "type": "string",
-      "description": "Message from the inquirer"
+      "type": "string"
     },
     "status": {
       "type": "string",
@@ -49,12 +29,9 @@
         "new",
         "contacted",
         "qualified",
-        "proposal_sent",
-        "closed_won",
-        "closed_lost"
+        "closed"
       ],
-      "default": "new",
-      "description": "Lead status"
+      "default": "new"
     }
   },
   "required": [
