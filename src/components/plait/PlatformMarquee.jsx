@@ -4,6 +4,7 @@ const platforms = [
   { name: "Meta", logo: "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/cea2ebee9_Untitleddesign-2026-05-29T152821634.png" },
   { name: "Google Ads", logo: "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/77c3c7b74_Untitleddesign-2026-05-29T153409951.png" },
   { name: "TikTok Ads", logo: "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/78d50c267_logos1.png" },
+  { name: "Shopify", logo: "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/a52e929bd_logos2.png" },
   { name: "LinkedIn Ads", logo: "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/811fd1e37_logos.png" },
   { name: "Apple Ads", logo: "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/f5b0265b5_Untitleddesign-2026-05-29T153159952.png" },
   { name: "Reddit", logo: "https://upload.wikimedia.org/wikipedia/en/thumb/5/58/Reddit_logo_new.svg/200px-Reddit_logo_new.svg.png" },
