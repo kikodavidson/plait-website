@@ -83,8 +83,13 @@ export default function OrbitSection() {
             transition={{ duration: 0.6 }}
             className="sticky top-32"
           >
-            <div className="inline-flex items-center gap-2 bg-white/5 text-white/60 text-xs font-bold px-4 py-2 rounded-full mb-6 uppercase tracking-wider border border-white/10">
-              ◎ Orbit MCP
+            <div className="flex items-center gap-3 mb-6">
+              <img
+                src="https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/a52635986_Untitleddesign-2026-05-29T153256805.png"
+                alt="Orbit"
+                className="h-8 w-auto brightness-0 invert opacity-80"
+              />
+              <span className="text-white/40 text-xs font-bold uppercase tracking-widest">MCP</span>
             </div>
             <h2
               className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight mb-6"
@@ -109,16 +114,29 @@ export default function OrbitSection() {
             </div>
           </motion.div>
 
-          {/* Right — accordion list */}
+          {/* Right — phone image + accordion list */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
+            className="flex flex-col gap-10"
           >
-            {orbitCapabilities.map((cap, i) => (
-              <AccordionItem key={cap.title} title={cap.title} desc={cap.desc} index={i} />
-            ))}
+            {/* Phone mockup image */}
+            <div className="flex justify-center">
+              <img
+                src="https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/d6c6a8615_Untitleddesign-2026-05-29T165457959.png"
+                alt="Orbit app"
+                className="w-full max-w-sm object-contain drop-shadow-2xl"
+              />
+            </div>
+
+            {/* Accordion */}
+            <div>
+              {orbitCapabilities.map((cap, i) => (
+                <AccordionItem key={cap.title} title={cap.title} desc={cap.desc} index={i} />
+              ))}
+            </div>
           </motion.div>
         </div>
       </div>
