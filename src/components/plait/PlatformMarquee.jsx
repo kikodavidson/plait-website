@@ -7,7 +7,7 @@ const platforms = [
   { name: "Shopify", logo: "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/a52e929bd_logos2.png" },
   { name: "LinkedIn Ads", logo: "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/811fd1e37_logos.png" },
   { name: "Apple Ads", logo: "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/f5b0265b5_Untitleddesign-2026-05-29T153159952.png" },
-  { name: "Reddit", logo: "https://upload.wikimedia.org/wikipedia/en/thumb/5/58/Reddit_logo_new.svg/200px-Reddit_logo_new.svg.png" },
+  { name: "Google Analytics 4", logo: "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/1557e7da2_logos3.png" },
   { name: "Orbit", logo: "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/f9438ebe6_Untitleddesign-2026-05-29T153256805.png" },
   { name: "X", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/X_icon_2.svg/200px-X_icon_2.svg.png" },
 ];
