@@ -66,8 +66,7 @@ export default function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.25 }}
         >
-          Not an agency. Not a media buyer. A growth partner who runs paid acquisition, builds funnels, audits CRO, and obsesses over unit economics.{" "}
-          <span className="text-[#0A0A0A] font-bold">Everyone's using the same AI</span> — PLAIT keeps the strategy human.
+          Battle Tested Marketing, Enhanced by AI.
         </motion.p>
 
         {/* CTA pill — matches Draftr's rounded pill button */}
