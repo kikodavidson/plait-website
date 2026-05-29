@@ -35,9 +35,6 @@ export default function Navbar() {
       <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
         {/* Logo — matches Draftr's bold wordmark */}
         <Link to="/" className="flex items-center gap-2.5">
-          <div className="w-7 h-7 rounded-lg bg-[#4F46E5] flex items-center justify-center">
-            <span className="text-white text-xs font-extrabold">P</span>
-          </div>
           <span className="text-[#0A0A0A] font-extrabold text-lg tracking-tight">PLAIT</span>
         </Link>
 
