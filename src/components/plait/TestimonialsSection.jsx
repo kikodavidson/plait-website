@@ -5,18 +5,18 @@ import { Play, Quote } from "lucide-react";
 const videoTestimonials = [
   {
     id: 1,
-    name: "Jordan M.",
-    role: "Founder, Extern",
-    thumbnail: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=400&fit=crop",
-    videoUrl: "#",
-    preview: "CAC down 90%, acquisition finally makes sense at our margins.",
+    name: "Brett S.",
+    role: "Founder, Ivy Dating",
+    thumbnail: "https://img.youtube.com/vi/tNLtESXCu88/maxresdefault.jpg",
+    videoUrl: "give me my thumbnail id if the link is https://youtube.com/shorts/tNLtESXCu88",
+    preview: "He;s blown up my business and handled the areas that I hacen't been too sure about.",
   },
   {
     id: 2,
-    name: "Sarah T.",
-    role: "Marketing Lead, Airia",
-    thumbnail: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&h=400&fit=crop",
-    videoUrl: "#",
+    name: "Hudson G.",
+    role: "Founder, HG Training",
+    thumbnail: "https://img.youtube.com/vi/8OaMt_uDJmQ/maxresdefault.jpg",
+    videoUrl: "https://youtube.com/shorts/8OaMt_uDJmQ?feature=share",
     preview: "30 million impressions on a campaign nobody expected to work.",
   },
 ];
