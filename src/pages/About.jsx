@@ -31,7 +31,7 @@ export default function About() {
           <div>
             <div className="rounded-3xl overflow-hidden aspect-[4/5]">
               <img
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=700&h=900&fit=crop&crop=face"
+                src="https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/af29b721b_Screenshot2026-05-29at64049PM.png"
                 alt="Luke Davidson"
                 className="w-full h-full object-cover"
               />
@@ -40,23 +40,23 @@ export default function About() {
 
           <div className="space-y-6 pt-4">
             <h2 className="font-body text-4xl font-extrabold text-[#0A0A0A] tracking-tight">Luke Davidson</h2>
-            <div className="flex items-center gap-3">
-              <span className="text-xs font-bold text-[#4F46E5] uppercase tracking-widest bg-indigo-50 px-3 py-1 rounded-full">Founder, PLAIT</span>
-              <span className="text-xs font-bold text-[#525252] uppercase tracking-widest bg-gray-100 px-3 py-1 rounded-full">Co-Founder, Orbit AI</span>
-            </div>
+            <p className="text-[#525252] text-base font-medium">Founder of Plait</p>
 
             <div className="space-y-4 text-[#525252] leading-relaxed text-base">
               <p>
-                Eight years in growth marketing. I've run paid acquisition, rebuilt funnels from scratch, audited CRO on brands doing $50k a month and brands doing $5M. I've worked across D2C, SaaS, B2B, and apps. I've seen what works and I've seen the BS.
+                I have a problem. I really, really like winning.
               </p>
               <p>
-                PLAIT isn't an agency. It's not a freelancer arrangement. It's a partnership. When you work with me, you get the same energy and attention whether you're spending $5k or $500k.
+                Growing up as a sponsored motocross racer and later an NCAA soccer player, I became obsessed with finding an edge, solving problems, and winning. When I discovered performance marketing, everything clicked.
               </p>
               <p>
-                I'm also the co-founder of Orbit — an AI agent built specifically for marketing workflows. Orbit handles the volume. I handle the strategy. That's the difference.
+                Marketing combines everything I love: psychology, creativity, strategy, and competition. Every business is a puzzle. Every market has opportunities hiding in plain sight. My job is to find them.
               </p>
               <p>
-                Faith shapes how I run this. Stewardship over exploitation means I tell you when something isn't working, I don't chase retainers by keeping broken campaigns alive, and I don't pad reports to look busy. I think that's just called being a decent person, but apparently it's a differentiator in this industry.
+                Whether it's ads, websites, attribution, or messaging, I enjoy connecting the dots and uncovering what's holding growth back.
+              </p>
+              <p>
+                Helping a client hit a record month gives me the same feeling as hitting black on the roulette table. It's a rush I chase — one that takes hard work and creativity to achieve.
               </p>
             </div>
 
