@@ -62,9 +62,9 @@ function PlaitViz({ ads, website, attribution }) {
   const amp = 38;
   const freq = 3;
 
-  const strandA = { active: ads, color: ads ? "#E91E8C" : "#e5e7eb" };
-  const strandB = { active: attribution, color: attribution ? "#0A0A0A" : "#e5e7eb" };
-  const strandC = { active: website, color: website ? "#E91E8C" : "#e5e7eb" };
+  const strandA = { active: ads, color: ads ? "#a0b4ff" : "#e5e7eb", label: "Ads" };
+  const strandB = { active: attribution, color: attribution ? "#c084fc" : "#e5e7eb", label: "Attribution" };
+  const strandC = { active: website, color: website ? "#f472b6" : "#e5e7eb", label: "Website" };
 
   const pathA = Array.from({ length: 61 }, (_, i) => {
     const t = i / 60;
@@ -87,11 +87,30 @@ function PlaitViz({ ads, website, attribution }) {
     return `${i === 0 ? "M" : "L"} ${x.toFixed(2)} ${y.toFixed(2)}`;
   }).join(" ");
 
+  // Label positions at top of each strand
+  const labelY = 6;
+  const labelAx = cx + amp * Math.sin(0);
+  const labelBx = cx + amp * Math.sin((2 * Math.PI) / 3);
+  const labelCx = cx + amp * Math.sin((4 * Math.PI) / 3);
+
   return (
-    <svg viewBox={`0 0 ${W} ${H}`} className="w-full max-w-[160px]">
-      <path d={pathB} stroke={strandB.color} strokeWidth="3" fill="none" strokeLinecap="round" />
-      <path d={pathC} stroke={strandC.color} strokeWidth="3" fill="none" strokeLinecap="round" />
-      <path d={pathA} stroke={strandA.color} strokeWidth="3" fill="none" strokeLinecap="round" />
+    <svg viewBox={`0 0 ${W} ${H + 30}`} className="w-full max-w-[200px]">
+      {/* Strand labels at top */}
+      <text x={labelAx} y={labelY} textAnchor="middle" fontSize="8" fontWeight="700" fill={strandA.color} fontFamily="Manrope, sans-serif" letterSpacing="0.05em">
+        {strandA.label.toUpperCase()}
+      </text>
+      <text x={labelBx} y={labelY} textAnchor="middle" fontSize="8" fontWeight="700" fill={strandB.color} fontFamily="Manrope, sans-serif" letterSpacing="0.05em">
+        {strandB.label.toUpperCase()}
+      </text>
+      <text x={labelCx} y={labelY} textAnchor="middle" fontSize="8" fontWeight="700" fill={strandC.color} fontFamily="Manrope, sans-serif" letterSpacing="0.05em">
+        {strandC.label.toUpperCase()}
+      </text>
+      {/* Braid paths offset below labels */}
+      <g transform="translate(0, 14)">
+        <path d={pathB} stroke={strandB.color} strokeWidth="3.5" fill="none" strokeLinecap="round" />
+        <path d={pathC} stroke={strandC.color} strokeWidth="3.5" fill="none" strokeLinecap="round" />
+        <path d={pathA} stroke={strandA.color} strokeWidth="3.5" fill="none" strokeLinecap="round" />
+      </g>
     </svg>
   );
 }
@@ -162,7 +181,7 @@ export default function PlaitSystem() {
                     <button
                       onClick={() => setters[key](!active)}
                       className={`relative w-11 h-6 rounded-full transition-colors focus:outline-none ${
-                        active ? "bg-[#E91E8C]" : "bg-gray-200"
+                        active ? "bg-gradient-to-r from-[#a0b4ff] via-[#c084fc] to-[#f472b6]" : "bg-gray-200"
                       }`}
                     >
                       <div
