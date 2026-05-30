@@ -87,7 +87,7 @@ export default function OrbitSection() {
               <img
                 src="https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/a52635986_Untitleddesign-2026-05-29T153256805.png"
                 alt="Orbit"
-                className="h-16 w-auto brightness-0 invert opacity-90"
+                className="h-24 w-auto brightness-0 invert opacity-90"
               />
               <span className="text-white/40 text-xs font-bold uppercase tracking-widest">MCP</span>
             </div>
@@ -102,7 +102,7 @@ export default function OrbitSection() {
               Most marketers are outsourcing their strategy to a chatbot and wondering why everything sounds the same. Prompting GPT for a media plan isn't strategy. It's delegation to something that has never spent a dollar on ads.
             </p>
             <p className="text-white/50 text-base leading-relaxed mb-4">
-              I co-founded Orbit — a Model Context Protocol (MCP) designed specifically for marketing workflows. The difference between an MCP and a standard AI tool is context depth. Orbit connects directly to your live data: ad accounts, CRM, analytics, attribution. It doesn't guess. It reads.
+              I co-founded Orbit, a Model Context Protocol (MCP) designed specifically for marketing workflows. The difference between an MCP and a standard AI tool is context depth. Orbit connects directly to your live data: ad accounts, CRM, analytics, attribution. It doesn't guess. It reads.
             </p>
             <p className="text-white/50 text-base leading-relaxed">
               I built Orbit to increase output efficiency without surrendering the thing that actually drives performance: human judgment. The strategy stays mine. The volume scales with Orbit.
@@ -111,6 +111,18 @@ export default function OrbitSection() {
             <div className="mt-8 bg-white/5 border border-white/10 rounded-2xl p-6">
               <p className="text-white text-sm font-bold mb-1">Days of work. Hours of output.</p>
               <p className="text-white/40 text-xs">Strategy stays human. Volume scales with AI.</p>
+            </div>
+
+            <div className="mt-6">
+              <a
+                href="https://orbitllm.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-[#B8972A] text-sm font-bold hover:text-[#D4AF37] transition-colors"
+              >
+                See how it works
+                <span className="text-lg leading-none">↗</span>
+              </a>
             </div>
           </motion.div>
 
@@ -125,7 +137,7 @@ export default function OrbitSection() {
             {/* Phone mockup image */}
             <div className="flex justify-center relative">
               <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                <div className="w-72 h-72 rounded-full bg-[#B8972A] opacity-25 blur-3xl" />
+                <div className="w-80 h-80 rounded-full bg-[#B8972A] opacity-30 blur-3xl" />
               </div>
               <img
                 src="https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/d6c6a8615_Untitleddesign-2026-05-29T165457959.png"
