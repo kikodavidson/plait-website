@@ -45,7 +45,7 @@ export default function Navbar() {
               key={l.path}
               to={l.path}
               className={`text-sm font-semibold transition-colors ${
-                location.pathname === l.path ? "text-[#6E99AE]" : "text-[#525252] hover:text-[#6E99AE]"
+                location.pathname === l.path ? "text-[#0A0A0A]" : "text-[#525252] hover:text-[#0A0A0A]"
               }`}
             >
               {l.label}

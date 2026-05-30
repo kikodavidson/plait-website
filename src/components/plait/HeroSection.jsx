@@ -21,7 +21,7 @@ export default function HeroSection() {
 
   return (
     <section className="hero-gradient min-h-[92vh] flex flex-col items-center justify-center text-center px-6 pt-28 pb-20 relative overflow-hidden">
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-[#BAC4FE]/20 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-indigo-200/30 rounded-full blur-3xl pointer-events-none" />
 
       <div className="relative max-w-4xl mx-auto flex flex-col items-center">
         {/* Pill badge */}
@@ -29,9 +29,9 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="inline-flex items-center gap-2 bg-[#0A0A0A] text-white text-xs font-semibold px-4 py-2 rounded-full mb-10 shadow-sm relative z-10"
+          className="inline-flex items-center gap-2 bg-[#0A0A0A] text-white text-xs font-semibold px-4 py-2 rounded-full mb-10 shadow-sm"
         >
-          <span className="bg-[#6E99AE] text-white text-[10px] font-bold px-2 py-0.5 rounded-full tracking-wide uppercase">New</span>
+          <span className="bg-[#4F46E5] text-white text-[10px] font-bold px-2 py-0.5 rounded-full tracking-wide uppercase">New</span>
           Battle Tested Marketing, Enhanced by AI.
         </motion.div>
 
@@ -57,7 +57,7 @@ export default function HeroSection() {
 
         {/* Rotating word */}
         <div
-          className="text-[clamp(2.4rem,6.5vw,5rem)] font-extrabold text-[#6E99AE] leading-[1.15] tracking-[0.05em] mb-8 h-[1.25em] flex items-center justify-center overflow-hidden font-display"
+          className="text-[clamp(2.4rem,6.5vw,5rem)] font-extrabold text-[#4F46E5] leading-[1.15] tracking-[0.05em] mb-8 h-[1.25em] flex items-center justify-center overflow-hidden font-display"
           style={{ fontFamily: 'Josefin Sans, sans-serif' }}
         >
           <AnimatePresence mode="wait">
@@ -92,7 +92,7 @@ export default function HeroSection() {
         >
           <Link
             to="/contact"
-            className="inline-flex items-center gap-3 bg-[#6E99AE] text-white font-bold text-base px-8 py-4 rounded-full hover:bg-[#5a8799] transition-colors shadow-lg shadow-[#6E99AE]/30 group relative z-10"
+            className="inline-flex items-center gap-3 bg-[#4F46E5] text-white font-bold text-base px-8 py-4 rounded-full hover:bg-indigo-700 transition-colors shadow-lg shadow-indigo-200 group"
           >
             Work With Me
             <span className="w-7 h-7 bg-white/20 rounded-full flex items-center justify-center group-hover:bg-white/30 transition-colors text-sm">→</span>
@@ -113,7 +113,7 @@ export default function HeroSection() {
           ].map((s, i) => (
             <div key={s.label} className={`flex flex-col items-center ${i > 0 ? "border-l border-white/10" : ""}`}>
               <p
-                className="text-4xl sm:text-5xl font-extrabold text-[#6E99AE] tracking-tight leading-none"
+                className="text-4xl sm:text-5xl font-extrabold text-[#4F46E5] tracking-tight leading-none"
                 style={{ fontFamily: 'Manrope, sans-serif' }}
               >
                 {s.value}

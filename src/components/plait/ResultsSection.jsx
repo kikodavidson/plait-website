@@ -15,7 +15,7 @@ export default function ResultsSection() {
           className="border-t border-white/10 pt-16 flex flex-col md:flex-row md:items-end md:justify-between gap-8"
         >
           <div>
-            <p className="text-xs font-bold text-[#6E99AE] uppercase tracking-widest mb-4">Proof</p>
+            <p className="text-xs font-bold text-[#4F46E5] uppercase tracking-widest mb-4">Proof</p>
             <h2
               className="text-4xl sm:text-5xl font-extrabold text-white tracking-widest leading-[1.1] font-display"
               style={{ fontFamily: "Josefin Sans, sans-serif" }}

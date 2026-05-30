@@ -113,7 +113,7 @@ export default function OrbitSection() {
                 href="https://orbitllm.com/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-[#6E99AE] text-sm font-bold hover:text-[#BAC4FE] transition-colors"
+                className="inline-flex items-center gap-2 text-[#B8972A] text-sm font-bold hover:text-[#D4AF37] transition-colors"
               >
                 See how it works
                 <span className="text-lg leading-none">↗</span>
