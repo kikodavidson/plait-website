@@ -81,7 +81,7 @@ export default function OrbitSection() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="sticky top-32"
+            className="lg:sticky lg:top-32"
           >
             <div className="flex items-center gap-3 mb-6">
               <img
