@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function Footer() {
   return (
-    <footer className="bg-white border-t border-gray-100 py-12">
+    <footer className="bg-white/60 backdrop-blur-sm border-t border-gray-100/60 py-12">
       <div className="max-w-6xl mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
           <div>
@@ -18,7 +18,7 @@ export default function Footer() {
           </div>
           <Link
             to="/contact"
-            className="inline-flex items-center gap-2 bg-[#4F46E5] text-white text-sm font-semibold px-5 py-2.5 rounded-full hover:bg-indigo-700 transition-colors"
+            className="btn-gradient inline-flex items-center gap-2 text-sm font-semibold px-5 py-2.5 rounded-full"
           >
             Work With Me
           </Link>

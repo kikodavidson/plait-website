@@ -6,7 +6,7 @@ import DynamicBackground from "./plait/DynamicBackground";
 
 export default function Layout() {
   return (
-    <div className="min-h-screen font-body relative">
+    <div className="min-h-screen font-body relative" style={{ background: "transparent" }}>
       <DynamicBackground />
       <div className="relative z-10">
         <Navbar />

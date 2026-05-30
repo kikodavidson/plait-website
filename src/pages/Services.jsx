@@ -218,7 +218,7 @@ export default function Services() {
               <div className="flex flex-col sm:flex-row gap-3 mt-2">
                 <Link
                   to="/contact"
-                  className="inline-flex items-center justify-center gap-2 bg-white text-[#0A0A0A] font-bold text-sm px-6 py-3.5 rounded-full hover:bg-gray-100 transition-colors"
+                  className="btn-gradient inline-flex items-center justify-center gap-2 font-bold text-sm px-6 py-3.5 rounded-full"
                 >
                   Pull The Thread
                 </Link>

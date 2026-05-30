@@ -170,7 +170,7 @@ export default function HeroSection() {
         >
           <Link
             to="/contact"
-            className="inline-flex items-center gap-3 bg-[#4F46E5] text-white font-bold text-base px-8 py-4 rounded-full hover:bg-indigo-700 transition-colors shadow-lg shadow-indigo-200 group"
+            className="btn-gradient inline-flex items-center gap-3 font-bold text-base px-8 py-4 rounded-full shadow-lg group"
           >
             See What's Possible
             <span className="w-7 h-7 bg-white/20 rounded-full flex items-center justify-center group-hover:bg-white/30 transition-colors text-sm">→</span>

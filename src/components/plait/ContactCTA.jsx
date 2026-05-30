@@ -22,7 +22,7 @@ export default function ContactCTA() {
           </p>
           <Link
             to="/contact"
-            className="inline-flex items-center gap-2 bg-[#4F46E5] text-white font-semibold px-8 py-4 rounded-full text-base hover:bg-indigo-700 transition-colors"
+            className="btn-gradient inline-flex items-center gap-2 font-semibold px-8 py-4 rounded-full text-base"
           >
             Work With Me
           </Link>

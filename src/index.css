@@ -11,7 +11,7 @@
     --font-body: 'Manrope', sans-serif;
     --font-display: 'Josefin Sans', sans-serif;
 
-    --background: 210 33% 95%;
+    --background: 248 100% 99%;
     --foreground: 220 20% 10%;
     --card: 0 0% 100%;
     --card-foreground: 220 20% 10%;
@@ -65,24 +65,31 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Animated brand gradient background */
+/* hero-gradient and section-gradient are now transparent to let the canvas show */
+.hero-gradient {
+  background: transparent;
+}
+
+.section-gradient {
+  background: transparent;
+}
+
+/* Gradient button utility */
+.btn-gradient {
+  background: linear-gradient(135deg, #a0b4ff 0%, #c084fc 30%, #f472b6 60%, #86efda 100%);
+  background-size: 200% 200%;
+  animation: gradientShift 4s ease infinite;
+  color: #fff;
+  border: none;
+}
+.btn-gradient:hover {
+  opacity: 0.9;
+}
+
 @keyframes gradientShift {
   0%   { background-position: 0% 50%; }
-  25%  { background-position: 100% 50%; }
-  50%  { background-position: 100% 0%; }
-  75%  { background-position: 0% 100%; }
+  50%  { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
-}
-
-.hero-gradient {
-  background: radial-gradient(ellipse 80% 60% at 50% 0%, #BAC4FE40 0%, #6E99AE25 30%, #EEF1EF 70%, #ffffff 100%);
-}
-
-/* Dynamic background handled by DynamicBackground canvas component */
-
-/* Soft section gradient */
-.section-gradient {
-  background: linear-gradient(180deg, #ffffff 0%, #EEF1EF 60%, #BAC4FE30 100%);
 }
 
 /* Marquee */

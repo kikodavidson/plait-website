@@ -98,7 +98,7 @@ export default function OurProcess() {
           </div>
           <Link
             to="/contact"
-            className="shrink-0 inline-flex items-center gap-2 bg-white text-[#0A0A0A] font-bold text-sm px-8 py-4 rounded-full hover:bg-gray-100 transition-colors"
+            className="btn-gradient shrink-0 inline-flex items-center gap-2 font-bold text-sm px-8 py-4 rounded-full"
           >
             Let's Talk
           </Link>

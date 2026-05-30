@@ -54,7 +54,7 @@ const packages = [
 
 export default function PackagesSection() {
   return (
-    <section className="py-28 px-6 bg-white border-t border-gray-100">
+    <section className="py-28 px-6 border-t border-gray-100/50">
       <div className="max-w-6xl mx-auto">
         <div className="mb-14 max-w-xl">
           <p className="text-xs font-bold text-[#4F46E5] uppercase tracking-widest mb-3">Packages</p>
@@ -113,8 +113,8 @@ export default function PackagesSection() {
                 to="/contact"
                 className={`inline-flex items-center justify-center gap-2 font-bold text-sm px-6 py-3.5 rounded-full transition-colors ${
                   pkg.highlight
-                    ? "bg-white text-[#0A0A0A] hover:bg-gray-100"
-                    : "bg-[#0A0A0A] text-white hover:bg-gray-800"
+                    ? "btn-gradient"
+                    : "btn-gradient"
                 }`}
               >
                 {pkg.cta}

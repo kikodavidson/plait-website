@@ -59,7 +59,7 @@ export default function Navbar() {
         <div className="hidden md:flex items-center gap-3">
           <Link
             to="/contact"
-            className="inline-flex items-center gap-2 bg-[#0A0A0A] text-white text-sm font-bold px-5 py-2.5 rounded-full hover:bg-[#1a1a1a] transition-colors"
+            className="btn-gradient inline-flex items-center gap-2 text-sm font-bold px-5 py-2.5 rounded-full"
           >
             Work With Me
           </Link>
@@ -84,7 +84,7 @@ export default function Navbar() {
                   {l.label}
                 </Link>
               ))}
-              <Link to="/contact" className="mt-2 text-center bg-[#0A0A0A] text-white text-sm font-bold px-5 py-3 rounded-full">
+              <Link to="/contact" className="mt-2 text-center btn-gradient text-sm font-bold px-5 py-3 rounded-full">
                 Work With Me
               </Link>
             </div>

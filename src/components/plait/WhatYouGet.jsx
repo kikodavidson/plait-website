@@ -37,7 +37,7 @@ const deliverables = [
 
 export default function WhatYouGet() {
   return (
-    <section className="py-28 px-6 bg-white border-t border-gray-100">
+    <section className="py-28 px-6 border-t border-gray-100/50">
       <div className="max-w-6xl mx-auto">
         <motion.div
           className="mb-16 max-w-2xl"

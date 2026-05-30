@@ -75,7 +75,7 @@ export default function About() {
 
             <Link
               to="/contact"
-              className="inline-flex items-center gap-2 bg-[#4F46E5] text-white font-semibold px-7 py-4 rounded-full text-sm hover:bg-indigo-700 transition-colors"
+              className="btn-gradient inline-flex items-center gap-2 font-semibold px-7 py-4 rounded-full text-sm transition-opacity"
             >
               Work With Me
             </Link>
@@ -84,7 +84,7 @@ export default function About() {
       </div>
 
       {/* Core Beliefs */}
-      <div className="section-gradient py-20 px-6">
+      <div className="py-20 px-6">
         <div className="max-w-6xl mx-auto">
           <h2 className="font-body text-4xl font-extrabold text-[#0A0A0A] tracking-tight mb-12">Core Beliefs</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -147,7 +147,7 @@ export default function About() {
             </p>
             <Link
               to="/contact"
-              className="inline-flex items-center gap-2 bg-white text-[#0A0A0A] font-bold text-base px-8 py-4 rounded-full hover:bg-gray-100 transition-colors"
+              className="btn-gradient inline-flex items-center gap-2 font-bold text-base px-8 py-4 rounded-full transition-opacity"
             >
               Get in touch
             </Link>

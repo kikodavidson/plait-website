@@ -122,7 +122,7 @@ export default function CaseStudies() {
                   ))}
                 </div>
               </div>
-              <Link to="/contact" className="mt-6 block text-center bg-[#4F46E5] text-white font-semibold px-6 py-3.5 rounded-full hover:bg-indigo-700 transition-colors text-sm">
+              <Link to="/contact" className="btn-gradient mt-6 block text-center font-semibold px-6 py-3.5 rounded-full text-sm">
                 Work With Me
               </Link>
             </div>

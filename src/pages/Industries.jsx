@@ -144,7 +144,7 @@ export default function Industries() {
                 <div className="mt-8 pt-6 border-t border-indigo-100">
                   <Link
                     to="/contact"
-                    className="inline-flex items-center gap-2 bg-[#4F46E5] text-white font-bold text-sm px-6 py-3.5 rounded-full hover:bg-indigo-700 transition-colors"
+                    className="btn-gradient inline-flex items-center gap-2 font-bold text-sm px-6 py-3.5 rounded-full"
                   >
                     Start a Conversation
                   </Link>

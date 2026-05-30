@@ -46,8 +46,8 @@ export default function Contact() {
               href="https://calendly.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-[#4F46E5] text-white text-sm font-semibold px-6 py-3 rounded-full hover:bg-indigo-700 transition-colors"
-            >
+              className="btn-gradient inline-flex items-center gap-2 text-sm font-semibold px-6 py-3 rounded-full"
+              >
               Open Calendly
             </a>
           </div>
@@ -143,7 +143,7 @@ export default function Contact() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-[#4F46E5] text-white font-semibold py-4 rounded-full text-sm hover:bg-indigo-700 transition-colors flex items-center justify-center gap-2 disabled:opacity-70"
+              className="btn-gradient w-full font-semibold py-4 rounded-full text-sm flex items-center justify-center gap-2 disabled:opacity-70"
             >
               {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : "Send It"}
             </button>
@@ -165,7 +165,7 @@ export default function Contact() {
                 href="https://calendly.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-[#4F46E5] text-white text-sm font-semibold px-6 py-3 rounded-full hover:bg-indigo-700 transition-colors"
+                className="btn-gradient inline-flex items-center gap-2 text-sm font-semibold px-6 py-3 rounded-full"
               >
                 Book on Calendly
               </a>

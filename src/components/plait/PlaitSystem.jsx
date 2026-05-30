@@ -113,7 +113,7 @@ export default function PlaitSystem() {
   const state = getState(ads, website, attribution);
 
   return (
-    <section className="py-28 px-6 bg-white border-t border-gray-100">
+    <section className="py-28 px-6 border-t border-gray-100/50">
       <div className="max-w-6xl mx-auto">
 
         {/* Definition */}
