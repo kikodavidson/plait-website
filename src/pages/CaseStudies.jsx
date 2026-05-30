@@ -47,7 +47,7 @@ const studies = [
   },
   {
     slug: "airia-williams-f1",
-    client: "Airia / Williams Racing F1",
+    client: "Airia",
     category: "Enterprise / AI",
     stat: "30M+",
     statLabel: "Impressions in Two Months",
