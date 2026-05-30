@@ -92,8 +92,8 @@ export default function OrbitSection() {
               <span className="text-white/40 text-xs font-bold uppercase tracking-widest">MCP</span>
             </div>
             <h2
-              className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight mb-6"
-              style={{ fontFamily: "Manrope, sans-serif" }}
+              className="text-4xl sm:text-5xl font-extrabold text-white tracking-widest leading-tight mb-6 font-display"
+              style={{ fontFamily: "Josefin Sans, sans-serif" }}
             >
               AI should amplify<br />your thinking.<br />
               <span className="text-[#4F46E5]">Not replace it.</span>

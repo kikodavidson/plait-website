@@ -37,8 +37,8 @@ export default function HeroSection() {
 
         {/* Static headline line 1 */}
         <motion.h1
-          className="text-[clamp(2.4rem,6.5vw,5rem)] font-extrabold text-[#0A0A0A] leading-[1.05] tracking-[-0.03em] mb-0"
-          style={{ fontFamily: 'Manrope, sans-serif' }}
+          className="text-[clamp(2.4rem,6.5vw,5rem)] font-extrabold text-[#0A0A0A] leading-[1.05] tracking-[0.05em] mb-0 font-display"
+          style={{ fontFamily: 'Josefin Sans, sans-serif' }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
@@ -46,8 +46,8 @@ export default function HeroSection() {
           Your Growth Partner,
         </motion.h1>
         <motion.h1
-          className="text-[clamp(2.4rem,6.5vw,5rem)] font-extrabold text-[#0A0A0A] leading-[1.05] tracking-[-0.03em] mb-2"
-          style={{ fontFamily: 'Manrope, sans-serif' }}
+          className="text-[clamp(2.4rem,6.5vw,5rem)] font-extrabold text-[#0A0A0A] leading-[1.05] tracking-[0.05em] mb-2 font-display"
+          style={{ fontFamily: 'Josefin Sans, sans-serif' }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.15 }}
@@ -57,8 +57,8 @@ export default function HeroSection() {
 
         {/* Rotating word */}
         <div
-          className="text-[clamp(2.4rem,6.5vw,5rem)] font-extrabold text-[#4F46E5] leading-[1.15] tracking-[-0.03em] mb-8 h-[1.25em] flex items-center justify-center overflow-hidden"
-          style={{ fontFamily: 'Manrope, sans-serif' }}
+          className="text-[clamp(2.4rem,6.5vw,5rem)] font-extrabold text-[#4F46E5] leading-[1.15] tracking-[0.05em] mb-8 h-[1.25em] flex items-center justify-center overflow-hidden font-display"
+          style={{ fontFamily: 'Josefin Sans, sans-serif' }}
         >
           <AnimatePresence mode="wait">
             <motion.span

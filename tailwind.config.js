@@ -7,6 +7,7 @@ module.exports = {
       fontFamily: {
         sans: ['Manrope', 'sans-serif'],
         body: ['Manrope', 'sans-serif'],
+        display: ['Josefin Sans', 'sans-serif'],
       },
       borderRadius: {
         lg: 'var(--radius)',
