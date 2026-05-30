@@ -8,15 +8,15 @@ const videoTestimonials = [
     name: "Brett S.",
     role: "Founder, Ivy Dating",
     thumbnail: "https://img.youtube.com/vi/tNLtESXCu88/maxresdefault.jpg",
-    videoUrl: "give me my thumbnail id if the link is https://youtube.com/shorts/tNLtESXCu88",
-    preview: "He;s blown up my business and handled the areas that I hacen't been too sure about.",
+    embedUrl: "https://www.youtube.com/embed/tNLtESXCu88?autoplay=1",
+    preview: "He's blown up my business and handled the areas that I haven't been too sure about.",
   },
   {
     id: 2,
     name: "Hudson G.",
     role: "Founder, HG Training",
     thumbnail: "https://img.youtube.com/vi/8OaMt_uDJmQ/maxresdefault.jpg",
-    videoUrl: "https://youtube.com/shorts/8OaMt_uDJmQ?feature=share",
+    embedUrl: "https://www.youtube.com/embed/8OaMt_uDJmQ?autoplay=1",
     preview: "30 million impressions on a campaign nobody expected to work.",
   },
 ];
@@ -36,28 +36,35 @@ function VideoCard({ t, index, featured }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.12 }}
-      className={`relative rounded-3xl overflow-hidden shadow-xl ${featured ? "aspect-video" : "aspect-video"}`}
+      className="relative rounded-3xl overflow-hidden shadow-xl aspect-video"
     >
-      <img src={t.thumbnail} alt={t.name} className="w-full h-full object-cover" />
-      {/* Dark overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-
-      {/* Play button */}
-      <button
-        onClick={() => setPlaying(true)}
-        className="absolute inset-0 flex items-center justify-center group"
-      >
-        <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 flex items-center justify-center group-hover:bg-[#4F46E5] group-hover:border-[#4F46E5] transition-all shadow-xl">
-          <Play className="w-6 h-6 text-white ml-1" fill="white" />
-        </div>
-      </button>
-
-      {/* Info */}
-      <div className="absolute bottom-0 left-0 right-0 p-6">
-        <p className="text-white/60 text-xs font-semibold uppercase tracking-wider mb-1">{t.role}</p>
-        <p className="text-white font-bold text-base" style={{ fontFamily: 'Manrope, sans-serif' }}>{t.name}</p>
-        <p className="text-white/70 text-sm mt-1 leading-relaxed line-clamp-2">"{t.preview}"</p>
-      </div>
+      {playing ? (
+        <iframe
+          src={t.embedUrl}
+          className="w-full h-full"
+          allow="autoplay; encrypted-media"
+          allowFullScreen
+          title={t.name}
+        />
+      ) : (
+        <>
+          <img src={t.thumbnail} alt={t.name} className="w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+          <button
+            onClick={() => setPlaying(true)}
+            className="absolute inset-0 flex items-center justify-center group"
+          >
+            <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 flex items-center justify-center group-hover:bg-[#0A0A0A] group-hover:border-[#0A0A0A] transition-all shadow-xl">
+              <Play className="w-6 h-6 text-white ml-1" fill="white" />
+            </div>
+          </button>
+          <div className="absolute bottom-0 left-0 right-0 p-6">
+            <p className="text-white/60 text-xs font-semibold uppercase tracking-wider mb-1">{t.role}</p>
+            <p className="text-white font-bold text-base" style={{ fontFamily: 'Manrope, sans-serif' }}>{t.name}</p>
+            <p className="text-white/70 text-sm mt-1 leading-relaxed line-clamp-2">"{t.preview}"</p>
+          </div>
+        </>
+      )}
     </motion.div>
   );
 }
