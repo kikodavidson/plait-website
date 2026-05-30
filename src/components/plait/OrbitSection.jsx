@@ -108,11 +108,6 @@ export default function OrbitSection() {
               I built Orbit to increase output efficiency without surrendering the thing that actually drives performance: human judgment. The strategy stays mine. The volume scales with Orbit.
             </p>
 
-            <div className="mt-8 bg-white/5 border border-white/10 rounded-2xl p-6">
-              <p className="text-white text-sm font-bold mb-1">Days of work. Hours of output.</p>
-              <p className="text-white/40 text-xs">Strategy stays human. Volume scales with AI.</p>
-            </div>
-
             <div className="mt-6">
               <a
                 href="https://orbitllm.com/"
