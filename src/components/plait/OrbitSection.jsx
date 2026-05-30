@@ -102,10 +102,10 @@ export default function OrbitSection() {
               Most marketers are outsourcing their strategy to a chatbot and wondering why everything sounds the same. Prompting GPT for a media plan isn't strategy. It's delegation to something that has never spent a dollar on ads.
             </p>
             <p className="text-white/50 text-base leading-relaxed mb-4">
-              I co-founded Orbit, a Model Context Protocol (MCP) designed specifically for marketing workflows. The difference between an MCP and a standard AI tool is context depth. Orbit connects directly to your live data: ad accounts, CRM, analytics, attribution. It doesn't guess. It reads.
+              I helped bring Orbit to life — not as the engineer, but as the marketer behind it. The concept, the positioning, and the use case came from years of frustration with AI tools that had no real context. I took that idea and made it something people could actually understand and use.
             </p>
             <p className="text-white/50 text-base leading-relaxed">
-              I built Orbit to increase output efficiency without surrendering the thing that actually drives performance: human judgment. The strategy stays mine. The volume scales with Orbit.
+              Orbit is a Model Context Protocol (MCP) built specifically for marketing workflows. The difference between an MCP and a standard AI tool is context depth. Orbit connects directly to your live data — ad accounts, CRM, analytics, attribution. It doesn't guess. It reads. And I use it in every engagement.
             </p>
 
             <div className="mt-6">
