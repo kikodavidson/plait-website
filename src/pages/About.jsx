@@ -18,9 +18,7 @@ export default function About() {
             <h1 className="font-body text-6xl sm:text-7xl font-extrabold text-[#0A0A0A] tracking-tight leading-tight mb-6">
               Who and Why.
             </h1>
-            <p className="text-[#525252] text-lg leading-relaxed max-w-xl">
-              I will pull spend that isn't earning even if it costs me the retainer. That's not a pitch. It's how I operate.
-            </p>
+
           </motion.div>
         </div>
       </div>
