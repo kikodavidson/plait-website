@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Michroma&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -7,8 +8,8 @@
 
 @layer base {
   :root {
-    --font-body: 'Manrope', sans-serif;
-    --font-display: 'Josefin Sans', sans-serif;
+    --font-body: 'Michroma', sans-serif;
+    --font-display: 'Michroma', sans-serif;
 
     --background: 210 33% 95%;
     --foreground: 220 20% 10%;
@@ -55,7 +56,7 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: 'Manrope', sans-serif;
+    font-family: 'Michroma', sans-serif;
     -webkit-font-smoothing: antialiased;
   }
 }
@@ -77,26 +78,7 @@ html {
   background: radial-gradient(ellipse 80% 60% at 50% 0%, #BAC4FE40 0%, #6E99AE25 30%, #EEF1EF 70%, #ffffff 100%);
 }
 
-.animated-bg {
-  position: relative;
-  background: #ffffff;
-  overflow: hidden;
-}
-
-.animated-bg::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  background: 
-    radial-gradient(ellipse 60% 50% at 20% 20%, #BAC4FE55 0%, transparent 70%),
-    radial-gradient(ellipse 50% 60% at 80% 80%, #6E99AE40 0%, transparent 70%),
-    radial-gradient(ellipse 40% 40% at 60% 10%, #BAC4FE30 0%, transparent 60%),
-    #ffffff;
-  background-size: 300% 300%;
-  animation: gradientShift 12s ease infinite;
-  pointer-events: none;
-}
+/* Dynamic background handled by DynamicBackground canvas component */
 
 /* Soft section gradient */
 .section-gradient {

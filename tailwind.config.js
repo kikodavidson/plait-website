@@ -5,9 +5,9 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Manrope', 'sans-serif'],
-        body: ['Manrope', 'sans-serif'],
-        display: ['Josefin Sans', 'sans-serif'],
+        sans: ['Michroma', 'sans-serif'],
+        body: ['Michroma', 'sans-serif'],
+        display: ['Michroma', 'sans-serif'],
       },
       borderRadius: {
         lg: 'var(--radius)',
