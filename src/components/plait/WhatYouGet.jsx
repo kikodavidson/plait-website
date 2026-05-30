@@ -48,7 +48,7 @@ export default function WhatYouGet() {
         >
           <p className="text-xs font-bold text-[#0A0A0A] uppercase tracking-widest mb-3">What You Get</p>
           <h2
-            className="text-4xl sm:text-5xl font-extrabold text-[#0A0A0A] tracking-tight leading-[1.1] mb-4"
+            className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0A0A0A] tracking-tight leading-[1.1] mb-4"
             style={{ fontFamily: 'Manrope, sans-serif' }}
           >
             Turn{" "}
