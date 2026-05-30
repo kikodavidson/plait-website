@@ -6,93 +6,116 @@ import { Check } from "lucide-react";
 const strands = [
   {
     num: "01",
-    title: "Messaging",
-    tagline: "Say something worth hearing.",
-    body: "Most brands say the same thing with slightly different fonts. Messaging strategy finds the angle that's actually true, actually differentiated, and actually makes someone stop scrolling.",
+    title: "Paid Media",
+    tagline: "Getting attention is easy. Getting profitable attention is harder.",
+    body: "We build, manage, and optimize campaigns across the platforms that matter most. Not just launching ads — building systems that generate returns and scale without falling apart.",
     deliverables: [
-      "Unique value proposition development",
-      "Secondary and tertiary benefit mapping",
-      "Non obvious connection points (psychology, behavior, culture)",
-      "Competitive differentiation analysis",
-      "Audience language audits",
-      "Message-market fit testing framework",
-    ],
-    img: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=700&h=500&fit=crop",
-  },
-  {
-    num: "02",
-    title: "Creative",
-    tagline: "Right hook. Right platform. Right creator.",
-    body: "Creative isn't art. It's a hypothesis. We test it like one. Platform-native formats, audience-matched creators, Meta's Andromeda model baked into the brief — not bolted on after.",
-    deliverables: [
-      "Hook and angle ideation",
-      "Creative brief development",
-      "Creator selection and direction",
-      "Platform native format execution (Meta clean, TikTok native UGC)",
-      "Meta Andromeda optimized creative structure",
-      "Iterative creative testing framework",
-    ],
-    img: "https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=700&h=500&fit=crop",
-  },
-  {
-    num: "03",
-    title: "Hooks",
-    tagline: "Three seconds to earn the next ten.",
-    body: "The first three seconds of an ad are the only seconds that matter if you blow them. Pattern interrupts, earned shock, audience callouts — engineered, not improvised.",
-    deliverables: [
-      "First three seconds audits on existing creative",
-      "Audience callout development",
-      "Pattern interrupt ideation",
-      "Bait and switch frameworks",
-      "Question driven and surprise led openings",
-      "Hook split test planning",
-    ],
-    img: "https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=700&h=500&fit=crop",
-  },
-  {
-    num: "04",
-    title: "Offers",
-    tagline: "The best ad in the world can't fix a weak offer.",
-    body: "Offer architecture is one of the highest-leverage moves in paid media. A restructured offer can double conversion rates without touching a single pixel of creative.",
-    deliverables: [
-      "Offer architecture and bundle design",
-      "Discount strategy and promo calendar",
-      "Cold vs warm segmented value props",
-      "Urgency and scarcity mechanics",
-      "Price sensitivity testing",
-      "Upsell and cross sell architecture",
-    ],
-    img: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=700&h=500&fit=crop",
-  },
-  {
-    num: "05",
-    title: "CRO",
-    tagline: "Plug the leaks before you pour more in.",
-    body: "More traffic won't fix a broken funnel. CRO finds every point of friction between click and purchase and eliminates it systematically.",
-    deliverables: [
-      "Full funnel audit and friction mapping",
-      "Landing page teardown and redesign briefs",
-      "Education vs. speed funnel architecture",
-      "Checkout optimization",
-      "Heatmap and session recording analysis",
-      "A/B test roadmap and prioritization",
+      "Meta Ads (Facebook & Instagram)",
+      "Google Search & Shopping",
+      "Performance Max",
+      "YouTube Ads",
+      "TikTok Ads",
+      "LinkedIn Ads",
+      "Retargeting",
+      "Creative Testing",
+      "Campaign Audits",
+      "Scaling Strategy",
     ],
     img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=700&h=500&fit=crop",
   },
   {
-    num: "06",
-    title: "Website",
-    tagline: "Your website is either your best closer or your worst leak.",
-    body: "First impressions, trust signals, navigation — it all has to work. A website that doesn't earn the sale is just an expensive place to send traffic.",
+    num: "02",
+    title: "Attribution & Analytics",
+    tagline: "You can't improve what you can't see.",
+    body: "Good attribution creates better decisions. Better decisions create better results. Most businesses are flying half-blind because their data stack has gaps nobody fixed. We fix them.",
     deliverables: [
-      "Homepage and key page audits",
-      "Trust signal and social proof strategy",
-      "Storytelling and education architecture",
-      "Navigation and UX optimization",
-      "Speed and performance improvements",
-      "Design direction and build (if needed)",
+      "GA4 Setup & Audits",
+      "Google Tag Manager",
+      "Meta Pixel & Conversions API",
+      "Server Side Tracking",
+      "Event & Funnel Tracking",
+      "UTM Frameworks",
+      "Custom Conversions",
+      "Dashboard Reporting",
+      "Customer Journey Analysis",
+      "Attribution Audits",
+    ],
+    img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=700&h=500&fit=crop",
+  },
+  {
+    num: "03",
+    title: "Websites & CRO",
+    tagline: "Getting traffic is only half the battle. The website has to do its job too.",
+    body: "More traffic won't fix a broken funnel. We build sites that earn the sale and audit existing ones to find every point of friction between click and conversion.",
+    deliverables: [
+      "Shopify Development",
+      "Webflow Development",
+      "WordPress Development",
+      "Landing Pages",
+      "E-Commerce Sites",
+      "CRO Audits",
+      "Checkout Optimization",
+      "Heatmap Analysis",
+      "Funnel Optimization",
+      "A/B Testing Strategy",
     ],
     img: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=700&h=500&fit=crop",
+  },
+  {
+    num: "04",
+    title: "Creative & Messaging",
+    tagline: "Most ads don't fail because of targeting. They fail because nobody cares.",
+    body: "Creative is a hypothesis. We treat it like one. Platform-native formats, audience-matched angles, hooks built to stop the scroll — not designed in a vacuum.",
+    deliverables: [
+      "Ad Creative Strategy",
+      "Hook Development",
+      "Angle Development",
+      "UGC Concepts",
+      "Creative Briefs",
+      "Ad Scripts",
+      "Offer Positioning",
+      "Content Strategy",
+      "Customer Research",
+    ],
+    img: "https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=700&h=500&fit=crop",
+  },
+  {
+    num: "05",
+    title: "Copywriting",
+    tagline: "The right words can change performance overnight.",
+    body: "The wrong ones can kill a campaign before it starts. Copy is strategy made visible. Every word earns its place or it doesn't make the cut.",
+    deliverables: [
+      "Website Copy",
+      "Landing Page Copy",
+      "Ad Copy",
+      "Sales Pages",
+      "Product Pages",
+      "Email Campaigns",
+      "Offer Development",
+      "Positioning",
+      "Messaging Frameworks",
+      "Voice Of Customer Research",
+    ],
+    img: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=700&h=500&fit=crop",
+  },
+  {
+    num: "06",
+    title: "Strategy & Network",
+    tagline: "Sometimes the answer is ads. Sometimes it isn't.",
+    body: "The best opportunities usually sit where nobody is looking. We help identify the bottleneck, remove it, and connect you to the right people when the right opportunity exists.",
+    deliverables: [
+      "Growth Audits",
+      "Competitive Analysis",
+      "Go-To-Market Planning",
+      "Launch Strategy",
+      "Scaling Roadmaps",
+      "KPI Development",
+      "Investor Introductions",
+      "Creator & Influencer Partnerships",
+      "Strategic Introductions",
+      "Business Development",
+    ],
+    img: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=700&h=500&fit=crop",
   },
 ];
 
@@ -102,19 +125,37 @@ export default function Services() {
       <div className="hero-gradient pb-16 px-6 pt-12">
         <div className="max-w-6xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <p className="text-xs font-semibold text-[#4F46E5] uppercase tracking-widest mb-4">Services</p>
+            <p className="text-xs font-semibold text-[#4F46E5] uppercase tracking-widest mb-4">What We Do</p>
             <h1 className="font-body text-6xl sm:text-7xl font-extrabold text-[#0A0A0A] tracking-tight leading-tight mb-6 max-w-3xl">
-              Six strands.<br />Every layer connected.
+              Most marketing problems aren't caused by one thing.
             </h1>
             <p className="text-[#525252] text-lg max-w-xl leading-relaxed">
-              A funnel that leaks anywhere leaks everywhere. PLAIT works all six strands so nothing falls through the gap between "that's not my department."
+              They're caused by a dozen small issues hiding between your ads, website, analytics, creative, and customer journey. We find those gaps, connect the pieces, and help turn attention into revenue.
             </p>
           </motion.div>
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto px-6 py-16">
-        <div className="space-y-20">
+      <div className="max-w-6xl mx-auto px-6 py-8 border-b border-gray-100 mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="max-w-2xl"
+        >
+          <p className="text-xs font-bold text-[#4F46E5] uppercase tracking-widest mb-4">How We Help</p>
+          <p className="text-[#0A0A0A] text-xl font-semibold leading-relaxed mb-3">
+            No two businesses need the exact same solution.
+          </p>
+          <p className="text-[#525252] leading-relaxed">
+            Some need better ads. Some need a better website. Some have tracking issues that make every marketing decision harder than it should be. Our job is to identify the bottleneck and remove it.
+          </p>
+        </motion.div>
+      </div>
+
+      <div className="max-w-6xl mx-auto px-6 pb-16">
+        <div className="space-y-24">
           {strands.map((s, i) => (
             <motion.div
               key={s.num}
@@ -122,7 +163,7 @@ export default function Services() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className={`grid grid-cols-1 lg:grid-cols-2 gap-16 items-start ${i % 2 !== 0 ? "lg:flex-row-reverse" : ""}`}
+              className={`grid grid-cols-1 lg:grid-cols-2 gap-16 items-start`}
             >
               <div className={i % 2 !== 0 ? "lg:order-2" : ""}>
                 <span className="text-[#4F46E5] text-xs font-bold uppercase tracking-widest">{s.num}</span>
@@ -130,7 +171,7 @@ export default function Services() {
                 <p className="text-[#4F46E5] font-semibold text-sm mb-4 italic">{s.tagline}</p>
                 <p className="text-[#525252] leading-relaxed mb-8">{s.body}</p>
                 <div>
-                  <p className="text-xs font-bold uppercase tracking-widest text-[#0A0A0A] mb-4">Deliverables</p>
+                  <p className="text-xs font-bold uppercase tracking-widest text-[#0A0A0A] mb-4">Services</p>
                   <ul className="space-y-2">
                     {s.deliverables.map((d) => (
                       <li key={d} className="flex items-start gap-3 text-sm text-[#525252]">
@@ -148,13 +189,49 @@ export default function Services() {
           ))}
         </div>
 
-        <div className="mt-20 pt-16 border-t border-gray-100 text-center">
-          <h2 className="font-body text-4xl font-extrabold text-[#0A0A0A] mb-4">Ready to plug the leaks?</h2>
-          <p className="text-[#525252] mb-8 max-w-md mx-auto">Start with the Clarity Audit and we'll find exactly where your funnel is bleeding.</p>
-          <Link to="/contact" className="inline-flex items-center gap-2 bg-[#4F46E5] text-white font-semibold px-8 py-4 rounded-full hover:bg-indigo-700 transition-colors">
-            Work With Me
-          </Link>
-        </div>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mt-28 pt-16 border-t border-gray-100"
+        >
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <p className="text-xs font-bold text-[#4F46E5] uppercase tracking-widest mb-4">Not Sure What You Need?</p>
+              <h2 className="font-body text-4xl sm:text-5xl font-extrabold text-[#0A0A0A] tracking-tight mb-6">That's normal.</h2>
+              <p className="text-[#525252] leading-relaxed mb-4">
+                Most clients don't come to us asking for a new attribution model, a landing page rebuild, or a creative testing framework.
+              </p>
+              <p className="text-[#525252] leading-relaxed mb-4">
+                They come because something feels off. Performance has stalled. Costs are rising. Revenue isn't matching effort.
+              </p>
+              <p className="text-[#525252] leading-relaxed font-medium">
+                We help figure out why.
+              </p>
+            </div>
+            <div className="bg-[#0A0A0A] rounded-3xl p-10 flex flex-col gap-6">
+              <h3 className="font-body text-3xl font-extrabold text-white leading-tight">Let's find the missing piece.</h3>
+              <p className="text-white/60 leading-relaxed text-sm">
+                If your marketing feels disconnected, inefficient, or harder than it should be — there's usually a reason. Let's find it.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-3 mt-2">
+                <Link
+                  to="/contact"
+                  className="inline-flex items-center justify-center gap-2 bg-white text-[#0A0A0A] font-bold text-sm px-6 py-3.5 rounded-full hover:bg-gray-100 transition-colors"
+                >
+                  Pull The Thread
+                </Link>
+                <Link
+                  to="/case-studies"
+                  className="inline-flex items-center justify-center gap-2 border border-white/20 text-white font-bold text-sm px-6 py-3.5 rounded-full hover:bg-white/10 transition-colors"
+                >
+                  View Our Work
+                </Link>
+              </div>
+            </div>
+          </div>
+        </motion.div>
       </div>
     </div>
   );
