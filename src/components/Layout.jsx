@@ -5,7 +5,7 @@ import Footer from "./plait/Footer";
 
 export default function Layout() {
   return (
-    <div className="min-h-screen bg-white font-body">
+    <div className="min-h-screen font-body animated-bg">
       <Navbar />
       <main>
         <Outlet />

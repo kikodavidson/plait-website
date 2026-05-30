@@ -10,25 +10,33 @@
     --font-body: 'Manrope', sans-serif;
     --font-display: 'Josefin Sans', sans-serif;
 
-    --background: 0 0% 100%;
-    --foreground: 0 0% 4%;
+    --background: 210 33% 95%;
+    --foreground: 220 20% 10%;
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 4%;
+    --card-foreground: 220 20% 10%;
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 4%;
-    --primary: 243 75% 59%;
+    --popover-foreground: 220 20% 10%;
+    --primary: 150 28% 50%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 240 5% 96%;
-    --secondary-foreground: 0 0% 4%;
-    --muted: 240 5% 96%;
-    --muted-foreground: 0 0% 32%;
-    --accent: 243 75% 59%;
+    --secondary: 213 93% 87%;
+    --secondary-foreground: 220 20% 10%;
+    --muted: 210 20% 94%;
+    --muted-foreground: 220 10% 40%;
+    --accent: 150 28% 50%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 240 6% 90%;
-    --input: 240 6% 90%;
-    --ring: 243 75% 59%;
+    --border: 213 30% 88%;
+    --input: 213 30% 88%;
+    --ring: 150 28% 50%;
+
+    /* Brand palette */
+    --ocean-blue: #6E99AE;
+    --sky-blue: #BAC4FE;
+    --seafoam: #C9FFB0;
+    --blush: #FF88AD;
+    --sand-pink: #F8C3C7;
+    --cloud-white: #EEF1EF;
     --radius: 0.5rem;
     --sidebar-background: 0 0% 100%;
     --sidebar-foreground: 0 0% 4%;
@@ -56,14 +64,43 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Hero gradient — white center fading to soft lavender/indigo at edges, like Draftr */
+/* Animated brand gradient background */
+@keyframes gradientShift {
+  0%   { background-position: 0% 50%; }
+  25%  { background-position: 100% 50%; }
+  50%  { background-position: 100% 0%; }
+  75%  { background-position: 0% 100%; }
+  100% { background-position: 0% 50%; }
+}
+
 .hero-gradient {
-  background: radial-gradient(ellipse 80% 60% at 50% 0%, #ede9fe 0%, #e0e7ff 30%, #f5f3ff 60%, #ffffff 100%);
+  background: radial-gradient(ellipse 80% 60% at 50% 0%, #BAC4FE40 0%, #6E99AE25 30%, #EEF1EF 70%, #ffffff 100%);
+}
+
+.animated-bg {
+  position: relative;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+.animated-bg::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: 
+    radial-gradient(ellipse 60% 50% at 20% 20%, #BAC4FE55 0%, transparent 70%),
+    radial-gradient(ellipse 50% 60% at 80% 80%, #6E99AE40 0%, transparent 70%),
+    radial-gradient(ellipse 40% 40% at 60% 10%, #BAC4FE30 0%, transparent 60%),
+    #ffffff;
+  background-size: 300% 300%;
+  animation: gradientShift 12s ease infinite;
+  pointer-events: none;
 }
 
 /* Soft section gradient */
 .section-gradient {
-  background: linear-gradient(180deg, #ffffff 0%, #eef2ff 60%, #e0e7ff 100%);
+  background: linear-gradient(180deg, #ffffff 0%, #EEF1EF 60%, #BAC4FE30 100%);
 }
 
 /* Marquee */
