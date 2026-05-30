@@ -8,7 +8,7 @@ const ROTATING = [
   "Attract Attention.",
   "Attribute.",
   "Measure.",
-  "Improve Performance.",
+  "Improve Performance",
 ];
 
 export default function HeroSection() {
@@ -31,7 +31,6 @@ export default function HeroSection() {
           transition={{ duration: 0.5 }}
           className="inline-flex items-center gap-2 bg-[#0A0A0A] text-white text-xs font-semibold px-4 py-2 rounded-full mb-10 shadow-sm"
         >
-          <span className="bg-[#4F46E5] text-white text-[10px] font-bold px-2 py-0.5 rounded-full tracking-wide uppercase">New</span>
           Battle Tested Marketing, Enhanced by AI.
         </motion.div>
 
@@ -55,7 +54,7 @@ export default function HeroSection() {
 
         {/* Rotating word */}
         <div
-          className="text-[clamp(2.4rem,6.5vw,5rem)] font-extrabold text-[#4F46E5] leading-[1.15] tracking-[0.05em] mb-8 h-[1.25em] flex items-center justify-center overflow-hidden font-body"
+          className="text-[clamp(1.8rem,5vw,4rem)] font-extrabold text-[#4F46E5] leading-[1.15] tracking-[0.05em] mb-8 h-[1.4em] flex items-center justify-center overflow-hidden font-body"
         >
           <AnimatePresence mode="wait">
             <motion.span
@@ -78,7 +77,7 @@ export default function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.25 }}
         >
-          Battle Tested Marketing, Enhanced by AI.
+          Like couples therapy for your ads, website, attribution, and analytics.
         </motion.p>
 
         {/* CTA */}
