@@ -125,7 +125,7 @@ export default function Contact() {
                 <option value="clarity_audit">Clarity Audit ($500 to $800)</option>
                 <option value="launch_system">Launch System ($2,500 to $4,500)</option>
                 <option value="growth_retainer">Growth Retainer (Custom)</option>
-                <option value="other">Not sure yet — let's talk</option>
+                <option value="other">Not sure yet, let's talk</option>
               </select>
             </div>
 
@@ -176,7 +176,7 @@ export default function Contact() {
               <ul className="space-y-3">
                 {[
                   "Response within 24 hours (usually faster)",
-                  "No sales pitch — a real conversation",
+                  "No sales pitch, a real conversation",
                   "Honest assessment of whether PLAIT is the right fit",
                   "If we move forward, a clear plan before any commitment",
                 ].map((item) => (

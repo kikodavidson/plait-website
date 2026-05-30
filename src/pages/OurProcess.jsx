@@ -25,7 +25,7 @@ const steps = [
     num: "04",
     title: "Optimize",
     tagline: "Improve what's working. Kill what isn't.",
-    body: "Every campaign, every page, every creative is a hypothesis. We test systematically, read the data honestly, and make decisions based on what the numbers actually say — not what we hoped they'd say.",
+    body: "Every campaign, every page, every creative is a hypothesis. We test systematically, read the data honestly, and make decisions based on what the numbers actually say, not what we hoped they'd say.",
   },
   {
     num: "05",

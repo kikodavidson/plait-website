@@ -8,7 +8,7 @@ const strands = [
     num: "01",
     title: "Paid Media",
     tagline: "Getting attention is easy. Getting profitable attention is harder.",
-    body: "We build, manage, and optimize campaigns across the platforms that matter most. Not just launching ads — building systems that generate returns and scale without falling apart.",
+    body: "We build, manage, and optimize campaigns across the platforms that matter most. Not just launching ads, but building systems that generate returns and scale without falling apart.",
     deliverables: [
       "Meta Ads (Facebook & Instagram)",
       "Google Search & Shopping",
@@ -65,7 +65,7 @@ const strands = [
     num: "04",
     title: "Creative & Messaging",
     tagline: "Most ads don't fail because of targeting. They fail because nobody cares.",
-    body: "Creative is a hypothesis. We treat it like one. Platform-native formats, audience-matched angles, hooks built to stop the scroll — not designed in a vacuum.",
+    body: "Creative is a hypothesis. We treat it like one. Platform-native formats, audience-matched angles, hooks built to stop the scroll, not designed in a vacuum.",
     deliverables: [
       "Ad Creative Strategy",
       "Hook Development",
@@ -213,7 +213,7 @@ export default function Services() {
             <div className="bg-[#0A0A0A] rounded-3xl p-10 flex flex-col gap-6">
               <h3 className="font-body text-3xl font-extrabold text-white leading-tight">Let's find the missing piece.</h3>
               <p className="text-white/60 leading-relaxed text-sm">
-                If your marketing feels disconnected, inefficient, or harder than it should be — there's usually a reason. Let's find it.
+                If your marketing feels disconnected, inefficient, or harder than it should be, there's usually a reason. Let's find it.
               </p>
               <div className="flex flex-col sm:flex-row gap-3 mt-2">
                 <Link

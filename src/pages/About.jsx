@@ -56,7 +56,7 @@ export default function About() {
                 Whether it's ads, websites, attribution, or messaging, I enjoy connecting the dots and uncovering what's holding growth back.
               </p>
               <p>
-                Helping a client hit a record month gives me the same feeling as hitting black on the roulette table. It's a rush I chase — one that takes hard work and creativity to achieve.
+                Helping a client hit a record month gives me the same feeling as hitting black on the roulette table. It's a rush I chase, one that takes hard work and creativity to achieve.
               </p>
             </div>
 
@@ -94,12 +94,12 @@ export default function About() {
               {
                 emoji: "🏆",
                 title: "Winning is everything.",
-                desc: <>This is a competitive field. I treat it like one. That means staying aggressive about improvement, disciplined in execution, and persistent in finding edges others miss — <strong>winning conversions</strong>, <strong>winning channels</strong>, and <strong>winning in the margins</strong> that compound over time.</>,
+                desc: <>This is a competitive field. I treat it like one. That means staying aggressive about improvement, disciplined in execution, and persistent in finding edges others miss: <strong>winning conversions</strong>, <strong>winning channels</strong>, and <strong>winning in the margins</strong> that compound over time.</>,
               },
               {
                 emoji: "🔍",
                 title: "Transparency Over Optics. Always.",
-                desc: <>Most agencies are optimized for <strong>retention</strong>, not <strong>outcomes</strong>. Reports are built to reassure instead of inform, and activity is used to create the appearance of progress rather than actual improvement. I take the opposite approach. You'll see <strong>what's working</strong>, what isn't, and <strong>why</strong> — in plain language, with full context.</>,
+                desc: <>Most agencies are optimized for <strong>retention</strong>, not <strong>outcomes</strong>. Reports are built to reassure instead of inform, and activity is used to create the appearance of progress rather than actual improvement. I take the opposite approach. You'll see <strong>what's working</strong>, what isn't, and <strong>why</strong>, in plain language, with full context.</>,
               },
               {
                 emoji: "💰",
@@ -142,7 +142,7 @@ export default function About() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <p className="text-white/60 text-sm italic mb-6">"Whatever your hand finds to do, do it with all your might" — Ecclesiastes 9:10</p>
+            <p className="text-white/60 text-sm italic mb-6">"Whatever your hand finds to do, do it with all your might" Ecclesiastes 9:10</p>
             <h2 className="font-body text-6xl sm:text-7xl font-extrabold text-white mb-8">My Mission</h2>
             <p className="text-white/80 text-xl leading-relaxed mb-10">
               I am on a mission to be a light in a crowded industry by helping people bring their ideas to life and scale them into making a real impact on people's lives. I believe winning is found in the margins, and I'm committed to turning ideas into reality through a process that values honesty, creativity, and always looking for the next tactical edge.

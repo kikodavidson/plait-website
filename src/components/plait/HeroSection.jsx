@@ -177,7 +177,7 @@ export default function HeroSection() {
           </Link>
         </motion.div>
 
-        {/* Stats strip — light */}
+        {/* Stats strip */}
         <motion.div
           ref={statsRef}
           className="mt-20 w-full max-w-2xl bg-white border border-gray-100 rounded-3xl px-6 py-8 grid grid-cols-3 gap-0 shadow-lg"
