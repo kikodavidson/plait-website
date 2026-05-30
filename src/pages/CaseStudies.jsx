@@ -140,7 +140,7 @@ export default function CaseStudies() {
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             <div className="lg:col-span-2">
-              <p className="text-xs font-bold text-[#4F46E5] uppercase tracking-widest mb-3">{s.category}</p>
+              <p className="text-xs font-bold text-[#3b82f6] uppercase tracking-widest mb-3">{s.category}</p>
               <h1 className="font-body text-4xl sm:text-5xl font-extrabold text-[#0A0A0A] tracking-tight leading-tight mb-8">{s.headline}</h1>
               <div className="space-y-5">
                 {s.body.map((p, i) => (
@@ -150,12 +150,12 @@ export default function CaseStudies() {
             </div>
 
             <div>
-              <div className="bg-[#F8F7FF] rounded-3xl p-8 border border-indigo-100">
-                <p className="text-xs font-bold text-[#4F46E5] uppercase tracking-widest mb-6">Results</p>
+              <div className="bg-[#F8F7FF] rounded-3xl p-8 border border-blue-100">
+                <p className="text-xs font-bold text-[#3b82f6] uppercase tracking-widest mb-6">Results</p>
                 <div className="space-y-6">
                   {s.results.map((r) => (
-                    <div key={r.label} className="border-b border-indigo-100 pb-5 last:border-0 last:pb-0">
-                      <p className="font-body text-4xl font-extrabold text-[#4F46E5]">{r.stat}</p>
+                    <div key={r.label} className="border-b border-blue-100 pb-5 last:border-0 last:pb-0">
+                      <p className="font-body text-4xl font-extrabold text-[#3b82f6]">{r.stat}</p>
                       <p className="text-xs font-bold text-[#0A0A0A] uppercase tracking-wider mt-1">{r.label}</p>
                     </div>
                   ))}
@@ -176,7 +176,7 @@ export default function CaseStudies() {
       <div className="hero-gradient pb-16 px-6 pt-12">
         <div className="max-w-6xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <p className="text-xs font-semibold text-[#4F46E5] uppercase tracking-widest mb-4">Case Studies</p>
+            <p className="text-xs font-semibold text-[#3b82f6] uppercase tracking-widest mb-4">Case Studies</p>
             <h1 className="font-body text-6xl sm:text-7xl font-extrabold text-[#0A0A0A] tracking-tight leading-tight mb-6">
               Real brands.<br />Real numbers.
             </h1>
@@ -197,7 +197,7 @@ export default function CaseStudies() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="group text-left rounded-3xl overflow-hidden border border-gray-100 hover:border-indigo-200 transition-all duration-300 bg-white"
+              className="group text-left rounded-3xl overflow-hidden border border-gray-100 hover:border-blue-200 transition-all duration-300 bg-white"
             >
               <div className="relative h-52 overflow-hidden">
                 <img src={s.image} alt={s.client} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
@@ -206,12 +206,12 @@ export default function CaseStudies() {
               </div>
               <div className="p-7">
                 <div className="flex items-baseline gap-2 mb-3">
-                  <span className="font-body text-4xl font-extrabold text-[#4F46E5]">{s.stat}</span>
+                  <span className="font-body text-4xl font-extrabold text-[#3b82f6]">{s.stat}</span>
                   <span className="text-xs font-bold text-[#525252] uppercase tracking-wider">{s.statLabel}</span>
                 </div>
                 <h3 className="font-body text-xl font-extrabold text-[#0A0A0A] mb-2 leading-tight">{s.client}</h3>
                 <p className="text-sm text-[#525252] leading-relaxed">{s.headline}</p>
-                <p className="text-xs font-semibold text-[#4F46E5] mt-4 group-hover:underline">Read case study</p>
+                <p className="text-xs font-semibold text-[#3b82f6] mt-4 group-hover:underline">Read case study</p>
               </div>
             </motion.button>
           ))}
