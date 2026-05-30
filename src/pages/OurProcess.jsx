@@ -7,13 +7,13 @@ const steps = [
     num: "01",
     title: "Audit",
     tagline: "Find the real problem.",
-    body: "Most businesses think they know what's broken. Usually it's something adjacent. We audit your ads, analytics, tracking, website, and creative — and map where the signal is getting lost.",
+    body: "Most businesses think they know what's broken. Usually it's something adjacent. We audit your ads, analytics, tracking, website, and creative, and map where the signal is getting lost.",
   },
   {
     num: "02",
     title: "Diagnose",
     tagline: "Understand the bottleneck.",
-    body: "Not every problem needs the same fix. After the audit, we identify the highest-leverage bottleneck — the one thing, if fixed, that unlocks the most upside. Then we build a plan around that.",
+    body: "Not every problem needs the same fix. After the audit, we identify the highest-leverage bottleneck: the one thing, if fixed, that unlocks the most upside. Then we build a plan around that.",
   },
   {
     num: "03",
@@ -31,7 +31,7 @@ const steps = [
     num: "05",
     title: "Scale",
     tagline: "Pour fuel on a fire that's already burning.",
-    body: "Scaling before the system is ready just accelerates losses. Once the foundation is solid — the right offer, the right creative, the right tracking — then we scale with confidence.",
+    body: "Scaling before the system is ready just accelerates losses. Once the foundation is solid with the right offer, the right creative, and the right tracking, we scale with confidence.",
   },
 ];
 
