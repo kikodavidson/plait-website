@@ -25,7 +25,7 @@ const deliverables = [
   },
   {
     icon: Megaphone,
-    title: "Paid Ads | Launch + Optimize",
+    title: "Paid Ads Launched and Optimized",
     desc: "Launch new campaigns or take over existing ones. Meta, Google, TikTok, and beyond — to generate and capture demand in the market.",
   },
   {
