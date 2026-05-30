@@ -87,30 +87,35 @@ function PlaitViz({ ads, website, attribution }) {
     return `${i === 0 ? "M" : "L"} ${x.toFixed(2)} ${y.toFixed(2)}`;
   }).join(" ");
 
-  // Label positions at top of each strand
-  const labelY = 6;
-  const labelAx = cx + amp * Math.sin(0);
-  const labelBx = cx + amp * Math.sin((2 * Math.PI) / 3);
-  const labelCx = cx + amp * Math.sin((4 * Math.PI) / 3);
-
+  // Place labels to the left/right to avoid overlap
+  // strandA (Ads) peaks right, strandB (Attribution) peaks left, strandC (Website) peaks left-ish
   return (
-    <svg viewBox={`0 0 ${W} ${H + 30}`} className="w-full max-w-[200px]">
-      {/* Strand labels at top */}
-      <text x={labelAx} y={labelY} textAnchor="middle" fontSize="8" fontWeight="700" fill={strandA.color} fontFamily="Manrope, sans-serif" letterSpacing="0.05em">
-        {strandA.label.toUpperCase()}
-      </text>
-      <text x={labelBx} y={labelY} textAnchor="middle" fontSize="8" fontWeight="700" fill={strandB.color} fontFamily="Manrope, sans-serif" letterSpacing="0.05em">
-        {strandB.label.toUpperCase()}
-      </text>
-      <text x={labelCx} y={labelY} textAnchor="middle" fontSize="8" fontWeight="700" fill={strandC.color} fontFamily="Manrope, sans-serif" letterSpacing="0.05em">
-        {strandC.label.toUpperCase()}
-      </text>
-      {/* Braid paths offset below labels */}
-      <g transform="translate(0, 14)">
+    <svg viewBox={`0 0 ${W + 80} ${H}`} className="w-full max-w-[260px]">
+      {/* Braid centered, shifted right to make room for left labels */}
+      <g transform="translate(40, 0)">
         <path d={pathB} stroke={strandB.color} strokeWidth="3.5" fill="none" strokeLinecap="round" />
         <path d={pathC} stroke={strandC.color} strokeWidth="3.5" fill="none" strokeLinecap="round" />
         <path d={pathA} stroke={strandA.color} strokeWidth="3.5" fill="none" strokeLinecap="round" />
       </g>
+
+      {/* Labels on the right side, evenly spaced vertically */}
+      {/* Ads */}
+      <line x1={40 + cx + amp - 2} y1={H * 0.18} x2={40 + cx + amp + 18} y2={H * 0.18} stroke={strandA.color} strokeWidth="1" strokeDasharray="3 2" />
+      <text x={40 + cx + amp + 22} y={H * 0.18 + 4} textAnchor="start" fontSize="9" fontWeight="700" fill={strandA.color} fontFamily="Manrope, sans-serif" letterSpacing="0.08em">
+        ADS
+      </text>
+
+      {/* Attribution */}
+      <line x1={40 + cx - amp + 2} y1={H * 0.5} x2={40 + cx - amp - 18} y2={H * 0.5} stroke={strandB.color} strokeWidth="1" strokeDasharray="3 2" />
+      <text x={40 + cx - amp - 22} y={H * 0.5 + 4} textAnchor="end" fontSize="9" fontWeight="700" fill={strandB.color} fontFamily="Manrope, sans-serif" letterSpacing="0.08em">
+        ATTRIBUTION
+      </text>
+
+      {/* Website */}
+      <line x1={40 + cx + amp - 2} y1={H * 0.8} x2={40 + cx + amp + 18} y2={H * 0.8} stroke={strandC.color} strokeWidth="1" strokeDasharray="3 2" />
+      <text x={40 + cx + amp + 22} y={H * 0.8 + 4} textAnchor="start" fontSize="9" fontWeight="700" fill={strandC.color} fontFamily="Manrope, sans-serif" letterSpacing="0.08em">
+        WEBSITE
+      </text>
     </svg>
   );
 }
