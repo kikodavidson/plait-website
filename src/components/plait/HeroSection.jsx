@@ -12,7 +12,7 @@ const ROTATING = [
 ];
 
 const STATS = [
-  { prefix: "$", value: 2, suffix: "M+", label: "Tested on Ads" },
+  { prefix: "$", value: 2000, suffix: "K+", label: "Tested on Ads", endPrefix: "$", endValue: 2, endSuffix: "M+" },
   { prefix: "", value: 80, suffix: "+", label: "Brands Scaled" },
   { prefix: "", value: 11, suffix: "+", label: "Growth Channels" },
 ];
@@ -35,11 +35,28 @@ function useCountUp(target, duration = 1600, start = false) {
 }
 
 function StatItem({ stat, started, divider }) {
-  const count = useCountUp(stat.value, 1600, started);
+  const [phase, setPhase] = useState(0); // 0 = not started, 1 = thousands, 2 = millions
+  const count = useCountUp(phase === 1 ? (stat.endValue ?? stat.value) * 1000 : (stat.endValue ?? stat.value), phase === 1 ? 1200 : 1600, started && !stat.endValue);
+  const countPhase1 = useCountUp(2000, 1000, phase === 1);
+  const countPhase2 = useCountUp(2, 800, phase === 2);
+
+  useEffect(() => {
+    if (!started || !stat.endValue) return;
+    setPhase(1);
+    const t = setTimeout(() => setPhase(2), 1400);
+    return () => clearTimeout(t);
+  }, [started, stat.endValue]);
+
+  const display = stat.endValue
+    ? phase === 2
+      ? `$${countPhase2}M+`
+      : `$${countPhase1}K+`
+    : `${stat.prefix}${count}${stat.suffix}`;
+
   return (
     <div className={`flex flex-col items-center px-6 ${divider ? "border-l border-gray-200" : ""}`}>
       <p className="text-4xl sm:text-5xl font-extrabold text-[#4F46E5] tracking-tight leading-none">
-        {stat.prefix}{count}{stat.suffix}
+        {display}
       </p>
       <p className="text-xs text-[#525252] font-semibold mt-2 uppercase tracking-wider">{stat.label}</p>
     </div>
