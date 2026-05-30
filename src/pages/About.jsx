@@ -120,7 +120,6 @@ export default function About() {
                 transition={{ duration: 0.5, delay: i * 0.1 }}
                 className="bg-white rounded-3xl border border-gray-100 p-8 flex flex-col gap-4"
               >
-                <span className="text-4xl">{v.emoji}</span>
                 <h3 className="font-body text-lg font-extrabold text-[#0A0A0A]">{v.title}</h3>
                 <p className="text-[#525252] text-sm leading-relaxed">{v.desc}</p>
               </motion.div>
