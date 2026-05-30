@@ -58,7 +58,7 @@ export default function PackagesSection() {
       <div className="max-w-6xl mx-auto">
         <div className="mb-14 max-w-xl">
           <p className="text-xs font-bold text-[#4F46E5] uppercase tracking-widest mb-3">Packages</p>
-          <h2 className="text-4xl sm:text-5xl font-extrabold text-[#0A0A0A] tracking-widest leading-tight mb-4 font-display" style={{ fontFamily: 'Josefin Sans, sans-serif' }}>
+          <h2 className="text-4xl sm:text-5xl font-extrabold text-[#0A0A0A] leading-tight mb-4 font-body">
             Pick your entry point.
           </h2>
           <p className="text-[#525252] text-base">
@@ -84,7 +84,7 @@ export default function PackagesSection() {
                 <p className={`text-xs font-bold uppercase tracking-widest mb-2 ${pkg.highlight ? "text-white/40" : "text-[#4F46E5]"}`}>
                   {pkg.name}
                 </p>
-                <p className={`text-4xl font-extrabold tracking-widest mb-3 font-display ${pkg.highlight ? "text-white" : "text-[#0A0A0A]"}`} style={{ fontFamily: 'Josefin Sans, sans-serif' }}>
+                <p className={`text-4xl font-extrabold mb-3 font-body ${pkg.highlight ? "text-white" : "text-[#0A0A0A]"}`}>
                   {pkg.price}
                 </p>
                 <p className={`text-sm leading-relaxed ${pkg.highlight ? "text-white/60" : "text-[#525252]"}`}>

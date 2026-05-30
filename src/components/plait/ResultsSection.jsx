@@ -17,8 +17,7 @@ export default function ResultsSection() {
           <div>
             <p className="text-xs font-bold text-[#4F46E5] uppercase tracking-widest mb-4">Proof</p>
             <h2
-              className="text-4xl sm:text-5xl font-extrabold text-white tracking-widest leading-[1.1] font-display"
-              style={{ fontFamily: "Josefin Sans, sans-serif" }}
+              className="text-4xl sm:text-5xl font-extrabold text-white leading-[1.1] font-body"
             >
               Results that speak<br />for themselves.
             </h2>

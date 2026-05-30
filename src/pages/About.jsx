@@ -15,7 +15,7 @@ export default function About() {
             className="max-w-3xl"
           >
             <p className="text-xs font-semibold text-[#4F46E5] uppercase tracking-widest mb-4">About</p>
-            <h1 className="font-display text-6xl sm:text-7xl font-extrabold text-[#0A0A0A] tracking-tight leading-tight mb-6">
+            <h1 className="font-body text-6xl sm:text-7xl font-extrabold text-[#0A0A0A] tracking-tight leading-tight mb-6">
               Stewardship<br />Over Exploitation.
             </h1>
             <p className="text-[#525252] text-lg leading-relaxed max-w-xl">
@@ -39,7 +39,7 @@ export default function About() {
           </div>
 
           <div className="space-y-6 pt-4">
-            <h2 className="font-display text-4xl font-extrabold text-[#0A0A0A] tracking-tight">Luke Davidson</h2>
+            <h2 className="font-body text-4xl font-extrabold text-[#0A0A0A] tracking-tight">Luke Davidson</h2>
             <div className="flex items-center gap-3">
               <span className="text-xs font-bold text-[#4F46E5] uppercase tracking-widest bg-indigo-50 px-3 py-1 rounded-full">Founder, PLAIT</span>
               <span className="text-xs font-bold text-[#525252] uppercase tracking-widest bg-gray-100 px-3 py-1 rounded-full">Co-Founder, Orbit AI</span>
@@ -68,7 +68,7 @@ export default function About() {
                   { value: "11+", label: "Channels" },
                 ].map((s) => (
                   <div key={s.label}>
-                    <p className="font-display text-3xl font-extrabold text-[#4F46E5]">{s.value}</p>
+                    <p className="font-body text-3xl font-extrabold text-[#4F46E5]">{s.value}</p>
                     <p className="text-xs text-[#525252] uppercase tracking-wider mt-1">{s.label}</p>
                   </div>
                 ))}
@@ -88,7 +88,7 @@ export default function About() {
       {/* Values */}
       <div className="section-gradient py-20 px-6">
         <div className="max-w-6xl mx-auto">
-          <h2 className="font-display text-4xl font-extrabold text-[#0A0A0A] tracking-tight mb-12">How I operate.</h2>
+          <h2 className="font-body text-4xl font-extrabold text-[#0A0A0A] tracking-tight mb-12">How I operate.</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {[
               { title: "I'll fire myself if your numbers don't work.", desc: "If a campaign isn't performing, I'll say so. I've walked away from retainers because the math didn't make sense for the client. I'll do it again." },
@@ -104,7 +104,7 @@ export default function About() {
                 transition={{ duration: 0.5, delay: i * 0.1 }}
                 className="bg-white rounded-3xl border border-gray-100 p-8"
               >
-                <h3 className="font-display text-xl font-extrabold text-[#0A0A0A] mb-3">{v.title}</h3>
+                <h3 className="font-body text-xl font-extrabold text-[#0A0A0A] mb-3">{v.title}</h3>
                 <p className="text-[#525252] text-sm leading-relaxed">{v.desc}</p>
               </motion.div>
             ))}

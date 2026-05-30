@@ -103,7 +103,7 @@ export default function Services() {
         <div className="max-w-6xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <p className="text-xs font-semibold text-[#4F46E5] uppercase tracking-widest mb-4">Services</p>
-            <h1 className="font-display text-6xl sm:text-7xl font-extrabold text-[#0A0A0A] tracking-tight leading-tight mb-6 max-w-3xl">
+            <h1 className="font-body text-6xl sm:text-7xl font-extrabold text-[#0A0A0A] tracking-tight leading-tight mb-6 max-w-3xl">
               Six strands.<br />Every layer connected.
             </h1>
             <p className="text-[#525252] text-lg max-w-xl leading-relaxed">
@@ -126,7 +126,7 @@ export default function Services() {
             >
               <div className={i % 2 !== 0 ? "lg:order-2" : ""}>
                 <span className="text-[#4F46E5] text-xs font-bold uppercase tracking-widest">{s.num}</span>
-                <h2 className="font-display text-4xl sm:text-5xl font-extrabold text-[#0A0A0A] tracking-tight mt-2 mb-2">{s.title}</h2>
+                <h2 className="font-body text-4xl sm:text-5xl font-extrabold text-[#0A0A0A] tracking-tight mt-2 mb-2">{s.title}</h2>
                 <p className="text-[#4F46E5] font-semibold text-sm mb-4 italic">{s.tagline}</p>
                 <p className="text-[#525252] leading-relaxed mb-8">{s.body}</p>
                 <div>
@@ -149,7 +149,7 @@ export default function Services() {
         </div>
 
         <div className="mt-20 pt-16 border-t border-gray-100 text-center">
-          <h2 className="font-display text-4xl font-extrabold text-[#0A0A0A] mb-4">Ready to plug the leaks?</h2>
+          <h2 className="font-body text-4xl font-extrabold text-[#0A0A0A] mb-4">Ready to plug the leaks?</h2>
           <p className="text-[#525252] mb-8 max-w-md mx-auto">Start with the Clarity Audit and we'll find exactly where your funnel is bleeding.</p>
           <Link to="/contact" className="inline-flex items-center gap-2 bg-[#4F46E5] text-white font-semibold px-8 py-4 rounded-full hover:bg-indigo-700 transition-colors">
             Work With Me
