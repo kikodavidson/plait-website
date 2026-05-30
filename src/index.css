@@ -9,7 +9,7 @@
 @layer base {
   :root {
     --font-body: 'Manrope', sans-serif;
-    --font-display: 'Josefin Sans', sans-serif;
+    --font-display: 'Manrope', sans-serif;
 
     --background: 248 100% 99%;
     --foreground: 220 20% 10%;
