@@ -16,7 +16,7 @@ export default function About() {
           >
             <p className="text-xs font-semibold text-[#4F46E5] uppercase tracking-widest mb-4">About</p>
             <h1 className="font-body text-6xl sm:text-7xl font-extrabold text-[#0A0A0A] tracking-tight leading-tight mb-6">
-              Stewardship<br />Over Exploitation.
+              Who and Why.
             </h1>
             <p className="text-[#525252] text-lg leading-relaxed max-w-xl">
               I will pull spend that isn't earning even if it costs me the retainer. That's not a pitch. It's how I operate.
@@ -85,16 +85,32 @@ export default function About() {
         </div>
       </div>
 
-      {/* Values */}
+      {/* Core Beliefs */}
       <div className="section-gradient py-20 px-6">
         <div className="max-w-6xl mx-auto">
-          <h2 className="font-body text-4xl font-extrabold text-[#0A0A0A] tracking-tight mb-12">How I operate.</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <h2 className="font-body text-4xl font-extrabold text-[#0A0A0A] tracking-tight mb-12">Core Beliefs</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { title: "I'll fire myself if your numbers don't work.", desc: "If a campaign isn't performing, I'll say so. I've walked away from retainers because the math didn't make sense for the client. I'll do it again." },
-              { title: "No hiding behind dashboards.", desc: "You'll know exactly what's working, what's not, and what we're doing about it. No vanity metrics. No 40 slide decks with three meaningful slides buried inside." },
-              { title: "One person. The whole funnel.", desc: "No handoffs to a junior account manager. No 'I just handle the ads.' I own the whole strategy, which means nothing falls through the cracks between departments." },
-              { title: "Faith-driven, principle-led.", desc: "My faith isn't a brand prop. It's the thing that keeps me honest when it would be easier not to be. Stewardship over exploitation — in every client relationship." },
+              {
+                emoji: "🏆",
+                title: "Winning is everything.",
+                desc: <>This is a competitive field. I treat it like one. That means staying aggressive about improvement, disciplined in execution, and persistent in finding edges others miss — <strong>winning conversions</strong>, <strong>winning channels</strong>, and <strong>winning in the margins</strong> that compound over time.</>,
+              },
+              {
+                emoji: "🔍",
+                title: "Transparency Over Optics. Always.",
+                desc: <>Most agencies are optimized for <strong>retention</strong>, not <strong>outcomes</strong>. Reports are built to reassure instead of inform, and activity is used to create the appearance of progress rather than actual improvement. I take the opposite approach. You'll see <strong>what's working</strong>, what isn't, and <strong>why</strong> — in plain language, with full context.</>,
+              },
+              {
+                emoji: "💰",
+                title: "Client Capital is to be Treated Like It's My Own",
+                desc: <>I treat client capital <strong>the same way I treat my own</strong>. Allocation is deliberate, <strong>spend is justified</strong>, and nothing runs just to look busy. If dollars aren't producing, they're questioned, reworked, or pulled.</>,
+              },
+              {
+                emoji: "🎯",
+                title: "Stewardship Over Exploitation",
+                desc: "Exploitation shows up as over-spending, over-promising, and over-optimizing for the report instead of the business. Stewardship means restraint, clear tradeoffs, and decisions that leave the business stronger after the work, not dependent on it.",
+              },
             ].map((v, i) => (
               <motion.div
                 key={v.title}
@@ -102,13 +118,43 @@ export default function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="bg-white rounded-3xl border border-gray-100 p-8"
+                className="bg-white rounded-3xl border border-gray-100 p-8 flex flex-col gap-4"
               >
-                <h3 className="font-body text-xl font-extrabold text-[#0A0A0A] mb-3">{v.title}</h3>
+                <span className="text-4xl">{v.emoji}</span>
+                <h3 className="font-body text-lg font-extrabold text-[#0A0A0A]">{v.title}</h3>
                 <p className="text-[#525252] text-sm leading-relaxed">{v.desc}</p>
               </motion.div>
             ))}
           </div>
+        </div>
+      </div>
+
+      {/* Mission */}
+      <div className="relative py-28 px-6 overflow-hidden bg-[#0A0A0A]">
+        {/* Gradient orbs */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute bottom-0 left-1/4 w-96 h-96 rounded-full bg-purple-700 opacity-30 blur-3xl" />
+          <div className="absolute bottom-0 right-1/4 w-96 h-96 rounded-full bg-rose-600 opacity-25 blur-3xl" />
+        </div>
+        <div className="relative max-w-3xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <p className="text-white/60 text-sm italic mb-6">"Whatever your hand finds to do, do it with all your might" — Ecclesiastes 9:10</p>
+            <h2 className="font-body text-6xl sm:text-7xl font-extrabold text-white mb-8">My Mission</h2>
+            <p className="text-white/80 text-xl leading-relaxed mb-10">
+              I am on a mission to be a light in a crowded industry by helping people bring their ideas to life and scale them into making a real impact on people's lives. I believe winning is found in the margins, and I'm committed to turning ideas into reality through a process that values honesty, creativity, and always looking for the next tactical edge.
+            </p>
+            <Link
+              to="/contact"
+              className="inline-flex items-center gap-2 bg-white text-[#0A0A0A] font-bold text-base px-8 py-4 rounded-full hover:bg-gray-100 transition-colors"
+            >
+              Get in touch
+            </Link>
+          </motion.div>
         </div>
       </div>
     </div>
