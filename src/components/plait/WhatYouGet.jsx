@@ -31,7 +31,7 @@ const deliverables = [
   {
     icon: Target,
     title: "Website Buildout / Uplift",
-    desc: "Driving traffic to a poorly optimised site is burning money. Every page built to bring visitors across the finish line.",
+    desc: "Driving traffic to a poorly optimised site is burning money. Every page is built to bring visitors across the finish line.",
   },
 ];
 
