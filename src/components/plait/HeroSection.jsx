@@ -12,7 +12,7 @@ const ROTATING = [
 ];
 
 const STATS = [
-  { prefix: "$", value: 20, suffix: "+", label: "Tested on Ads", decimalDivide: 10 },
+  { prefix: "$", value: 20, suffix: "+", label: "Revenue Generated", decimalDivide: 10 },
   { prefix: "", value: 80, suffix: "+", label: "Brands Scaled" },
   { prefix: "", value: 11, suffix: "+", label: "Growth Channels" },
 ];
@@ -43,7 +43,7 @@ function StatItem({ stat, started, divider }) {
 
   return (
     <div className={`flex flex-col items-center px-6 ${divider ? "border-l border-gray-200" : ""}`}>
-      <p className="text-4xl sm:text-5xl font-extrabold text-[#0A0A0A] tracking-tight leading-none">
+      <p className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-[#0A0A0A] tracking-tight leading-none">
         {display}
       </p>
       <p className="text-xs text-[#525252] font-semibold mt-2 uppercase tracking-wider">{stat.label}</p>
