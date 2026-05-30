@@ -43,7 +43,7 @@ function StatItem({ stat, started, divider }) {
 
   return (
     <div className={`flex flex-col items-center px-6 ${divider ? "border-l border-gray-200" : ""}`}>
-      <p className="text-4xl sm:text-5xl font-extrabold text-[#4F46E5] tracking-tight leading-none">
+      <p className="text-4xl sm:text-5xl font-extrabold text-[#0A0A0A] tracking-tight leading-none">
         {display}
       </p>
       <p className="text-xs text-[#525252] font-semibold mt-2 uppercase tracking-wider">{stat.label}</p>
@@ -136,7 +136,7 @@ export default function HeroSection() {
         {/* Rotating word + cash burst */}
         <div className="relative">
           <CashBurst active={isScale} />
-          <div className="text-[clamp(1.8rem,5vw,4rem)] font-extrabold text-[#4F46E5] leading-[1.15] tracking-tight mb-8 h-[1.4em] flex items-center justify-center overflow-visible font-body" style={{ fontFamily: 'Manrope, sans-serif' }}>
+          <div className="text-[clamp(1.8rem,5vw,4rem)] font-extrabold text-[#0A0A0A] leading-[1.15] tracking-tight mb-8 h-[1.4em] flex items-center justify-center overflow-visible font-body" style={{ fontFamily: 'Manrope, sans-serif' }}>
             <AnimatePresence mode="wait">
               <motion.span
                 key={index}

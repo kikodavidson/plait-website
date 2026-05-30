@@ -46,7 +46,7 @@ export default function WhatYouGet() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <p className="text-xs font-bold text-[#4F46E5] uppercase tracking-widest mb-3">What You Get</p>
+          <p className="text-xs font-bold text-[#0A0A0A] uppercase tracking-widest mb-3">What You Get</p>
           <h2
             className="text-4xl sm:text-5xl font-extrabold text-[#0A0A0A] tracking-tight leading-[1.1] mb-4"
             style={{ fontFamily: 'Manrope, sans-serif' }}
@@ -63,7 +63,7 @@ export default function WhatYouGet() {
               >
                 <path
                   d="M2 8.5 C40 3, 80 10, 120 6 C160 2, 200 9, 240 5.5 C270 3, 290 7, 298 6"
-                  stroke="#4F46E5"
+                  stroke="#0A0A0A"
                   strokeWidth="3"
                   strokeLinecap="round"
                   strokeLinejoin="round"

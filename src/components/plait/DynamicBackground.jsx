@@ -19,54 +19,49 @@ export default function DynamicBackground() {
     const tick = () => {
       const w = canvas.width;
       const h = canvas.height;
-      t += 0.004;
+      t += 0.006;
 
       ctx.clearRect(0, 0, w, h);
 
-      // White base
+      // Pure white base
       ctx.fillStyle = "#ffffff";
       ctx.fillRect(0, 0, w, h);
 
       const orbs = [
-        // Blues — dominant, stronger opacity
+        // Large blue — sweeps left to right
         {
-          x: 0.10 + Math.sin(t * 0.6) * 0.20,
-          y: 0.15 + Math.cos(t * 0.4) * 0.18,
-          r: 0.55,
-          color: [100, 149, 255, 0.30],
+          x: 0.5 + Math.sin(t * 0.5) * 0.55,
+          y: 0.15 + Math.cos(t * 0.3) * 0.12,
+          r: 0.32,
+          color: [90, 150, 255, 0.42],
         },
+        // Blue — moves top to bottom
         {
-          x: 0.75 + Math.cos(t * 0.5) * 0.18,
-          y: 0.50 + Math.sin(t * 0.7) * 0.20,
-          r: 0.52,
-          color: [80, 180, 255, 0.28],
+          x: 0.15 + Math.cos(t * 0.4) * 0.12,
+          y: 0.5 + Math.sin(t * 0.6) * 0.45,
+          r: 0.28,
+          color: [60, 180, 255, 0.38],
         },
+        // Mint — diagonal sweep
         {
-          x: 0.45 + Math.sin(t * 0.3) * 0.22,
-          y: 0.80 + Math.cos(t * 0.5) * 0.14,
-          r: 0.50,
-          color: [120, 160, 255, 0.25],
+          x: 0.8 + Math.sin(t * 0.7) * 0.18,
+          y: 0.6 + Math.cos(t * 0.5) * 0.35,
+          r: 0.26,
+          color: [80, 220, 190, 0.30],
         },
-        // Mint — medium
+        // Pink — floats across upper right
         {
-          x: 0.60 + Math.cos(t * 0.8) * 0.18,
-          y: 0.25 + Math.sin(t * 0.5) * 0.18,
-          r: 0.48,
-          color: [100, 230, 200, 0.18],
+          x: 0.7 + Math.cos(t * 0.8) * 0.25,
+          y: 0.2 + Math.sin(t * 0.4) * 0.15,
+          r: 0.22,
+          color: [244, 100, 170, 0.28],
         },
-        // Pink — subtle
+        // Lavender — lower left drift
         {
-          x: 0.85 + Math.sin(t * 0.6) * 0.12,
-          y: 0.75 + Math.cos(t * 0.9) * 0.14,
-          r: 0.42,
-          color: [244, 114, 182, 0.14],
-        },
-        // Lavender — subtle
-        {
-          x: 0.25 + Math.cos(t * 0.7) * 0.16,
-          y: 0.60 + Math.sin(t * 0.4) * 0.16,
-          r: 0.44,
-          color: [192, 132, 252, 0.13],
+          x: 0.2 + Math.sin(t * 0.6) * 0.18,
+          y: 0.8 + Math.cos(t * 0.7) * 0.18,
+          r: 0.24,
+          color: [170, 110, 255, 0.25],
         },
       ];
 
@@ -78,12 +73,12 @@ export default function DynamicBackground() {
 
         const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, radius);
         grad.addColorStop(0, `rgba(${r},${g},${b},${a})`);
-        grad.addColorStop(0.5, `rgba(${r},${g},${b},${a * 0.4})`);
+        grad.addColorStop(0.45, `rgba(${r},${g},${b},${a * 0.3})`);
         grad.addColorStop(1, `rgba(255,255,255,0)`);
 
         ctx.fillStyle = grad;
         ctx.beginPath();
-        ctx.ellipse(cx, cy, radius, radius * 0.85, 0, 0, Math.PI * 2);
+        ctx.ellipse(cx, cy, radius, radius * 0.75, 0, 0, Math.PI * 2);
         ctx.fill();
       });
 

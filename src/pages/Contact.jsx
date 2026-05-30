@@ -33,7 +33,7 @@ export default function Contact() {
           className="text-center max-w-md"
         >
           <div className="w-16 h-16 bg-indigo-50 rounded-full flex items-center justify-center mx-auto mb-6">
-            <CheckCircle2 className="w-8 h-8 text-[#4F46E5]" />
+            <CheckCircle2 className="w-8 h-8 text-[#0A0A0A]" />
           </div>
           <h2 className="font-body text-4xl font-extrabold text-[#0A0A0A] mb-3">Got it.</h2>
           <p className="text-[#525252] leading-relaxed">
@@ -61,7 +61,7 @@ export default function Contact() {
       <div className="hero-gradient pb-16 px-6 pt-12">
         <div className="max-w-6xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <p className="text-xs font-semibold text-[#4F46E5] uppercase tracking-widest mb-4">Contact</p>
+            <p className="text-xs font-semibold text-[#0A0A0A] uppercase tracking-widest mb-4">Contact</p>
             <h1 className="font-body text-6xl sm:text-7xl font-extrabold text-[#0A0A0A] tracking-tight leading-tight mb-5">
               Let's talk.
             </h1>
@@ -181,7 +181,7 @@ export default function Contact() {
                   "If we move forward, a clear plan before any commitment",
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-3 text-sm text-[#525252]">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#4F46E5] shrink-0 mt-2" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#0A0A0A] shrink-0 mt-2" />
                     {item}
                   </li>
                 ))}

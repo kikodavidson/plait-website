@@ -40,7 +40,7 @@ export default function ProcessSteps() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <p className="text-xs font-bold text-[#4F46E5] uppercase tracking-widest mb-3">The Roadmap for Growth</p>
+          <p className="text-xs font-bold text-white/60 uppercase tracking-widest mb-3">The Roadmap for Growth</p>
           <h2
             className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight leading-[1.1]"
             style={{ fontFamily: 'Manrope, sans-serif' }}
@@ -64,8 +64,8 @@ export default function ProcessSteps() {
                 className="flex gap-8 items-start py-8 border-b border-white/10 last:border-0 group"
               >
                 {/* Step dot */}
-                <div className="w-11 h-11 rounded-full bg-[#4F46E5]/10 border border-[#4F46E5]/30 flex items-center justify-center shrink-0 group-hover:bg-[#4F46E5] group-hover:border-[#4F46E5] transition-all">
-                  <span className="text-[#4F46E5] group-hover:text-white text-[10px] font-extrabold transition-colors">{step.num}</span>
+                <div className="w-11 h-11 rounded-full bg-white/10 border border-white/20 flex items-center justify-center shrink-0 group-hover:bg-white group-hover:border-white transition-all">
+                  <span className="text-white group-hover:text-[#0A0A0A] text-[10px] font-extrabold transition-colors">{step.num}</span>
                 </div>
 
                 <div className="flex-1 md:flex md:items-center md:gap-12 pt-1">

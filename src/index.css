@@ -80,7 +80,8 @@ html {
   background-size: 200% 200%;
   animation: gradientShift 4s ease infinite;
   color: #fff;
-  border: none;
+  border: 2px solid rgba(255,255,255,0.45);
+  outline: 1px solid rgba(160,180,255,0.35);
 }
 .btn-gradient:hover {
   opacity: 0.9;

@@ -125,7 +125,7 @@ export default function Services() {
       <div className="hero-gradient pb-16 px-6 pt-12">
         <div className="max-w-6xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <p className="text-xs font-semibold text-[#4F46E5] uppercase tracking-widest mb-4">What We Do</p>
+            <p className="text-xs font-semibold text-[#0A0A0A] uppercase tracking-widest mb-4">What We Do</p>
             <h1 className="font-body text-6xl sm:text-7xl font-extrabold text-[#0A0A0A] tracking-tight leading-tight mb-6 max-w-3xl">
               Most marketing problems aren't caused by one thing.
             </h1>
@@ -144,7 +144,7 @@ export default function Services() {
           transition={{ duration: 0.5 }}
           className="max-w-2xl"
         >
-          <p className="text-xs font-bold text-[#4F46E5] uppercase tracking-widest mb-4">How We Help</p>
+          <p className="text-xs font-bold text-[#0A0A0A] uppercase tracking-widest mb-4">How We Help</p>
           <p className="text-[#0A0A0A] text-xl font-semibold leading-relaxed mb-3">
             No two businesses need the exact same solution.
           </p>
@@ -166,16 +166,16 @@ export default function Services() {
               className={`grid grid-cols-1 lg:grid-cols-2 gap-16 items-start`}
             >
               <div className={i % 2 !== 0 ? "lg:order-2" : ""}>
-                <span className="text-[#4F46E5] text-xs font-bold uppercase tracking-widest">{s.num}</span>
+                <span className="text-[#0A0A0A] text-xs font-bold uppercase tracking-widest">{s.num}</span>
                 <h2 className="font-body text-4xl sm:text-5xl font-extrabold text-[#0A0A0A] tracking-tight mt-2 mb-2">{s.title}</h2>
-                <p className="text-[#4F46E5] font-semibold text-sm mb-4 italic">{s.tagline}</p>
+                <p className="text-[#0A0A0A] font-semibold text-sm mb-4 italic">{s.tagline}</p>
                 <p className="text-[#525252] leading-relaxed mb-8">{s.body}</p>
                 <div>
                   <p className="text-xs font-bold uppercase tracking-widest text-[#0A0A0A] mb-4">Services</p>
                   <ul className="space-y-2">
                     {s.deliverables.map((d) => (
                       <li key={d} className="flex items-start gap-3 text-sm text-[#525252]">
-                        <Check className="w-4 h-4 text-[#4F46E5] shrink-0 mt-0.5" />
+                        <Check className="w-4 h-4 text-[#0A0A0A] shrink-0 mt-0.5" />
                         {d}
                       </li>
                     ))}
@@ -198,7 +198,7 @@ export default function Services() {
         >
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
-              <p className="text-xs font-bold text-[#4F46E5] uppercase tracking-widest mb-4">Not Sure What You Need?</p>
+              <p className="text-xs font-bold text-[#0A0A0A] uppercase tracking-widest mb-4">Not Sure What You Need?</p>
               <h2 className="font-body text-4xl sm:text-5xl font-extrabold text-[#0A0A0A] tracking-tight mb-6">That's normal.</h2>
               <p className="text-[#525252] leading-relaxed mb-4">
                 Most clients don't come to us asking for a new attribution model, a landing page rebuild, or a creative testing framework.

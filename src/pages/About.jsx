@@ -14,7 +14,7 @@ export default function About() {
             transition={{ duration: 0.6 }}
             className="max-w-3xl"
           >
-            <p className="text-xs font-semibold text-[#4F46E5] uppercase tracking-widest mb-4">About</p>
+            <p className="text-xs font-semibold text-[#0A0A0A] uppercase tracking-widest mb-4">About</p>
             <h1 className="font-body text-6xl sm:text-7xl font-extrabold text-[#0A0A0A] tracking-tight leading-tight mb-6">
               Who and Why.
             </h1>
@@ -66,7 +66,7 @@ export default function About() {
                   { value: "11+", label: "Channels" },
                 ].map((s) => (
                   <div key={s.label}>
-                    <p className="font-body text-3xl font-extrabold text-[#4F46E5]">{s.value}</p>
+                    <p className="font-body text-3xl font-extrabold text-[#0A0A0A]">{s.value}</p>
                     <p className="text-xs text-[#525252] uppercase tracking-wider mt-1">{s.label}</p>
                   </div>
                 ))}

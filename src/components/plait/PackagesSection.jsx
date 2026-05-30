@@ -57,7 +57,7 @@ export default function PackagesSection() {
     <section className="py-28 px-6 border-t border-gray-100/50">
       <div className="max-w-6xl mx-auto">
         <div className="mb-14 max-w-xl">
-          <p className="text-xs font-bold text-[#4F46E5] uppercase tracking-widest mb-3">Packages</p>
+          <p className="text-xs font-bold text-[#0A0A0A] uppercase tracking-widest mb-3">Packages</p>
           <h2 className="text-4xl sm:text-5xl font-extrabold text-[#0A0A0A] leading-tight mb-4 font-body">
             Pick your entry point.
           </h2>
@@ -81,7 +81,7 @@ export default function PackagesSection() {
               }`}
             >
               <div className="mb-6">
-                <p className={`text-xs font-bold uppercase tracking-widest mb-2 ${pkg.highlight ? "text-white/40" : "text-[#4F46E5]"}`}>
+                <p className={`text-xs font-bold uppercase tracking-widest mb-2 ${pkg.highlight ? "text-white/40" : "text-[#0A0A0A]"}`}>
                   {pkg.name}
                 </p>
                 <p className={`text-4xl font-extrabold mb-3 font-body ${pkg.highlight ? "text-white" : "text-[#0A0A0A]"}`}>
@@ -95,7 +95,7 @@ export default function PackagesSection() {
               <ul className="space-y-3 flex-1 mb-8">
                 {pkg.items.map((item) => (
                   <li key={item} className={`flex items-start gap-3 text-sm ${pkg.highlight ? "text-white/70" : "text-[#525252]"}`}>
-                    <Check className={`w-4 h-4 shrink-0 mt-0.5 ${pkg.highlight ? "text-white" : "text-[#4F46E5]"}`} />
+                    <Check className={`w-4 h-4 shrink-0 mt-0.5 ${pkg.highlight ? "text-white" : "text-[#0A0A0A]"}`} />
                     {item}
                   </li>
                 ))}
