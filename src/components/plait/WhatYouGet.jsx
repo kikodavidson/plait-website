@@ -95,9 +95,6 @@ export default function WhatYouGet() {
                 transition={{ duration: 0.5, delay: i * 0.07 }}
                 className="bg-white p-8 flex flex-col gap-4 hover:bg-[#F8F7FF] transition-colors"
               >
-                <div className="w-10 h-10 rounded-xl bg-indigo-50 flex items-center justify-center">
-                  <Icon className="w-5 h-5 text-[#4F46E5]" />
-                </div>
                 <div>
                   <h3 className="font-extrabold text-[#0A0A0A] text-base mb-1" style={{ fontFamily: 'Manrope, sans-serif' }}>
                     {item.title}
