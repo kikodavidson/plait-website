@@ -105,7 +105,7 @@ export default function OrbitSection() {
               I helped bring Orbit to life — not as the engineer, but as the marketer behind it. The concept, the positioning, and the use case came from years of frustration with AI tools that had no real context. I took that idea and made it something people could actually understand and use.
             </p>
             <p className="text-white/50 text-base leading-relaxed">
-              Orbit is a Model Context Protocol (MCP) built specifically for marketing workflows. The difference between an MCP and a standard AI tool is context depth. Orbit connects directly to your live data — ad accounts, CRM, analytics, attribution. It doesn't guess. It reads. And I use it in every engagement.
+              Orbit is a Model Context Protocol (MCP) built specifically for marketing workflows. The difference between an MCP and a standard AI tool is context depth. Orbit connects directly to your live data: ad accounts, CRM, analytics, attribution. It doesn't guess. It reads. And I use it in every engagement.
             </p>
 
             <div className="mt-6">
