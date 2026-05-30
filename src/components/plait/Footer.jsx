@@ -7,7 +7,7 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
           <div>
-            <div className="font-display text-xl font-bold text-[#0A0A0A] tracking-tight mb-1">PLAIT</div>
+            <img src="https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/9dbd7f3cd_logos4.png" alt="PLAIT" className="h-16 w-auto mb-1" />
             <p className="text-sm text-[#525252]">Human strategy. AI velocity.</p>
           </div>
           <div className="flex flex-wrap gap-6 text-sm text-[#525252]">
