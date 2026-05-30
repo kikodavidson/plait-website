@@ -17,7 +17,7 @@ const videoTestimonials = [
     role: "Founder, HG Training",
     thumbnail: "https://img.youtube.com/vi/8OaMt_uDJmQ/maxresdefault.jpg",
     embedUrl: "https://www.youtube.com/embed/8OaMt_uDJmQ?autoplay=1",
-    preview: "30 million impressions on a campaign nobody expected to work.",
+    preview: "The revenue that started coming in after Luke started helping with my marketing was unbelievable.",
   },
 ];
 
