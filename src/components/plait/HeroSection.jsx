@@ -110,7 +110,8 @@ export default function HeroSection() {
 
         {/* Static headline */}
         <motion.h1
-          className="text-[clamp(2.4rem,6.5vw,5rem)] font-extrabold text-[#0A0A0A] leading-[1.05] tracking-[0.05em] mb-0 font-body"
+          className="text-[clamp(2.4rem,6.5vw,5rem)] font-extrabold text-[#0A0A0A] leading-[1.05] tracking-tight mb-0 font-body"
+          style={{ fontFamily: 'Manrope, sans-serif' }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
@@ -118,7 +119,8 @@ export default function HeroSection() {
           Your Growth Partner,
         </motion.h1>
         <motion.h1
-          className="text-[clamp(2.4rem,6.5vw,5rem)] font-extrabold text-[#0A0A0A] leading-[1.05] tracking-[0.05em] mb-2 font-body"
+          className="text-[clamp(2.4rem,6.5vw,5rem)] font-extrabold text-[#0A0A0A] leading-[1.05] tracking-tight mb-2 font-body"
+          style={{ fontFamily: 'Manrope, sans-serif' }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.15 }}
@@ -129,7 +131,7 @@ export default function HeroSection() {
         {/* Rotating word + cash burst */}
         <div className="relative">
           <CashBurst active={isScale} />
-          <div className="text-[clamp(1.8rem,5vw,4rem)] font-extrabold text-[#4F46E5] leading-[1.15] tracking-[0.05em] mb-8 h-[1.4em] flex items-center justify-center overflow-visible font-body">
+          <div className="text-[clamp(1.8rem,5vw,4rem)] font-extrabold text-[#4F46E5] leading-[1.15] tracking-tight mb-8 h-[1.4em] flex items-center justify-center overflow-visible font-body" style={{ fontFamily: 'Manrope, sans-serif' }}>
             <AnimatePresence mode="wait">
               <motion.span
                 key={index}
