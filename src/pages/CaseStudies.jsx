@@ -93,7 +93,7 @@ const studies = [
     sections: [
       {
         title: "The Situation",
-        content: "Tsunami Bar Sports was relying entirely on organic content and had never run paid ads. We came in and tested a wide variety of offers, products, and value props to find what actually drove value and demand.",
+        content: "Tsunami Bar Sports had real credibility. Hall of Fame NFL linebacker James Harrison and multiple college programs were already posting about the product organically. The brand had earned serious validation from serious athletes. What they didn't have was a system to turn that attention into consistent revenue. The organic momentum was real, but it wasn't scalable.",
       },
       {
         title: "Why It Was Hard",
