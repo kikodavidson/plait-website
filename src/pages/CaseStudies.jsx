@@ -9,19 +9,29 @@ const studies = [
     category: "SaaS / Career Platform",
     stat: "90%",
     statLabel: "Reduction in CAC",
-    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=900&h=600&fit=crop",
-    headline: "Turning fragmented SaaS acquisition into a scalable purchase engine.",
-    body: [
-      "Extern is a SaaS platform offering externships to college students. Their primary objective was clear: acquire customers at a sustainable customer acquisition cost.",
-      "The challenge? College students are one of the most fiscally constrained audiences to sell to. Disposable income is limited. Decision making cycles are longer. Skepticism toward paid programs is high. Conversion friction is real.",
-      "When I stepped in, the account had multiple campaigns running across different objectives. Budget was fragmented. Signals were diluted. The structure wasn't built to consistently drive purchases.",
-      "Extern didn't need more traffic. They needed efficient customer acquisition.",
-      "I consolidated the account into a unified evergreen purchase focused framework designed to strengthen signals, stabilize delivery, and lower CAC.",
-      "After consolidating the campaign structure, we focused on driving down customer acquisition cost through signal clarity and strategic testing. Within weeks, CAC dropped by a substantial percentage as delivery stabilized and budget was concentrated into high performing segments.",
-      "We moved beyond the original targeting pools and systematically identified new audience segments that showed stronger purchase intent. This included layered interest testing, algorithmic expansion, and refinement based on engagement behavior. As new pockets of efficiency emerged, we scaled into them deliberately.",
-      "Rather than relying on a single core message, we tested multiple value angles tailored to a fiscally constrained student audience. Career leverage, ROI framing, credibility positioning, urgency hooks, and social proof were all explored across different content formats. This allowed us to identify which variables resonated most deeply and convert at lower costs.",
-      "We strengthened top of funnel efforts by introducing new hooks and content types designed to stop the scroll and reframe the offer. These efforts fed higher quality traffic into the system, improving downstream conversion efficiency.",
-      "Previously untested, we built and executed a dedicated bottom funnel strategy within paid ads. This included increasing frequency strategically, segmenting based on engagement depth, specific interactions, and serving tailored messaging to users who had demonstrated interest. By addressing objections and reinforcing value at this stage, purchase rates improved and CAC efficiency compounded.",
+    image: "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/564274e00_Screenshot2026-06-18at34355PM.png",
+    headline: "How we cut CAC for a SaaS platform targeting one of the hardest audiences in paid media: broke college students.",
+    sections: [
+      {
+        title: "The Situation",
+        content: "Extern had a real product and a clear goal — acquire customers at a sustainable cost. The problem wasn't demand. It was structure. When I came in, budget was fragmented across multiple campaigns with competing objectives. Signals were diluted, delivery was inconsistent, and the account wasn't built to drive purchases efficiently. They didn't need more traffic. They needed a system that could actually convert it.",
+      },
+      {
+        title: "The Challenge",
+        content: "College students are one of the most difficult audiences to sell to in paid media. Disposable income is limited, skepticism toward paid programs is high, and the decision making cycle is longer than most advertisers plan for. Every dollar had to work harder because the audience was predisposed to hesitate. There was no margin for a sloppy funnel.",
+      },
+      {
+        title: "The Approach",
+        content: "The first move was consolidation. Multiple campaigns with fragmented budgets mean diluted signals, and diluted signals mean Meta can't optimize properly. We collapsed the account into a unified evergreen framework built entirely around purchase intent. Once the structure was clean, the platform had what it needed to stabilize delivery and find the right buyers.\n\nFrom there we expanded methodically. New audience segments were identified through layered interest testing and algorithmic expansion, scaling into pockets of efficiency as they emerged rather than guessing upfront.\n\nCreative was treated as a testing system, not a production line. We explored career leverage, ROI framing, credibility positioning, urgency, and social proof across multiple formats to find what actually moved a fiscally constrained student to convert.\n\nAt the bottom of the funnel we built something that didn't exist before — a dedicated retargeting strategy segmented by engagement depth, increasing frequency strategically and serving tailored messaging to users who had already shown interest. Objections got addressed. Value got reinforced. And conversion rates improved as a result.",
+      },
+      {
+        title: "The Outcome",
+        content: "CAC dropped significantly within weeks of consolidating the account structure. As delivery stabilized and budget concentrated into high performing segments, efficiency compounded across the funnel. The system didn't just perform — it got more efficient over time.",
+      },
+      {
+        title: "The Takeaway",
+        content: "A fragmented account is a self-inflicted handicap. Before testing creative, before expanding audiences, before scaling spend — the structure has to be right. Clean signals give the algorithm what it needs to find your buyer. Everything else builds on top of that foundation.",
+      },
     ],
     results: [{ stat: "90%", label: "Reduction in CAC" }, { stat: "24x", label: "Increase in New Users" }],
   },
