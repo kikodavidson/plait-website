@@ -48,10 +48,10 @@ const studies = [
   {
     slug: "airia-williams-f1",
     client: "Airia",
-    category: "Enterprise / AI",
+    category: "SaaS / Brand Awareness",
     stat: "30M+",
     statLabel: "Impressions in Two Months",
-    image: "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=900&h=600&fit=crop",
+    image: "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/88a18da6f_TestimonialBanners.png",
     headline: "Building awareness for revolutionary AI Agentic Modeling software.",
     body: [
       "Airia came to us with a clear mission: get their revolutionary AI Agentic Modeling platform in front of as many qualified decision makers as possible.",
