@@ -107,20 +107,36 @@ const studies = [
     results: [{ stat: "500%+", label: "Increase in Sales" }, { stat: "5-15x", label: "ROAS" }],
   },
   {
-    slug: "blu-revive",
-    client: "BluRevive",
-    category: "Health / D2C",
-    stat: "0",
-    statLabel: "Extra Fees or Expenses",
-    image: "https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?w=900&h=600&fit=crop",
-    headline: "How we launched a new brand with no extra fees or expenses.",
-    body: [
-      "Blu Revive is a new methylene blue supplement brand preparing to enter the market in a fast growing but highly scrutinized space. With rising interest in cognitive performance, cellular health, and bio optimization, the opportunity was clear but so was the competition.",
-      "They needed more than visuals. They needed a brand foundation that could build trust, communicate credibility, and position them strategically from day one.",
-      "The objective was to develop a distinct brand identity and a complete suite of launch ready assets to support a confident market entry.",
-      "We crafted a cohesive visual system, refined their positioning, and developed core messaging that balanced scientific credibility with modern performance appeal. From there, we launched foundational content designed to educate, build authority, and generate early traction.",
+    slug: "kryo",
+    client: "Krýo",
+    category: "Health / High Ticket D2C",
+    stat: "4-6x",
+    statLabel: "Return on Ad Spend",
+    image: "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/d1b832d18_JakePaul.png",
+    headline: "Selling a $4,000 ice plunge takes more than good ads. Here's what it takes to make ads work for a high ticket item.",
+    sections: [
+      {
+        title: "The Situation",
+        content: "Kryo had something most brands don't early on — legitimate celebrity endorsements and content that actually performed. Jake Paul, Dana White, and Dwight Howard had already put the product in front of millions. The product had real credibility. What it needed was a system to convert that attention into revenue.",
+      },
+      {
+        title: "The Challenge",
+        content: "Nobody drops $4,000 on any product the first time they see an ad. This was never going to be a one-touch conversion. We were working with a smaller budget and a high consideration product, which meant we couldn't just run traffic and hope. We had to build a full funnel that met people where they were, warmed them up over time, and gave them every reason to trust the product before they ever hit the buy button.",
+      },
+      {
+        title: "The Approach",
+        content: "We built the funnel around one core insight: the value of cold therapy wasn't hard to sell — most people got it. The real job was convincing someone that THIS was the purchase worth making this year over everything else competing for that same $4,000.\n\nWe structured audiences around different entry points. At the top of the funnel we led with what made Kryo unique — portability, pump strength, and health benefits — each speaking to a different version of the same buyer. As people moved down the funnel, we shifted the message. Discounts and bundles weren't lead offers, they were closing tools.\n\nWe also removed every friction point we could find: high income targeting, athlete and wellness communities, payment plans, and HSA eligibility. The goal was to make it so that when someone was ready to say yes, there was nothing left to say no to.",
+      },
+      {
+        title: "The Outcome",
+        content: "A consistent 4–6x return on ad spend.",
+      },
+      {
+        title: "The Takeaway",
+        content: "High ticket isn't harder. It's just different. The brands that struggle with expensive products are usually trying to force them into a framework built for impulse purchases. We built Kryo a system designed around how their buyer actually makes decisions — and that's what made it work.\n\nA $4,000 ice plunge needs a completely different architecture than a $40 supplement. The funnel, the messaging, the timing, the offers — all of it has to reflect the psychology of that specific purchase. That's the job.",
+      },
     ],
-    results: [{ stat: "$0", label: "Extra Fees or Expenses" }],
+    results: [{ stat: "4-6x", label: "Return on Ad Spend" }],
   },
 ];
 
@@ -152,7 +168,11 @@ export default function CaseStudies() {
                   {s.sections.map((sec) => (
                     <div key={sec.title}>
                       <h2 className="font-body text-xl font-extrabold text-[#0A0A0A] mb-2">{sec.title}</h2>
-                      <p className="text-[#525252] leading-relaxed">{sec.content}</p>
+                      <div className="space-y-3">
+                        {sec.content.split("\n\n").map((para, pi) => (
+                          <p key={pi} className="text-[#525252] leading-relaxed">{para}</p>
+                        ))}
+                      </div>
                     </div>
                   ))}
                 </div>
