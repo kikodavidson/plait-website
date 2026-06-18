@@ -86,20 +86,25 @@ const studies = [
     slug: "tsunami-bar-sports",
     client: "Tsunami Bar Sports",
     category: "Sports Equipment / D2C",
-    stat: "15x",
-    statLabel: "ROAS",
+    stat: "500%+",
+    statLabel: "Increase in Sales",
     image: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=900&h=600&fit=crop",
-    headline: "How we achieved a 15x ROAS during a promotional campaign.",
-    body: [
-      "Tsunami Bar Sports is a D2C sports fitness brand offering a high ticket product that is both innovative and disruptive in its category. The challenge was not demand, but clarity. The product required education. Customers needed to understand why it was different, how it worked, and why it justified the investment.",
-      "Heading into the holiday season, the opportunity was to combine education with urgency and turn accumulated interest into decisive action.",
-      "We approached the holiday push with a full funnel strategy.",
-      "On the bottom of funnel side, we retargeted high intent users who had engaged with the brand throughout the year. These were prospects who already understood the problem and simply needed the right timing and incentive to convert.",
-      "At the same time, we expanded into prospecting campaigns to capture new users. The holiday season is when buyers are most willing to make larger purchases, which created an ideal environment to introduce the product to fresh audiences while reinforcing urgency.",
-      "The campaign structure was intentional. Creative focused on education and differentiation. Messaging addressed objections. The offer created urgency without diminishing brand equity. Everything was aligned around seasonal buying behavior and high purchase intent.",
-      "The right product. The right audience. The right offer. The right content. The right timing.",
+    headline: "We increased sales by 500%+ in 6 months at a consistent 5-15x ROAS.",
+    sections: [
+      {
+        title: "The Situation",
+        content: "Tsunami Bar Sports was relying entirely on organic content and had never run paid ads. We came in and tested a wide variety of offers, products, and value props to find what actually drove value and demand.",
+      },
+      {
+        title: "Why It Was Hard",
+        content: "There was a very wide range of products, all at a high ticket value. The challenge was choosing which products to boost, and finding a way to show value across the entire catalog with a limited budget.",
+      },
+      {
+        title: "What I Did",
+        content: "I pushed ads built around the top sellers and whatever would make the most engaging content, then targeted different audiences based on the movements they prioritize. Football players need a barbell, golfers need a swing bar. Matching the product to each audience's intent is what unlocked consistent, scalable performance.",
+      },
     ],
-    results: [{ stat: "15x", label: "ROAS" }],
+    results: [{ stat: "500%+", label: "Increase in Sales" }, { stat: "5-15x", label: "ROAS" }],
   },
   {
     slug: "blu-revive",
@@ -142,11 +147,22 @@ export default function CaseStudies() {
             <div className="lg:col-span-2">
               <p className="text-xs font-bold text-[#3b82f6] uppercase tracking-widest mb-3">{s.category}</p>
               <h1 className="font-body text-4xl sm:text-5xl font-extrabold text-[#0A0A0A] tracking-tight leading-tight mb-8">{s.headline}</h1>
-              <div className="space-y-5">
-                {s.body.map((p, i) => (
-                  <p key={i} className="text-[#525252] leading-relaxed">{p}</p>
-                ))}
-              </div>
+              {s.sections ? (
+                <div className="space-y-8">
+                  {s.sections.map((sec) => (
+                    <div key={sec.title}>
+                      <h2 className="font-body text-xl font-extrabold text-[#0A0A0A] mb-2">{sec.title}</h2>
+                      <p className="text-[#525252] leading-relaxed">{sec.content}</p>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="space-y-5">
+                  {s.body.map((p, i) => (
+                    <p key={i} className="text-[#525252] leading-relaxed">{p}</p>
+                  ))}
+                </div>
+              )}
             </div>
 
             <div>
