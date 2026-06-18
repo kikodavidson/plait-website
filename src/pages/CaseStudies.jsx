@@ -88,7 +88,7 @@ const studies = [
     category: "Sports Equipment / D2C",
     stat: "500%+",
     statLabel: "Increase in Sales",
-    image: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=900&h=600&fit=crop",
+    image: "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/f59cbe715_Untitleddesign-2026-06-18T141430059.png",
     headline: "We increased sales by 500%+ in 6 months at a consistent 5-15x ROAS.",
     sections: [
       {
