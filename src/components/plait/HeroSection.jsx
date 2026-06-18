@@ -99,7 +99,7 @@ export default function HeroSection() {
   const isScale = ROTATING[index] === "Scale.";
 
   return (
-    <section className="hero-gradient min-h-[92vh] flex flex-col items-center justify-center text-center px-6 pt-28 pb-20 relative overflow-hidden">
+    <section className="hero-gradient min-h-[92vh] flex flex-col items-center justify-center text-center px-6 pt-40 sm:pt-48 pb-20 relative overflow-hidden">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-indigo-200/30 rounded-full blur-3xl pointer-events-none" />
 
       <div className="relative max-w-4xl mx-auto flex flex-col items-center">
