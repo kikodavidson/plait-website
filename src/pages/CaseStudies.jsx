@@ -77,20 +77,33 @@ const studies = [
     slug: "hg-training",
     client: "HG Training",
     category: "Health & Fitness",
-    stat: "$8",
-    statLabel: "Cost Per Lead",
-    image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=900&h=600&fit=crop",
-    headline: "How we helped achieve a blended 12.4x ROAS in the first month.",
-    body: [
-      "Hudson runs a private training business in a highly specific geographic market. This wasn't about reach. It was about generating qualified leads inside a 20 mile radius at a cost that made sense for the business.",
-      "Budget was tight. There was no room to test and hope. We needed early traction and efficient conversions from the start.",
-      "We used Meta's native lead forms to remove friction and capture intent instantly. With a tight budget, we couldn't afford wasted clicks or unnecessary drop off.",
-      "The funnel was structured to pre frame the offer, set expectations, and qualify leads before they ever hit Hudson's inbox. This protected both ad spend and his time.",
-      "Creative started simple. As conversions and conversations increased, we paid attention to patterns: what parents valued, what objections surfaced, and what language actually moved people.",
-      "We refined messaging around those signals. Alignment improved. Lead quality improved. Performance improved.",
-      "Disciplined execution. No wasted motion.",
+    stat: "12.4x",
+    statLabel: "Blended ROAS",
+    image: "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/729d88341_TestimonialBanners1.png",
+    headline: "Finding Qualified Leads in a Market Most Advertisers Would Ignore",
+    sections: [
+      {
+        title: "The Situation",
+        content: "Hudson runs a private soccer training business with a hyper specific geographic constraint. We weren't targeting a city. We were targeting parents of soccer players within a 20 mile radius who were ready to invest in private coaching for their kid. The addressable audience was small by design. Every dollar had to count.",
+      },
+      {
+        title: "The Challenge",
+        content: "A tight geo plus a tight budget leaves zero margin for error. You can't test broadly and optimize later when the pool of people you're reaching is already limited. We needed to get the message right early, reach the right people, and convert them efficiently before the audience ran out of room.",
+      },
+      {
+        title: "The Approach",
+        content: "Trust was the first problem to solve. Parents don't hand their kid over to a trainer they don't know. So we led with Hudson's credentials: his background coaching at Liberty University and the top junior college program in the country. That established credibility before anyone had to take our word for it.\n\nFrom there we built content around the experience itself. What a session looks like. What players actually work on. What they leave with. Parents needed to see the process, not just hear a pitch.\n\nWe ran a leads campaign using Meta's native lead forms to remove friction and capture intent without sending people off platform. The funnel was structured to pre frame the offer and qualify leads before they ever hit Hudson's inbox, protecting both his time and the ad spend.\n\nAs conversions came in we paid attention to the patterns. What language moved parents. What objections kept surfacing. What concepts outperformed. We doubled down on what worked and cut everything else.",
+      },
+      {
+        title: "The Outcome",
+        content: "$8 cost per lead. 12.4x blended ROAS. In a market most advertisers would consider too small to bother with.",
+      },
+      {
+        title: "The Takeaway",
+        content: "Small markets don't require small thinking. They require precision. When you can't rely on volume to bail you out, everything has to be intentional: the message, the creative, the funnel structure, the targeting. Get those right and a tight geo stops being a limitation. It becomes an advantage.",
+      },
     ],
-    results: [{ stat: "$8", label: "Cost Per Lead" }, { stat: "12.4", label: "Lifetime ROAS" }],
+    results: [{ stat: "$8", label: "Cost Per Lead" }, { stat: "12.4x", label: "Blended ROAS" }],
   },
   {
     slug: "tsunami-bar-sports",
