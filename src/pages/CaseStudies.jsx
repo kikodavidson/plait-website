@@ -115,7 +115,7 @@ const studies = [
     category: "App / D2C",
     stat: "205%",
     statLabel: "Increase in App Downloads",
-    image: "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/c4f6ef3f2_TestimonialBanners3.png",
+    image: "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/1a7ae7e87_TestimonialBanners5.png",
     headline: "How we doubled the number of users over the course of two months.",
     sections: [
       {
