@@ -36,24 +36,36 @@ const studies = [
     results: [{ stat: "90%", label: "Reduction in CAC" }, { stat: "24x", label: "Increase in New Users" }],
   },
   {
-    slug: "ivy-dating",
-    client: "Ivy Dating",
-    category: "App / D2C",
-    stat: "205%",
-    statLabel: "Increase in App Downloads",
-    image: "https://images.unsplash.com/photo-1516589091380-5d8e87df6999?w=900&h=600&fit=crop",
-    headline: "How we doubled the number of users over the course of two months.",
-    body: [
-      "Ivy is a location based dating app built around real world connection, not endless swiping. The platform encourages people to connect in the moments that matter, when they are nearby, active, and open to meeting someone new.",
-      "The project began with driving user sign ups through paid acquisition, using a mix of ad formats and creative hooks to set clear expectations before download. From there, the focus shifted to improving early activation and long term retention through messaging and copy led optimizations.",
-      "Work included auditing the full user journey and refining onboarding, in app education, notifications, and key prompts to reduce friction, reinforce urgency, and help users reach the aha moment faster.",
-      "The result was a more intentional experience that mirrors real dating behavior, strengthens initial engagement, and supports sustained retention.",
-      "Paid acquisition was launched with a lean, low cost creative approach focused on speed, testing, and iteration. Campaigns leveraged a mix of carousel ads, static graphics, and UGC style video, allowing for rapid creative rotation without heavy production costs.",
-      "Ads were displayed across a blend of geo targeted audiences aligned with Ivy's core demographics and interests, alongside broader audiences that allowed the algorithm to learn and optimize. This balance helped capture high intent users while still giving platforms room to scale efficiently.",
-      "From a measurement standpoint, campaigns initially optimized around custom in app events to validate early behavior and signal quality traffic. Once performance patterns were established, attribution and optimization were transitioned to Appsflyer to support more accurate tracking and long term scalability.",
-      "This execution framework prioritized flexibility, fast learning, and efficient spend, creating a foundation that could be refined and scaled as the product matured.",
+    slug: "kryo",
+    client: "Krýo",
+    category: "Health / High Ticket D2C",
+    stat: "4-6x",
+    statLabel: "Return on Ad Spend",
+    image: "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/d1b832d18_JakePaul.png",
+    headline: "Selling a $4,000 ice plunge takes more than good ads. Here's what it takes to make ads work for a high ticket item.",
+    sections: [
+      {
+        title: "The Situation",
+        content: "Kryo had something most brands don't early on — legitimate celebrity endorsements and content that actually performed. Jake Paul, Dana White, and Dwight Howard had already put the product in front of millions. The product had real credibility. What it needed was a system to convert that attention into revenue.",
+      },
+      {
+        title: "The Challenge",
+        content: "Nobody drops $4,000 on any product the first time they see an ad. This was never going to be a one-touch conversion. We were working with a smaller budget and a high consideration product, which meant we couldn't just run traffic and hope. We had to build a full funnel that met people where they were, warmed them up over time, and gave them every reason to trust the product before they ever hit the buy button.",
+      },
+      {
+        title: "The Approach",
+        content: "We built the funnel around one core insight: the value of cold therapy wasn't hard to sell — most people got it. The real job was convincing someone that THIS was the purchase worth making this year over everything else competing for that same $4,000.\n\nWe structured audiences around different entry points. At the top of the funnel we led with what made Kryo unique — portability, pump strength, and health benefits — each speaking to a different version of the same buyer. As people moved down the funnel, we shifted the message. Discounts and bundles weren't lead offers, they were closing tools.\n\nWe also removed every friction point we could find: high income targeting, athlete and wellness communities, payment plans, and HSA eligibility. The goal was to make it so that when someone was ready to say yes, there was nothing left to say no to.",
+      },
+      {
+        title: "The Outcome",
+        content: "A consistent 4–6x return on ad spend.",
+      },
+      {
+        title: "The Takeaway",
+        content: "High ticket isn't harder. It's just different. The brands that struggle with expensive products are usually trying to force them into a framework built for impulse purchases. We built Kryo a system designed around how their buyer actually makes decisions — and that's what made it work.\n\nA $4,000 ice plunge needs a completely different architecture than a $40 supplement. The funnel, the messaging, the timing, the offers — all of it has to reflect the psychology of that specific purchase. That's the job.",
+      },
     ],
-    results: [{ stat: "205%", label: "Increase in App Downloads" }, { stat: "345%", label: "Cohort Active Users Jump" }],
+    results: [{ stat: "4-6x", label: "Return on Ad Spend" }],
   },
   {
     slug: "airia-williams-f1",
@@ -72,6 +84,50 @@ const studies = [
       "The goal was simple: own attention in the AI space race.",
     ],
     results: [{ stat: "30M+", label: "Impressions in Two Months" }, { stat: "89%", label: "CPM Decrease at Peak" }],
+  },
+  {
+    slug: "tsunami-bar-sports",
+    client: "Tsunami Bar Sports",
+    category: "Sports Equipment / D2C",
+    stat: "500%+",
+    statLabel: "Increase in Sales",
+    image: "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/f59cbe715_Untitleddesign-2026-06-18T141430059.png",
+    headline: "We increased sales by 500%+ in 6 months at a consistent 5-15x ROAS.",
+    sections: [
+      {
+        title: "The Situation",
+        content: "Tsunami Bar Sports had real credibility. Hall of Fame NFL linebacker James Harrison and multiple college programs were already posting about the product organically. The brand had earned serious validation from serious athletes. What they didn't have was a system to turn that attention into consistent revenue. The organic momentum was real, but it wasn't scalable.",
+      },
+      {
+        title: "Why It Was Hard",
+        content: "There was a very wide range of products, all at a high ticket value. The challenge was choosing which products to boost, and finding a way to show value across the entire catalog with a limited budget.",
+      },
+      {
+        title: "What I Did",
+        content: "I pushed ads built around the top sellers and whatever would make the most engaging content, then targeted different audiences based on the movements they prioritize. Football players need a barbell, golfers need a swing bar. Matching the product to each audience's intent is what unlocked consistent, scalable performance.",
+      },
+    ],
+    results: [{ stat: "500%+", label: "Increase in Sales" }, { stat: "5-15x", label: "ROAS" }],
+  },
+  {
+    slug: "ivy-dating",
+    client: "Ivy Dating",
+    category: "App / D2C",
+    stat: "205%",
+    statLabel: "Increase in App Downloads",
+    image: "https://images.unsplash.com/photo-1516589091380-5d8e87df6999?w=900&h=600&fit=crop",
+    headline: "How we doubled the number of users over the course of two months.",
+    body: [
+      "Ivy is a location based dating app built around real world connection, not endless swiping. The platform encourages people to connect in the moments that matter, when they are nearby, active, and open to meeting someone new.",
+      "The project began with driving user sign ups through paid acquisition, using a mix of ad formats and creative hooks to set clear expectations before download. From there, the focus shifted to improving early activation and long term retention through messaging and copy led optimizations.",
+      "Work included auditing the full user journey and refining onboarding, in app education, notifications, and key prompts to reduce friction, reinforce urgency, and help users reach the aha moment faster.",
+      "The result was a more intentional experience that mirrors real dating behavior, strengthens initial engagement, and supports sustained retention.",
+      "Paid acquisition was launched with a lean, low cost creative approach focused on speed, testing, and iteration. Campaigns leveraged a mix of carousel ads, static graphics, and UGC style video, allowing for rapid creative rotation without heavy production costs.",
+      "Ads were displayed across a blend of geo targeted audiences aligned with Ivy's core demographics and interests, alongside broader audiences that allowed the algorithm to learn and optimize. This balance helped capture high intent users while still giving platforms room to scale efficiently.",
+      "From a measurement standpoint, campaigns initially optimized around custom in app events to validate early behavior and signal quality traffic. Once performance patterns were established, attribution and optimization were transitioned to Appsflyer to support more accurate tracking and long term scalability.",
+      "This execution framework prioritized flexibility, fast learning, and efficient spend, creating a foundation that could be refined and scaled as the product matured.",
+    ],
+    results: [{ stat: "205%", label: "Increase in App Downloads" }, { stat: "345%", label: "Cohort Active Users Jump" }],
   },
   {
     slug: "hg-training",
@@ -104,62 +160,6 @@ const studies = [
       },
     ],
     results: [{ stat: "$8", label: "Cost Per Lead" }, { stat: "12.4x", label: "Blended ROAS" }],
-  },
-  {
-    slug: "tsunami-bar-sports",
-    client: "Tsunami Bar Sports",
-    category: "Sports Equipment / D2C",
-    stat: "500%+",
-    statLabel: "Increase in Sales",
-    image: "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/f59cbe715_Untitleddesign-2026-06-18T141430059.png",
-    headline: "We increased sales by 500%+ in 6 months at a consistent 5-15x ROAS.",
-    sections: [
-      {
-        title: "The Situation",
-        content: "Tsunami Bar Sports had real credibility. Hall of Fame NFL linebacker James Harrison and multiple college programs were already posting about the product organically. The brand had earned serious validation from serious athletes. What they didn't have was a system to turn that attention into consistent revenue. The organic momentum was real, but it wasn't scalable.",
-      },
-      {
-        title: "Why It Was Hard",
-        content: "There was a very wide range of products, all at a high ticket value. The challenge was choosing which products to boost, and finding a way to show value across the entire catalog with a limited budget.",
-      },
-      {
-        title: "What I Did",
-        content: "I pushed ads built around the top sellers and whatever would make the most engaging content, then targeted different audiences based on the movements they prioritize. Football players need a barbell, golfers need a swing bar. Matching the product to each audience's intent is what unlocked consistent, scalable performance.",
-      },
-    ],
-    results: [{ stat: "500%+", label: "Increase in Sales" }, { stat: "5-15x", label: "ROAS" }],
-  },
-  {
-    slug: "kryo",
-    client: "Krýo",
-    category: "Health / High Ticket D2C",
-    stat: "4-6x",
-    statLabel: "Return on Ad Spend",
-    image: "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/d1b832d18_JakePaul.png",
-    headline: "Selling a $4,000 ice plunge takes more than good ads. Here's what it takes to make ads work for a high ticket item.",
-    sections: [
-      {
-        title: "The Situation",
-        content: "Kryo had something most brands don't early on — legitimate celebrity endorsements and content that actually performed. Jake Paul, Dana White, and Dwight Howard had already put the product in front of millions. The product had real credibility. What it needed was a system to convert that attention into revenue.",
-      },
-      {
-        title: "The Challenge",
-        content: "Nobody drops $4,000 on any product the first time they see an ad. This was never going to be a one-touch conversion. We were working with a smaller budget and a high consideration product, which meant we couldn't just run traffic and hope. We had to build a full funnel that met people where they were, warmed them up over time, and gave them every reason to trust the product before they ever hit the buy button.",
-      },
-      {
-        title: "The Approach",
-        content: "We built the funnel around one core insight: the value of cold therapy wasn't hard to sell — most people got it. The real job was convincing someone that THIS was the purchase worth making this year over everything else competing for that same $4,000.\n\nWe structured audiences around different entry points. At the top of the funnel we led with what made Kryo unique — portability, pump strength, and health benefits — each speaking to a different version of the same buyer. As people moved down the funnel, we shifted the message. Discounts and bundles weren't lead offers, they were closing tools.\n\nWe also removed every friction point we could find: high income targeting, athlete and wellness communities, payment plans, and HSA eligibility. The goal was to make it so that when someone was ready to say yes, there was nothing left to say no to.",
-      },
-      {
-        title: "The Outcome",
-        content: "A consistent 4–6x return on ad spend.",
-      },
-      {
-        title: "The Takeaway",
-        content: "High ticket isn't harder. It's just different. The brands that struggle with expensive products are usually trying to force them into a framework built for impulse purchases. We built Kryo a system designed around how their buyer actually makes decisions — and that's what made it work.\n\nA $4,000 ice plunge needs a completely different architecture than a $40 supplement. The funnel, the messaging, the timing, the offers — all of it has to reflect the psychology of that specific purchase. That's the job.",
-      },
-    ],
-    results: [{ stat: "4-6x", label: "Return on Ad Spend" }],
   },
 ];
 
