@@ -173,9 +173,9 @@ export default function CaseStudies() {
         <div className="max-w-6xl mx-auto px-6">
           <button
             onClick={() => setActive(null)}
-            className="text-sm text-[#525252] hover:text-[#0A0A0A] mb-8 flex items-center gap-2 transition-colors"
+            className="mt-4 mb-12 inline-flex items-center gap-2 bg-[#0A0A0A] text-white text-sm font-semibold px-5 py-2.5 rounded-full hover:bg-[#333] transition-colors"
           >
-            Back to Case Studies
+            <span>←</span> Back to Case Studies
           </button>
 
           <div className="rounded-3xl overflow-hidden h-64 md:h-96 mb-12">
