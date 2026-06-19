@@ -240,7 +240,7 @@ export default function CaseStudies() {
               What Winning<br />Looks Like.
             </h1>
             <p className="text-[#525252] text-lg max-w-lg leading-relaxed">
-              Numbers don't lie and we came with the receipts.
+              Numbers never lie and we came with the receipts.
             </p>
           </motion.div>
         </div>
