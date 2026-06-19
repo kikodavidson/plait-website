@@ -19,7 +19,7 @@ export default function DynamicBackground() {
     const tick = () => {
       const w = canvas.width;
       const h = canvas.height;
-      t += 0.006;
+      t += 0.022;
 
       ctx.clearRect(0, 0, w, h);
 
