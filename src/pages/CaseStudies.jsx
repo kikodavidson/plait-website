@@ -115,17 +115,29 @@ const studies = [
     category: "App / D2C",
     stat: "205%",
     statLabel: "Increase in App Downloads",
-    image: "https://images.unsplash.com/photo-1516589091380-5d8e87df6999?w=900&h=600&fit=crop",
+    image: "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/c4f6ef3f2_TestimonialBanners3.png",
     headline: "How we doubled the number of users over the course of two months.",
-    body: [
-      "Ivy is a location based dating app built around real world connection, not endless swiping. The platform encourages people to connect in the moments that matter, when they are nearby, active, and open to meeting someone new.",
-      "The project began with driving user sign ups through paid acquisition, using a mix of ad formats and creative hooks to set clear expectations before download. From there, the focus shifted to improving early activation and long term retention through messaging and copy led optimizations.",
-      "Work included auditing the full user journey and refining onboarding, in app education, notifications, and key prompts to reduce friction, reinforce urgency, and help users reach the aha moment faster.",
-      "The result was a more intentional experience that mirrors real dating behavior, strengthens initial engagement, and supports sustained retention.",
-      "Paid acquisition was launched with a lean, low cost creative approach focused on speed, testing, and iteration. Campaigns leveraged a mix of carousel ads, static graphics, and UGC style video, allowing for rapid creative rotation without heavy production costs.",
-      "Ads were displayed across a blend of geo targeted audiences aligned with Ivy's core demographics and interests, alongside broader audiences that allowed the algorithm to learn and optimize. This balance helped capture high intent users while still giving platforms room to scale efficiently.",
-      "From a measurement standpoint, campaigns initially optimized around custom in app events to validate early behavior and signal quality traffic. Once performance patterns were established, attribution and optimization were transitioned to Appsflyer to support more accurate tracking and long term scalability.",
-      "This execution framework prioritized flexibility, fast learning, and efficient spend, creating a foundation that could be refined and scaled as the product matured.",
+    sections: [
+      {
+        title: "The Situation",
+        content: "Ivy isn't another swipe app. It's built around real world connection, meeting people when you're nearby, active, and open. The concept was strong. What it needed was a paid acquisition system that could communicate that difference fast enough to stop a scroll, set the right expectations before download, and bring in users who would actually stick around.",
+      },
+      {
+        title: "The Challenge",
+        content: "Dating apps live and die by activation and retention. Getting someone to download is the easy part. Getting them to their first real connection before they ghost the app is where most platforms lose. We had to build a system that drove efficient signups AND fed quality users into an experience that could hold them. Both problems had to be solved at the same time.",
+      },
+      {
+        title: "The Approach",
+        content: "On the paid side we moved fast and kept production lean. Carousels, statics, and UGC style video gave us creative variety without heavy costs, which meant we could rotate and iterate quickly based on what the data was telling us.\n\nTargeting evolved as the platform did. We started with geo and demographic targeting to capture the most obvious pockets of intent. As Meta shifted toward broader, more conceptual audience structures we adapted, building audiences around ideas and behaviors rather than rigid interest stacks. That flexibility kept performance stable through the transition instead of fighting the algorithm.\n\nAttribution was set up through Appsflyer to ensure accurate tracking and give the campaigns a foundation built for long term scalability rather than guesswork.\n\nWhile acquisition ran, we audited the full user journey from first open to first connection. Onboarding, in app education, notifications, key prompts. Everything got pressure tested for friction. The goal was to get users to their aha moment faster and make sure the app experience matched the promise the ads made.",
+      },
+      {
+        title: "The Outcome",
+        content: "Downloads increased, and the ripple effect mattered more than the number itself. More users meant more activity, more activity meant more real feedback, and that feedback became the engine behind a significantly improved product over the last year. The campaigns didn't just drive growth. They accelerated Ivy's ability to build a better app.",
+      },
+      {
+        title: "The Takeaway",
+        content: "An app is only as good as the experience waiting on the other side of the download. Paid acquisition can fill the top of the funnel but if the product doesn't deliver on what the ad promised, you're just buying churn. The work that matters most happens at the intersection of acquisition and activation, and that's exactly where we focused.",
+      },
     ],
     results: [{ stat: "205%", label: "Increase in App Downloads" }, { stat: "345%", label: "Cohort Active Users Jump" }],
   },
