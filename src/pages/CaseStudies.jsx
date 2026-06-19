@@ -76,7 +76,7 @@ const studies = [
   {
     slug: "hg-training",
     client: "HG Training",
-    category: "Health & Fitness",
+    category: "Coaching | Lead Gen",
     stat: "12.4x",
     statLabel: "Blended ROAS",
     image: "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/729d88341_TestimonialBanners1.png",
