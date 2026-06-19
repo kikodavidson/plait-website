@@ -9,7 +9,7 @@ const studies = [
     category: "SaaS / Career Platform",
     stat: "90%",
     statLabel: "Reduction in CAC",
-    image: "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/564274e00_Screenshot2026-06-18at34355PM.png",
+    image: "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/244f33ae3_TestimonialBanners2.png",
     headline: "How we cut CAC for a SaaS platform targeting one of the hardest audiences in paid media: broke college students.",
     sections: [
       {
