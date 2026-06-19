@@ -237,10 +237,10 @@ export default function CaseStudies() {
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <p className="text-xs font-semibold text-[#3b82f6] uppercase tracking-widest mb-4">Case Studies</p>
             <h1 className="font-body text-6xl sm:text-7xl font-extrabold text-[#0A0A0A] tracking-tight leading-tight mb-6">
-              Real brands.<br />Real numbers.
+              What Winning<br />Looks Like.
             </h1>
             <p className="text-[#525252] text-lg max-w-lg leading-relaxed">
-              No made-up stats. No unnamed clients. These are the actual results from actual campaigns.
+              Explore how these clients scaled and why.
             </p>
           </motion.div>
         </div>
