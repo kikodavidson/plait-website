@@ -17,7 +17,7 @@ export default function ResultsSection() {
           <div>
             <p className="text-xs font-bold text-[#4F46E5] uppercase tracking-widest mb-4">Proof</p>
             <h2
-              className="text-4xl sm:text-5xl font-extrabold text-white leading-[1.1] font-body"
+              className="text-4xl sm:text-5xl font-bold text-white leading-[1.1] font-body"
             >
               Results that speak<br />for themselves.
             </h2>
@@ -25,7 +25,7 @@ export default function ResultsSection() {
 
           <Link
             to="/case-studies"
-            className="inline-flex items-center gap-3 text-white font-extrabold text-base group shrink-0"
+            className="inline-flex items-center gap-3 text-white font-bold text-base group shrink-0"
           >
             See the case studies
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

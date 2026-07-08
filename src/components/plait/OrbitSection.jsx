@@ -43,8 +43,8 @@ function AccordionItem({ title, desc, index }) {
             {String(index + 1).padStart(2, "0")}
           </span>
           <span
-            className="text-white font-extrabold text-base group-hover:text-[#4F46E5] transition-colors"
-            style={{ fontFamily: "Google Sans Flex, sans-serif", letterSpacing: "0.02em" }}
+            className="text-white font-bold text-base group-hover:text-[#4F46E5] transition-colors"
+            style={{ fontFamily: "Manrope, sans-serif", letterSpacing: "0.02em" }}
           >
             {title}
           </span>
@@ -92,8 +92,8 @@ export default function OrbitSection() {
               <span className="text-white/40 text-xs font-bold uppercase tracking-widest">MCP</span>
             </div>
             <h2
-              className="text-4xl sm:text-5xl font-extrabold text-white leading-tight mb-6 font-body"
-              style={{ fontFamily: "Google Sans Flex, sans-serif", letterSpacing: "0.02em" }}
+              className="text-4xl sm:text-5xl font-bold text-white leading-tight mb-6 font-body"
+              style={{ fontFamily: "Manrope, sans-serif", letterSpacing: "0.02em" }}
             >
               AI should amplify<br />your thinking.<br />
               <span className="text-[#4F46E5]">Not replace it.</span>

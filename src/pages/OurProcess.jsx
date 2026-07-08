@@ -42,7 +42,7 @@ export default function OurProcess() {
         <div className="max-w-6xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <p className="text-xs font-semibold text-[#4F46E5] uppercase tracking-widest mb-4">Our Process</p>
-            <h1 className="font-body text-6xl sm:text-7xl font-extrabold text-[#0A0A0A] tracking-tight leading-tight mb-6 max-w-3xl">
+            <h1 className="font-body text-6xl sm:text-7xl font-bold text-[#0A0A0A] tracking-tight leading-tight mb-6 max-w-3xl">
               How we actually work.
             </h1>
             <p className="text-[#525252] text-lg max-w-xl leading-relaxed">
@@ -69,11 +69,11 @@ export default function OurProcess() {
               >
                 {/* Step dot */}
                 <div className="hidden sm:flex absolute left-0 top-1 w-12 h-12 rounded-full bg-white border border-gray-200 items-center justify-center shadow-sm">
-                  <span className="text-xs font-extrabold text-[#4F46E5]">{step.num}</span>
+                  <span className="text-xs font-bold text-[#4F46E5]">{step.num}</span>
                 </div>
 
                 <span className="sm:hidden text-[#4F46E5] text-xs font-bold uppercase tracking-widest">{step.num}</span>
-                <h2 className="font-body text-4xl sm:text-5xl font-extrabold text-[#0A0A0A] tracking-tight mt-1 mb-2">
+                <h2 className="font-body text-4xl sm:text-5xl font-bold text-[#0A0A0A] tracking-tight mt-1 mb-2">
                   {step.title}
                 </h2>
                 <p className="text-[#4F46E5] font-semibold text-sm mb-4 italic">{step.tagline}</p>
@@ -91,7 +91,7 @@ export default function OurProcess() {
           className="mt-24 bg-[#0A0A0A] rounded-3xl p-12 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-8"
         >
           <div>
-            <h3 className="font-body text-3xl font-extrabold text-white mb-2">Ready to start?</h3>
+            <h3 className="font-body text-3xl font-bold text-white mb-2">Ready to start?</h3>
             <p className="text-white/60 text-sm leading-relaxed max-w-sm">
               Every engagement starts with an honest conversation. No pitch, no pressure.
             </p>

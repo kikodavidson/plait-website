@@ -35,7 +35,7 @@ export default function Contact() {
           <div className="w-16 h-16 bg-indigo-50 rounded-full flex items-center justify-center mx-auto mb-6">
             <CheckCircle2 className="w-8 h-8 text-[#0A0A0A]" />
           </div>
-          <h2 className="font-body text-4xl font-extrabold text-[#0A0A0A] mb-3">Got it.</h2>
+          <h2 className="font-body text-4xl font-bold text-[#0A0A0A] mb-3">Got it.</h2>
           <p className="text-[#525252] leading-relaxed">
             I'll be in touch within 24 hours. If you want to skip the wait, grab a time on my calendar below.
           </p>
@@ -62,7 +62,7 @@ export default function Contact() {
         <div className="max-w-6xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <p className="text-xs font-semibold text-[#0A0A0A] uppercase tracking-widest mb-4">Contact</p>
-            <h1 className="font-body text-6xl sm:text-7xl font-extrabold text-[#0A0A0A] tracking-tight leading-tight mb-5">
+            <h1 className="font-body text-6xl sm:text-7xl font-bold text-[#0A0A0A] tracking-tight leading-tight mb-5">
               Let's talk.
             </h1>
             <p className="text-[#525252] text-lg max-w-lg leading-relaxed">
@@ -157,7 +157,7 @@ export default function Contact() {
             transition={{ duration: 0.6, delay: 0.3 }}
           >
             <div className="bg-[#F8F7FF] rounded-3xl border border-indigo-100 p-8">
-              <h3 className="font-body text-xl font-extrabold text-[#0A0A0A] mb-4">Prefer to book direct?</h3>
+              <h3 className="font-body text-xl font-bold text-[#0A0A0A] mb-4">Prefer to book direct?</h3>
               <p className="text-sm text-[#525252] mb-5 leading-relaxed">
                 Grab a free 30-minute strategy call. No pitch, no deck. Just an honest look at your funnel.
               </p>
@@ -172,7 +172,7 @@ export default function Contact() {
             </div>
 
             <div className="bg-white border border-gray-100 rounded-3xl p-8 space-y-4">
-              <h3 className="font-body text-lg font-extrabold text-[#0A0A0A]">What to expect</h3>
+              <h3 className="font-body text-lg font-bold text-[#0A0A0A]">What to expect</h3>
               <ul className="space-y-3">
                 {[
                   "Response within 24 hours (usually faster)",
@@ -190,7 +190,7 @@ export default function Contact() {
 
             <div className="bg-[#0A0A0A] text-white rounded-3xl p-8">
               <p className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-3">Current availability</p>
-              <p className="font-body text-3xl font-extrabold mb-2">Taking on 2 new clients.</p>
+              <p className="font-body text-3xl font-bold mb-2">Taking on 2 new clients.</p>
               <p className="text-sm text-gray-400">Retainer spots go fast. Audit spots are always open.</p>
             </div>
           </motion.div>

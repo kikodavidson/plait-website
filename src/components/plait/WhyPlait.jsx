@@ -29,8 +29,8 @@ export default function WhyPlait() {
           >
             <p className="text-xs font-bold text-[#4F46E5] uppercase tracking-widest mb-4">Why PLAIT</p>
             <h2
-              className="text-4xl sm:text-5xl font-extrabold text-[#0A0A0A] leading-[1.1] tracking-tight mb-6"
-              style={{ fontFamily: 'Google Sans Flex, sans-serif', letterSpacing: '0.02em' }}
+              className="text-4xl sm:text-5xl font-bold text-[#0A0A0A] leading-[1.1] tracking-tight mb-6"
+              style={{ fontFamily: 'Manrope, sans-serif', letterSpacing: '0.02em' }}
             >
               When our clients win,<br />we win.
             </h2>
@@ -54,9 +54,9 @@ export default function WhyPlait() {
             />
             <div className="absolute bottom-4 left-4 bg-white/90 backdrop-blur-sm rounded-xl px-4 py-2 flex items-center gap-2 shadow-md">
               <div className="w-5 h-5 rounded-md bg-[#4F46E5] flex items-center justify-center">
-                <span className="text-white text-[9px] font-extrabold">P</span>
+                <span className="text-white text-[9px] font-bold">P</span>
               </div>
-              <span className="text-xs font-extrabold text-[#0A0A0A]">PLAIT Studio</span>
+              <span className="text-xs font-bold text-[#0A0A0A]">PLAIT Studio</span>
             </div>
           </motion.div>
         </div>
@@ -72,7 +72,7 @@ export default function WhyPlait() {
               className="bg-white rounded-2xl border border-gray-100 p-8 shadow-sm hover:shadow-md transition-shadow"
             >
               <div className="text-[#4F46E5] text-xs font-bold uppercase tracking-widest mb-3">0{i + 1}</div>
-              <h3 className="text-xl font-extrabold text-[#0A0A0A] mb-3" style={{ fontFamily: 'Google Sans Flex, sans-serif', letterSpacing: '0.02em' }}>{p.title}</h3>
+              <h3 className="text-xl font-bold text-[#0A0A0A] mb-3" style={{ fontFamily: 'Manrope, sans-serif', letterSpacing: '0.02em' }}>{p.title}</h3>
               <p className="text-[#525252] text-sm leading-relaxed">{p.desc}</p>
             </motion.div>
           ))}

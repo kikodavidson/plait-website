@@ -14,7 +14,7 @@ export default function ContactCTA() {
           className="max-w-2xl"
         >
           <p className="text-xs font-semibold text-[#4F46E5] uppercase tracking-widest mb-4">Let's Talk</p>
-          <h2 className="font-body text-5xl sm:text-6xl font-extrabold text-[#0A0A0A] tracking-tight leading-tight mb-6">
+          <h2 className="font-body text-5xl sm:text-6xl font-bold text-[#0A0A0A] tracking-tight leading-tight mb-6">
             Tired of paying for traffic that doesn't convert?
           </h2>
           <p className="text-[#525252] text-base leading-relaxed mb-8 max-w-lg">

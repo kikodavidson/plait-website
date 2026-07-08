@@ -5,9 +5,9 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Google Sans Flex', 'sans-serif'],
-        body: ['Google Sans Flex', 'sans-serif'],
-        display: ['Google Sans Flex', 'sans-serif'],
+        sans: ['Manrope', 'sans-serif'],
+        body: ['Manrope', 'sans-serif'],
+        display: ['Manrope', 'sans-serif'],
       },
       letterSpacing: {
         'wide': '0.04em',

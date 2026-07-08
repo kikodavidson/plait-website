@@ -197,12 +197,12 @@ export default function CaseStudies() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             <div className="lg:col-span-2">
               <p className="text-xs font-bold text-[#3b82f6] uppercase tracking-widest mb-3">{s.category}</p>
-              <h1 className="font-body text-4xl sm:text-5xl font-extrabold text-[#0A0A0A] tracking-tight leading-tight mb-8" style={{ fontFamily: 'Google Sans Flex, sans-serif', letterSpacing: '0.02em' }}>{s.headline}</h1>
+              <h1 className="font-body text-4xl sm:text-5xl font-bold text-[#0A0A0A] tracking-tight leading-tight mb-8" style={{ fontFamily: 'Manrope, sans-serif', letterSpacing: '0.02em' }}>{s.headline}</h1>
               {s.sections ? (
                 <div className="space-y-8">
                   {s.sections.map((sec) => (
                     <div key={sec.title}>
-                      <h2 className="font-body text-xl font-extrabold text-[#0A0A0A] mb-2">{sec.title}</h2>
+                      <h2 className="font-body text-xl font-bold text-[#0A0A0A] mb-2">{sec.title}</h2>
                       <div className="space-y-3">
                         {sec.content.split("\n\n").map((para, pi) => (
                           <p key={pi} className="text-[#525252] leading-relaxed">{para}</p>
@@ -226,7 +226,7 @@ export default function CaseStudies() {
                 <div className="space-y-6">
                   {s.results.map((r) => (
                     <div key={r.label} className="border-b border-blue-100 pb-5 last:border-0 last:pb-0">
-                      <p className="font-body text-4xl font-extrabold text-[#3b82f6]">{r.stat}</p>
+                      <p className="font-body text-4xl font-bold text-[#3b82f6]">{r.stat}</p>
                       <p className="text-xs font-bold text-[#0A0A0A] uppercase tracking-wider mt-1">{r.label}</p>
                     </div>
                   ))}
@@ -248,7 +248,7 @@ export default function CaseStudies() {
         <div className="max-w-6xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <p className="text-xs font-semibold text-[#3b82f6] uppercase tracking-widest mb-4">Case Studies</p>
-            <h1 className="font-body text-6xl sm:text-7xl font-extrabold text-[#0A0A0A] tracking-tight leading-tight mb-6" style={{ fontFamily: 'Google Sans Flex, sans-serif', letterSpacing: '0.02em' }}>
+            <h1 className="font-body text-6xl sm:text-7xl font-bold text-[#0A0A0A] tracking-tight leading-tight mb-6" style={{ fontFamily: 'Manrope, sans-serif', letterSpacing: '0.02em' }}>
               What Winning<br />Looks Like.
             </h1>
             <p className="text-[#525252] text-lg max-w-lg leading-relaxed">
@@ -277,10 +277,10 @@ export default function CaseStudies() {
               </div>
               <div className="p-7">
                 <div className="flex items-baseline gap-2 mb-3">
-                  <span className="font-body text-4xl font-extrabold text-[#3b82f6]">{s.stat}</span>
+                  <span className="font-body text-4xl font-bold text-[#3b82f6]">{s.stat}</span>
                   <span className="text-xs font-bold text-[#525252] uppercase tracking-wider">{s.statLabel}</span>
                 </div>
-                <h3 className="font-body text-xl font-extrabold text-[#0A0A0A] mb-2 leading-tight">{s.client}</h3>
+                <h3 className="font-body text-xl font-bold text-[#0A0A0A] mb-2 leading-tight">{s.client}</h3>
                 <p className="text-sm text-[#525252] leading-relaxed">{s.headline}</p>
                 <p className="text-xs font-semibold text-[#3b82f6] mt-4 group-hover:underline">Read case study</p>
               </div>

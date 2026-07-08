@@ -73,7 +73,7 @@ export default function Industries() {
         <div className="max-w-6xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <p className="text-xs font-semibold text-[#4F46E5] uppercase tracking-widest mb-4">Industries</p>
-            <h1 className="font-body text-6xl sm:text-7xl font-extrabold text-[#0A0A0A] tracking-tight leading-tight mb-6 max-w-3xl">
+            <h1 className="font-body text-6xl sm:text-7xl font-bold text-[#0A0A0A] tracking-tight leading-tight mb-6 max-w-3xl">
               Different businesses.<br />Same standard.
             </h1>
             <p className="text-[#525252] text-lg max-w-xl leading-relaxed">
@@ -111,7 +111,7 @@ export default function Industries() {
           >
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
               <div>
-                <h2 className="font-body text-4xl sm:text-5xl font-extrabold text-[#0A0A0A] tracking-tight mb-3">
+                <h2 className="font-body text-4xl sm:text-5xl font-bold text-[#0A0A0A] tracking-tight mb-3">
                   {industry.headline}
                 </h2>
                 <p className="text-[#4F46E5] font-semibold text-sm mb-5 italic">{industry.subheadline}</p>
@@ -120,11 +120,11 @@ export default function Industries() {
                 {/* Stats */}
                 <div className="flex gap-10">
                   <div>
-                    <p className="font-body text-4xl font-extrabold text-[#0A0A0A]">{industry.stat1.value}</p>
+                    <p className="font-body text-4xl font-bold text-[#0A0A0A]">{industry.stat1.value}</p>
                     <p className="text-xs text-[#525252] font-semibold uppercase tracking-wider mt-1">{industry.stat1.label}</p>
                   </div>
                   <div className="border-l border-gray-200 pl-10">
-                    <p className="font-body text-4xl font-extrabold text-[#0A0A0A]">{industry.stat2.value}</p>
+                    <p className="font-body text-4xl font-bold text-[#0A0A0A]">{industry.stat2.value}</p>
                     <p className="text-xs text-[#525252] font-semibold uppercase tracking-wider mt-1">{industry.stat2.label}</p>
                   </div>
                 </div>

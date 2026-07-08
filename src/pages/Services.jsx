@@ -126,7 +126,7 @@ export default function Services() {
         <div className="max-w-6xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <p className="text-xs font-semibold text-[#0A0A0A] uppercase tracking-widest mb-4">What We Do</p>
-            <h1 className="font-body text-6xl sm:text-7xl font-extrabold text-[#0A0A0A] tracking-tight leading-tight mb-6 max-w-3xl">
+            <h1 className="font-body text-6xl sm:text-7xl font-bold text-[#0A0A0A] tracking-tight leading-tight mb-6 max-w-3xl">
               Most marketing problems aren't caused by one thing.
             </h1>
             <p className="text-[#525252] text-lg max-w-xl leading-relaxed">
@@ -167,7 +167,7 @@ export default function Services() {
             >
               <div className={i % 2 !== 0 ? "lg:order-2" : ""}>
                 <span className="text-[#0A0A0A] text-xs font-bold uppercase tracking-widest">{s.num}</span>
-                <h2 className="font-body text-4xl sm:text-5xl font-extrabold text-[#0A0A0A] tracking-tight mt-2 mb-2">{s.title}</h2>
+                <h2 className="font-body text-4xl sm:text-5xl font-bold text-[#0A0A0A] tracking-tight mt-2 mb-2">{s.title}</h2>
                 <p className="text-[#0A0A0A] font-semibold text-sm mb-4 italic">{s.tagline}</p>
                 <p className="text-[#525252] leading-relaxed mb-8">{s.body}</p>
                 <div>
@@ -199,7 +199,7 @@ export default function Services() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
               <p className="text-xs font-bold text-[#0A0A0A] uppercase tracking-widest mb-4">Not Sure What You Need?</p>
-              <h2 className="font-body text-4xl sm:text-5xl font-extrabold text-[#0A0A0A] tracking-tight mb-6">That's normal.</h2>
+              <h2 className="font-body text-4xl sm:text-5xl font-bold text-[#0A0A0A] tracking-tight mb-6">That's normal.</h2>
               <p className="text-[#525252] leading-relaxed mb-4">
                 Most clients don't come to us asking for a new attribution model, a landing page rebuild, or a creative testing framework.
               </p>
@@ -211,7 +211,7 @@ export default function Services() {
               </p>
             </div>
             <div className="bg-[#0A0A0A] rounded-3xl p-10 flex flex-col gap-6">
-              <h3 className="font-body text-3xl font-extrabold text-white leading-tight">Let's find the missing piece.</h3>
+              <h3 className="font-body text-3xl font-bold text-white leading-tight">Let's find the missing piece.</h3>
               <p className="text-white/60 leading-relaxed text-sm">
                 If your marketing feels disconnected, inefficient, or harder than it should be, there's usually a reason. Let's find it.
               </p>
