@@ -16,7 +16,7 @@ const videoTestimonials = [
     name: "Hudson G.",
     role: "Founder, HG Training",
     thumbnail: "https://img.youtube.com/vi/8OaMt_uDJmQ/maxresdefault.jpg",
-    embedUrl: "https://www.youtube.com/embed/8OaMt_uDJmQ?autoplay=1&mute=1&playsinline=1&loop=1&playlist=8OaMt_uDJmQ",
+    embedUrl: "https://www.youtube.com/embed/8OaMt_uDJmQ?autoplay=1&mute=1&playsinline=1",
     preview: "The revenue that started coming in after Luke started helping with my marketing was unbelievable.",
   },
 ];
