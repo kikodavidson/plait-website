@@ -105,14 +105,14 @@ html {
 
 /* Gradient button utility — desaturated */
 .btn-gradient {
-  background: linear-gradient(135deg, #6B9FD4 0%, #4A85C7 50%, #3B72B5 100%);
-  color: #1a2840;
-  border: 2px solid rgba(74, 133, 199, 0.5);
-  outline: 1px solid rgba(74, 133, 199, 0.3);
+  background: linear-gradient(135deg, #5BA8F5 0%, #3B8FE0 50%, #2476CC 100%);
+  color: #ffffff;
+  border: 2px solid rgba(59, 143, 224, 0.4);
+  outline: 1px solid rgba(59, 143, 224, 0.2);
   font-weight: 700;
 }
 .btn-gradient:hover {
-  background: linear-gradient(135deg, #4A85C7 0%, #3B72B5 50%, #2D5FA0 100%);
+  background: linear-gradient(135deg, #3B8FE0 0%, #2476CC 50%, #1A63B8 100%);
   opacity: 1;
 }
 
