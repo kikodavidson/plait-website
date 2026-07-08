@@ -52,7 +52,7 @@ export default function WhatYouGet() {
             style={{ fontFamily: 'Inter, sans-serif' }}
           >
             Turn{" "}
-            <span className="relative inline-block pb-2">
+            <span className="relative inline-block pb-2" style={{ WebkitTextFillColor: '#2d2d2d' }}>
               generated attention
               <svg
                 className="absolute bottom-0 left-0 w-full"
