@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Check } from "lucide-react";
+import ServicesBanner from "@/components/plait/ServicesBanner";
 
 const strands = [
   {
@@ -135,6 +136,8 @@ export default function Services() {
           </motion.div>
         </div>
       </div>
+
+      <ServicesBanner />
 
       <div className="max-w-6xl mx-auto px-6 py-8 border-b border-gray-100 mb-16">
         <motion.div
