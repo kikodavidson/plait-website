@@ -51,30 +51,8 @@ function StatItem({ stat, started, divider }) {
   );
 }
 
-function CashBurst({ active }) {
-  const emojis = ["💵", "💸", "🤑", "💰", "💵", "💸", "💰", "🤑"];
-  if (!active) return null;
-  return (
-    <div className="absolute inset-0 pointer-events-none overflow-visible" style={{ zIndex: 10 }}>
-      {emojis.map((e, i) => (
-        <motion.span
-          key={i}
-          className="absolute text-3xl select-none"
-          style={{ left: `${5 + i * 12}%`, top: "50%" }}
-          initial={{ opacity: 0, y: 0, scale: 0.5 }}
-          animate={{
-            opacity: [0, 1, 1, 0],
-            y: [-10, -100 - i * 10],
-            rotate: [-15 + i * 8, 15 - i * 6],
-            scale: [0.5, 1.2, 1],
-          }}
-          transition={{ duration: 1.2, delay: i * 0.07, ease: "easeOut" }}
-        >
-          {e}
-        </motion.span>
-      ))}
-    </div>
-  );
+function CashBurst() {
+  return null;
 }
 
 export default function HeroSection() {
