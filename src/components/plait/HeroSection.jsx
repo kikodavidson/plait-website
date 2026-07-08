@@ -79,13 +79,30 @@ function CashBurst({ active }) {
 
 export default function HeroSection() {
   const [index, setIndex] = useState(0);
+  const [displayText, setDisplayText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
   const [statsStarted, setStatsStarted] = useState(false);
   const statsRef = useRef(null);
 
   useEffect(() => {
-    const t = setInterval(() => setIndex((i) => (i + 1) % ROTATING.length), 2200);
-    return () => clearInterval(t);
-  }, []);
+    const word = ROTATING[index];
+    let timeout;
+
+    if (!isDeleting && displayText === word) {
+      timeout = setTimeout(() => setIsDeleting(true), 1400);
+    } else if (isDeleting && displayText === "") {
+      setIsDeleting(false);
+      setIndex((i) => (i + 1) % ROTATING.length);
+    } else {
+      timeout = setTimeout(() => {
+        setDisplayText((prev) =>
+          isDeleting ? word.substring(0, prev.length - 1) : word.substring(0, prev.length + 1)
+        );
+      }, isDeleting ? 50 : 110);
+    }
+
+    return () => clearTimeout(timeout);
+  }, [displayText, isDeleting, index]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -96,7 +113,7 @@ export default function HeroSection() {
     return () => observer.disconnect();
   }, []);
 
-  const isScale = ROTATING[index] === "Scale.";
+  const isScale = displayText === "Scale.";
 
   return (
     <section className="hero-gradient min-h-[92vh] flex flex-col items-center justify-center text-center px-6 pt-40 sm:pt-48 pb-20 relative overflow-hidden">
@@ -137,18 +154,10 @@ export default function HeroSection() {
         <div className="relative">
           <CashBurst active={isScale} />
           <div className="text-[clamp(1.8rem,5vw,4rem)] font-extrabold text-[#0A0A0A] leading-[1.15] tracking-tight mb-8 h-[1.4em] flex items-center justify-center overflow-visible font-body" style={{ fontFamily: 'Manrope, sans-serif' }}>
-            <AnimatePresence mode="wait">
-              <motion.span
-                key={index}
-                initial={{ opacity: 0, y: 28 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -28 }}
-                transition={{ duration: 0.35, ease: "easeInOut" }}
-                className="block"
-              >
-                {ROTATING[index]}
-              </motion.span>
-            </AnimatePresence>
+            <span className="block">
+              {displayText}
+              <span className="inline-block w-[3px] h-[0.8em] bg-[#0A0A0A] ml-1 align-middle animate-pulse" />
+            </span>
           </div>
         </div>
 
