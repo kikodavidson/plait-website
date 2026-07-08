@@ -7,7 +7,6 @@ const ROTATING = [
   "Convert.",
   "Attract Attention.",
   "Attribute Sales.",
-  "Measure.",
   "Improve Performance",
 ];
 
