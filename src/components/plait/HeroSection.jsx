@@ -12,30 +12,31 @@ const ROTATING = [
 ];
 
 const STATS = [
-  { prefix: "$", value: 4, suffix: "M+", label: "Revenue Generated" },
+  { prefix: "$", value: 1.2, suffix: "M+", label: "Revenue Generated", start: 1.1, decimals: 1 },
   { prefix: "", value: 80, suffix: "+", label: "Brands Scaled" },
   { prefix: "", value: 11, suffix: "+", label: "Growth Channels" },
 ];
 
-function useCountUp(target, duration = 1600, start = false) {
-  const [count, setCount] = useState(0);
+function useCountUp(target, duration = 1600, start = false, startVal = 0, decimals = 0) {
+  const [count, setCount] = useState(startVal);
   useEffect(() => {
     if (!start) return;
     let startTime = null;
     const step = (timestamp) => {
       if (!startTime) startTime = timestamp;
       const progress = Math.min((timestamp - startTime) / duration, 1);
-      setCount(Math.floor(progress * target));
+      const current = startVal + (target - startVal) * progress;
+      setCount(decimals > 0 ? parseFloat(current.toFixed(decimals)) : Math.floor(current));
       if (progress < 1) requestAnimationFrame(step);
       else setCount(target);
     };
     requestAnimationFrame(step);
-  }, [start, target, duration]);
+  }, [start, target, duration, startVal, decimals]);
   return count;
 }
 
 function StatItem({ stat, started, divider }) {
-  const count = useCountUp(stat.value, 1800, started);
+  const count = useCountUp(stat.value, 1800, started, stat.start || 0, stat.decimals || 0);
 
   const display = `${stat.prefix}${count}${stat.suffix}`;
 
