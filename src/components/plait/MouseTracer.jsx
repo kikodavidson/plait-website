@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 
-const COLORS = ["#4285F4", "#EA4335", "#FBBC05", "#34A853"];
-const MAX_PARTICLES = 60;
+const COLORS = ["#7a85de", "#5c67d1", "#89a1f5", "#d16a82", "#e07a90"];
+const MAX_PARTICLES = 45;
 
 export default function MouseTracer() {
   const canvasRef = useRef(null);
@@ -28,29 +28,33 @@ export default function MouseTracer() {
 
     window.addEventListener("mousemove", onMove);
 
-    const makeParticle = () => {
-      const angle = Math.random() * Math.PI * 2;
-      const radius = 30 + Math.random() * 120;
+    // Uniform particles — consistent small size, radiate outward
+    const makeParticle = (i) => {
+      // Distribute evenly across angles + rings
+      const ring = Math.floor(i / 15);
+      const inRing = i % 15;
+      const angle = (inRing / 15) * Math.PI * 2 + ring * 0.2;
+      const baseRadius = 40 + ring * 55;
       return {
         angle,
-        radius,
-        targetRadius: radius,
-        orbitSpeed: (Math.random() - 0.5) * 0.008,
-        size: 2.5 + Math.random() * 3,
-        color: COLORS[Math.floor(Math.random() * COLORS.length)],
-        rotation: Math.random() * Math.PI,
-        rotSpeed: (Math.random() - 0.5) * 0.03,
+        baseAngle: angle,
+        radius: baseRadius,
+        targetRadius: baseRadius + (Math.random() - 0.5) * 20,
+        orbitSpeed: 0.0008 + ring * 0.0003,
+        size: 1.8 + Math.random() * 0.6,
+        color: COLORS[i % COLORS.length],
+        rotation: angle,
         floatPhase: Math.random() * Math.PI * 2,
-        floatSpeed: 0.008 + Math.random() * 0.015,
-        floatAmp: 4 + Math.random() * 10,
+        floatSpeed: 0.006 + Math.random() * 0.008,
+        floatAmp: 2 + Math.random() * 5,
         alpha: 0,
-        targetAlpha: 0.35 + Math.random() * 0.5,
+        targetAlpha: 0.3 + Math.random() * 0.3,
+        radiusJitter: Math.random() * Math.PI * 2,
       };
     };
 
-    // Pre-populate
     for (let i = 0; i < MAX_PARTICLES; i++) {
-      particles.current.push(makeParticle());
+      particles.current.push(makeParticle(i));
     }
 
     const tick = () => {
@@ -59,8 +63,8 @@ export default function MouseTracer() {
       ctx.clearRect(0, 0, w, h);
 
       // Smooth follow
-      mouse.current.x += (target.current.x - mouse.current.x) * 0.08;
-      mouse.current.y += (target.current.y - mouse.current.y) * 0.08;
+      mouse.current.x += (target.current.x - mouse.current.x) * 0.06;
+      mouse.current.y += (target.current.y - mouse.current.y) * 0.06;
 
       const mx = mouse.current.x;
       const my = mouse.current.y;
@@ -68,33 +72,36 @@ export default function MouseTracer() {
       particles.current.forEach((p) => {
         p.angle += p.orbitSpeed;
         p.floatPhase += p.floatSpeed;
-        p.rotation += p.rotSpeed;
+        p.radiusJitter += 0.01;
 
-        // Ease radius toward target, occasionally pick a new one for organic motion
-        if (Math.random() < 0.005) {
-          p.targetRadius = 30 + Math.random() * 120;
+        // Occasionally shift target radius for subtle organic breathing
+        if (Math.random() < 0.003) {
+          p.targetRadius = p.radius + (Math.random() - 0.5) * 30;
         }
-        p.radius += (p.targetRadius - p.radius) * 0.01;
+        p.radius += (p.targetRadius - p.radius) * 0.008;
 
-        // Ease alpha in
-        p.alpha += (p.targetAlpha - p.alpha) * 0.05;
+        p.alpha += (p.targetAlpha - p.alpha) * 0.04;
 
-        const orbitX = Math.cos(p.angle) * p.radius;
-        const orbitY = Math.sin(p.angle) * p.radius;
+        const jitterR = Math.sin(p.radiusJitter) * 6;
+        const orbitX = Math.cos(p.angle) * (p.radius + jitterR);
+        const orbitY = Math.sin(p.angle) * (p.radius + jitterR);
         const floatX = Math.sin(p.floatPhase) * p.floatAmp;
-        const floatY = Math.cos(p.floatPhase * 1.3) * p.floatAmp;
+        const floatY = Math.cos(p.floatPhase * 1.2) * p.floatAmp;
 
         const px = mx + orbitX + floatX;
         const py = my + orbitY + floatY;
+
+        // Rotation: point radially outward from cursor
+        const radialAngle = Math.atan2(orbitY, orbitX);
 
         ctx.globalAlpha = p.alpha;
         ctx.fillStyle = p.color;
 
         ctx.save();
         ctx.translate(px, py);
-        ctx.rotate(p.rotation);
-        const len = p.size * 2.2;
-        const wid = p.size * 0.55;
+        ctx.rotate(radialAngle);
+        const len = p.size * 3;
+        const wid = p.size * 0.5;
         ctx.beginPath();
         ctx.roundRect(-len / 2, -wid / 2, len, wid, wid / 2);
         ctx.fill();
