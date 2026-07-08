@@ -73,7 +73,7 @@ const strands = [
       { title: "More complete conversion data", body: "Ad platforms get fuller signals and optimize toward higher quality results." },
       { title: "Scaling decisions with confidence", body: "Greater accuracy in the numbers you act on." },
     ],
-    img: "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/cbf5eadd9_image.png",
+    img: "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/0e8bd084f_Screenshot2026-07-08at12029AM.png",
   },
   {
     num: "05",
