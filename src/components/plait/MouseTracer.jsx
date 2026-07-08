@@ -1,13 +1,13 @@
 import React, { useEffect, useRef } from "react";
 
 const COLORS = ["#7a85de", "#5c67d1", "#89a1f5", "#d16a82", "#e07a90"];
-const MAX_PARTICLES = 45;
+const MAX_DOTS = 22;
 
 export default function MouseTracer() {
   const canvasRef = useRef(null);
-  const mouse = useRef({ x: window.innerWidth / 2, y: window.innerHeight / 2 });
-  const target = useRef({ x: window.innerWidth / 2, y: window.innerHeight / 2 });
-  const particles = useRef([]);
+  const dots = useRef([]);
+  const mouse = useRef({ x: -9999, y: -9999 });
+  const target = useRef({ x: -9999, y: -9999 });
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -27,34 +27,15 @@ export default function MouseTracer() {
     };
 
     window.addEventListener("mousemove", onMove);
+    window.addEventListener("touchmove", onMove, { passive: true });
 
-    // Uniform particles — consistent small size, radiate outward
-    const makeParticle = (i) => {
-      // Distribute evenly across angles + rings
-      const ring = Math.floor(i / 15);
-      const inRing = i % 15;
-      const angle = (inRing / 15) * Math.PI * 2 + ring * 0.2;
-      const baseRadius = 25 + ring * 35;
-      return {
-        angle,
-        baseAngle: angle,
-        radius: baseRadius,
-        targetRadius: baseRadius + (Math.random() - 0.5) * 20,
-        orbitSpeed: 0.0008 + ring * 0.0003,
-        size: 1.8 + Math.random() * 0.6,
+    // Initialize dots off-screen
+    for (let i = 0; i < MAX_DOTS; i++) {
+      dots.current.push({
+        x: -9999, y: -9999,
+        size: 3 + Math.random() * 2.5,
         color: COLORS[i % COLORS.length],
-        rotation: angle,
-        floatPhase: Math.random() * Math.PI * 2,
-        floatSpeed: 0.006 + Math.random() * 0.008,
-        floatAmp: 2 + Math.random() * 5,
-        alpha: 0,
-        targetAlpha: 0.3 + Math.random() * 0.3,
-        radiusJitter: Math.random() * Math.PI * 2,
-      };
-    };
-
-    for (let i = 0; i < MAX_PARTICLES; i++) {
-      particles.current.push(makeParticle(i));
+      });
     }
 
     const tick = () => {
@@ -62,50 +43,28 @@ export default function MouseTracer() {
       const h = canvas.height;
       ctx.clearRect(0, 0, w, h);
 
-      // Smooth follow with suspension/lag
-      mouse.current.x += (target.current.x - mouse.current.x) * 0.025;
-      mouse.current.y += (target.current.y - mouse.current.y) * 0.025;
+      // Smooth follow with lag
+      mouse.current.x += (target.current.x - mouse.current.x) * 0.2;
+      mouse.current.y += (target.current.y - mouse.current.y) * 0.2;
 
-      const mx = mouse.current.x;
-      const my = mouse.current.y;
+      // Shift the trail: each dot follows the previous one
+      for (let i = MAX_DOTS - 1; i > 0; i--) {
+        dots.current[i].x = dots.current[i - 1].x;
+        dots.current[i].y = dots.current[i - 1].y;
+      }
+      dots.current[0].x = mouse.current.x;
+      dots.current[0].y = mouse.current.y;
 
-      particles.current.forEach((p) => {
-        p.angle += p.orbitSpeed;
-        p.floatPhase += p.floatSpeed;
-        p.radiusJitter += 0.01;
+      dots.current.forEach((d, i) => {
+        const scale = 1 - i / MAX_DOTS;
+        const alpha = scale * 0.8;
+        const size = d.size * scale;
 
-        // Occasionally shift target radius for subtle organic breathing
-        if (Math.random() < 0.003) {
-          p.targetRadius = p.radius + (Math.random() - 0.5) * 20;
-        }
-        p.radius += (p.targetRadius - p.radius) * 0.006;
-
-        p.alpha += (p.targetAlpha - p.alpha) * 0.04;
-
-        const jitterR = Math.sin(p.radiusJitter) * 6;
-        const orbitX = Math.cos(p.angle) * (p.radius + jitterR);
-        const orbitY = Math.sin(p.angle) * (p.radius + jitterR);
-        const floatX = Math.sin(p.floatPhase) * p.floatAmp;
-        const floatY = Math.cos(p.floatPhase * 1.2) * p.floatAmp;
-
-        const px = mx + orbitX + floatX;
-        const py = my + orbitY + floatY;
-
-        // Rotation: point radially outward from cursor
-        const radialAngle = Math.atan2(orbitY, orbitX);
-
-        ctx.globalAlpha = p.alpha;
-        ctx.fillStyle = p.color;
-
-        ctx.save();
-        ctx.translate(px, py);
-        ctx.rotate(radialAngle);
-        const len = p.size * 3;
-        const wid = p.size * 0.5;
+        ctx.globalAlpha = alpha;
+        ctx.fillStyle = d.color;
         ctx.beginPath();
-        ctx.roundRect(-len / 2, -wid / 2, len, wid, wid / 2);
+        ctx.arc(d.x, d.y, size, 0, Math.PI * 2);
         ctx.fill();
-        ctx.restore();
       });
 
       ctx.globalAlpha = 1;
@@ -118,6 +77,7 @@ export default function MouseTracer() {
       cancelAnimationFrame(animId);
       window.removeEventListener("resize", resize);
       window.removeEventListener("mousemove", onMove);
+      window.removeEventListener("touchmove", onMove);
     };
   }, []);
 
