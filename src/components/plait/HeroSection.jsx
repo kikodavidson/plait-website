@@ -4,10 +4,11 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const ROTATING = [
   "Scale.",
-  "Convert.",
+  "Convert More Customers.",
   "Attract Attention.",
   "Attribute Sales.",
-  "Improve Performance",
+  "Improve Performance.",
+  "Maximize Clicks.",
 ];
 
 const STATS = [
