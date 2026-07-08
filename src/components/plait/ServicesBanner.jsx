@@ -2,12 +2,11 @@ import React from "react";
 import { motion } from "framer-motion";
 
 const services = [
-  { num: "01", label: "Paid Media" },
-  { num: "02", label: "Attribution & Analytics" },
-  { num: "03", label: "Websites & CRO" },
-  { num: "04", label: "Creative & Messaging" },
-  { num: "05", label: "Copywriting" },
-  { num: "06", label: "Strategy & Network" },
+  { num: "01", label: "Demand Gen" },
+  { num: "02", label: "Demand Capture" },
+  { num: "03", label: "Conversion Rate Optimization" },
+  { num: "04", label: "Attribution" },
+  { num: "05", label: "Content & Creative" },
 ];
 
 export default function ServicesBanner() {
@@ -23,7 +22,7 @@ export default function ServicesBanner() {
         <p className="text-[10px] sm:text-xs font-bold text-[#808080] uppercase tracking-[0.2em] mb-8 sm:mb-10">
           Our Services
         </p>
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-x-8 gap-y-8">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-x-8 gap-y-8">
           {services.map((s) => (
             <div key={s.num} className="flex flex-col">
               <span className="text-[#A2A2E0] text-3xl sm:text-4xl font-bold mb-2 font-body tracking-tight">
