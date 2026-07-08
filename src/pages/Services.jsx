@@ -91,7 +91,7 @@ const strands = [
       { title: "A distinct brand voice", body: "Messaging that stands out in a noisy feed." },
       { title: "A scalable production process", body: "Systems to keep the creative pipeline full." },
     ],
-    img: "https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=700&h=500&fit=crop",
+    img: "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/636941c66_pexels-allevf-5365597.jpg",
   },
 ];
 
