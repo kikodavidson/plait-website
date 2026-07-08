@@ -1,10 +1,12 @@
 import React, { useEffect, useRef } from "react";
 
 const COLORS = ["#4285F4", "#EA4335", "#FBBC05", "#34A853"];
+const MAX_PARTICLES = 60;
 
 export default function MouseTracer() {
   const canvasRef = useRef(null);
-  const mouse = useRef({ x: -9999, y: -9999 });
+  const mouse = useRef({ x: window.innerWidth / 2, y: window.innerHeight / 2 });
+  const target = useRef({ x: window.innerWidth / 2, y: window.innerHeight / 2 });
   const particles = useRef([]);
 
   useEffect(() => {
@@ -20,69 +22,76 @@ export default function MouseTracer() {
     window.addEventListener("resize", resize);
 
     const onMove = (e) => {
-      mouse.current.x = e.clientX;
-      mouse.current.y = e.clientY;
-
-      // Sparse spawn — 1 particle per few moves, scattered around cursor
-      if (Math.random() > 0.35) return;
-
-      const angle = Math.random() * Math.PI * 2;
-      const radius = 20 + Math.random() * 90;
-      const orbitSpeed = (Math.random() - 0.5) * 0.015;
-
-      particles.current.push({
-        cx: mouse.current.x,
-        cy: mouse.current.y,
-        angle,
-        radius,
-        baseRadius: radius,
-        orbitSpeed,
-        driftX: (Math.random() - 0.5) * 0.3,
-        driftY: (Math.random() - 0.5) * 0.3,
-        x: mouse.current.x + Math.cos(angle) * radius,
-        y: mouse.current.y + Math.sin(angle) * radius,
-        life: 1,
-        decay: 0.004 + Math.random() * 0.006,
-        size: 2.5 + Math.random() * 3.5,
-        color: COLORS[Math.floor(Math.random() * COLORS.length)],
-        rotation: Math.random() * Math.PI,
-        rotSpeed: (Math.random() - 0.5) * 0.04,
-        floatPhase: Math.random() * Math.PI * 2,
-        floatSpeed: 0.01 + Math.random() * 0.02,
-        floatAmp: 3 + Math.random() * 8,
-      });
+      target.current.x = e.clientX;
+      target.current.y = e.clientY;
     };
 
     window.addEventListener("mousemove", onMove);
+
+    const makeParticle = () => {
+      const angle = Math.random() * Math.PI * 2;
+      const radius = 30 + Math.random() * 120;
+      return {
+        angle,
+        radius,
+        targetRadius: radius,
+        orbitSpeed: (Math.random() - 0.5) * 0.008,
+        size: 2.5 + Math.random() * 3,
+        color: COLORS[Math.floor(Math.random() * COLORS.length)],
+        rotation: Math.random() * Math.PI,
+        rotSpeed: (Math.random() - 0.5) * 0.03,
+        floatPhase: Math.random() * Math.PI * 2,
+        floatSpeed: 0.008 + Math.random() * 0.015,
+        floatAmp: 4 + Math.random() * 10,
+        alpha: 0,
+        targetAlpha: 0.35 + Math.random() * 0.5,
+      };
+    };
+
+    // Pre-populate
+    for (let i = 0; i < MAX_PARTICLES; i++) {
+      particles.current.push(makeParticle());
+    }
 
     const tick = () => {
       const w = canvas.width;
       const h = canvas.height;
       ctx.clearRect(0, 0, w, h);
 
-      particles.current = particles.current.filter((p) => p.life > 0);
+      // Smooth follow
+      mouse.current.x += (target.current.x - mouse.current.x) * 0.08;
+      mouse.current.y += (target.current.y - mouse.current.y) * 0.08;
+
+      const mx = mouse.current.x;
+      const my = mouse.current.y;
 
       particles.current.forEach((p) => {
-        // Orbit + drift away from center point
         p.angle += p.orbitSpeed;
         p.floatPhase += p.floatSpeed;
+        p.rotation += p.rotSpeed;
 
+        // Ease radius toward target, occasionally pick a new one for organic motion
+        if (Math.random() < 0.005) {
+          p.targetRadius = 30 + Math.random() * 120;
+        }
+        p.radius += (p.targetRadius - p.radius) * 0.01;
+
+        // Ease alpha in
+        p.alpha += (p.targetAlpha - p.alpha) * 0.05;
+
+        const orbitX = Math.cos(p.angle) * p.radius;
+        const orbitY = Math.sin(p.angle) * p.radius;
         const floatX = Math.sin(p.floatPhase) * p.floatAmp;
         const floatY = Math.cos(p.floatPhase * 1.3) * p.floatAmp;
 
-        p.x += p.driftX;
-        p.y += p.driftY;
-        p.rotation += p.rotSpeed;
-        p.life -= p.decay;
+        const px = mx + orbitX + floatX;
+        const py = my + orbitY + floatY;
 
-        const alpha = Math.max(0, p.life);
-        const fade = p.life < 0.3 ? p.life / 0.3 : 1;
-        ctx.globalAlpha = alpha * fade;
+        ctx.globalAlpha = p.alpha;
         ctx.fillStyle = p.color;
 
-        // Dash / brush stroke shape
         ctx.save();
-        ctx.translate(p.x + floatX, p.y + floatY);
+        ctx.translate(px, py);
         ctx.rotate(p.rotation);
         const len = p.size * 2.2;
         const wid = p.size * 0.55;
