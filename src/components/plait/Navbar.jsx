@@ -32,7 +32,7 @@ export default function Navbar() {
           ? "bg-white/90 backdrop-blur-md border-b border-gray-100/80 py-3 shadow-sm"
           : "bg-transparent py-5"
       }`}
-      style={{ fontFamily: 'Space Grotesk, sans-serif' }}
+      style={{ fontFamily: 'Mont, sans-serif' }}
     >
       <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
         {/* Logo — matches Draftr's bold wordmark */}

@@ -5,9 +5,9 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Space Grotesk', 'sans-serif'],
-        body: ['Space Grotesk', 'sans-serif'],
-        display: ['Space Grotesk', 'sans-serif'],
+        sans: ['Mont', 'sans-serif'],
+        body: ['Mont', 'sans-serif'],
+        display: ['Mont', 'sans-serif'],
       },
       letterSpacing: {
         'wide': '0.04em',
