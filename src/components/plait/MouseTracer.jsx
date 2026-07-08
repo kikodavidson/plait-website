@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 
-const COLORS = ["#1c1b1a", "#1c1b1a", "#1c1b1a", "#1c1b1a", "#1c1b1a"];
+const COLORS = ["#2d2d2d", "#2d2d2d", "#2d2d2d", "#2d2d2d", "#2d2d2d"];
 const MAX_DOTS = 40;
 
 export default function MouseTracer() {

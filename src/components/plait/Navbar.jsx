@@ -47,7 +47,7 @@ export default function Navbar() {
               key={l.path}
               to={l.path}
               className={`text-sm font-semibold transition-colors ${
-                location.pathname === l.path ? "text-[#1c1b1a]" : "text-[#525252] hover:text-[#1c1b1a]"
+                location.pathname === l.path ? "text-[#2d2d2d]" : "text-[#525252] hover:text-[#2d2d2d]"
               }`}
             >
               {l.label}
@@ -65,7 +65,7 @@ export default function Navbar() {
           </Link>
         </div>
 
-        <button className="md:hidden text-[#1c1b1a]" onClick={() => setOpen(!open)}>
+        <button className="md:hidden text-[#2d2d2d]" onClick={() => setOpen(!open)}>
           {open ? <span className="text-xl font-light leading-none">✕</span> : <Menu className="w-5 h-5" />}
         </button>
       </div>
@@ -80,7 +80,7 @@ export default function Navbar() {
           >
             <div className="px-6 py-5 flex flex-col gap-4">
               {links.map((l) => (
-                <Link key={l.path} to={l.path} className="text-sm font-semibold text-[#525252] hover:text-[#1c1b1a] py-1">
+                <Link key={l.path} to={l.path} className="text-sm font-semibold text-[#525252] hover:text-[#2d2d2d] py-1">
                   {l.label}
                 </Link>
               ))}

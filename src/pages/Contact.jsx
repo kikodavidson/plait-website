@@ -33,14 +33,14 @@ export default function Contact() {
           className="text-center max-w-md"
         >
           <div className="w-16 h-16 bg-indigo-50 rounded-full flex items-center justify-center mx-auto mb-6">
-            <CheckCircle2 className="w-8 h-8 text-[#1c1b1a]" />
+            <CheckCircle2 className="w-8 h-8 text-[#2d2d2d]" />
           </div>
-          <h2 className="font-body text-4xl font-bold text-[#1c1b1a] mb-3">Got it.</h2>
+          <h2 className="font-body text-4xl font-bold text-[#2d2d2d] mb-3">Got it.</h2>
           <p className="text-[#525252] leading-relaxed">
             I'll be in touch within 24 hours. If you want to skip the wait, grab a time on my calendar below.
           </p>
           <div className="mt-8 bg-[#F8F7FF] border border-indigo-100 rounded-2xl p-6">
-            <p className="text-sm font-semibold text-[#1c1b1a] mb-2">Book a time directly</p>
+            <p className="text-sm font-semibold text-[#2d2d2d] mb-2">Book a time directly</p>
             <p className="text-xs text-[#525252] mb-4">30-minute strategy call, no strings attached.</p>
             <a
               href="https://calendly.com"
@@ -61,8 +61,8 @@ export default function Contact() {
       <div className="hero-gradient pb-16 px-6 pt-12">
         <div className="max-w-6xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <p className="text-xs font-semibold text-[#1c1b1a] uppercase tracking-widest mb-4">Contact</p>
-            <h1 className="font-body text-6xl sm:text-7xl font-bold text-[#1c1b1a] tracking-tight leading-tight mb-5">
+            <p className="text-xs font-semibold text-[#2d2d2d] uppercase tracking-widest mb-4">Contact</p>
+            <h1 className="font-body text-6xl sm:text-7xl font-bold text-[#2d2d2d] tracking-tight leading-tight mb-5">
               Let's talk.
             </h1>
             <p className="text-[#525252] text-lg max-w-lg leading-relaxed">
@@ -84,19 +84,19 @@ export default function Contact() {
           >
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
               <div>
-                <label className="block text-xs font-bold text-[#1c1b1a] uppercase tracking-wider mb-2">Name *</label>
+                <label className="block text-xs font-bold text-[#2d2d2d] uppercase tracking-wider mb-2">Name *</label>
                 <input
-                  className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm text-[#1c1b1a] placeholder-gray-400 focus:outline-none focus:border-[#5E58D5] focus:ring-1 focus:ring-[#5E58D5] transition-colors"
+                  className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm text-[#2d2d2d] placeholder-gray-400 focus:outline-none focus:border-[#5E58D5] focus:ring-1 focus:ring-[#5E58D5] transition-colors"
                   placeholder="Your name"
                   value={form.name}
                   onChange={(e) => set("name", e.target.value)}
                 />
               </div>
               <div>
-                <label className="block text-xs font-bold text-[#1c1b1a] uppercase tracking-wider mb-2">Email *</label>
+                <label className="block text-xs font-bold text-[#2d2d2d] uppercase tracking-wider mb-2">Email *</label>
                 <input
                   type="email"
-                  className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm text-[#1c1b1a] placeholder-gray-400 focus:outline-none focus:border-[#5E58D5] focus:ring-1 focus:ring-[#5E58D5] transition-colors"
+                  className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm text-[#2d2d2d] placeholder-gray-400 focus:outline-none focus:border-[#5E58D5] focus:ring-1 focus:ring-[#5E58D5] transition-colors"
                   placeholder="you@company.com"
                   value={form.email}
                   onChange={(e) => set("email", e.target.value)}
@@ -105,9 +105,9 @@ export default function Contact() {
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-[#1c1b1a] uppercase tracking-wider mb-2">Company</label>
+              <label className="block text-xs font-bold text-[#2d2d2d] uppercase tracking-wider mb-2">Company</label>
               <input
-                className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm text-[#1c1b1a] placeholder-gray-400 focus:outline-none focus:border-[#5E58D5] focus:ring-1 focus:ring-[#5E58D5] transition-colors"
+                className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm text-[#2d2d2d] placeholder-gray-400 focus:outline-none focus:border-[#5E58D5] focus:ring-1 focus:ring-[#5E58D5] transition-colors"
                 placeholder="Brand name"
                 value={form.company}
                 onChange={(e) => set("company", e.target.value)}
@@ -115,9 +115,9 @@ export default function Contact() {
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-[#1c1b1a] uppercase tracking-wider mb-2">What are you after?</label>
+              <label className="block text-xs font-bold text-[#2d2d2d] uppercase tracking-wider mb-2">What are you after?</label>
               <select
-                className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm text-[#1c1b1a] focus:outline-none focus:border-[#5E58D5] focus:ring-1 focus:ring-[#5E58D5] transition-colors"
+                className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm text-[#2d2d2d] focus:outline-none focus:border-[#5E58D5] focus:ring-1 focus:ring-[#5E58D5] transition-colors"
                 value={form.service_interest}
                 onChange={(e) => set("service_interest", e.target.value)}
               >
@@ -130,10 +130,10 @@ export default function Contact() {
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-[#1c1b1a] uppercase tracking-wider mb-2">What's going on?</label>
+              <label className="block text-xs font-bold text-[#2d2d2d] uppercase tracking-wider mb-2">What's going on?</label>
               <textarea
                 rows={5}
-                className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm text-[#1c1b1a] placeholder-gray-400 focus:outline-none focus:border-[#5E58D5] focus:ring-1 focus:ring-[#5E58D5] transition-colors resize-none"
+                className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm text-[#2d2d2d] placeholder-gray-400 focus:outline-none focus:border-[#5E58D5] focus:ring-1 focus:ring-[#5E58D5] transition-colors resize-none"
                 placeholder="Where's the funnel leaking? What have you tried? What does success look like?"
                 value={form.message}
                 onChange={(e) => set("message", e.target.value)}
@@ -157,7 +157,7 @@ export default function Contact() {
             transition={{ duration: 0.6, delay: 0.3 }}
           >
             <div className="bg-[#F8F7FF] rounded-3xl border border-indigo-100 p-8">
-              <h3 className="font-body text-xl font-bold text-[#1c1b1a] mb-4">Prefer to book direct?</h3>
+              <h3 className="font-body text-xl font-bold text-[#2d2d2d] mb-4">Prefer to book direct?</h3>
               <p className="text-sm text-[#525252] mb-5 leading-relaxed">
                 Grab a free 30-minute strategy call. No pitch, no deck. Just an honest look at your funnel.
               </p>
@@ -172,7 +172,7 @@ export default function Contact() {
             </div>
 
             <div className="bg-white border border-gray-100 rounded-3xl p-8 space-y-4">
-              <h3 className="font-body text-lg font-bold text-[#1c1b1a]">What to expect</h3>
+              <h3 className="font-body text-lg font-bold text-[#2d2d2d]">What to expect</h3>
               <ul className="space-y-3">
                 {[
                   "Response within 24 hours (usually faster)",
@@ -181,14 +181,14 @@ export default function Contact() {
                   "If we move forward, a clear plan before any commitment",
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-3 text-sm text-[#525252]">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#1c1b1a] shrink-0 mt-2" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#2d2d2d] shrink-0 mt-2" />
                     {item}
                   </li>
                 ))}
               </ul>
             </div>
 
-            <div className="bg-[#1c1b1a] text-white rounded-3xl p-8">
+            <div className="bg-[#2d2d2d] text-white rounded-3xl p-8">
               <p className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-3">Current availability</p>
               <p className="font-body text-3xl font-bold mb-2">Taking on 2 new clients.</p>
               <p className="text-sm text-gray-400">Retainer spots go fast. Audit spots are always open.</p>

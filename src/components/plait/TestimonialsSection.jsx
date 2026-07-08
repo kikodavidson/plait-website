@@ -50,12 +50,12 @@ function VideoCard({ t, index, featured }) {
       ) : (
         <>
           <img src={t.thumbnail} alt={t.name} className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#1c1b1a]/80 via-[#1c1b1a]/20 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#2d2d2d]/80 via-[#2d2d2d]/20 to-transparent" />
           <button
             onClick={() => setPlaying(true)}
             className="absolute inset-0 flex items-center justify-center group"
           >
-            <div className="w-16 h-16 rounded-full bg-[#f4f2ee]/20 backdrop-blur-sm border border-[#f4f2ee]/30 flex items-center justify-center group-hover:bg-[#1c1b1a] group-hover:border-[#1c1b1a] transition-all shadow-xl">
+            <div className="w-16 h-16 rounded-full bg-[#f4f2ee]/20 backdrop-blur-sm border border-[#f4f2ee]/30 flex items-center justify-center group-hover:bg-[#2d2d2d] group-hover:border-[#2d2d2d] transition-all shadow-xl">
               <Play className="w-6 h-6 text-[#f4f2ee] ml-1" fill="white" />
             </div>
           </button>
@@ -83,7 +83,7 @@ export default function TestimonialsSection() {
         >
           <p className="text-xs font-bold text-[#5E58D5] uppercase tracking-widest mb-3">Testimonials</p>
           <h2
-            className="text-4xl sm:text-5xl font-bold text-[#1c1b1a] tracking-tight"
+            className="text-4xl sm:text-5xl font-bold text-[#2d2d2d] tracking-tight"
             style={{ fontFamily: 'Space Grotesk, sans-serif', letterSpacing: '0.02em' }}
           >
             Don't take my word for it.

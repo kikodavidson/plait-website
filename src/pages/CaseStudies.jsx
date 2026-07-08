@@ -185,7 +185,7 @@ export default function CaseStudies() {
         <div className="max-w-6xl mx-auto px-6">
           <button
             onClick={() => setActive(null)}
-            className="mt-10 mb-12 inline-flex items-center gap-2 bg-[#1c1b1a] text-[#f4f2ee] text-sm font-semibold px-5 py-2.5 rounded-full hover:bg-[#333] transition-colors"
+            className="mt-10 mb-12 inline-flex items-center gap-2 bg-[#2d2d2d] text-[#f4f2ee] text-sm font-semibold px-5 py-2.5 rounded-full hover:bg-[#333] transition-colors"
           >
             <span>←</span> Back to Case Studies
           </button>
@@ -197,12 +197,12 @@ export default function CaseStudies() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             <div className="lg:col-span-2">
               <p className="text-xs font-bold text-[#4B87E7] uppercase tracking-widest mb-3">{s.category}</p>
-              <h1 className="font-body text-4xl sm:text-5xl font-bold text-[#1c1b1a] tracking-tight leading-tight mb-8" style={{ fontFamily: 'Space Grotesk, sans-serif', letterSpacing: '0.02em' }}>{s.headline}</h1>
+              <h1 className="font-body text-4xl sm:text-5xl font-bold text-[#2d2d2d] tracking-tight leading-tight mb-8" style={{ fontFamily: 'Space Grotesk, sans-serif', letterSpacing: '0.02em' }}>{s.headline}</h1>
               {s.sections ? (
                 <div className="space-y-8">
                   {s.sections.map((sec) => (
                     <div key={sec.title}>
-                      <h2 className="font-body text-xl font-bold text-[#1c1b1a] mb-2">{sec.title}</h2>
+                      <h2 className="font-body text-xl font-bold text-[#2d2d2d] mb-2">{sec.title}</h2>
                       <div className="space-y-3">
                         {sec.content.split("\n\n").map((para, pi) => (
                           <p key={pi} className="text-[#525252] leading-relaxed">{para}</p>
@@ -227,7 +227,7 @@ export default function CaseStudies() {
                   {s.results.map((r) => (
                     <div key={r.label} className="border-b border-blue-100 pb-5 last:border-0 last:pb-0">
                       <p className="font-body text-4xl font-bold text-[#4B87E7]">{r.stat}</p>
-                      <p className="text-xs font-bold text-[#1c1b1a] uppercase tracking-wider mt-1">{r.label}</p>
+                      <p className="text-xs font-bold text-[#2d2d2d] uppercase tracking-wider mt-1">{r.label}</p>
                     </div>
                   ))}
                 </div>
@@ -248,7 +248,7 @@ export default function CaseStudies() {
         <div className="max-w-6xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <p className="text-xs font-semibold text-[#4B87E7] uppercase tracking-widest mb-4">Case Studies</p>
-            <h1 className="font-body text-6xl sm:text-7xl font-bold text-[#1c1b1a] tracking-tight leading-tight mb-6" style={{ fontFamily: 'Space Grotesk, sans-serif', letterSpacing: '0.02em' }}>
+            <h1 className="font-body text-6xl sm:text-7xl font-bold text-[#2d2d2d] tracking-tight leading-tight mb-6" style={{ fontFamily: 'Space Grotesk, sans-serif', letterSpacing: '0.02em' }}>
               What Winning<br />Looks Like.
             </h1>
             <p className="text-[#525252] text-lg max-w-lg leading-relaxed">
@@ -270,17 +270,17 @@ export default function CaseStudies() {
               transition={{ duration: 0.5, delay: i * 0.1 }}
               className="group text-left rounded-3xl overflow-hidden border border-gray-100 hover:border-blue-200 transition-all duration-300 bg-white"
             >
-              <div className="relative h-40 sm:h-52 overflow-hidden bg-[#1c1b1a]">
+              <div className="relative h-40 sm:h-52 overflow-hidden bg-[#2d2d2d]">
                 <img src={s.image} alt={s.client} className="w-full h-full object-contain sm:object-cover group-hover:scale-105 transition-transform duration-500" />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#1c1b1a]/40 to-transparent" />
-                <span className="absolute top-4 left-4 text-xs font-bold text-[#f4f2ee] bg-[#1c1b1a]/40 backdrop-blur-sm px-3 py-1 rounded-full uppercase tracking-wider">{s.category}</span>
+                <div className="absolute inset-0 bg-gradient-to-t from-[#2d2d2d]/40 to-transparent" />
+                <span className="absolute top-4 left-4 text-xs font-bold text-[#f4f2ee] bg-[#2d2d2d]/40 backdrop-blur-sm px-3 py-1 rounded-full uppercase tracking-wider">{s.category}</span>
               </div>
               <div className="p-7">
                 <div className="flex items-baseline gap-2 mb-3">
                   <span className="font-body text-4xl font-bold text-[#4B87E7]">{s.stat}</span>
                   <span className="text-xs font-bold text-[#525252] uppercase tracking-wider">{s.statLabel}</span>
                 </div>
-                <h3 className="font-body text-xl font-bold text-[#1c1b1a] mb-2 leading-tight">{s.client}</h3>
+                <h3 className="font-body text-xl font-bold text-[#2d2d2d] mb-2 leading-tight">{s.client}</h3>
                 <p className="text-sm text-[#525252] leading-relaxed">{s.headline}</p>
                 <p className="text-xs font-semibold text-[#4B87E7] mt-4 group-hover:underline">Read case study</p>
               </div>

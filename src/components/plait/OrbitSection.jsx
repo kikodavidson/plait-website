@@ -72,7 +72,7 @@ function AccordionItem({ title, desc, index }) {
 
 export default function OrbitSection() {
   return (
-    <section className="py-28 px-6 bg-[#1c1b1a]">
+    <section className="py-28 px-6 bg-[#2d2d2d]">
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
           {/* Left — copy */}

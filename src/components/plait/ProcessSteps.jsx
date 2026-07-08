@@ -31,7 +31,7 @@ const steps = [
 
 export default function ProcessSteps() {
   return (
-    <section className="py-28 px-6 bg-[#1c1b1a]">
+    <section className="py-28 px-6 bg-[#2d2d2d]">
       <div className="max-w-6xl mx-auto">
         <motion.div
           className="mb-16"
@@ -65,7 +65,7 @@ export default function ProcessSteps() {
               >
                 {/* Step dot */}
                 <div className="w-11 h-11 rounded-full bg-white/10 border border-[#f4f2ee]/20 flex items-center justify-center shrink-0 group-hover:bg-white group-hover:border-[#f4f2ee] transition-all">
-                  <span className="text-[#f4f2ee] group-hover:text-[#1c1b1a] text-[10px] font-bold transition-colors">{step.num}</span>
+                  <span className="text-[#f4f2ee] group-hover:text-[#2d2d2d] text-[10px] font-bold transition-colors">{step.num}</span>
                 </div>
 
                 <div className="flex-1 md:flex md:items-center md:gap-12 pt-1">

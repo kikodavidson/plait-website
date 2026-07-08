@@ -29,7 +29,7 @@ export default function WhyPlait() {
           >
             <p className="text-xs font-bold text-[#5E58D5] uppercase tracking-widest mb-4">Why PLAIT</p>
             <h2
-              className="text-4xl sm:text-5xl font-bold text-[#1c1b1a] leading-[1.1] tracking-tight mb-6"
+              className="text-4xl sm:text-5xl font-bold text-[#2d2d2d] leading-[1.1] tracking-tight mb-6"
               style={{ fontFamily: 'Space Grotesk, sans-serif', letterSpacing: '0.02em' }}
             >
               When our clients win,<br />we win.
@@ -56,7 +56,7 @@ export default function WhyPlait() {
               <div className="w-5 h-5 rounded-md bg-[#5E58D5] flex items-center justify-center">
                 <span className="text-[#f4f2ee] text-[9px] font-bold">P</span>
               </div>
-              <span className="text-xs font-bold text-[#1c1b1a]">PLAIT Studio</span>
+              <span className="text-xs font-bold text-[#2d2d2d]">PLAIT Studio</span>
             </div>
           </motion.div>
         </div>
@@ -72,7 +72,7 @@ export default function WhyPlait() {
               className="bg-[#f4f2ee] rounded-2xl border border-gray-100 p-8 shadow-sm hover:shadow-md transition-shadow"
             >
               <div className="text-[#5E58D5] text-xs font-bold uppercase tracking-widest mb-3">0{i + 1}</div>
-              <h3 className="text-xl font-bold text-[#1c1b1a] mb-3" style={{ fontFamily: 'Space Grotesk, sans-serif', letterSpacing: '0.02em' }}>{p.title}</h3>
+              <h3 className="text-xl font-bold text-[#2d2d2d] mb-3" style={{ fontFamily: 'Space Grotesk, sans-serif', letterSpacing: '0.02em' }}>{p.title}</h3>
               <p className="text-[#525252] text-sm leading-relaxed">{p.desc}</p>
             </motion.div>
           ))}

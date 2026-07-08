@@ -42,7 +42,7 @@ export default function OurProcess() {
         <div className="max-w-6xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <p className="text-xs font-semibold text-[#5E58D5] uppercase tracking-widest mb-4">Our Process</p>
-            <h1 className="font-body text-6xl sm:text-7xl font-bold text-[#1c1b1a] tracking-tight leading-tight mb-6 max-w-3xl">
+            <h1 className="font-body text-6xl sm:text-7xl font-bold text-[#2d2d2d] tracking-tight leading-tight mb-6 max-w-3xl">
               How we actually work.
             </h1>
             <p className="text-[#525252] text-lg max-w-xl leading-relaxed">
@@ -73,7 +73,7 @@ export default function OurProcess() {
                 </div>
 
                 <span className="sm:hidden text-[#5E58D5] text-xs font-bold uppercase tracking-widest">{step.num}</span>
-                <h2 className="font-body text-4xl sm:text-5xl font-bold text-[#1c1b1a] tracking-tight mt-1 mb-2">
+                <h2 className="font-body text-4xl sm:text-5xl font-bold text-[#2d2d2d] tracking-tight mt-1 mb-2">
                   {step.title}
                 </h2>
                 <p className="text-[#5E58D5] font-semibold text-sm mb-4 italic">{step.tagline}</p>
@@ -88,7 +88,7 @@ export default function OurProcess() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mt-24 bg-[#1c1b1a] rounded-3xl p-12 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-8"
+          className="mt-24 bg-[#2d2d2d] rounded-3xl p-12 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-8"
         >
           <div>
             <h3 className="font-body text-3xl font-bold text-[#f4f2ee] mb-2">Ready to start?</h3>

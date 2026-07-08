@@ -69,9 +69,8 @@ body::after {
   inset: 0;
   z-index: 9999;
   pointer-events: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  opacity: 0.10;
-  mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.07;
 }
 
 html {
@@ -98,11 +97,11 @@ html {
 }
 
 /* Soft, diffused shadows for matte depth */
-.shadow-sm { box-shadow: 0 2px 15px -3px rgba(28, 27, 26, 0.04); }
-.shadow-md { box-shadow: 0 8px 30px -6px rgba(28, 27, 26, 0.06); }
-.shadow-lg { box-shadow: 0 15px 50px -10px rgba(28, 27, 26, 0.08); }
-.shadow-xl { box-shadow: 0 20px 60px -12px rgba(28, 27, 26, 0.10); }
-.shadow-2xl { box-shadow: 0 25px 70px -15px rgba(28, 27, 26, 0.12); }
+.shadow-sm { box-shadow: 0 2px 15px -3px rgba(45, 45, 45, 0.04); }
+.shadow-md { box-shadow: 0 8px 30px -6px rgba(45, 45, 45, 0.06); }
+.shadow-lg { box-shadow: 0 15px 50px -10px rgba(45, 45, 45, 0.08); }
+.shadow-xl { box-shadow: 0 20px 60px -12px rgba(45, 45, 45, 0.10); }
+.shadow-2xl { box-shadow: 0 25px 70px -15px rgba(45, 45, 45, 0.12); }
 
 /* Gradient button utility — desaturated */
 .btn-gradient {

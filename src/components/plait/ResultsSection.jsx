@@ -5,7 +5,7 @@ import { ArrowRight } from "lucide-react";
 
 export default function ResultsSection() {
   return (
-    <section className="py-28 px-6 bg-[#1c1b1a]">
+    <section className="py-28 px-6 bg-[#2d2d2d]">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

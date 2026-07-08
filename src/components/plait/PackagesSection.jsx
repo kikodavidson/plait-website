@@ -57,8 +57,8 @@ export default function PackagesSection() {
     <section className="py-28 px-6 border-t border-gray-100/50">
       <div className="max-w-6xl mx-auto">
         <div className="mb-14 max-w-xl">
-          <p className="text-xs font-bold text-[#1c1b1a] uppercase tracking-widest mb-3">Packages</p>
-          <h2 className="text-4xl sm:text-5xl font-bold text-[#1c1b1a] leading-tight mb-4 font-body">
+          <p className="text-xs font-bold text-[#2d2d2d] uppercase tracking-widest mb-3">Packages</p>
+          <h2 className="text-4xl sm:text-5xl font-bold text-[#2d2d2d] leading-tight mb-4 font-body">
             Pick your entry point.
           </h2>
           <p className="text-[#525252] text-base">
@@ -76,15 +76,15 @@ export default function PackagesSection() {
               transition={{ duration: 0.5, delay: i * 0.1 }}
               className={`rounded-3xl border p-8 flex flex-col ${
                 pkg.highlight
-                  ? "bg-[#1c1b1a] border-[#1c1b1a] shadow-2xl shadow-black/10"
+                  ? "bg-[#2d2d2d] border-[#2d2d2d] shadow-2xl shadow-black/10"
                   : "bg-white border-gray-100 hover:border-gray-200 hover:shadow-md transition-all"
               }`}
             >
               <div className="mb-6">
-                <p className={`text-xs font-bold uppercase tracking-widest mb-2 ${pkg.highlight ? "text-[#f4f2ee]/40" : "text-[#1c1b1a]"}`}>
+                <p className={`text-xs font-bold uppercase tracking-widest mb-2 ${pkg.highlight ? "text-[#f4f2ee]/40" : "text-[#2d2d2d]"}`}>
                   {pkg.name}
                 </p>
-                <p className={`text-4xl font-bold mb-3 font-body ${pkg.highlight ? "text-[#f4f2ee]" : "text-[#1c1b1a]"}`}>
+                <p className={`text-4xl font-bold mb-3 font-body ${pkg.highlight ? "text-[#f4f2ee]" : "text-[#2d2d2d]"}`}>
                   {pkg.price}
                 </p>
                 <p className={`text-sm leading-relaxed ${pkg.highlight ? "text-[#f4f2ee]/60" : "text-[#525252]"}`}>
@@ -95,7 +95,7 @@ export default function PackagesSection() {
               <ul className="space-y-3 flex-1 mb-8">
                 {pkg.items.map((item) => (
                   <li key={item} className={`flex items-start gap-3 text-sm ${pkg.highlight ? "text-[#f4f2ee]/70" : "text-[#525252]"}`}>
-                    <Check className={`w-4 h-4 shrink-0 mt-0.5 ${pkg.highlight ? "text-[#f4f2ee]" : "text-[#1c1b1a]"}`} />
+                    <Check className={`w-4 h-4 shrink-0 mt-0.5 ${pkg.highlight ? "text-[#f4f2ee]" : "text-[#2d2d2d]"}`} />
                     {item}
                   </li>
                 ))}
