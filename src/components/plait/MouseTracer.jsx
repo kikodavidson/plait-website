@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 
 const COLORS = ["#2d2d2d", "#2d2d2d", "#2d2d2d", "#2d2d2d", "#2d2d2d"];
-const MAX_DOTS = 40;
+const MAX_DOTS = 80;
 
 export default function MouseTracer() {
   const canvasRef = useRef(null);
