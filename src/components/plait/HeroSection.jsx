@@ -12,7 +12,7 @@ const ROTATING = [
 ];
 
 const STATS = [
-  { prefix: "$", value: 1.2, suffix: "M+", label: "Revenue Generated", start: 1.1, decimals: 1 },
+  { prefix: "$", value: 4, suffix: "M+", label: "Revenue Generated", start: 1.1, decimals: 1 },
   { prefix: "", value: 80, suffix: "+", label: "Brands Scaled" },
   { prefix: "", value: 11, suffix: "+", label: "Growth Channels" },
 ];
