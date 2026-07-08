@@ -15,11 +15,11 @@ export default function Home() {
     <>
       <HeroSection />
       <PlatformMarquee />
+      <PlaitSystem />
       <WhatYouGet />
       <ProcessSteps />
       <TestimonialsSection />
       <OrbitSection />
-      <PlaitSystem />
       <ResultsSection />
       <PackagesSection />
       <ContactCTA />
