@@ -61,6 +61,29 @@ export default function HeroSection() {
   const [isDeleting, setIsDeleting] = useState(false);
   const [statsStarted, setStatsStarted] = useState(false);
   const statsRef = useRef(null);
+  const ctaRef = useRef(null);
+
+  const handleMagneticMove = (e) => {
+    const btn = ctaRef.current;
+    if (!btn) return;
+    const rect = btn.getBoundingClientRect();
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 2;
+    const dx = e.clientX - cx;
+    const dy = e.clientY - cy;
+    const dist = Math.sqrt(dx * dx + dy * dy);
+    const maxDist = 180;
+    if (dist < maxDist) {
+      const pull = (1 - dist / maxDist) * 0.5;
+      btn.style.transform = `translate(${dx * pull}px, ${dy * pull}px)`;
+    } else {
+      btn.style.transform = "";
+    }
+  };
+
+  const handleMagneticLeave = () => {
+    if (ctaRef.current) ctaRef.current.style.transform = "";
+  };
 
   useEffect(() => {
     const word = ROTATING[index];
@@ -154,10 +177,14 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.35 }}
+          onMouseMove={handleMagneticMove}
+          onMouseLeave={handleMagneticLeave}
         >
           <Link
+            ref={ctaRef}
             to="/contact"
-            className="btn-gradient inline-flex items-center gap-3 font-bold text-base px-8 py-4 rounded-full shadow-lg group"
+            className="btn-gradient inline-flex items-center gap-3 font-bold text-base px-8 py-4 rounded-full shadow-lg group transition-transform duration-300 ease-out"
+            style={{ willChange: "transform" }}
           >
             See What's Possible
             <span className="w-7 h-7 bg-white/20 rounded-full flex items-center justify-center group-hover:bg-white/30 transition-colors text-sm">→</span>
