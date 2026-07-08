@@ -12,7 +12,7 @@ const ROTATING = [
 ];
 
 const STATS = [
-  { prefix: "$", value: 20, suffix: "+", label: "Revenue Generated", decimalDivide: 10 },
+  { prefix: "$", value: 4, suffix: "M+", label: "Revenue Generated" },
   { prefix: "", value: 80, suffix: "+", label: "Brands Scaled" },
   { prefix: "", value: 11, suffix: "+", label: "Growth Channels" },
 ];
@@ -37,9 +37,7 @@ function useCountUp(target, duration = 1600, start = false) {
 function StatItem({ stat, started, divider }) {
   const count = useCountUp(stat.value, 1800, started);
 
-  const display = stat.decimalDivide
-    ? `$${(count / stat.decimalDivide).toFixed(1)}M+`
-    : `${stat.prefix}${count}${stat.suffix}`;
+  const display = `${stat.prefix}${count}${stat.suffix}`;
 
   return (
     <div className={`flex flex-col items-center px-6 ${divider ? "border-l border-gray-200" : ""}`}>
