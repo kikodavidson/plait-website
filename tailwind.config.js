@@ -5,9 +5,14 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Avenir Next Ultra Light', 'Avenir Next', 'Manrope', 'sans-serif'],
-        body: ['Avenir Next Ultra Light', 'Avenir Next', 'Manrope', 'sans-serif'],
-        display: ['Avenir Next Ultra Light', 'Avenir Next', 'Manrope', 'sans-serif'],
+        sans: ['Montserrat', 'sans-serif'],
+        body: ['Montserrat', 'sans-serif'],
+        display: ['Montserrat', 'sans-serif'],
+      },
+      letterSpacing: {
+        'wide': '0.04em',
+        'wider': '0.08em',
+        'widest': '0.15em',
       },
       borderRadius: {
         lg: 'var(--radius)',
