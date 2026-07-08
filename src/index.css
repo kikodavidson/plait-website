@@ -8,8 +8,8 @@
 
 @layer base {
   :root {
-    --font-body: 'Manrope', sans-serif;
-    --font-display: 'Manrope', sans-serif;
+    --font-body: 'Avenir Next Ultra Light', 'Avenir Next', 'Manrope', sans-serif;
+    --font-display: 'Avenir Next Ultra Light', 'Avenir Next', 'Manrope', sans-serif;
 
     --background: 248 100% 99%;
     --foreground: 220 20% 10%;
@@ -56,7 +56,7 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: 'Manrope', sans-serif;
+    font-family: 'Avenir Next Ultra Light', 'Avenir Next', 'Manrope', sans-serif;
     -webkit-font-smoothing: antialiased;
   }
 }

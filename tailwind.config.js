@@ -5,9 +5,9 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Manrope', 'sans-serif'],
-        body: ['Manrope', 'sans-serif'],
-        display: ['Josefin Sans', 'sans-serif'],
+        sans: ['Avenir Next Ultra Light', 'Avenir Next', 'Manrope', 'sans-serif'],
+        body: ['Avenir Next Ultra Light', 'Avenir Next', 'Manrope', 'sans-serif'],
+        display: ['Avenir Next Ultra Light', 'Avenir Next', 'Manrope', 'sans-serif'],
       },
       borderRadius: {
         lg: 'var(--radius)',
