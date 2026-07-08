@@ -44,8 +44,8 @@ export default function MouseTracer() {
       ctx.clearRect(0, 0, w, h);
 
       // Smooth follow with lag
-      mouse.current.x += (target.current.x - mouse.current.x) * 0.2;
-      mouse.current.y += (target.current.y - mouse.current.y) * 0.2;
+      mouse.current.x += (target.current.x - mouse.current.x) * 0.12;
+      mouse.current.y += (target.current.y - mouse.current.y) * 0.12;
 
       // Shift the trail: each dot follows the previous one
       for (let i = MAX_DOTS - 1; i > 0; i--) {
@@ -57,7 +57,7 @@ export default function MouseTracer() {
 
       dots.current.forEach((d, i) => {
         const scale = 1 - i / MAX_DOTS;
-        const alpha = scale * 0.8;
+        const alpha = scale * 0.4;
         const size = d.size * scale;
 
         ctx.globalAlpha = alpha;
