@@ -51,9 +51,9 @@ export default function WhatYouGet() {
             className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#2d2d2d] tracking-tight leading-[1.4] sm:leading-[1.1] mb-4"
             style={{ fontFamily: 'Inter, sans-serif' }}
           >
-            Turn{" "}
+            Generated{" "}
             <span className="relative inline-block pb-2">
-              generated attention
+              attention
               <svg
                 className="absolute bottom-0 left-0 w-full"
                 viewBox="0 0 300 12"
