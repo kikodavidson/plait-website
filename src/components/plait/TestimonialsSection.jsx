@@ -8,7 +8,7 @@ const videoTestimonials = [
     name: "Brett S.",
     role: "Founder, Ivy Dating",
     thumbnail: "https://img.youtube.com/vi/tNLtESXCu88/maxresdefault.jpg",
-    embedUrl: "https://www.youtube.com/embed/tNLtESXCu88?autoplay=1",
+    embedUrl: "https://www.youtube.com/embed/tNLtESXCu88?autoplay=1&mute=1&playsinline=1",
     preview: "He's blown up my business and handled the areas that I haven't been too sure about.",
   },
   {
@@ -16,7 +16,7 @@ const videoTestimonials = [
     name: "Hudson G.",
     role: "Founder, HG Training",
     thumbnail: "https://img.youtube.com/vi/8OaMt_uDJmQ/maxresdefault.jpg",
-    embedUrl: "https://www.youtube.com/embed/8OaMt_uDJmQ?autoplay=1&loop=1&playlist=8OaMt_uDJmQ",
+    embedUrl: "https://www.youtube.com/embed/8OaMt_uDJmQ?autoplay=1&mute=1&playsinline=1&loop=1&playlist=8OaMt_uDJmQ",
     preview: "The revenue that started coming in after Luke started helping with my marketing was unbelievable.",
   },
 ];
@@ -42,8 +42,9 @@ function VideoCard({ t, index, featured }) {
         <iframe
           src={t.embedUrl}
           className="w-full h-full"
-          allow="autoplay; encrypted-media"
+          allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
           allowFullScreen
+          playsInline
           title={t.name}
         />
       ) : (
