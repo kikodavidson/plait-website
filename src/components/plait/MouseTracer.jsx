@@ -34,7 +34,7 @@ export default function MouseTracer() {
       const ring = Math.floor(i / 15);
       const inRing = i % 15;
       const angle = (inRing / 15) * Math.PI * 2 + ring * 0.2;
-      const baseRadius = 40 + ring * 55;
+      const baseRadius = 25 + ring * 35;
       return {
         angle,
         baseAngle: angle,
@@ -62,9 +62,9 @@ export default function MouseTracer() {
       const h = canvas.height;
       ctx.clearRect(0, 0, w, h);
 
-      // Smooth follow
-      mouse.current.x += (target.current.x - mouse.current.x) * 0.06;
-      mouse.current.y += (target.current.y - mouse.current.y) * 0.06;
+      // Smooth follow with suspension/lag
+      mouse.current.x += (target.current.x - mouse.current.x) * 0.025;
+      mouse.current.y += (target.current.y - mouse.current.y) * 0.025;
 
       const mx = mouse.current.x;
       const my = mouse.current.y;
@@ -76,9 +76,9 @@ export default function MouseTracer() {
 
         // Occasionally shift target radius for subtle organic breathing
         if (Math.random() < 0.003) {
-          p.targetRadius = p.radius + (Math.random() - 0.5) * 30;
+          p.targetRadius = p.radius + (Math.random() - 0.5) * 20;
         }
-        p.radius += (p.targetRadius - p.radius) * 0.008;
+        p.radius += (p.targetRadius - p.radius) * 0.006;
 
         p.alpha += (p.targetAlpha - p.alpha) * 0.04;
 
