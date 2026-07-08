@@ -61,7 +61,7 @@ export default function Navbar() {
             to="/contact"
             className="btn-gradient inline-flex items-center gap-2 text-sm font-bold px-5 py-2.5 rounded-full"
           >
-            Work With Me
+            Get in Touch
           </Link>
         </div>
 
@@ -85,7 +85,7 @@ export default function Navbar() {
                 </Link>
               ))}
               <Link to="/contact" className="mt-2 text-center btn-gradient text-sm font-bold px-5 py-3 rounded-full">
-                Work With Me
+                Get in Touch
               </Link>
             </div>
           </motion.div>

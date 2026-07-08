@@ -233,7 +233,7 @@ export default function CaseStudies() {
                 </div>
               </div>
               <Link to="/contact" className="btn-gradient mt-6 block text-center font-semibold px-6 py-3.5 rounded-full text-sm">
-                Work With Me
+                Get in Touch
               </Link>
             </div>
           </div>

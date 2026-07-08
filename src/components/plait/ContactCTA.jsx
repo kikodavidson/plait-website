@@ -24,7 +24,7 @@ export default function ContactCTA() {
             to="/contact"
             className="btn-gradient inline-flex items-center gap-2 font-semibold px-8 py-4 rounded-full text-base"
           >
-            Work With Me
+            Get in Touch
           </Link>
         </motion.div>
       </div>
