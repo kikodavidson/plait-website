@@ -33,24 +33,24 @@ function AccordionItem({ title, desc, index }) {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="border-b border-white/10 last:border-0">
+    <div className="border-b border-[#f4f2ee]/10 last:border-0">
       <button
         onClick={() => setOpen(!open)}
         className="w-full flex items-center justify-between py-5 text-left group"
       >
         <span className="flex items-center gap-4">
-          <span className="text-white/20 text-xs font-bold tabular-nums">
+          <span className="text-[#f4f2ee]/20 text-xs font-bold tabular-nums">
             {String(index + 1).padStart(2, "0")}
           </span>
           <span
-            className="text-white font-bold text-base group-hover:text-[#4F46E5] transition-colors"
+            className="text-[#f4f2ee] font-bold text-base group-hover:text-[#5E58D5] transition-colors"
             style={{ fontFamily: "Space Grotesk, sans-serif", letterSpacing: "0.02em" }}
           >
             {title}
           </span>
         </span>
         <ChevronDown
-          className={`w-4 h-4 text-white/40 shrink-0 transition-transform duration-300 ${open ? "rotate-180" : ""}`}
+          className={`w-4 h-4 text-[#f4f2ee]/40 shrink-0 transition-transform duration-300 ${open ? "rotate-180" : ""}`}
         />
       </button>
       <AnimatePresence initial={false}>
@@ -62,7 +62,7 @@ function AccordionItem({ title, desc, index }) {
             transition={{ duration: 0.25, ease: "easeInOut" }}
             className="overflow-hidden"
           >
-            <p className="text-white/50 text-sm leading-relaxed pb-5 pl-10">{desc}</p>
+            <p className="text-[#f4f2ee]/50 text-sm leading-relaxed pb-5 pl-10">{desc}</p>
           </motion.div>
         )}
       </AnimatePresence>
@@ -72,7 +72,7 @@ function AccordionItem({ title, desc, index }) {
 
 export default function OrbitSection() {
   return (
-    <section className="py-28 px-6 bg-[#0A0A0A]">
+    <section className="py-28 px-6 bg-[#1c1b1a]">
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
           {/* Left — copy */}
@@ -89,22 +89,22 @@ export default function OrbitSection() {
                 alt="Orbit"
                 className="h-24 w-auto brightness-0 invert opacity-90"
               />
-              <span className="text-white/40 text-xs font-bold uppercase tracking-widest">MCP</span>
+              <span className="text-[#f4f2ee]/40 text-xs font-bold uppercase tracking-widest">MCP</span>
             </div>
             <h2
-              className="text-4xl sm:text-5xl font-bold text-white leading-tight mb-6 font-body"
+              className="text-4xl sm:text-5xl font-bold text-[#f4f2ee] leading-tight mb-6 font-body"
               style={{ fontFamily: "Space Grotesk, sans-serif", letterSpacing: "0.02em" }}
             >
               AI should amplify<br />your thinking.<br />
-              <span className="text-[#4F46E5]">Not replace it.</span>
+              <span className="text-[#5E58D5]">Not replace it.</span>
             </h2>
-            <p className="text-white/50 text-base leading-relaxed mb-4">
+            <p className="text-[#f4f2ee]/50 text-base leading-relaxed mb-4">
               Most marketers are outsourcing their strategy to a chatbot and wondering why everything sounds the same. Prompting GPT for a media plan isn't strategy. It's delegation to something that has never spent a dollar on ads.
             </p>
-            <p className="text-white/50 text-base leading-relaxed mb-4">
+            <p className="text-[#f4f2ee]/50 text-base leading-relaxed mb-4">
               I helped bring Orbit to life — not as the engineer, but as the marketer behind it. The concept, the positioning, and the use case came from years of frustration with AI tools that had no real context. I took that idea and made it something people could actually understand and use.
             </p>
-            <p className="text-white/50 text-base leading-relaxed">
+            <p className="text-[#f4f2ee]/50 text-base leading-relaxed">
               Orbit is a Model Context Protocol (MCP) built specifically for marketing workflows. The difference between an MCP and a standard AI tool is context depth. Orbit connects directly to your live data: ad accounts, CRM, analytics, attribution. It doesn't guess. It reads. And I use it in every engagement.
             </p>
 

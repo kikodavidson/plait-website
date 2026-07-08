@@ -48,11 +48,11 @@ const strands = [
 
 export default function ProcessSection() {
   return (
-    <section className="py-24 bg-white">
+    <section className="py-24 bg-[#f4f2ee]">
       <div className="max-w-6xl mx-auto px-6">
         <div className="mb-16">
-          <p className="text-xs font-semibold text-[#4F46E5] uppercase tracking-widest mb-3">The Process</p>
-          <h2 className="font-display text-5xl sm:text-6xl font-extrabold text-[#0A0A0A] tracking-tight leading-tight max-w-xl">
+          <p className="text-xs font-semibold text-[#5E58D5] uppercase tracking-widest mb-3">The Process</p>
+          <h2 className="font-display text-5xl sm:text-6xl font-extrabold text-[#1c1b1a] tracking-tight leading-tight max-w-xl">
             Six strands.<br />One system.
           </h2>
           <p className="text-[#525252] mt-4 max-w-lg text-base leading-relaxed">
@@ -74,8 +74,8 @@ export default function ProcessSection() {
               >
                 {/* Text side */}
                 <div className={`py-16 lg:py-20 ${isEven ? "lg:pr-16 order-2 lg:order-1" : "lg:pl-16 order-2"}`}>
-                  <span className="text-[#4F46E5] font-display text-sm font-bold tracking-widest uppercase">{s.num}</span>
-                  <h3 className="font-display text-4xl sm:text-5xl font-extrabold text-[#0A0A0A] tracking-tight mt-3 mb-5">{s.title}</h3>
+                  <span className="text-[#5E58D5] font-display text-sm font-bold tracking-widest uppercase">{s.num}</span>
+                  <h3 className="font-display text-4xl sm:text-5xl font-extrabold text-[#1c1b1a] tracking-tight mt-3 mb-5">{s.title}</h3>
                   <p className="text-[#525252] text-base leading-relaxed mb-8 max-w-lg">{s.body}</p>
                   <ul className="space-y-0">
                     {s.items.map((item) => (

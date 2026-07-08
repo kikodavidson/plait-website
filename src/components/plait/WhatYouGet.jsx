@@ -46,9 +46,9 @@ export default function WhatYouGet() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <p className="text-xs font-bold text-[#0A0A0A] uppercase tracking-widest mb-3">What You Get</p>
+          <p className="text-xs font-bold text-[#1c1b1a] uppercase tracking-widest mb-3">What You Get</p>
           <h2
-            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#0A0A0A] tracking-tight leading-[1.1] mb-4"
+            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1c1b1a] tracking-tight leading-[1.1] mb-4"
             style={{ fontFamily: 'Space Grotesk, sans-serif' }}
           >
             Turn{" "}
@@ -63,7 +63,7 @@ export default function WhatYouGet() {
               >
                 <path
                   d="M2 8.5 C40 3, 80 10, 120 6 C160 2, 200 9, 240 5.5 C270 3, 290 7, 298 6"
-                  stroke="#0A0A0A"
+                  stroke="#1c1b1a"
                   strokeWidth="3"
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -96,7 +96,7 @@ export default function WhatYouGet() {
                 className="bg-white p-8 flex flex-col gap-4 hover:bg-[#F8F7FF] transition-colors"
               >
                 <div>
-                  <h3 className="font-bold text-[#0A0A0A] text-base mb-1" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+                  <h3 className="font-bold text-[#1c1b1a] text-base mb-1" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
                     {item.title}
                   </h3>
                   <p className="text-[#525252] text-sm leading-relaxed">{item.desc}</p>

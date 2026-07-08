@@ -15,7 +15,7 @@ export default function PlatformMarquee() {
   const doubled = [...platforms, ...platforms, ...platforms, ...platforms];
 
   return (
-    <div className="bg-white border-y border-gray-100 py-8 overflow-hidden">
+    <div className="bg-[#f4f2ee] border-y border-gray-100 py-8 overflow-hidden">
       <div className="marquee-track">
         {doubled.map((p, i) => (
           <div key={i} className="flex items-center gap-10 px-10">

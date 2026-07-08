@@ -10,42 +10,42 @@
     --font-body: 'Space Grotesk', sans-serif;
     --font-display: 'Space Grotesk', sans-serif;
 
-    --background: 248 100% 99%;
-    --foreground: 220 20% 10%;
-    --card: 0 0% 100%;
-    --card-foreground: 220 20% 10%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 220 20% 10%;
-    --primary: 150 28% 50%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 213 93% 87%;
-    --secondary-foreground: 220 20% 10%;
-    --muted: 210 20% 94%;
-    --muted-foreground: 220 10% 40%;
-    --accent: 150 28% 50%;
-    --accent-foreground: 0 0% 100%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 213 30% 88%;
-    --input: 213 30% 88%;
-    --ring: 150 28% 50%;
+    --background: 40 14% 94%;
+    --foreground: 30 4% 11%;
+    --card: 40 14% 94%;
+    --card-foreground: 30 4% 11%;
+    --popover: 40 14% 94%;
+    --popover-foreground: 30 4% 11%;
+    --primary: 150 24% 50%;
+    --primary-foreground: 40 14% 94%;
+    --secondary: 213 78% 87%;
+    --secondary-foreground: 30 4% 11%;
+    --muted: 40 10% 92%;
+    --muted-foreground: 30 4% 40%;
+    --accent: 150 24% 50%;
+    --accent-foreground: 40 14% 94%;
+    --destructive: 0 72% 55%;
+    --destructive-foreground: 40 14% 94%;
+    --border: 40 10% 86%;
+    --input: 40 10% 86%;
+    --ring: 150 24% 50%;
 
-    /* Brand palette */
+    /* Brand palette — desaturated ~15% */
     --ocean-blue: #6E99AE;
-    --sky-blue: #BAC4FE;
-    --seafoam: #C9FFB0;
-    --blush: #FF88AD;
-    --sand-pink: #F8C3C7;
+    --sky-blue: #AEB8EE;
+    --seafoam: #B8EBA0;
+    --blush: #EE9CB4;
+    --sand-pink: #E8B8BC;
     --cloud-white: #EEF1EF;
     --radius: 0.5rem;
-    --sidebar-background: 0 0% 100%;
-    --sidebar-foreground: 0 0% 4%;
-    --sidebar-primary: 243 75% 59%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 5% 96%;
-    --sidebar-accent-foreground: 0 0% 4%;
-    --sidebar-border: 240 6% 90%;
-    --sidebar-ring: 243 75% 59%;
+    --sidebar-background: 40 14% 94%;
+    --sidebar-foreground: 30 4% 11%;
+    --sidebar-primary: 243 60% 59%;
+    --sidebar-primary-foreground: 40 14% 94%;
+    --sidebar-accent: 40 10% 92%;
+    --sidebar-accent-foreground: 30 4% 11%;
+    --sidebar-border: 40 10% 86%;
+    --sidebar-ring: 243 60% 59%;
   }
 }
 
@@ -62,11 +62,23 @@
   }
 }
 
+/* Global grain overlay — single fixed layer, never intercepts clicks */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.10;
+  mix-blend-mode: soft-light;
+}
+
 html {
   scroll-behavior: smooth;
 }
 
-/* hero-gradient and section-gradient are now transparent to let the canvas show */
+/* Backgrounds — transparent to let the DynamicBackground canvas show */
 .hero-gradient {
   background: transparent;
 }
@@ -75,16 +87,33 @@ html {
   background: transparent;
 }
 
-/* Gradient button utility */
+/* Gradient text on large headlines — two adjacent tones, grain textures letterforms */
+@supports (background: color-mix(in srgb, red, blue)) {
+  h1, h2 {
+    background: linear-gradient(160deg, currentColor 0%, color-mix(in srgb, currentColor 78%, #808080) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+/* Soft, diffused shadows for matte depth */
+.shadow-sm { box-shadow: 0 2px 15px -3px rgba(28, 27, 26, 0.04); }
+.shadow-md { box-shadow: 0 8px 30px -6px rgba(28, 27, 26, 0.06); }
+.shadow-lg { box-shadow: 0 15px 50px -10px rgba(28, 27, 26, 0.08); }
+.shadow-xl { box-shadow: 0 20px 60px -12px rgba(28, 27, 26, 0.10); }
+.shadow-2xl { box-shadow: 0 25px 70px -15px rgba(28, 27, 26, 0.12); }
+
+/* Gradient button utility — desaturated */
 .btn-gradient {
-  background: linear-gradient(135deg, #bfdbfe 0%, #a5c8ff 50%, #93c5fd 100%);
-  color: #1e3a5f;
-  border: 2px solid rgba(147,197,253,0.5);
-  outline: 1px solid rgba(147,197,253,0.3);
+  background: linear-gradient(135deg, #c7d4f0 0%, #aeb8ee 50%, #9ba8e4 100%);
+  color: #2a3548;
+  border: 2px solid rgba(174, 184, 238, 0.5);
+  outline: 1px solid rgba(174, 184, 238, 0.3);
   font-weight: 700;
 }
 .btn-gradient:hover {
-  background: linear-gradient(135deg, #a5c8ff 0%, #7ab8f5 50%, #60a5fa 100%);
+  background: linear-gradient(135deg, #aeb8ee 0%, #94a0de 50%, #7e8cd4 100%);
   opacity: 1;
 }
 

@@ -50,19 +50,19 @@ function VideoCard({ t, index, featured }) {
       ) : (
         <>
           <img src={t.thumbnail} alt={t.name} className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#1c1b1a]/80 via-[#1c1b1a]/20 to-transparent" />
           <button
             onClick={() => setPlaying(true)}
             className="absolute inset-0 flex items-center justify-center group"
           >
-            <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 flex items-center justify-center group-hover:bg-[#0A0A0A] group-hover:border-[#0A0A0A] transition-all shadow-xl">
-              <Play className="w-6 h-6 text-white ml-1" fill="white" />
+            <div className="w-16 h-16 rounded-full bg-[#f4f2ee]/20 backdrop-blur-sm border border-[#f4f2ee]/30 flex items-center justify-center group-hover:bg-[#1c1b1a] group-hover:border-[#1c1b1a] transition-all shadow-xl">
+              <Play className="w-6 h-6 text-[#f4f2ee] ml-1" fill="white" />
             </div>
           </button>
           <div className="absolute bottom-0 left-0 right-0 p-6">
-            <p className="text-white/60 text-xs font-semibold uppercase tracking-wider mb-1">{t.role}</p>
-            <p className="text-white font-bold text-base" style={{ fontFamily: 'Space Grotesk, sans-serif', letterSpacing: '0.02em' }}>{t.name}</p>
-            <p className="text-white/70 text-sm mt-1 leading-relaxed line-clamp-2">"{t.preview}"</p>
+            <p className="text-[#f4f2ee]/60 text-xs font-semibold uppercase tracking-wider mb-1">{t.role}</p>
+            <p className="text-[#f4f2ee] font-bold text-base" style={{ fontFamily: 'Space Grotesk, sans-serif', letterSpacing: '0.02em' }}>{t.name}</p>
+            <p className="text-[#f4f2ee]/70 text-sm mt-1 leading-relaxed line-clamp-2">"{t.preview}"</p>
           </div>
         </>
       )}
@@ -81,9 +81,9 @@ export default function TestimonialsSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <p className="text-xs font-bold text-[#4F46E5] uppercase tracking-widest mb-3">Testimonials</p>
+          <p className="text-xs font-bold text-[#5E58D5] uppercase tracking-widest mb-3">Testimonials</p>
           <h2
-            className="text-4xl sm:text-5xl font-bold text-[#0A0A0A] tracking-tight"
+            className="text-4xl sm:text-5xl font-bold text-[#1c1b1a] tracking-tight"
             style={{ fontFamily: 'Space Grotesk, sans-serif', letterSpacing: '0.02em' }}
           >
             Don't take my word for it.
@@ -107,14 +107,14 @@ export default function TestimonialsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.24 }}
-              className="bg-[#4F46E5] rounded-3xl p-8 flex flex-col justify-between flex-1"
+              className="bg-[#5E58D5] rounded-3xl p-8 flex flex-col justify-between flex-1"
             >
               <Quote className="w-8 h-8 text-indigo-300 mb-4" />
-              <p className="text-white text-base font-medium leading-relaxed flex-1 mb-6" style={{ fontFamily: 'Space Grotesk, sans-serif', letterSpacing: '0.02em' }}>
+              <p className="text-[#f4f2ee] text-base font-medium leading-relaxed flex-1 mb-6" style={{ fontFamily: 'Space Grotesk, sans-serif', letterSpacing: '0.02em' }}>
                 "{writtenTestimonial.quote}"
               </p>
               <div>
-                <p className="text-white font-bold text-sm">{writtenTestimonial.name}</p>
+                <p className="text-[#f4f2ee] font-bold text-sm">{writtenTestimonial.name}</p>
                 <p className="text-indigo-200 text-xs font-semibold">{writtenTestimonial.role}</p>
               </div>
             </motion.div>

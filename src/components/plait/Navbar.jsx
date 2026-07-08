@@ -29,7 +29,7 @@ export default function Navbar() {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-white/90 backdrop-blur-md border-b border-gray-100/80 py-3 shadow-sm"
+          ? "bg-[#f4f2ee]/90 backdrop-blur-md border-b border-gray-100/80 py-3 shadow-sm"
           : "bg-transparent py-5"
       }`}
       style={{ fontFamily: 'Space Grotesk, sans-serif' }}
@@ -47,7 +47,7 @@ export default function Navbar() {
               key={l.path}
               to={l.path}
               className={`text-sm font-semibold transition-colors ${
-                location.pathname === l.path ? "text-[#0A0A0A]" : "text-[#525252] hover:text-[#0A0A0A]"
+                location.pathname === l.path ? "text-[#1c1b1a]" : "text-[#525252] hover:text-[#1c1b1a]"
               }`}
             >
               {l.label}
@@ -65,7 +65,7 @@ export default function Navbar() {
           </Link>
         </div>
 
-        <button className="md:hidden text-[#0A0A0A]" onClick={() => setOpen(!open)}>
+        <button className="md:hidden text-[#1c1b1a]" onClick={() => setOpen(!open)}>
           {open ? <span className="text-xl font-light leading-none">✕</span> : <Menu className="w-5 h-5" />}
         </button>
       </div>
@@ -76,11 +76,11 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white border-b border-gray-100"
+            className="md:hidden bg-[#f4f2ee] border-b border-gray-100"
           >
             <div className="px-6 py-5 flex flex-col gap-4">
               {links.map((l) => (
-                <Link key={l.path} to={l.path} className="text-sm font-semibold text-[#525252] hover:text-[#0A0A0A] py-1">
+                <Link key={l.path} to={l.path} className="text-sm font-semibold text-[#525252] hover:text-[#1c1b1a] py-1">
                   {l.label}
                 </Link>
               ))}

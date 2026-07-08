@@ -146,9 +146,9 @@ export default function PlaitSystem() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mb-16 border-l-2 border-[#0A0A0A] pl-6"
+          className="mb-16 border-l-2 border-[#1c1b1a] pl-6"
         >
-          <p className="text-[#0A0A0A] text-base leading-relaxed">
+          <p className="text-[#1c1b1a] text-base leading-relaxed">
             <span className="font-bold">plait</span>{" "}
             <span className="text-[#525252] italic text-sm">/plāt/</span>{" "}
             <span className="text-[#525252] text-xs font-bold uppercase tracking-widest">noun</span>
@@ -179,7 +179,7 @@ export default function PlaitSystem() {
                   <div key={key} className="flex items-center justify-between py-5 border-b border-gray-100 last:border-0">
                     <span
                       className="text-sm font-bold uppercase tracking-widest"
-                      style={{ color: active ? "#0A0A0A" : "#D1D5DB" }}
+                      style={{ color: active ? "#1c1b1a" : "#D1D5DB" }}
                     >
                       {label}
                     </span>
@@ -213,7 +213,7 @@ export default function PlaitSystem() {
                 <p className="text-xs font-bold uppercase tracking-widest mb-2" style={{ color: state.color }}>
                   {state.label}
                 </p>
-                <p className="text-[#0A0A0A] font-bold text-lg mb-2" style={{ fontFamily: "Space Grotesk, sans-serif" }}>
+                <p className="text-[#1c1b1a] font-bold text-lg mb-2" style={{ fontFamily: "Space Grotesk, sans-serif" }}>
                   {state.title}
                 </p>
                 <p className="text-[#525252] text-sm leading-relaxed">{state.body}</p>

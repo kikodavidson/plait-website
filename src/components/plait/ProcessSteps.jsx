@@ -31,7 +31,7 @@ const steps = [
 
 export default function ProcessSteps() {
   return (
-    <section className="py-28 px-6 bg-[#0A0A0A]">
+    <section className="py-28 px-6 bg-[#1c1b1a]">
       <div className="max-w-6xl mx-auto">
         <motion.div
           className="mb-16"
@@ -40,9 +40,9 @@ export default function ProcessSteps() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <p className="text-xs font-bold text-white/60 uppercase tracking-widest mb-3">The Roadmap for Growth</p>
+          <p className="text-xs font-bold text-[#f4f2ee]/60 uppercase tracking-widest mb-3">The Roadmap for Growth</p>
           <h2
-            className="text-4xl sm:text-5xl font-bold text-white tracking-tight leading-[1.1]"
+            className="text-4xl sm:text-5xl font-bold text-[#f4f2ee] tracking-tight leading-[1.1]"
             style={{ fontFamily: 'Space Grotesk, sans-serif' }}
           >
             How we work together.
@@ -61,21 +61,21 @@ export default function ProcessSteps() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="flex gap-8 items-start py-8 border-b border-white/10 last:border-0 group"
+                className="flex gap-8 items-start py-8 border-b border-[#f4f2ee]/10 last:border-0 group"
               >
                 {/* Step dot */}
-                <div className="w-11 h-11 rounded-full bg-white/10 border border-white/20 flex items-center justify-center shrink-0 group-hover:bg-white group-hover:border-white transition-all">
-                  <span className="text-white group-hover:text-[#0A0A0A] text-[10px] font-bold transition-colors">{step.num}</span>
+                <div className="w-11 h-11 rounded-full bg-white/10 border border-[#f4f2ee]/20 flex items-center justify-center shrink-0 group-hover:bg-white group-hover:border-[#f4f2ee] transition-all">
+                  <span className="text-[#f4f2ee] group-hover:text-[#1c1b1a] text-[10px] font-bold transition-colors">{step.num}</span>
                 </div>
 
                 <div className="flex-1 md:flex md:items-center md:gap-12 pt-1">
                   <h3
-                    className="text-2xl sm:text-3xl font-bold text-white tracking-tight w-48 shrink-0 mb-2 md:mb-0"
+                    className="text-2xl sm:text-3xl font-bold text-[#f4f2ee] tracking-tight w-48 shrink-0 mb-2 md:mb-0"
                     style={{ fontFamily: 'Space Grotesk, sans-serif' }}
                   >
                     {step.word}
                   </h3>
-                  <p className="text-white/50 text-sm leading-relaxed max-w-lg">{step.desc}</p>
+                  <p className="text-[#f4f2ee]/50 text-sm leading-relaxed max-w-lg">{step.desc}</p>
                 </div>
               </motion.div>
             ))}

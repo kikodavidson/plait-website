@@ -14,8 +14,8 @@ export default function About() {
             transition={{ duration: 0.6 }}
             className="max-w-3xl"
           >
-            <p className="text-xs font-semibold text-[#0A0A0A] uppercase tracking-widest mb-4">About</p>
-            <h1 className="font-body text-6xl sm:text-7xl font-bold text-[#0A0A0A] tracking-tight leading-tight mb-6">
+            <p className="text-xs font-semibold text-[#1c1b1a] uppercase tracking-widest mb-4">About</p>
+            <h1 className="font-body text-6xl sm:text-7xl font-bold text-[#1c1b1a] tracking-tight leading-tight mb-6">
               Who and Why.
             </h1>
 
@@ -37,7 +37,7 @@ export default function About() {
           </div>
 
           <div className="space-y-6 pt-4">
-            <h2 className="font-body text-4xl font-bold text-[#0A0A0A] tracking-tight">Luke Davidson</h2>
+            <h2 className="font-body text-4xl font-bold text-[#1c1b1a] tracking-tight">Luke Davidson</h2>
             <p className="text-[#525252] text-base font-medium">Founder of Plait</p>
 
             <div className="space-y-4 text-[#525252] leading-relaxed text-base">
@@ -66,7 +66,7 @@ export default function About() {
                   { value: "11+", label: "Channels" },
                 ].map((s) => (
                   <div key={s.label}>
-                    <p className="font-body text-3xl font-bold text-[#0A0A0A]">{s.value}</p>
+                    <p className="font-body text-3xl font-bold text-[#1c1b1a]">{s.value}</p>
                     <p className="text-xs text-[#525252] uppercase tracking-wider mt-1">{s.label}</p>
                   </div>
                 ))}
@@ -86,7 +86,7 @@ export default function About() {
       {/* Core Beliefs */}
       <div className="py-20 px-6">
         <div className="max-w-6xl mx-auto">
-          <h2 className="font-body text-4xl font-bold text-[#0A0A0A] tracking-tight mb-12">Core Beliefs</h2>
+          <h2 className="font-body text-4xl font-bold text-[#1c1b1a] tracking-tight mb-12">Core Beliefs</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               {
@@ -118,7 +118,7 @@ export default function About() {
                 transition={{ duration: 0.5, delay: i * 0.1 }}
                 className="bg-white rounded-3xl border border-gray-100 p-8 flex flex-col gap-4"
               >
-                <h3 className="font-body text-lg font-bold text-[#0A0A0A]">{v.title}</h3>
+                <h3 className="font-body text-lg font-bold text-[#1c1b1a]">{v.title}</h3>
                 <p className="text-[#525252] text-sm leading-relaxed">{v.desc}</p>
               </motion.div>
             ))}
@@ -127,7 +127,7 @@ export default function About() {
       </div>
 
       {/* Mission */}
-      <div className="relative py-28 px-6 overflow-hidden bg-[#0A0A0A]">
+      <div className="relative py-28 px-6 overflow-hidden bg-[#1c1b1a]">
         {/* Gradient orbs */}
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute bottom-0 left-1/4 w-96 h-96 rounded-full bg-purple-700 opacity-30 blur-3xl" />
@@ -140,9 +140,9 @@ export default function About() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <p className="text-white/60 text-sm italic mb-6">"Whatever your hand finds to do, do it with all your might" Ecclesiastes 9:10</p>
-            <h2 className="font-body text-6xl sm:text-7xl font-bold text-white mb-8">My Mission</h2>
-            <p className="text-white/80 text-xl leading-relaxed mb-10">
+            <p className="text-[#f4f2ee]/60 text-sm italic mb-6">"Whatever your hand finds to do, do it with all your might" Ecclesiastes 9:10</p>
+            <h2 className="font-body text-6xl sm:text-7xl font-bold text-[#f4f2ee] mb-8">My Mission</h2>
+            <p className="text-[#f4f2ee]/80 text-xl leading-relaxed mb-10">
               I am on a mission to be a light in a crowded industry by helping people bring their ideas to life and scale them into making a real impact on people's lives. I believe winning is found in the margins, and I'm committed to turning ideas into reality through a process that values honesty, creativity, and always looking for the next tactical edge.
             </p>
             <Link
