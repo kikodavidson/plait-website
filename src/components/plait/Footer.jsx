@@ -7,7 +7,7 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
           <div>
-            <img src="https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/af78eb2bc_Untitleddesign-2026-07-08T021243832.png" alt="PLAIT" className="h-12 w-auto mb-1" />
+            <img src="https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/9dbd7f3cd_logos4.png" alt="PLAIT" className="h-16 w-auto mb-1" />
             <p className="text-sm text-[#525252]">Human strategy. AI velocity.</p>
           </div>
           <div className="flex flex-wrap gap-6 text-sm text-[#525252]">
