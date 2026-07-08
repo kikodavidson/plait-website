@@ -101,19 +101,19 @@ function PlaitViz({ ads, website, attribution }) {
       {/* Labels on the right side, evenly spaced vertically */}
       {/* Ads */}
       <line x1={40 + cx + amp - 2} y1={H * 0.18} x2={40 + cx + amp + 18} y2={H * 0.18} stroke={strandA.color} strokeWidth="1" strokeDasharray="3 2" />
-      <text x={40 + cx + amp + 22} y={H * 0.18 + 4} textAnchor="start" fontSize="9" fontWeight="700" fill={strandA.color} fontFamily="Mont, sans-serif" letterSpacing="0.08em">
+      <text x={40 + cx + amp + 22} y={H * 0.18 + 4} textAnchor="start" fontSize="9" fontWeight="700" fill={strandA.color} fontFamily="Inter, sans-serif" letterSpacing="0.08em">
         ADS
       </text>
 
       {/* Attribution */}
       <line x1={40 + cx - amp + 2} y1={H * 0.5} x2={40 + cx - amp - 18} y2={H * 0.5} stroke={strandB.color} strokeWidth="1" strokeDasharray="3 2" />
-      <text x={40 + cx - amp - 22} y={H * 0.5 + 4} textAnchor="end" fontSize="9" fontWeight="700" fill={strandB.color} fontFamily="Mont, sans-serif" letterSpacing="0.08em">
+      <text x={40 + cx - amp - 22} y={H * 0.5 + 4} textAnchor="end" fontSize="9" fontWeight="700" fill={strandB.color} fontFamily="Inter, sans-serif" letterSpacing="0.08em">
         ATTRIBUTION
       </text>
 
       {/* Website */}
       <line x1={40 + cx + amp - 2} y1={H * 0.8} x2={40 + cx + amp + 18} y2={H * 0.8} stroke={strandC.color} strokeWidth="1" strokeDasharray="3 2" />
-      <text x={40 + cx + amp + 22} y={H * 0.8 + 4} textAnchor="start" fontSize="9" fontWeight="700" fill={strandC.color} fontFamily="Mont, sans-serif" letterSpacing="0.08em">
+      <text x={40 + cx + amp + 22} y={H * 0.8 + 4} textAnchor="start" fontSize="9" fontWeight="700" fill={strandC.color} fontFamily="Inter, sans-serif" letterSpacing="0.08em">
         WEBSITE
       </text>
     </svg>
@@ -213,7 +213,7 @@ export default function PlaitSystem() {
                 <p className="text-xs font-bold uppercase tracking-widest mb-2" style={{ color: state.color }}>
                   {state.label}
                 </p>
-                <p className="text-[#2d2d2d] font-bold text-lg mb-2" style={{ fontFamily: "Mont, sans-serif" }}>
+                <p className="text-[#2d2d2d] font-bold text-lg mb-2" style={{ fontFamily: "Inter, sans-serif" }}>
                   {state.title}
                 </p>
                 <p className="text-[#525252] text-sm leading-relaxed">{state.body}</p>

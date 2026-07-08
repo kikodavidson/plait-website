@@ -197,7 +197,7 @@ export default function CaseStudies() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             <div className="lg:col-span-2">
               <p className="text-xs font-bold text-[#4B87E7] uppercase tracking-widest mb-3">{s.category}</p>
-              <h1 className="font-body text-4xl sm:text-5xl font-bold text-[#2d2d2d] tracking-tight leading-tight mb-8" style={{ fontFamily: 'Mont, sans-serif', letterSpacing: '0.02em' }}>{s.headline}</h1>
+              <h1 className="font-body text-4xl sm:text-5xl font-bold text-[#2d2d2d] tracking-tight leading-tight mb-8" style={{ fontFamily: 'Inter, sans-serif', letterSpacing: '0.02em' }}>{s.headline}</h1>
               {s.sections ? (
                 <div className="space-y-8">
                   {s.sections.map((sec) => (
@@ -248,7 +248,7 @@ export default function CaseStudies() {
         <div className="max-w-6xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <p className="text-xs font-semibold text-[#4B87E7] uppercase tracking-widest mb-4">Case Studies</p>
-            <h1 className="font-body text-6xl sm:text-7xl font-bold text-[#2d2d2d] tracking-tight leading-tight mb-6" style={{ fontFamily: 'Mont, sans-serif', letterSpacing: '0.02em' }}>
+            <h1 className="font-body text-6xl sm:text-7xl font-bold text-[#2d2d2d] tracking-tight leading-tight mb-6" style={{ fontFamily: 'Inter, sans-serif', letterSpacing: '0.02em' }}>
               What Winning<br />Looks Like.
             </h1>
             <p className="text-[#525252] text-lg max-w-lg leading-relaxed">

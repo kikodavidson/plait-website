@@ -61,7 +61,7 @@ function VideoCard({ t, index, featured }) {
           </button>
           <div className="absolute bottom-0 left-0 right-0 p-6">
             <p className="text-[#f4f2ee]/60 text-xs font-semibold uppercase tracking-wider mb-1">{t.role}</p>
-            <p className="text-[#f4f2ee] font-bold text-base" style={{ fontFamily: 'Mont, sans-serif', letterSpacing: '0.02em' }}>{t.name}</p>
+            <p className="text-[#f4f2ee] font-bold text-base" style={{ fontFamily: 'Inter, sans-serif', letterSpacing: '0.02em' }}>{t.name}</p>
             <p className="text-[#f4f2ee]/70 text-sm mt-1 leading-relaxed line-clamp-2">"{t.preview}"</p>
           </div>
         </>
@@ -84,7 +84,7 @@ export default function TestimonialsSection() {
           <p className="text-xs font-bold text-[#5E58D5] uppercase tracking-widest mb-3">Testimonials</p>
           <h2
             className="text-4xl sm:text-5xl font-bold text-[#2d2d2d] tracking-tight"
-            style={{ fontFamily: 'Mont, sans-serif', letterSpacing: '0.02em' }}
+            style={{ fontFamily: 'Inter, sans-serif', letterSpacing: '0.02em' }}
           >
             Don't take my word for it.
           </h2>
@@ -110,7 +110,7 @@ export default function TestimonialsSection() {
               className="bg-[#5E58D5] rounded-3xl p-8 flex flex-col justify-between flex-1"
             >
               <Quote className="w-8 h-8 text-indigo-300 mb-4" />
-              <p className="text-[#f4f2ee] text-base font-medium leading-relaxed flex-1 mb-6" style={{ fontFamily: 'Mont, sans-serif', letterSpacing: '0.02em' }}>
+              <p className="text-[#f4f2ee] text-base font-medium leading-relaxed flex-1 mb-6" style={{ fontFamily: 'Inter, sans-serif', letterSpacing: '0.02em' }}>
                 "{writtenTestimonial.quote}"
               </p>
               <div>
