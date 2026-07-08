@@ -35,7 +35,7 @@ export default function WhyPlait() {
               When our clients win,<br />we win.
             </h2>
             <p className="text-[#525252] text-base leading-relaxed max-w-md">
-              The word <em>plait</em> means to braid or interweave. A funnel isn't a series of disconnected tactics — it's a braid. Break one strand and the whole thing unravels. Every case study here is proof that when our clients succeed, so do we.
+              <em>Plait</em>: a single structure formed by interweaving separate strands; stronger than the sum of its parts.
             </p>
           </motion.div>
 
