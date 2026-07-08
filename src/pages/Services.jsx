@@ -20,7 +20,7 @@ const strands = [
       { title: "Messaging that resonates", body: "With people who are new to your brand. Different hooks, content styles, and value props that drive more attention per thousand accounts reached." },
       { title: "An audience you own", body: "Retargeting pools, email lists, and future customers." },
     ],
-    img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=700&h=500&fit=crop",
+    img: "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/bdbd93ba4_pexels-brettjordan-7568297.jpg",
   },
   {
     num: "02",
