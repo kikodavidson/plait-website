@@ -96,12 +96,14 @@ export default function OurProcess() {
               Every engagement starts with an honest conversation. No pitch, no pressure.
             </p>
           </div>
-          <Link
-            to="/contact"
+          <a
+            href="https://calendly.com/luke-plaitgrowth"
+            target="_blank"
+            rel="noopener noreferrer"
             className="btn-gradient shrink-0 inline-flex items-center gap-2 font-bold text-sm px-8 py-4 rounded-full"
           >
             Let's Talk
-          </Link>
+          </a>
         </motion.div>
       </div>
     </div>

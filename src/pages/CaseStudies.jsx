@@ -232,9 +232,9 @@ export default function CaseStudies() {
                   ))}
                 </div>
               </div>
-              <Link to="/contact" className="btn-gradient mt-6 block text-center font-bold px-6 py-3.5 rounded-full text-sm shadow-lg hover:shadow-xl transition-all">
+              <a href="https://calendly.com/luke-plaitgrowth" target="_blank" rel="noopener noreferrer" className="btn-gradient mt-6 block text-center font-bold px-6 py-3.5 rounded-full text-sm shadow-lg hover:shadow-xl transition-all">
                 Get in Touch
-              </Link>
+              </a>
             </div>
           </div>
         </div>

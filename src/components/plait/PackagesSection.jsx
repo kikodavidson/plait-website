@@ -109,16 +109,14 @@ export default function PackagesSection() {
                 </div>
               )}
 
-              <Link
-                to="/contact"
-                className={`inline-flex items-center justify-center gap-2 font-bold text-sm px-6 py-3.5 rounded-full transition-colors ${
-                  pkg.highlight
-                    ? "btn-gradient"
-                    : "btn-gradient"
-                }`}
+              <a
+                href="https://calendly.com/luke-plaitgrowth"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-gradient inline-flex items-center justify-center gap-2 font-bold text-sm px-6 py-3.5 rounded-full transition-colors"
               >
                 {pkg.cta}
-              </Link>
+              </a>
             </motion.div>
           ))}
         </div>

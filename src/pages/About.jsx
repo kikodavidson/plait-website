@@ -73,12 +73,14 @@ export default function About() {
               </div>
             </div>
 
-            <Link
-              to="/contact"
+            <a
+              href="https://calendly.com/luke-plaitgrowth"
+              target="_blank"
+              rel="noopener noreferrer"
               className="btn-gradient inline-flex items-center gap-2 font-semibold px-7 py-4 rounded-full text-sm transition-opacity"
             >
               Work With Me
-            </Link>
+            </a>
           </div>
         </div>
       </div>
@@ -145,12 +147,14 @@ export default function About() {
             <p className="text-[#f4f2ee]/80 text-xl leading-relaxed mb-10">
               I am on a mission to be a light in a crowded industry by helping people bring their ideas to life and scale them into making a real impact on people's lives. I believe winning is found in the margins, and I'm committed to turning ideas into reality through a process that values honesty, creativity, and always looking for the next tactical edge.
             </p>
-            <Link
-              to="/contact"
+            <a
+              href="https://calendly.com/luke-plaitgrowth"
+              target="_blank"
+              rel="noopener noreferrer"
               className="btn-gradient inline-flex items-center gap-2 font-bold text-base px-8 py-4 rounded-full transition-opacity"
             >
               Get in touch
-            </Link>
+            </a>
           </motion.div>
         </div>
       </div>

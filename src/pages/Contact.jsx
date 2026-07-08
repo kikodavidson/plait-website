@@ -43,11 +43,11 @@ export default function Contact() {
             <p className="text-sm font-semibold text-[#2d2d2d] mb-2">Book a time directly</p>
             <p className="text-xs text-[#525252] mb-4">30-minute strategy call, no strings attached.</p>
             <a
-              href="https://calendly.com"
+              href="https://calendly.com/luke-plaitgrowth"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-gradient inline-flex items-center gap-2 text-sm font-semibold px-6 py-3 rounded-full"
-              >
+            >
               Open Calendly
             </a>
           </div>
@@ -162,7 +162,7 @@ export default function Contact() {
                 Grab a free 30-minute strategy call. No pitch, no deck. Just an honest look at your funnel.
               </p>
               <a
-                href="https://calendly.com"
+                href="https://calendly.com/luke-plaitgrowth"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-gradient inline-flex items-center gap-2 text-sm font-semibold px-6 py-3 rounded-full"
