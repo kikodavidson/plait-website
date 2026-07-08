@@ -5,9 +5,9 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Montserrat', 'sans-serif'],
-        body: ['Montserrat', 'sans-serif'],
-        display: ['Montserrat', 'sans-serif'],
+        sans: ['Google Sans Flex', 'sans-serif'],
+        body: ['Google Sans Flex', 'sans-serif'],
+        display: ['Google Sans Flex', 'sans-serif'],
       },
       letterSpacing: {
         'wide': '0.04em',
