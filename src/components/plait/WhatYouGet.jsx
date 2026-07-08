@@ -48,14 +48,14 @@ export default function WhatYouGet() {
         >
           <p className="text-xs font-bold text-[#2d2d2d] uppercase tracking-widest mb-3">What You Get</p>
           <h2
-            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#2d2d2d] tracking-tight leading-[1.1] mb-4"
+            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#2d2d2d] tracking-tight leading-[1.4] sm:leading-[1.1] mb-4"
             style={{ fontFamily: 'Inter, sans-serif' }}
           >
             Turn{" "}
-            <span className="relative inline-block">
+            <span className="relative inline-block pb-2">
               generated attention
               <svg
-                className="absolute -bottom-2 left-0 w-full"
+                className="absolute bottom-0 left-0 w-full"
                 viewBox="0 0 300 12"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
