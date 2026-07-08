@@ -49,7 +49,7 @@ export default function WhatYouGet() {
           <p className="text-xs font-bold text-[#0A0A0A] uppercase tracking-widest mb-3">What You Get</p>
           <h2
             className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#0A0A0A] tracking-tight leading-[1.1] mb-4"
-            style={{ fontFamily: 'Manrope, sans-serif' }}
+            style={{ fontFamily: 'Space Grotesk, sans-serif' }}
           >
             Turn{" "}
             <span className="relative inline-block">
@@ -96,7 +96,7 @@ export default function WhatYouGet() {
                 className="bg-white p-8 flex flex-col gap-4 hover:bg-[#F8F7FF] transition-colors"
               >
                 <div>
-                  <h3 className="font-bold text-[#0A0A0A] text-base mb-1" style={{ fontFamily: 'Manrope, sans-serif' }}>
+                  <h3 className="font-bold text-[#0A0A0A] text-base mb-1" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
                     {item.title}
                   </h3>
                   <p className="text-[#525252] text-sm leading-relaxed">{item.desc}</p>

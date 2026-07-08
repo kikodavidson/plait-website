@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
 
 
 @tailwind base;
@@ -7,8 +7,8 @@
 
 @layer base {
   :root {
-    --font-body: 'Manrope', sans-serif;
-    --font-display: 'Manrope', sans-serif;
+    --font-body: 'Space Grotesk', sans-serif;
+    --font-display: 'Space Grotesk', sans-serif;
 
     --background: 248 100% 99%;
     --foreground: 220 20% 10%;
@@ -55,7 +55,8 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: 'Manrope', sans-serif;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 300;
     -webkit-font-smoothing: antialiased;
     letter-spacing: 0.04em;
   }

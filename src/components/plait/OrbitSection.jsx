@@ -44,7 +44,7 @@ function AccordionItem({ title, desc, index }) {
           </span>
           <span
             className="text-white font-bold text-base group-hover:text-[#4F46E5] transition-colors"
-            style={{ fontFamily: "Manrope, sans-serif", letterSpacing: "0.02em" }}
+            style={{ fontFamily: "Space Grotesk, sans-serif", letterSpacing: "0.02em" }}
           >
             {title}
           </span>
@@ -93,7 +93,7 @@ export default function OrbitSection() {
             </div>
             <h2
               className="text-4xl sm:text-5xl font-bold text-white leading-tight mb-6 font-body"
-              style={{ fontFamily: "Manrope, sans-serif", letterSpacing: "0.02em" }}
+              style={{ fontFamily: "Space Grotesk, sans-serif", letterSpacing: "0.02em" }}
             >
               AI should amplify<br />your thinking.<br />
               <span className="text-[#4F46E5]">Not replace it.</span>
