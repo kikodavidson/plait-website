@@ -53,13 +53,13 @@ function VideoCard({ t, index, featured }) {
           <div className="absolute inset-0 bg-gradient-to-t from-[#2d2d2d]/80 via-[#2d2d2d]/20 to-transparent" />
           <button
             onClick={() => setPlaying(true)}
-            className="absolute inset-0 flex items-center justify-center group"
+            className="absolute inset-0 z-10 flex items-center justify-center group"
           >
             <div className="w-16 h-16 rounded-full bg-[#f4f2ee]/20 backdrop-blur-sm border border-[#f4f2ee]/30 flex items-center justify-center group-hover:bg-[#2d2d2d] group-hover:border-[#2d2d2d] transition-all shadow-xl">
               <Play className="w-6 h-6 text-[#f4f2ee] ml-1" fill="white" />
             </div>
           </button>
-          <div className="absolute bottom-0 left-0 right-0 p-6">
+          <div className="absolute bottom-0 left-0 right-0 p-6 pointer-events-none z-0">
             <p className="text-[#f4f2ee]/60 text-xs font-semibold uppercase tracking-wider mb-1">{t.role}</p>
             <p className="text-[#f4f2ee] font-bold text-base" style={{ fontFamily: 'Inter, sans-serif', letterSpacing: '0.02em' }}>{t.name}</p>
             <p className="text-[#f4f2ee]/70 text-sm mt-1 leading-relaxed line-clamp-2">"{t.preview}"</p>
