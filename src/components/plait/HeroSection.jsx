@@ -181,11 +181,11 @@ export default function HeroSection() {
           <Link
             ref={ctaRef}
             to="/contact"
-            className="btn-gradient inline-flex items-center gap-3 font-bold text-base px-8 py-4 rounded-full shadow-lg group transition-transform duration-300 ease-out"
+            className="btn-gradient inline-flex items-center gap-2 sm:gap-3 font-bold text-sm sm:text-base px-5 sm:px-8 py-3 sm:py-4 rounded-full shadow-lg group transition-transform duration-300 ease-out"
             style={{ willChange: "transform" }}
           >
             See What's Possible
-            <span className="w-7 h-7 bg-white/20 rounded-full flex items-center justify-center group-hover:bg-white/30 transition-colors text-sm">→</span>
+            <span className="w-5 h-5 sm:w-7 sm:h-7 bg-white/20 rounded-full flex items-center justify-center group-hover:bg-white/30 transition-colors text-xs sm:text-sm">→</span>
           </Link>
         </motion.div>
 
