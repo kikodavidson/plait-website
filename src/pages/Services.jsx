@@ -7,116 +7,91 @@ import ServicesBanner from "@/components/plait/ServicesBanner";
 const strands = [
   {
     num: "01",
-    title: "Paid Media",
-    tagline: "Getting attention is easy. Getting profitable attention is harder.",
-    body: "We build, manage, and optimize campaigns across the platforms that matter most. Not just launching ads, but building systems that generate returns and scale without falling apart.",
+    title: "Demand Gen",
+    tagline: "Create attention and pull new audiences in.",
+    body: "Paid media built for long term growth, not a one month spike.",
     deliverables: [
-      "Meta Ads (Facebook & Instagram)",
-      "Google Search & Shopping",
-      "Performance Max",
-      "YouTube Ads",
-      "TikTok Ads",
-      "LinkedIn Ads",
-      "Retargeting",
-      "Creative Testing",
-      "Campaign Audits",
-      "Scaling Strategy",
+      "Creative led testing of hooks, angles & formats",
+      "Audience & channel strategy matched to your buyer",
+      "Budget pacing built toward growth that holds",
+    ],
+    whatYouGet: [
+      { title: "Targeted traffic", body: "From existing, and new audiences." },
+      { title: "Messaging that resonates", body: "With people who are new to your brand. Different hooks, content styles, and value props that drive more attention per thousand accounts reached." },
+      { title: "An audience you own", body: "Retargeting pools, email lists, and future customers." },
     ],
     img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=700&h=500&fit=crop",
   },
   {
     num: "02",
-    title: "Attribution & Analytics",
-    tagline: "You can't improve what you can't see.",
-    body: "Good attribution creates better decisions. Better decisions create better results. Most businesses are flying half-blind because their data stack has gaps nobody fixed. We fix them.",
+    title: "Demand Capture",
+    tagline: "Meet the demand that already exists.",
+    body: "Show up the moment someone is looking, then close them.",
     deliverables: [
-      "GA4 Setup & Audits",
-      "Google Tag Manager",
-      "Meta Pixel & Conversions API",
-      "Server Side Tracking",
-      "Event & Funnel Tracking",
-      "UTM Frameworks",
-      "Custom Conversions",
-      "Dashboard Reporting",
-      "Customer Journey Analysis",
-      "Attribution Audits",
+      "Show up the second someone searches for what you sell, when they're most ready to buy",
+      "Appear in TikTok Search, a new surface most of your competitors haven't touched yet",
+      "Turn one time visitors and past buyers into revenue you don't pay to reacquire",
+    ],
+    whatYouGet: [
+      { title: "Sales from high intent buyers", body: "People already searching for what you sell." },
+      { title: "The fastest payback", body: "Of any channel we run." },
+      { title: "Your brand name defended", body: "Competitors can't pick off people looking for you." },
+      { title: "Repeat purchases through email", body: "Revenue that doesn't need new ad spend." },
     ],
     img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=700&h=500&fit=crop",
   },
   {
     num: "03",
-    title: "Websites & CRO",
-    tagline: "Getting traffic is only half the battle. The website has to do its job too.",
-    body: "More traffic won't fix a broken funnel. We build sites that earn the sale and audit existing ones to find every point of friction between click and conversion.",
+    title: "Conversion Rate Optimization",
+    tagline: "Make every click you already paid for work harder.",
+    body: "Before spending a dollar more.",
     deliverables: [
-      "Shopify Development",
-      "Webflow Development",
-      "WordPress Development",
-      "Landing Pages",
-      "E-Commerce Sites",
-      "CRO Audits",
-      "Checkout Optimization",
-      "Heatmap Analysis",
-      "Funnel Optimization",
-      "A/B Testing Strategy",
+      "Funnel & landing page testing",
+      "Friction & drop off removal",
+      "Message and market fit experiments",
+      "Continuous iteration on what actually converts",
+    ],
+    whatYouGet: [
+      { title: "More visitors turned into customers", body: "From the traffic you already pay for." },
+      { title: "Higher Average Order Values", body: "Bundles, upsells, and post purchase offers, so ROAS climbs without CAC having to move." },
+      { title: "A higher ceiling on scale", body: "When each visitor is worth more, you can pay more for traffic than your competitors and still profit." },
+      { title: "An understanding of why people buy or bounce", body: "Straight answers that sharpen your ads, offers, and email." },
     ],
     img: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=700&h=500&fit=crop",
   },
   {
     num: "04",
-    title: "Creative & Messaging",
-    tagline: "Most ads don't fail because of targeting. They fail because nobody cares.",
-    body: "Creative is a hypothesis. We treat it like one. Platform-native formats, audience-matched angles, hooks built to stop the scroll, not designed in a vacuum.",
+    title: "Attribution",
+    tagline: "The part most agencies can't actually deliver.",
+    body: "Knowing what's working, down to the dollar.",
     deliverables: [
-      "Ad Creative Strategy",
-      "Hook Development",
-      "Angle Development",
-      "UGC Concepts",
-      "Creative Briefs",
-      "Ad Scripts",
-      "Offer Positioning",
-      "Content Strategy",
-      "Customer Research",
+      "Pixel (browser side) setup",
+      "Conversion API (server side) setup",
     ],
-    img: "https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=700&h=500&fit=crop",
+    whatYouGet: [
+      { title: "Visibility into what drives revenue", body: "Budget decisions based on stronger data." },
+      { title: "More complete conversion data", body: "Ad platforms get fuller signals and optimize toward higher quality results." },
+      { title: "Scaling decisions with confidence", body: "Greater accuracy in the numbers you act on." },
+    ],
+    img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=700&h=500&fit=crop",
   },
   {
     num: "05",
-    title: "Copywriting",
-    tagline: "The right words can change performance overnight.",
-    body: "The wrong ones can kill a campaign before it starts. Copy is strategy made visible. Every word earns its place or it doesn't make the cut.",
+    title: "Content & Creative",
+    tagline: "The fuel. Proven frameworks meet creativity.",
+    body: "The place where your brand gets to create a voice for itself. This is where the game is won or lost.",
     deliverables: [
-      "Website Copy",
-      "Landing Page Copy",
-      "Ad Copy",
-      "Sales Pages",
-      "Product Pages",
-      "Email Campaigns",
-      "Offer Development",
-      "Positioning",
-      "Messaging Frameworks",
-      "Voice Of Customer Research",
+      "Content ideation & scroll-stopping hooks",
+      "Unique Value Proposition & angle testing",
+      "Trend & format exploration",
+      "A vetted influencer & creator network to tap into",
     ],
-    img: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=700&h=500&fit=crop",
-  },
-  {
-    num: "06",
-    title: "Strategy & Network",
-    tagline: "Sometimes the answer is ads. Sometimes it isn't.",
-    body: "The best opportunities usually sit where nobody is looking. We help identify the bottleneck, remove it, and connect you to the right people when the right opportunity exists.",
-    deliverables: [
-      "Growth Audits",
-      "Competitive Analysis",
-      "Go-To-Market Planning",
-      "Launch Strategy",
-      "Scaling Roadmaps",
-      "KPI Development",
-      "Investor Introductions",
-      "Creator & Influencer Partnerships",
-      "Strategic Introductions",
-      "Business Development",
+    whatYouGet: [
+      { title: "Content that performs", body: "High engagement creative built to stop the scroll." },
+      { title: "A distinct brand voice", body: "Messaging that stands out in a noisy feed." },
+      { title: "A scalable production process", body: "Systems to keep the creative pipeline full." },
     ],
-    img: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=700&h=500&fit=crop",
+    img: "https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=700&h=500&fit=crop",
   },
 ];
 
@@ -128,10 +103,10 @@ export default function Services() {
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <p className="text-xs font-semibold text-[#2d2d2d] uppercase tracking-widest mb-4">What We Do</p>
             <h1 className="font-body text-6xl sm:text-7xl font-bold text-[#2d2d2d] tracking-tight leading-tight mb-6 max-w-3xl">
-              Most marketing problems aren't caused by one thing.
+              The Plait Growth System.
             </h1>
             <p className="text-[#525252] text-lg max-w-xl leading-relaxed">
-              They're caused by a dozen small issues hiding between your ads, website, analytics, creative, and customer journey. We find those gaps, connect the pieces, and help turn attention into revenue.
+              Five connected services that work together to grow your brand — from generating demand to capturing it, optimizing conversions, attributing results, and creating content that stops the scroll.
             </p>
           </motion.div>
         </div>
@@ -160,8 +135,8 @@ export default function Services() {
       <div className="max-w-6xl mx-auto px-6 pb-16">
         <div className="space-y-24">
           {strands.map((s, i) => (
+            <React.Fragment key={s.num}>
             <motion.div
-              key={s.num}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -189,6 +164,25 @@ export default function Services() {
                 <img src={s.img} alt={s.title} className="w-full h-full object-cover" loading="lazy" />
               </div>
             </motion.div>
+
+            <div className="mt-10">
+              <div className="flex items-center gap-4 mb-6">
+                <span className="text-xs font-bold text-[#4B87E7] uppercase tracking-widest">What Your Brand Will Get</span>
+                <span className="flex-1 h-px bg-gray-100" />
+              </div>
+              <div className={`grid grid-cols-1 ${s.whatYouGet.length === 4 ? "sm:grid-cols-2 lg:grid-cols-4" : "sm:grid-cols-3"} gap-4`}>
+                {s.whatYouGet.map((card) => (
+                  <div
+                    key={card.title}
+                    className="bg-white rounded-2xl border border-gray-100 p-6 hover:shadow-md transition-shadow"
+                  >
+                    <h3 className="font-body font-bold text-[#2d2d2d] text-sm mb-2 leading-tight">{card.title}</h3>
+                    <p className="text-xs text-[#525252] leading-relaxed">{card.body}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+            </React.Fragment>
           ))}
         </div>
 
