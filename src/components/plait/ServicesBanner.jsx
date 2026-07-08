@@ -18,14 +18,20 @@ export default function ServicesBanner() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
-        className="bg-[#2d2d2d] rounded-3xl px-8 py-10"
+        className="bg-[#2d2d2d] rounded-[2rem] px-8 py-10 sm:px-12 sm:py-12"
       >
-        <p className="text-xs font-bold text-[#f4f2ee]/40 uppercase tracking-widest mb-6">Our Services</p>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+        <p className="text-[10px] sm:text-xs font-bold text-[#808080] uppercase tracking-[0.2em] mb-8 sm:mb-10">
+          Our Services
+        </p>
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-x-8 gap-y-8">
           {services.map((s) => (
             <div key={s.num} className="flex flex-col">
-              <span className="text-[#aeb8ee] text-2xl font-bold mb-1 font-body">{s.num}</span>
-              <span className="text-[#f4f2ee] text-sm font-semibold leading-tight">{s.label}</span>
+              <span className="text-[#A2A2E0] text-3xl sm:text-4xl font-bold mb-2 font-body tracking-tight">
+                {s.num}
+              </span>
+              <span className="text-white text-sm font-semibold leading-snug">
+                {s.label}
+              </span>
             </div>
           ))}
         </div>
