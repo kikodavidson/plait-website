@@ -57,7 +57,7 @@ const strands = [
       { title: "A higher ceiling on scale", body: "When each visitor is worth more, you can pay more for traffic than your competitors and still profit." },
       { title: "An understanding of why people buy or bounce", body: "Straight answers that sharpen your ads, offers, and email." },
     ],
-    img: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=700&h=500&fit=crop",
+    img: "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/ffa117f1e_Screenshot2026-07-08at11821AM.png",
   },
   {
     num: "04",
