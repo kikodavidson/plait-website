@@ -38,7 +38,7 @@ const strands = [
       { title: "Your brand name defended", body: "Competitors can't pick off people looking for you." },
       { title: "Repeat purchases through email", body: "Revenue that doesn't need new ad spend." },
     ],
-    img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=700&h=500&fit=crop",
+    img: "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/fee6f40eb_pexels-firmbee-com-22729701-6961857.jpg",
   },
   {
     num: "03",
