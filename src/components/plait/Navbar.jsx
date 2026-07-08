@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Menu } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 
 const links = [
@@ -66,7 +66,7 @@ export default function Navbar() {
         </div>
 
         <button className="md:hidden text-[#0A0A0A]" onClick={() => setOpen(!open)}>
-          {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          {open ? <span className="text-xl font-light leading-none">✕</span> : <Menu className="w-5 h-5" />}
         </button>
       </div>
 
