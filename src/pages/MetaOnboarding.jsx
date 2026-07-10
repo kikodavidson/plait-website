@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Check, Circle } from "lucide-react";
+import { Check, Loader2 } from "lucide-react";
+import { base44 } from "@/api/base44Client";
+import { useToast } from "@/components/ui/use-toast";
 
 const sections = [
   {
@@ -81,9 +83,34 @@ function StepRow({ step, checked, onToggle, sectionComplete }) {
 }
 
 export default function MetaOnboarding() {
+  const { toast } = useToast();
   const [checked, setChecked] = useState({});
+  const [formLoading, setFormLoading] = useState(false);
+  const [formSubmitted, setFormSubmitted] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "Let us know when you're finished or if there's any area you need help completing.",
+  });
 
   const toggle = (id) => setChecked((prev) => ({ ...prev, [id]: !prev[id] }));
+
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    setFormLoading(true);
+    try {
+      await base44.entities.ContactInquiry.create({
+        name: formData.name,
+        email: formData.email,
+        message: formData.message,
+        service_interest: "other",
+      });
+      setFormSubmitted(true);
+    } catch {
+      toast({ title: "Something went wrong. Please try again.", variant: "destructive" });
+    }
+    setFormLoading(false);
+  };
 
   const allSteps = sections.flatMap((s) => s.steps);
   const doneCount = allSteps.filter((s) => checked[s.id]).length;
@@ -160,26 +187,69 @@ export default function MetaOnboarding() {
         })}
       </div>
 
-      {/* Bottom CTA */}
+      {/* Completion Form */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
-        className="max-w-3xl mx-auto mt-16 bg-[#2d2d2d] rounded-3xl p-10 text-center"
+        className="max-w-3xl mx-auto mt-16 bg-white border border-gray-100 rounded-3xl p-10 shadow-sm"
       >
-        <h3 className="font-body text-3xl font-bold text-[#f4f2ee] mb-3">Need help with any step?</h3>
-        <p className="text-[#f4f2ee]/60 text-sm mb-6 leading-relaxed">
-          If you get stuck at any point, reach out and we'll walk you through it.
+        <h3 className="font-body text-3xl font-bold text-[#2d2d2d] mb-3">All done? Let us know.</h3>
+        <p className="text-[#525252] text-sm mb-8 leading-relaxed">
+          Send us a quick message when you've finished the checklist, or if there's any area you need help completing.
         </p>
-        <a
-          href="https://calendly.com/luke-plaitgrowth"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="btn-gradient inline-flex items-center gap-2 font-bold text-sm px-7 py-3.5 rounded-full"
-        >
-          Book a Setup Call
-        </a>
+        {formSubmitted ? (
+          <div className="flex flex-col items-center justify-center py-10 text-center">
+            <div className="w-12 h-12 rounded-full bg-green-50 border border-green-200 flex items-center justify-center mb-4">
+              <Check className="w-6 h-6 text-green-500" strokeWidth={3} />
+            </div>
+            <p className="font-semibold text-[#2d2d2d] text-lg">Message sent!</p>
+            <p className="text-[#525252] text-sm mt-1">We'll be in touch with you shortly.</p>
+          </div>
+        ) : (
+          <form onSubmit={handleFormSubmit} className="space-y-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <input
+                type="text"
+                required
+                placeholder="Your name"
+                value={formData.name}
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                className="w-full px-4 py-3 rounded-full border border-gray-200 bg-white text-sm text-[#2d2d2d] focus:outline-none focus:border-[#2d2d2d] transition-colors"
+              />
+              <input
+                type="email"
+                required
+                placeholder="Your email"
+                value={formData.email}
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                className="w-full px-4 py-3 rounded-full border border-gray-200 bg-white text-sm text-[#2d2d2d] focus:outline-none focus:border-[#2d2d2d] transition-colors"
+              />
+            </div>
+            <textarea
+              required
+              rows={4}
+              value={formData.message}
+              onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+              className="w-full px-4 py-3 rounded-2xl border border-gray-200 bg-white text-sm text-[#2d2d2d] focus:outline-none focus:border-[#2d2d2d] transition-colors resize-none"
+            />
+            <button
+              type="submit"
+              disabled={formLoading}
+              className="btn-gradient inline-flex items-center gap-2 font-bold text-sm px-7 py-3.5 rounded-full disabled:opacity-60"
+            >
+              {formLoading ? (
+                <>
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                  Sending...
+                </>
+              ) : (
+                "Send Message"
+              )}
+            </button>
+          </form>
+        )}
       </motion.div>
     </div>
   );
