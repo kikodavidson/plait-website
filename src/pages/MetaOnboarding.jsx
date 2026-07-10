@@ -44,7 +44,7 @@ const sections = [
     goal: "Set up and verify conversion tracking to measure performance.",
     steps: [
       { id: "4.1", task: "Create Meta Pixel", description: "Business Settings → Data Sources → Pixels → Create.", responsibility: "You" },
-      { id: "4.2", task: "Add Pixel to Website", description: "Use Shopify, GTM, or manual code.", responsibility: "Developer" },
+      { id: "4.2", task: "Add Pixel to Website", description: "Use Shopify, GTM, or manual code.", responsibility: "You / Developer" },
       { id: "4.3", task: "Verify Pixel Firing", description: "Use Meta Pixel Helper Chrome Extension.", responsibility: "Marketing Team" },
       { id: "4.4", task: "Domain Verification", description: "Business Settings → Brand Safety → Domains → Add domain + add TXT record in DNS.", responsibility: "You" },
       { id: "4.5", task: "Configure Aggregated Events", description: "Events Manager → Select pixel → Configure Web Events → Rank top 8 conversion events.", responsibility: "Dev / Marketing Team" },
