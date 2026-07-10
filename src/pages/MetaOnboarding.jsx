@@ -91,7 +91,7 @@ export default function MetaOnboarding() {
   const progress = Math.round((doneCount / total) * 100);
 
   return (
-    <div className="min-h-screen pt-28 pb-24 px-6">
+    <div className="min-h-screen pt-40 pb-24 px-6">
       {/* Header */}
       <div className="max-w-3xl mx-auto mb-12">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
