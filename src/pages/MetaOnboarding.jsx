@@ -95,7 +95,6 @@ export default function MetaOnboarding() {
       {/* Header */}
       <div className="max-w-3xl mx-auto mb-12">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-          <p className="text-xs font-bold text-[#2d2d2d] uppercase tracking-widest mb-3">Meta Ads Setup</p>
           <h1 className="font-body text-5xl sm:text-6xl font-bold text-[#2d2d2d] tracking-tight leading-tight mb-4">
             Meta Business Manager Onboarding Checklist.
           </h1>
