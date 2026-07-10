@@ -6,7 +6,7 @@ const sections = [
   {
     num: "01",
     emoji: "🟦",
-    title: "Meta Business Manager Onboarding Checklist",
+    title: "Account Creation",
     goal: "Create the Meta Business Account and verify business details.",
     steps: [
       { id: "1.1", task: "Create Meta Business Account", description: "Go to business.facebook.com/create, log in with Facebook profile, and name the business." },
@@ -97,11 +97,8 @@ export default function MetaOnboarding() {
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
           <p className="text-xs font-bold text-[#2d2d2d] uppercase tracking-widest mb-3">Meta Ads Setup</p>
           <h1 className="font-body text-5xl sm:text-6xl font-bold text-[#2d2d2d] tracking-tight leading-tight mb-4">
-            Onboarding Checklist.
+            Meta Business Manager Onboarding Checklist.
           </h1>
-          <p className="text-[#525252] text-lg leading-relaxed max-w-xl">
-            Your step-by-step guide to getting fully set up on Meta Ads. Work through each section in order — tick items off as you go.
-          </p>
         </motion.div>
 
         {/* Progress bar */}
