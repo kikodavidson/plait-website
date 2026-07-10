@@ -14,6 +14,7 @@ import Contact from './pages/Contact';
 import CaseStudies from './pages/CaseStudies';
 import OurProcess from './pages/OurProcess';
 import Industries from './pages/Industries';
+import MetaOnboarding from './pages/MetaOnboarding';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -45,6 +46,7 @@ const AuthenticatedApp = () => {
         <Route path="/case-studies" element={<CaseStudies />} />
         <Route path="/our-process" element={<OurProcess />} />
         <Route path="/industries" element={<Industries />} />
+        <Route path="/meta-onboarding" element={<MetaOnboarding />} />
       </Route>
       <Route path="*" element={<PageNotFound />} />
     </Routes>
