@@ -6,7 +6,7 @@ const sections = [
   {
     num: "01",
     emoji: "🟦",
-    title: "Account Creation",
+    title: "Meta Business Manager Onboarding Checklist",
     goal: "Create the Meta Business Account and verify business details.",
     steps: [
       { id: "1.1", task: "Create Meta Business Account", description: "Go to business.facebook.com/create, log in with Facebook profile, and name the business." },
@@ -52,16 +52,17 @@ const sections = [
   },
 ];
 
-function StepRow({ step, checked, onToggle }) {
+function StepRow({ step, checked, onToggle, sectionComplete }) {
+  const greenBg = sectionComplete && checked;
   return (
     <div
       className={`flex items-start gap-4 p-4 rounded-2xl border cursor-pointer transition-all ${
-        checked ? "bg-[#f4f2ee] border-gray-200" : "bg-white border-gray-100 hover:border-gray-200 hover:shadow-sm"
+        greenBg ? "bg-green-50 border-green-200" : checked ? "bg-[#f4f2ee] border-gray-200" : "bg-white border-gray-100 hover:border-gray-200 hover:shadow-sm"
       }`}
       onClick={onToggle}
     >
       <div className={`mt-0.5 w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 transition-colors ${
-        checked ? "bg-[#2d2d2d] border-[#2d2d2d]" : "border-gray-300"
+        greenBg ? "bg-green-500 border-green-500" : checked ? "bg-[#2d2d2d] border-[#2d2d2d]" : "border-gray-300"
       }`}>
         {checked && <Check className="w-3 h-3 text-white" strokeWidth={3} />}
       </div>
@@ -142,9 +143,6 @@ export default function MetaOnboarding() {
                 </div>
                 <div>
                   <h2 className="font-body text-2xl font-bold text-[#2d2d2d] tracking-tight leading-tight">{section.title}</h2>
-                  <p className="text-sm text-[#525252] mt-0.5">
-                    <span className="font-semibold text-[#2d2d2d]">Goal:</span> {section.goal}
-                  </p>
                 </div>
                 <div className="ml-auto text-xs font-semibold text-[#525252] shrink-0 pt-1">
                   {sectionDone}/{section.steps.length}
@@ -157,6 +155,7 @@ export default function MetaOnboarding() {
                     step={step}
                     checked={!!checked[step.id]}
                     onToggle={() => toggle(step.id)}
+                    sectionComplete={sectionDone === section.steps.length}
                   />
                 ))}
               </div>
