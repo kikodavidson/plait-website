@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { base44 } from "@/api/base44Client";
-import { Loader2, Clock, ArrowRight } from "lucide-react";
+import { Loader2 } from "lucide-react";
 import BlogCard from "@/components/blog/BlogCard";
+import BlogFeaturedSection from "@/components/blog/BlogFeaturedSection";
 
 const CATEGORIES = ["All", "Growth", "Analytics", "Paid Media", "Conversion", "Strategy", "Case Studies"];
 
@@ -36,17 +37,14 @@ export default function Blog() {
     load();
   }, []);
 
-  const filtered = posts.filter((p) => activeCategory === "All" || p.category === activeCategory);
+  const secondaryPosts = posts.slice(0, 2);
+  const secondaryIds = new Set(secondaryPosts.map((p) => p.id));
+  const filtered = posts.filter((p) => !secondaryIds.has(p.id) && (activeCategory === "All" || p.category === activeCategory));
   const sorted = [...filtered].sort((a, b) => {
     const da = new Date(a.published_date || a.created_date || 0).getTime();
     const db = new Date(b.published_date || b.created_date || 0).getTime();
     return sortBy === "-published_date" ? db - da : da - db;
   });
-
-  const fmtDate = (d) => {
-    if (!d) return "";
-    return new Date(d).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
-  };
 
   return (
     <div className="pt-40 pb-24 relative">
@@ -67,51 +65,11 @@ export default function Blog() {
           transition={{ duration: 0.6 }}
           className="bg-white shadow-xl overflow-hidden"
         >
-          {/* Featured hero post */}
-          {featured && (
-            <div className="p-1.5 sm:p-2">
-              <Link to={`/blog/${featured.slug}`} className="group block relative overflow-hidden rounded-xl">
-                <div className="relative aspect-[21/9] sm:aspect-[2.4/1]">
-                <img
-                  src={featured.featured_image}
-                  alt={featured.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
-              </div>
-              <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-10">
-                {featured.category && (
-                  <span className="inline-block bg-black/40 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1.5 mb-4">
-                    {featured.category}
-                  </span>
-                )}
-                <h1 className="font-body text-2xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight mb-3 max-w-2xl">
-                  {featured.title}
-                </h1>
-                <p className="text-white/80 text-sm sm:text-base max-w-xl leading-relaxed mb-4">
-                  {featured.excerpt}
-                </p>
-                <div className="flex items-center gap-3 text-white/90 text-xs sm:text-sm">
-                  <span className="font-semibold">{featured.author || "PLAIT Team"}</span>
-                  <span>•</span>
-                  <span>{fmtDate(featured.published_date)}</span>
-                  {featured.read_time && (
-                    <>
-                      <span>•</span>
-                      <span className="flex items-center gap-1">
-                        <Clock className="w-3 h-3" />
-                        {featured.read_time} min read
-                      </span>
-                    </>
-                  )}
-                </div>
-              </div>
-              </Link>
-            </div>
-          )}
+          {/* Plait Industry Insights — 3-post featured layout */}
+          <BlogFeaturedSection featured={featured} secondaryPosts={secondaryPosts} />
 
           {/* Blog section — flush below hero */}
-          <div className="p-6 sm:p-8">
+          <div id="blog-list" className="p-6 sm:p-8">
             <div className="mb-8">
               <h2 className="font-body text-2xl sm:text-3xl font-bold text-[#2d2d2d] tracking-tight mb-2">
                 Blog
