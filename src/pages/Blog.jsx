@@ -57,8 +57,11 @@ export default function Blog() {
         }}
       />
 
-      {/* Unified white container: hero flush into blog section */}
-      <div className="max-w-6xl mx-auto px-6">
+      {/* Coming Soon badge — overlays entire blog container */}
+      <div className="max-w-6xl mx-auto px-6 relative">
+        <div className="absolute -top-2 right-8 z-30 bg-[#2d2d2d] text-white text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full shadow-lg">
+          Coming Soon
+        </div>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
