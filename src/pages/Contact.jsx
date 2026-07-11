@@ -3,7 +3,7 @@ import { base44 } from "@/api/base44Client";
 import { motion } from "framer-motion";
 import { useToast } from "@/components/ui/use-toast";
 import { Loader2, CheckCircle2 } from "lucide-react";
-import { InlineWidget } from "react-calendly";
+import { Link } from "react-router-dom";
 
 export default function Contact() {
   const { toast } = useToast();
@@ -43,14 +43,12 @@ export default function Contact() {
           <div className="mt-8 bg-[#F8F7FF] border border-indigo-100 rounded-2xl p-6">
             <p className="text-sm font-semibold text-[#2d2d2d] mb-2">Book a time directly</p>
             <p className="text-xs text-[#525252] mb-4">30-minute strategy call, no strings attached.</p>
-            <a
-              href="https://calendly.com/luke-plaitgrowth"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              to="/book"
               className="btn-gradient inline-flex items-center gap-2 text-sm font-semibold px-6 py-3 rounded-full"
             >
-              Open Calendly
-            </a>
+              Book a Call
+            </Link>
           </div>
         </motion.div>
       </div>
@@ -157,17 +155,17 @@ export default function Contact() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            <div className="bg-[#F8F7FF] rounded-3xl border border-indigo-100 p-6 overflow-hidden">
-              <h3 className="font-body text-xl font-bold text-[#2d2d2d] mb-2">Book a strategy call</h3>
-              <p className="text-sm text-[#525252] mb-4 leading-relaxed">
-                Free 30-minute call. No pitch, no deck. Just an honest look at your funnel.
+            <div className="bg-[#F8F7FF] rounded-3xl border border-indigo-100 p-8">
+              <h3 className="font-body text-xl font-bold text-[#2d2d2d] mb-4">Prefer to book direct?</h3>
+              <p className="text-sm text-[#525252] mb-5 leading-relaxed">
+                Grab a free 30-minute strategy call. No pitch, no deck. Just an honest look at your funnel.
               </p>
-              <div className="calendly-inline-widget-wrapper">
-                <InlineWidget
-                  url="https://calendly.com/luke-plaitgrowth"
-                  styles={{ height: "520px" }}
-                />
-              </div>
+              <Link
+                to="/book"
+                className="btn-gradient inline-flex items-center gap-2 text-sm font-semibold px-6 py-3 rounded-full"
+              >
+                Book a Call
+              </Link>
             </div>
 
             <div className="bg-white border border-gray-100 rounded-3xl p-8 space-y-4">

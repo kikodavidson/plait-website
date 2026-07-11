@@ -109,14 +109,12 @@ export default function PackagesSection() {
                 </div>
               )}
 
-              <a
-                href="https://calendly.com/luke-plaitgrowth"
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                to="/book"
                 className="btn-gradient inline-flex items-center justify-center gap-2 font-bold text-sm px-6 py-3.5 rounded-full transition-colors"
               >
                 {pkg.cta}
-              </a>
+              </Link>
             </motion.div>
           ))}
         </div>

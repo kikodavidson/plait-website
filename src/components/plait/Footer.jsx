@@ -16,14 +16,12 @@ export default function Footer() {
             <Link to="/about" className="hover:text-[#0A0A0A] transition-colors">About</Link>
             <Link to="/contact" className="hover:text-[#0A0A0A] transition-colors">Contact</Link>
           </div>
-          <a
-            href="https://calendly.com/luke-plaitgrowth"
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            to="/book"
             className="btn-gradient inline-flex items-center gap-2 text-sm font-semibold px-5 py-2.5 rounded-full"
           >
             Get Started
-          </a>
+          </Link>
         </div>
         <div className="border-t border-gray-100 mt-10 pt-6 text-xs text-[#525252]">
           © {new Date().getFullYear()} PLAIT. Luke Davidson. All rights reserved.

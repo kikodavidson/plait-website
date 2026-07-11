@@ -57,14 +57,12 @@ export default function Navbar() {
 
         {/* CTA — matches Draftr's dark pill "Login now" button */}
         <div className="hidden md:flex items-center gap-3">
-          <a
-            href="https://calendly.com/luke-plaitgrowth"
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            to="/book"
             className="btn-gradient inline-flex items-center gap-2 text-sm font-bold px-5 py-2.5 rounded-full"
           >
             Get Started
-          </a>
+          </Link>
         </div>
 
         <button className="md:hidden text-[#2d2d2d]" onClick={() => setOpen(!open)}>
@@ -86,9 +84,9 @@ export default function Navbar() {
                   {l.label}
                 </Link>
               ))}
-              <a href="https://calendly.com/luke-plaitgrowth" target="_blank" rel="noopener noreferrer" className="mt-2 text-center btn-gradient text-sm font-bold px-5 py-3 rounded-full">
+              <Link to="/book" className="mt-2 text-center btn-gradient text-sm font-bold px-5 py-3 rounded-full">
                 Get in Touch
-              </a>
+              </Link>
             </div>
           </motion.div>
         )}

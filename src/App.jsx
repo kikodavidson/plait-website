@@ -17,6 +17,7 @@ import Industries from './pages/Industries';
 import MetaOnboarding from './pages/MetaOnboarding';
 import TikTokOnboarding from './pages/TikTokOnboarding';
 import GoogleAdsOnboarding from './pages/GoogleAdsOnboarding';
+import Book from './pages/Book';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -51,6 +52,7 @@ const AuthenticatedApp = () => {
         <Route path="/meta-onboarding" element={<MetaOnboarding />} />
         <Route path="/tiktok-onboarding" element={<TikTokOnboarding />} />
         <Route path="/google-ads-onboarding" element={<GoogleAdsOnboarding />} />
+        <Route path="/book" element={<Book />} />
       </Route>
       <Route path="*" element={<PageNotFound />} />
     </Routes>

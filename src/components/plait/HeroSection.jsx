@@ -172,17 +172,15 @@ export default function HeroSection() {
           onMouseMove={handleMagneticMove}
           onMouseLeave={handleMagneticLeave}
         >
-          <a
+          <Link
             ref={ctaRef}
-            href="https://calendly.com/luke-plaitgrowth"
-            target="_blank"
-            rel="noopener noreferrer"
+            to="/book"
             className="btn-hero-gradient inline-flex items-center gap-2 sm:gap-3 font-bold text-sm sm:text-base px-5 sm:px-8 py-3 sm:py-4 rounded-full shadow-lg group transition-transform duration-300 ease-out"
             style={{ willChange: "transform" }}
           >
             See What's Possible
             <span className="w-5 h-5 sm:w-7 sm:h-7 bg-white/20 rounded-full flex items-center justify-center group-hover:bg-white/30 transition-colors text-xs sm:text-sm">→</span>
-          </a>
+          </Link>
         </motion.div>
 
         {/* Stats strip */}
