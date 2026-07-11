@@ -57,7 +57,7 @@ export default function MouseTracer() {
 
       dots.current.forEach((d, i) => {
         const scale = 1 - i / MAX_DOTS;
-        const alpha = scale * 0.4;
+        const alpha = 1;
         const size = d.size * scale;
 
         ctx.globalAlpha = alpha;
