@@ -59,7 +59,7 @@ export default function Blog() {
 
       {/* Coming Soon badge — overlays entire blog container */}
       <div className="max-w-6xl mx-auto px-6 relative">
-        <div className="absolute -top-2 right-8 z-30 bg-[#2d2d2d] text-white text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full shadow-lg">
+        <div className="absolute top-6 left-1/2 -translate-x-1/2 z-30 bg-[#2d2d2d] text-white text-xs font-bold uppercase tracking-widest px-5 py-2 rounded-full shadow-lg">
           Coming Soon
         </div>
         <motion.div
@@ -72,10 +72,10 @@ export default function Blog() {
           <div className="p-6 sm:p-8 pb-0">
             <div className="flex items-end justify-between">
               <div>
-                <h2 className="font-body text-3xl sm:text-4xl lg:text-5xl font-bold text-[#2d2d2d]/20 tracking-tight leading-none mb-3">
+                <h2 className="font-body text-3xl sm:text-4xl lg:text-5xl font-bold text-[#2d2d2d] tracking-tight leading-none mb-3">
                   Plait Industry Insights
                 </h2>
-                <p className="text-[#525252]/30 text-base sm:text-lg max-w-2xl leading-relaxed">
+                <p className="text-[#525252] text-base sm:text-lg max-w-2xl leading-relaxed">
                   Real-world insights from the front lines of marketing.
                 </p>
               </div>
