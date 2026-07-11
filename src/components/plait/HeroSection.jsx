@@ -125,7 +125,7 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="inline-block text-[#2d2d2d] text-xs font-semibold mt-6 mb-10 underline underline-offset-4 decoration-gray-300"
+          className="inline-block text-[#2d2d2d] text-xs font-semibold italic mt-6 mb-10 border-b border-gray-400 pb-0.5"
         >
           Battle Tested Marketing, Enhanced by AI.
         </motion.div>
