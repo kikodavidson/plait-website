@@ -120,15 +120,16 @@ export default function HeroSection() {
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-indigo-200/30 rounded-full blur-3xl pointer-events-none" />
 
       <div className="relative max-w-4xl mx-auto flex flex-col items-center">
-        {/* Pill badge */}
-        <motion.div
+        {/* Subtitle with highlighted tagline */}
+        <motion.p
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="inline-block text-[#2d2d2d] text-xs font-semibold italic mt-6 mb-10 border-b border-gray-400 pb-0.5"
+          className="text-[#525252] text-lg max-w-xl leading-relaxed mt-6 mb-10 font-medium"
         >
-          Battle Tested Marketing, Enhanced by AI.
-        </motion.div>
+          Like couples therapy for your ads, website, attribution, and analytics.{' '}
+          <span className="text-indigo-600 italic font-semibold">Battle Tested Marketing, Enhanced by AI.</span>
+        </motion.p>
 
         {/* Static headline */}
         <motion.h1
@@ -160,16 +161,6 @@ export default function HeroSection() {
             </span>
           </div>
         </div>
-
-        {/* Subtitle */}
-        <motion.p
-          className="text-[#525252] text-lg max-w-xl leading-relaxed mb-10 font-medium"
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.25 }}
-        >
-          Like couples therapy for your ads, website, attribution, and analytics.
-        </motion.p>
 
         {/* CTA */}
         <motion.div
