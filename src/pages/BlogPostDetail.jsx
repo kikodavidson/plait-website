@@ -67,12 +67,6 @@ export default function BlogPostDetail() {
             <ArrowLeft className="w-4 h-4" /> Back to Blog
           </Link>
 
-          {post.category && (
-            <span className="inline-block bg-black/5 text-[#2d2d2d] text-xs font-semibold px-4 py-2 rounded-full mb-5">
-              {post.category}
-            </span>
-          )}
-
           <h1 className="font-body text-3xl sm:text-5xl font-bold text-[#2d2d2d] leading-tight tracking-tight mb-4">
             {post.title}
           </h1>
@@ -95,6 +89,12 @@ export default function BlogPostDetail() {
               </>
             )}
           </div>
+
+          {post.category && (
+            <span className="inline-block bg-black/5 text-[#2d2d2d] text-xs font-semibold px-4 py-2 rounded-full mb-6">
+              {post.category}
+            </span>
+          )}
 
           {post.featured_image && (
             <div className="relative overflow-hidden rounded-3xl mb-10 aspect-[16/9]">
