@@ -55,7 +55,7 @@ export default function Blog() {
         className="absolute inset-0 -z-10 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse 60% 40% at 30% 20%, rgba(90,150,255,0.12), transparent 60%), radial-gradient(ellipse 50% 50% at 80% 70%, rgba(244,100,170,0.10), transparent 60%), radial-gradient(ellipse 50% 40% at 60% 50%, rgba(80,220,190,0.10), transparent 60%)",
+            "radial-gradient(ellipse 60% 40% at 30% 20%, rgba(90,150,255,0.35), transparent 60%), radial-gradient(ellipse 50% 50% at 80% 70%, rgba(244,100,170,0.30), transparent 60%), radial-gradient(ellipse 50% 40% at 60% 50%, rgba(80,220,190,0.28), transparent 60%)",
         }}
       />
 
