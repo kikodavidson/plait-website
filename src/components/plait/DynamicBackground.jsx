@@ -19,7 +19,7 @@ export default function DynamicBackground() {
     const tick = () => {
       const w = canvas.width;
       const h = canvas.height;
-      t += 0.022;
+      t += 0.01;
 
       ctx.clearRect(0, 0, w, h);
 
@@ -28,38 +28,38 @@ export default function DynamicBackground() {
       ctx.fillRect(0, 0, w, h);
 
       const orbs = [
-        // Large blue — sweeps left to right
+        // Large blue — slow horizontal drift
         {
-          x: 0.5 + Math.sin(t * 0.5) * 0.55,
-          y: 0.15 + Math.cos(t * 0.3) * 0.12,
+          x: 0.5 + Math.sin(t * 0.18) * 0.35,
+          y: 0.2 + Math.sin(t * 0.13) * 0.15,
           r: 0.32,
           color: [90, 150, 255, 0.28],
         },
-        // Blue — moves top to bottom
+        // Blue — gentle vertical flow
         {
-          x: 0.15 + Math.cos(t * 0.4) * 0.12,
-          y: 0.5 + Math.sin(t * 0.6) * 0.45,
+          x: 0.2 + Math.sin(t * 0.22) * 0.2,
+          y: 0.5 + Math.cos(t * 0.16) * 0.3,
           r: 0.28,
           color: [60, 180, 255, 0.26],
         },
-        // Mint — diagonal sweep
+        // Mint — slow diagonal
         {
-          x: 0.8 + Math.sin(t * 0.7) * 0.18,
-          y: 0.6 + Math.cos(t * 0.5) * 0.35,
+          x: 0.75 + Math.cos(t * 0.2) * 0.2,
+          y: 0.6 + Math.sin(t * 0.15) * 0.25,
           r: 0.26,
           color: [80, 220, 190, 0.24],
         },
-        // Pink — floats across upper right
+        // Pink — soft upper drift
         {
-          x: 0.7 + Math.cos(t * 0.8) * 0.25,
-          y: 0.2 + Math.sin(t * 0.4) * 0.15,
+          x: 0.65 + Math.sin(t * 0.24) * 0.22,
+          y: 0.25 + Math.cos(t * 0.19) * 0.12,
           r: 0.22,
           color: [244, 100, 170, 0.22],
         },
-        // Lavender — lower left drift
+        // Lavender — lower drift
         {
-          x: 0.2 + Math.sin(t * 0.6) * 0.18,
-          y: 0.8 + Math.cos(t * 0.7) * 0.18,
+          x: 0.3 + Math.cos(t * 0.17) * 0.2,
+          y: 0.75 + Math.sin(t * 0.21) * 0.15,
           r: 0.24,
           color: [170, 110, 255, 0.21],
         },
