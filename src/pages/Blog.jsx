@@ -69,7 +69,7 @@ export default function Blog() {
         >
           {/* Featured hero post */}
           {featured && (
-            <div className="p-6 sm:p-8">
+            <div className="p-3 sm:p-4">
               <Link to={`/blog/${featured.slug}`} className="group block relative overflow-hidden rounded-xl">
                 <div className="relative aspect-[21/9] sm:aspect-[2.4/1]">
                 <img
