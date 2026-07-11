@@ -50,14 +50,6 @@ export default function Blog() {
 
   return (
     <div className="pt-40 pb-24 relative">
-      {/* Background image — covers main content only, not header/footer */}
-      <div
-        className="absolute inset-0 -z-10 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage:
-            "url('https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/540277ea2_pexels-bruno-12179283.jpg')",
-        }}
-      />
 
       {/* Unified white container: hero flush into blog section */}
       <div className="max-w-6xl mx-auto px-6">
@@ -69,7 +61,7 @@ export default function Blog() {
         >
           {/* Featured hero post */}
           {featured && (
-            <div className="p-3 sm:p-4">
+            <div className="p-1.5 sm:p-2">
               <Link to={`/blog/${featured.slug}`} className="group block relative overflow-hidden rounded-xl">
                 <div className="relative aspect-[21/9] sm:aspect-[2.4/1]">
                 <img

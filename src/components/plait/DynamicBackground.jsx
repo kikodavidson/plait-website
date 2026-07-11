@@ -23,8 +23,8 @@ export default function DynamicBackground() {
 
       ctx.clearRect(0, 0, w, h);
 
-      // Pure white base
-      ctx.fillStyle = "#fefefe";
+      // Matte textured black base
+      ctx.fillStyle = "#0a0a0a";
       ctx.fillRect(0, 0, w, h);
 
       const orbs = [
@@ -74,7 +74,7 @@ export default function DynamicBackground() {
         const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, radius);
         grad.addColorStop(0, `rgba(${r},${g},${b},${a})`);
         grad.addColorStop(0.45, `rgba(${r},${g},${b},${a * 0.3})`);
-        grad.addColorStop(1, `rgba(254,254,254,0)`);
+        grad.addColorStop(1, `rgba(10,10,10,0)`);
 
         ctx.fillStyle = grad;
         ctx.beginPath();
