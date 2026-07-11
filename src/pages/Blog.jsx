@@ -69,8 +69,9 @@ export default function Blog() {
         >
           {/* Featured hero post */}
           {featured && (
-            <Link to={`/blog/${featured.slug}`} className="group block relative">
-              <div className="relative aspect-[21/9] sm:aspect-[2.4/1]">
+            <div className="p-6 sm:p-8">
+              <Link to={`/blog/${featured.slug}`} className="group block relative overflow-hidden rounded-xl">
+                <div className="relative aspect-[21/9] sm:aspect-[2.4/1]">
                 <img
                   src={featured.featured_image}
                   alt={featured.title}
@@ -105,7 +106,8 @@ export default function Blog() {
                   )}
                 </div>
               </div>
-            </Link>
+              </Link>
+            </div>
           )}
 
           {/* Blog section — flush below hero */}

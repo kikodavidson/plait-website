@@ -18,7 +18,7 @@ export default function BlogCard({ post, index = 0 }) {
       transition={{ duration: 0.5, delay: index * 0.1 }}
     >
       <Link to={`/blog/${post.slug}`} className="group block">
-        <div className="relative overflow-hidden mb-4 aspect-[16/10]">
+        <div className="relative overflow-hidden rounded-xl mb-4 aspect-[16/10]">
           {post.featured_image ? (
             <img
               src={post.featured_image}
@@ -31,7 +31,7 @@ export default function BlogCard({ post, index = 0 }) {
             </div>
           )}
           {post.category && (
-            <span className="absolute top-4 left-4 bg-black/40 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1.5">
+            <span className="absolute top-4 left-4 bg-black/40 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1.5 rounded-full">
               {post.category}
             </span>
           )}
