@@ -37,7 +37,7 @@ export default function Navbar() {
       <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
         {/* Logo — matches Draftr's bold wordmark */}
         <Link to="/" className="flex items-center gap-2.5">
-          <img src="https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/56e6c8a0d_logos5.png" alt="PLAIT Marketing" className={`h-40 w-auto ${scrolled ? "mix-blend-multiply" : "mix-blend-screen brightness-150"}`} />
+          <img src="https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/56e6c8a0d_logos5.png" alt="PLAIT Marketing" className={`h-40 w-auto ${scrolled ? "mix-blend-multiply" : (location.pathname.startsWith("/blog") ? "brightness-0 invert" : "mix-blend-screen brightness-150")}`} />
         </Link>
 
         {/* Nav links — matches Draftr's minimal center nav */}
