@@ -225,7 +225,7 @@ export default function GoogleAdsOnboarding() {
           className="mt-6"
         >
           <a
-            href="https://support.google.com/google-ads/answer/1722056"
+            href="https://support.google.com/google-ads/answer/6366720?hl=en"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-sm font-semibold text-[#2d2d2d] bg-white border border-gray-200 px-4 py-2.5 rounded-full hover:bg-gray-50 transition-colors"
