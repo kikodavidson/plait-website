@@ -6,6 +6,7 @@ import { useToast } from "@/components/ui/use-toast";
 import OnboardingChatbot from "@/components/OnboardingChatbot";
 
 const STORAGE_KEY = "google_ads_onboarding_checked";
+const SECTION_STORAGE_KEY = "google_ads_onboarding_sections";
 
 const sections = [
   {
@@ -13,6 +14,9 @@ const sections = [
     title: "Create a Google Ads Account",
     subtitle: "Skip if you already have one",
     goal: "Set up your Google Ads account in Expert Mode so you have full control from day one.",
+    conditional: true,
+    toggleLabel: "Already have a Google Ads account?",
+    defaultOpen: true,
     steps: [
       {
         id: "1.1",
@@ -167,6 +171,16 @@ export default function GoogleAdsOnboarding() {
       return {};
     }
   });
+  const [sectionOpen, setSectionOpen] = useState(() => {
+    const defaults = {};
+    sections.forEach((s) => { if (s.conditional) defaults[s.num] = s.defaultOpen ?? true; });
+    try {
+      const saved = JSON.parse(localStorage.getItem(SECTION_STORAGE_KEY));
+      return { ...defaults, ...saved };
+    } catch {
+      return defaults;
+    }
+  });
   const [formLoading, setFormLoading] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [formData, setFormData] = useState({
@@ -179,7 +193,12 @@ export default function GoogleAdsOnboarding() {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(checked));
   }, [checked]);
 
+  useEffect(() => {
+    localStorage.setItem(SECTION_STORAGE_KEY, JSON.stringify(sectionOpen));
+  }, [sectionOpen]);
+
   const toggle = (id) => setChecked((prev) => ({ ...prev, [id]: !prev[id] }));
+  const toggleSection = (num) => setSectionOpen((prev) => ({ ...prev, [num]: !prev[num] }));
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
@@ -198,11 +217,12 @@ export default function GoogleAdsOnboarding() {
     setFormLoading(false);
   };
 
-  const allSteps = sections.flatMap((s) => s.steps);
-  const doneCount = allSteps.filter((s) => checked[s.id]).length;
-  const total = allSteps.length;
-  const progress = Math.round((doneCount / total) * 100);
-  const allDone = doneCount === total;
+  const visibleSections = sections.filter((s) => !s.conditional || sectionOpen[s.num]);
+  const visibleSteps = visibleSections.flatMap((s) => s.steps);
+  const doneCount = visibleSteps.filter((s) => checked[s.id]).length;
+  const total = visibleSteps.length;
+  const progress = total > 0 ? Math.round((doneCount / total) * 100) : 0;
+  const allDone = total > 0 && doneCount === total;
 
   return (
     <div className="min-h-screen pt-40 pb-24 px-6">
@@ -278,6 +298,7 @@ export default function GoogleAdsOnboarding() {
         {sections.map((section, i) => {
           const sectionDone = section.steps.filter((s) => checked[s.id]).length;
           const sectionComplete = sectionDone === section.steps.length;
+          const isOpen = !section.conditional || sectionOpen[section.num];
           return (
             <motion.div
               key={section.num}
@@ -301,21 +322,40 @@ export default function GoogleAdsOnboarding() {
                     <p className="text-xs text-[#525252] mt-1 leading-relaxed">{section.goal}</p>
                   )}
                 </div>
-                <div className="text-xs font-semibold text-[#525252] shrink-0 pt-1">
-                  {sectionDone}/{section.steps.length}
+                {!section.conditional && (
+                  <div className="text-xs font-semibold text-[#525252] shrink-0 pt-1">
+                    {sectionDone}/{section.steps.length}
+                  </div>
+                )}
+              </div>
+
+              {section.conditional && (
+                <div className="pl-14 mb-4">
+                  <button
+                    onClick={() => toggleSection(section.num)}
+                    className="inline-flex items-center gap-2 text-xs font-semibold text-[#525252] hover:text-[#2d2d2d] transition-colors"
+                  >
+                    <div className={`w-9 h-5 rounded-full relative transition-colors ${isOpen ? "bg-[#2d2d2d]" : "bg-gray-300"}`}>
+                      <div className={`absolute top-0.5 w-4 h-4 bg-white rounded-full transition-transform ${isOpen ? "translate-x-4" : "translate-x-0.5"}`} />
+                    </div>
+                    {section.toggleLabel || "Does this apply to you?"}
+                  </button>
                 </div>
-              </div>
-              <div className="space-y-3 pl-14 mt-4">
-                {section.steps.map((step) => (
-                  <StepRow
-                    key={step.id}
-                    step={step}
-                    checked={!!checked[step.id]}
-                    onToggle={() => toggle(step.id)}
-                    sectionComplete={sectionComplete}
-                  />
-                ))}
-              </div>
+              )}
+
+              {isOpen && (
+                <div className="space-y-3 pl-14 mt-4">
+                  {section.steps.map((step) => (
+                    <StepRow
+                      key={step.id}
+                      step={step}
+                      checked={!!checked[step.id]}
+                      onToggle={() => toggle(step.id)}
+                      sectionComplete={sectionComplete}
+                    />
+                  ))}
+                </div>
+              )}
             </motion.div>
           );
         })}
