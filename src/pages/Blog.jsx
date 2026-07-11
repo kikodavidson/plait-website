@@ -110,69 +110,71 @@ export default function Blog() {
         </div>
       )}
 
-      {/* Blog grid section */}
+      {/* Blog grid section — white container over background image */}
       <div className="max-w-6xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="mb-10"
+          className="bg-white rounded-3xl shadow-xl p-8 sm:p-12"
         >
-          <h2 className="font-body text-4xl sm:text-5xl font-bold text-[#2d2d2d] tracking-tight mb-3">
-            Blog
-          </h2>
-          <p className="text-[#525252] text-lg max-w-2xl leading-relaxed">
-            Growth strategies, attribution insights, and playbooks from the front lines of performance marketing.
-          </p>
-        </motion.div>
-
-        {/* Filter bar */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-10">
-          <div className="flex flex-wrap gap-2">
-            {CATEGORIES.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setActiveCategory(cat)}
-                className={`text-sm font-semibold px-4 py-2 rounded-full transition-colors ${
-                  activeCategory === cat
-                    ? "bg-[#2d2d2d] text-white"
-                    : "bg-gray-100 text-[#525252] hover:bg-gray-200"
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
+          <div className="mb-10">
+            <h2 className="font-body text-4xl sm:text-5xl font-bold text-[#2d2d2d] tracking-tight mb-3">
+              Blog
+            </h2>
+            <p className="text-[#525252] text-lg max-w-2xl leading-relaxed">
+              Growth strategies, attribution insights, and playbooks from the front lines of performance marketing.
+            </p>
           </div>
-          <div className="flex items-center gap-2">
-            <span className="text-xs text-[#525252] font-semibold">Sort by:</span>
-            <select
-              value={sortBy}
-              onChange={(e) => setSortBy(e.target.value)}
-              className="text-sm font-semibold text-[#2d2d2d] bg-gray-100 rounded-full px-4 py-2 border-0 focus:outline-none cursor-pointer"
-            >
-              {SORTS.map((s) => (
-                <option key={s.value} value={s.value}>{s.label}</option>
+
+          {/* Filter bar */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-10">
+            <div className="flex flex-wrap gap-2">
+              {CATEGORIES.map((cat) => (
+                <button
+                  key={cat}
+                  onClick={() => setActiveCategory(cat)}
+                  className={`text-sm font-semibold px-4 py-2 rounded-full transition-colors ${
+                    activeCategory === cat
+                      ? "bg-[#2d2d2d] text-white"
+                      : "bg-gray-100 text-[#525252] hover:bg-gray-200"
+                  }`}
+                >
+                  {cat}
+                </button>
               ))}
-            </select>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-xs text-[#525252] font-semibold">Sort by:</span>
+              <select
+                value={sortBy}
+                onChange={(e) => setSortBy(e.target.value)}
+                className="text-sm font-semibold text-[#2d2d2d] bg-gray-100 rounded-full px-4 py-2 border-0 focus:outline-none cursor-pointer"
+              >
+                {SORTS.map((s) => (
+                  <option key={s.value} value={s.value}>{s.label}</option>
+                ))}
+              </select>
+            </div>
           </div>
-        </div>
 
-        {/* Grid */}
-        {loading ? (
-          <div className="flex justify-center py-20">
-            <Loader2 className="w-6 h-6 animate-spin text-[#2d2d2d]" />
-          </div>
-        ) : sorted.length === 0 ? (
-          <div className="text-center py-20">
-            <p className="text-[#525252]">No posts in this category yet. Check back soon.</p>
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {sorted.map((post, i) => (
-              <BlogCard key={post.id} post={post} index={i} />
-            ))}
-          </div>
-        )}
+          {/* Grid */}
+          {loading ? (
+            <div className="flex justify-center py-20">
+              <Loader2 className="w-6 h-6 animate-spin text-[#2d2d2d]" />
+            </div>
+          ) : sorted.length === 0 ? (
+            <div className="text-center py-20">
+              <p className="text-[#525252]">No posts in this category yet. Check back soon.</p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+              {sorted.map((post, i) => (
+                <BlogCard key={post.id} post={post} index={i} />
+              ))}
+            </div>
+          )}
+        </motion.div>
       </div>
     </div>
   );
