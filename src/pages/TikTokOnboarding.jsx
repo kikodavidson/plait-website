@@ -42,7 +42,7 @@ const sections = [
     goal: "Give my agency access through TikTok's partner system. No email invites and no new logins for you, just connect the two Business Centers and share the assets.",
     steps: [
       { id: "3.1", task: "In your Business Center go to Users, then Partners.", owner: "Client" },
-      { id: "3.2", task: "Click Add Partner and enter Plait's Business Center ID: [PLAIT TIKTOK BUSINESS CENTER ID]", owner: "Client" },
+      { id: "3.2", task: "Click Add Partner and enter Plait's Business Center ID: 7661057070241759248", owner: "Client" },
       { id: "3.3", task: "Share assets with the partner: select your Ad Account and your Pixel. If we will run Spark Ads or Shop campaigns, also share your TikTok account and catalog when they exist.", owner: "Client" },
       { id: "3.4", task: "Set the permission level to Admin on each shared asset so I can build, edit, and manage tracking.", owner: "Client" },
       { id: "3.5", task: "I accept the partnership on my end and confirm access is live.", owner: "Luke" },
