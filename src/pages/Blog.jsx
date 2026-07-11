@@ -50,6 +50,14 @@ export default function Blog() {
 
   return (
     <div className="pt-40 pb-24 relative">
+      {/* Local color boost — brightens the animated hues on this page */}
+      <div
+        className="absolute inset-0 -z-10 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse 60% 40% at 30% 20%, rgba(90,150,255,0.12), transparent 60%), radial-gradient(ellipse 50% 50% at 80% 70%, rgba(244,100,170,0.10), transparent 60%), radial-gradient(ellipse 50% 40% at 60% 50%, rgba(80,220,190,0.10), transparent 60%)",
+        }}
+      />
 
       {/* Unified white container: hero flush into blog section */}
       <div className="max-w-6xl mx-auto px-6">
@@ -103,18 +111,18 @@ export default function Blog() {
           )}
 
           {/* Blog section — flush below hero */}
-          <div className="p-8 sm:p-12">
-            <div className="mb-10">
-              <h2 className="font-body text-2xl sm:text-3xl font-bold text-[#2d2d2d] tracking-tight mb-3">
+          <div className="p-6 sm:p-8">
+            <div className="mb-8">
+              <h2 className="font-body text-2xl sm:text-3xl font-bold text-[#2d2d2d] tracking-tight mb-2">
                 Blog
               </h2>
-              <p className="text-[#525252] text-lg max-w-2xl leading-relaxed">
+              <p className="text-[#525252] text-base max-w-2xl leading-relaxed">
                 Growth strategies, attribution insights, and playbooks from the front lines of performance marketing.
               </p>
             </div>
 
             {/* Filter bar */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-10">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
               <div className="flex flex-wrap gap-x-6 gap-y-2">
                 {CATEGORIES.map((cat) => (
                   <button
@@ -154,7 +162,7 @@ export default function Blog() {
                 <p className="text-[#525252]">No posts in this category yet. Check back soon.</p>
               </div>
             ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {sorted.map((post, i) => (
                   <BlogCard key={post.id} post={post} index={i} />
                 ))}
