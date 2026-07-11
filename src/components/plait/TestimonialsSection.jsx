@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Play, Quote } from "lucide-react";
 
@@ -8,7 +8,7 @@ const videoTestimonials = [
     name: "Brett S.",
     role: "Founder, Ivy Dating",
     thumbnail: "https://img.youtube.com/vi/tNLtESXCu88/maxresdefault.jpg",
-    watchUrl: "https://www.youtube.com/watch?v=tNLtESXCu88",
+    embedUrl: "https://www.youtube.com/embed/tNLtESXCu88?autoplay=1&rel=0",
     preview: "He's blown up my business and handled the areas that I haven't been too sure about.",
   },
   {
@@ -16,7 +16,7 @@ const videoTestimonials = [
     name: "Hudson G.",
     role: "Founder, HG Training",
     thumbnail: "https://img.youtube.com/vi/8OaMt_uDJmQ/maxresdefault.jpg",
-    watchUrl: "https://www.youtube.com/watch?v=8OaMt_uDJmQ",
+    embedUrl: "https://www.youtube.com/embed/8OaMt_uDJmQ?autoplay=1&rel=0",
     preview: "The revenue that started coming in after Luke started helping with my marketing was unbelievable.",
   },
 ];
@@ -28,30 +28,44 @@ const writtenTestimonial = {
 };
 
 function VideoCard({ t, index, featured }) {
+  const [playing, setPlaying] = useState(false);
+
   return (
-    <motion.a
-      href={t.watchUrl}
-      target="_blank"
-      rel="noopener noreferrer"
+    <motion.div
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.12 }}
-      className="relative rounded-3xl overflow-hidden shadow-xl aspect-video block group cursor-pointer"
+      className="relative rounded-3xl overflow-hidden shadow-xl aspect-video"
     >
-      <img src={t.thumbnail} alt={t.name} className="w-full h-full object-cover" />
-      <div className="absolute inset-0 bg-gradient-to-t from-[#2d2d2d]/80 via-[#2d2d2d]/20 to-transparent" />
-      <div className="absolute inset-0 z-10 flex items-center justify-center">
-        <div className="w-16 h-16 rounded-full bg-[#f4f2ee]/20 backdrop-blur-sm border border-[#f4f2ee]/30 flex items-center justify-center group-hover:bg-[#2d2d2d] group-hover:border-[#2d2d2d] transition-all shadow-xl">
-          <Play className="w-6 h-6 text-[#f4f2ee] ml-1" fill="white" />
-        </div>
-      </div>
-      <div className="absolute bottom-0 left-0 right-0 p-6 pointer-events-none z-0">
-        <p className="text-[#f4f2ee]/60 text-xs font-semibold uppercase tracking-wider mb-1">{t.role}</p>
-        <p className="text-[#f4f2ee] font-bold text-base" style={{ fontFamily: 'Inter, sans-serif', letterSpacing: '0.02em' }}>{t.name}</p>
-        <p className="text-[#f4f2ee]/70 text-sm mt-1 leading-relaxed line-clamp-2">"{t.preview}"</p>
-      </div>
-    </motion.a>
+      {playing ? (
+        <iframe
+          src={t.embedUrl}
+          className="w-full h-full"
+          allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+          allowFullScreen
+          title={t.name}
+        />
+      ) : (
+        <>
+          <img src={t.thumbnail} alt={t.name} className="w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#2d2d2d]/80 via-[#2d2d2d]/20 to-transparent" />
+          <button
+            onClick={() => setPlaying(true)}
+            className="absolute inset-0 z-10 flex items-center justify-center group"
+          >
+            <div className="w-16 h-16 rounded-full bg-[#f4f2ee]/20 backdrop-blur-sm border border-[#f4f2ee]/30 flex items-center justify-center group-hover:bg-[#2d2d2d] group-hover:border-[#2d2d2d] transition-all shadow-xl">
+              <Play className="w-6 h-6 text-[#f4f2ee] ml-1" fill="white" />
+            </div>
+          </button>
+          <div className="absolute bottom-0 left-0 right-0 p-6 pointer-events-none z-0">
+            <p className="text-[#f4f2ee]/60 text-xs font-semibold uppercase tracking-wider mb-1">{t.role}</p>
+            <p className="text-[#f4f2ee] font-bold text-base" style={{ fontFamily: 'Inter, sans-serif', letterSpacing: '0.02em' }}>{t.name}</p>
+            <p className="text-[#f4f2ee]/70 text-sm mt-1 leading-relaxed line-clamp-2">"{t.preview}"</p>
+          </div>
+        </>
+      )}
+    </motion.div>
   );
 }
 
