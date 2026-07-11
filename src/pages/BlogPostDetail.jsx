@@ -63,12 +63,12 @@ export default function BlogPostDetail() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <Link to="/blog" className="inline-flex items-center gap-2 text-sm font-semibold text-[#525252] hover:text-[#2d2d2d] mb-6 transition-colors">
-            <ArrowLeft className="w-4 h-4" /> Blog
+          <Link to="/blog" className="inline-flex items-center gap-2 text-sm font-semibold text-[#525252] hover:text-[#2d2d2d] mb-5 transition-colors">
+            <ArrowLeft className="w-4 h-4" /> Back to Blog
           </Link>
 
           {post.category && (
-            <span className="inline-block bg-black/5 text-[#2d2d2d] text-xs font-semibold px-3 py-1.5 rounded-full mb-4">
+            <span className="inline-block bg-black/5 text-[#2d2d2d] text-xs font-semibold px-4 py-2 rounded-full mb-5">
               {post.category}
             </span>
           )}
