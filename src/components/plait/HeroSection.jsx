@@ -158,9 +158,9 @@ export default function HeroSection() {
           transition={{ duration: 0.6, delay: 0.25 }}
           className="text-[#525252] text-lg max-w-xl leading-relaxed mb-10 font-medium"
         >
-          Like couples therapy for your ads, website, attribution, and analytics.{' '}
+          Like couples therapy for your ads, website, attribution, and analytics. Plait uses{' '}
           <span
-            className="italic font-semibold hero-text-gradient"
+            className="italic font-semibold"
             style={{
               background: 'linear-gradient(90deg, #4F46E5 0%, #38BDF8 100%)',
               WebkitBackgroundClip: 'text',
@@ -168,7 +168,7 @@ export default function HeroSection() {
               WebkitTextFillColor: 'transparent',
             }}
           >
-            Plait uses Battle Tested Marketing, Enhanced by AI.
+            Battle Tested Marketing, Enhanced by AI.
           </span>
         </motion.p>
 
