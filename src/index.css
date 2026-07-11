@@ -114,10 +114,10 @@ html {
   opacity: 1;
 }
 
-/* Hero gradient button — pastel lavender to mint */
+/* Hero gradient button — indigo to blue */
 .btn-hero-gradient {
-  background: linear-gradient(90deg, #D1D8F4 0%, #D0F4D8 100%);
-  color: #333333;
+  background: linear-gradient(90deg, #6366F1 0%, #3B82F6 100%);
+  color: #ffffff;
   font-weight: 700;
 }
 .btn-hero-gradient:hover {
