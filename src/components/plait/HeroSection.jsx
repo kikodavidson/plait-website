@@ -184,7 +184,7 @@ export default function HeroSection() {
             href="https://calendly.com/luke-plaitgrowth"
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-gradient inline-flex items-center gap-2 sm:gap-3 font-bold text-sm sm:text-base px-5 sm:px-8 py-3 sm:py-4 rounded-full shadow-lg group transition-transform duration-300 ease-out"
+            className="btn-hero-gradient inline-flex items-center gap-2 sm:gap-3 font-bold text-sm sm:text-base px-5 sm:px-8 py-3 sm:py-4 rounded-full shadow-lg group transition-transform duration-300 ease-out"
             style={{ willChange: "transform" }}
           >
             See What's Possible

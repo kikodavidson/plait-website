@@ -103,17 +103,25 @@ html {
 .shadow-xl { box-shadow: 0 20px 60px -12px rgba(45, 45, 45, 0.10); }
 .shadow-2xl { box-shadow: 0 25px 70px -15px rgba(45, 45, 45, 0.12); }
 
-/* Gradient button utility — desaturated */
+/* Black button utility */
 .btn-gradient {
-  background: linear-gradient(135deg, #5BA8F5 0%, #3B8FE0 50%, #2476CC 100%);
+  background: #2d2d2d;
   color: #ffffff;
-  border: 2px solid rgba(59, 143, 224, 0.4);
-  outline: 1px solid rgba(59, 143, 224, 0.2);
   font-weight: 700;
 }
 .btn-gradient:hover {
-  background: linear-gradient(135deg, #3B8FE0 0%, #2476CC 50%, #1A63B8 100%);
+  background: #1a1a1a;
   opacity: 1;
+}
+
+/* Hero gradient button — pastel lavender to mint */
+.btn-hero-gradient {
+  background: linear-gradient(90deg, #D1D8F4 0%, #D0F4D8 100%);
+  color: #333333;
+  font-weight: 700;
+}
+.btn-hero-gradient:hover {
+  opacity: 0.9;
 }
 
 
