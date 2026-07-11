@@ -89,7 +89,7 @@ export default function HeroSection() {
     let timeout;
 
     if (!isDeleting && displayText === word) {
-      timeout = setTimeout(() => setIsDeleting(true), 1400);
+      timeout = setTimeout(() => setIsDeleting(true), 900);
     } else if (isDeleting && displayText === "") {
       setIsDeleting(false);
       setIndex((i) => (i + 1) % ROTATING.length);
@@ -98,7 +98,7 @@ export default function HeroSection() {
         setDisplayText((prev) =>
           isDeleting ? word.substring(0, prev.length - 1) : word.substring(0, prev.length + 1)
         );
-      }, isDeleting ? 50 : 110);
+      }, isDeleting ? 30 : 60);
     }
 
     return () => clearTimeout(timeout);
