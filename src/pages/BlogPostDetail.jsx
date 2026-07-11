@@ -55,7 +55,7 @@ export default function BlogPostDetail() {
   const related = allPosts.filter((p) => p.id !== post.id && p.category === post.category).slice(0, 3);
 
   return (
-    <div className="pt-28 pb-24">
+    <div className="pt-40 pb-24">
       {/* Hero image */}
       <div className="max-w-4xl mx-auto px-6">
         <motion.div
