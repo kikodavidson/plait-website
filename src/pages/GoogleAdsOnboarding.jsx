@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import { Check, Loader2, ExternalLink, Copy } from "lucide-react";
 import { base44 } from "@/api/base44Client";
 import { useToast } from "@/components/ui/use-toast";
-import OnboardingChatbot from "@/components/OnboardingChatbot";
 
 const STORAGE_KEY = "google_ads_onboarding_checked";
 const SECTION_STORAGE_KEY = "google_ads_onboarding_sections";
@@ -426,7 +425,6 @@ export default function GoogleAdsOnboarding() {
         )}
       </motion.div>
 
-      <OnboardingChatbot />
     </div>
   );
 }
