@@ -209,7 +209,6 @@ export default function GoogleAdsOnboarding() {
       {/* Header */}
       <div className="max-w-3xl mx-auto mb-12">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-          <p className="text-xs font-semibold text-[#2d2d2d] uppercase tracking-widest mb-4">Client Onboarding</p>
           <h1 className="font-body text-5xl sm:text-6xl font-bold text-[#2d2d2d] tracking-tight leading-tight mb-4">
             Google Ads Onboarding Checklist.
           </h1>
