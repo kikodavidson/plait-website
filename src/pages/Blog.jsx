@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { base44 } from "@/api/base44Client";
-import { Loader2 } from "lucide-react";
+import { Loader2, ArrowRight } from "lucide-react";
 import BlogCard from "@/components/blog/BlogCard";
 import BlogFeaturedSection from "@/components/blog/BlogFeaturedSection";
 
@@ -57,6 +57,26 @@ export default function Blog() {
         }}
       />
 
+      {/* Transparent header — sits over the dark page background */}
+      <div className="max-w-6xl mx-auto px-6 mb-8">
+        <div className="flex items-end justify-between">
+          <div>
+            <h2 className="font-body text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-none mb-3">
+              Plait Industry Insights
+            </h2>
+            <p className="text-white/50 text-base sm:text-lg max-w-2xl leading-relaxed">
+              Real-world insights from the front lines of marketing.
+            </p>
+          </div>
+          <a
+            href="#blog-list"
+            className="text-sm font-semibold text-white/50 hover:text-white transition-colors flex items-center gap-1 whitespace-nowrap mb-1"
+          >
+            See all posts <ArrowRight className="w-4 h-4" />
+          </a>
+        </div>
+      </div>
+
       {/* Unified white container: hero flush into blog section */}
       <div className="max-w-6xl mx-auto px-6">
         <motion.div
@@ -65,7 +85,7 @@ export default function Blog() {
           transition={{ duration: 0.6 }}
           className="bg-white shadow-xl overflow-hidden"
         >
-          {/* Plait Industry Insights — 3-post featured layout */}
+          {/* Plait Industry Insights — staggered 3-post featured layout */}
           <BlogFeaturedSection featured={featured} secondaryPosts={secondaryPosts} />
 
           {/* Blog section — flush below hero */}

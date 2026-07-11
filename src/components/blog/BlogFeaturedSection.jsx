@@ -13,25 +13,12 @@ export default function BlogFeaturedSection({ featured, secondaryPosts = [] }) {
 
   return (
     <div className="p-6 sm:p-8">
-      {/* Title row */}
-      <div className="flex items-end justify-between mb-8">
-        <h2 className="font-body text-3xl sm:text-4xl lg:text-5xl font-bold text-[#2d2d2d] tracking-tight leading-none">
-          Plait Industry Insights
-        </h2>
-        <a
-          href="#blog-list"
-          className="text-sm font-semibold text-[#525252] hover:text-[#2d2d2d] transition-colors flex items-center gap-1 whitespace-nowrap mb-1"
-        >
-          See all posts <ArrowRight className="w-4 h-4" />
-        </a>
-      </div>
-
-      {/* 3-post layout: large left card + 2 stacked right cards, equal height */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:h-[460px]">
-        {/* Left large featured card */}
+      {/* Staggered layout: right column starts at top, left card offset down */}
+      <div className="flex flex-col lg:flex-row gap-4">
+        {/* Left large featured card — offset down on desktop for stagger */}
         <Link
           to={`/blog/${featured.slug}`}
-          className="lg:col-span-2 group relative block overflow-hidden rounded-xl h-[300px] lg:h-full"
+          className="group relative block overflow-hidden rounded-xl h-[280px] lg:h-[440px] lg:mt-12 lg:flex-[2]"
         >
           {featured.featured_image ? (
             <img
@@ -74,23 +61,23 @@ export default function BlogFeaturedSection({ featured, secondaryPosts = [] }) {
           </div>
         </Link>
 
-        {/* Right stacked cards — top CTA card (shorter) + bottom image card (taller) */}
-        <div className="flex flex-col gap-4 h-[300px] lg:h-full">
+        {/* Right stacked cards — starts at top, no offset */}
+        <div className="flex flex-col gap-4 lg:flex-1">
           {/* Top right — black CTA card */}
           <Link
             to="/book"
-            className="group relative block overflow-hidden rounded-xl bg-[#0a0a0a] flex-[2] min-h-0"
+            className="group relative block overflow-hidden rounded-xl bg-[#0a0a0a] h-[140px] lg:h-[140px]"
           >
             <div className="absolute inset-0 flex flex-col justify-between p-5">
               <div>
-                <span className="inline-block bg-white/10 text-white/80 text-xs font-semibold px-2.5 py-1 mb-3 rounded-full">
+                <span className="inline-block bg-white/10 text-white/80 text-xs font-semibold px-2.5 py-1 mb-2 rounded-full">
                   CTA
                 </span>
-                <p className="text-white/40 text-[10px] font-bold uppercase tracking-widest mb-2">
+                <p className="text-white/40 text-[10px] font-bold uppercase tracking-widest mb-1">
                   Book a free audit
                 </p>
-                <h4 className="font-body text-base sm:text-lg font-bold text-white leading-snug">
-                  Want to see exactly where your funnel is leaking revenue?
+                <h4 className="font-body text-sm sm:text-base font-bold text-white leading-snug">
+                  Want to see where your funnel is leaking revenue?
                 </h4>
               </div>
               <span className="flex items-center gap-1 text-sm font-semibold text-white group-hover:gap-2 transition-all">
@@ -98,11 +85,11 @@ export default function BlogFeaturedSection({ featured, secondaryPosts = [] }) {
               </span>
             </div>
           </Link>
-          {/* Bottom right — image card (taller) */}
+          {/* Bottom right — image card */}
           {post3 && (
             <Link
               to={`/blog/${post3.slug}`}
-              className="group relative block overflow-hidden rounded-xl flex-[3] min-h-0"
+              className="group relative block overflow-hidden rounded-xl h-[240px] lg:h-[260px]"
             >
               {post3.featured_image ? (
                 <img
