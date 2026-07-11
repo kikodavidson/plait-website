@@ -113,7 +113,7 @@ export default function Blog() {
           {/* Blog section — flush below hero */}
           <div className="p-8 sm:p-12">
             <div className="mb-10">
-              <h2 className="font-body text-4xl sm:text-5xl font-bold text-[#2d2d2d] tracking-tight mb-3">
+              <h2 className="font-body text-2xl sm:text-3xl font-bold text-[#2d2d2d] tracking-tight mb-3">
                 Blog
               </h2>
               <p className="text-[#525252] text-lg max-w-2xl leading-relaxed">
