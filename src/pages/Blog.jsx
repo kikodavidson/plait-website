@@ -49,7 +49,7 @@ export default function Blog() {
   };
 
   return (
-    <div className="pt-28 pb-24 relative">
+    <div className="pt-40 pb-24 relative">
       {/* Background image — covers main content only, not header/footer */}
       <div
         className="absolute inset-0 -z-10 bg-cover bg-center bg-no-repeat"
