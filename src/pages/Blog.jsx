@@ -49,7 +49,16 @@ export default function Blog() {
   };
 
   return (
-    <div className="pt-28 pb-24">
+    <div className="pt-28 pb-24 relative">
+      {/* Fixed full-viewport background image — replace URL with your own */}
+      <div
+        className="fixed inset-0 -z-10 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage:
+            "url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&q=80')",
+        }}
+      />
+
       {/* Featured hero post */}
       {featured && (
         <div className="px-6 mb-20">
