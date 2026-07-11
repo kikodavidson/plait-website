@@ -63,7 +63,7 @@ export default function Navbar() {
             rel="noopener noreferrer"
             className="btn-gradient inline-flex items-center gap-2 text-sm font-bold px-5 py-2.5 rounded-full"
           >
-            Get in Touch
+            Get Started
           </a>
         </div>
 

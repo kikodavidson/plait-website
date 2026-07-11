@@ -22,7 +22,7 @@ export default function Footer() {
             rel="noopener noreferrer"
             className="btn-gradient inline-flex items-center gap-2 text-sm font-semibold px-5 py-2.5 rounded-full"
           >
-            Work With Me
+            Get Started
           </a>
         </div>
         <div className="border-t border-gray-100 mt-10 pt-6 text-xs text-[#525252]">
