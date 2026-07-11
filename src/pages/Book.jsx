@@ -7,7 +7,19 @@ export default function Book() {
   useEffect(() => {
     const handler = (e) => {
       const event = e.data.event;
-      if (event === "calendly.event_scheduled" && window.gtag) {
+      if (!window.gtag) return;
+
+      if (event === "calendly.profile_page_viewed") {
+        window.gtag("event", "calendly_viewed", {
+          event_category: "engagement",
+          event_label: "Calendar Loaded",
+        });
+      } else if (event === "calendly.date_and_time_selected") {
+        window.gtag("event", "calendly_time_selected", {
+          event_category: "engagement",
+          event_label: "Time Slot Picked",
+        });
+      } else if (event === "calendly.event_scheduled") {
         window.gtag("event", "calendly_booked", {
           event_category: "engagement",
           event_label: "Strategy Call Booked",
