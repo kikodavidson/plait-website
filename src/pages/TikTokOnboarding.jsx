@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Check, Loader2, ExternalLink, ChevronDown } from "lucide-react";
+import { Check, Loader2, ExternalLink, Copy } from "lucide-react";
 import { base44 } from "@/api/base44Client";
 import { useToast } from "@/components/ui/use-toast";
 
@@ -42,7 +42,7 @@ const sections = [
     goal: "Give my agency access through TikTok's partner system. No email invites and no new logins for you, just connect the two Business Centers and share the assets.",
     steps: [
       { id: "3.1", task: "In your Business Center go to Users, then Partners.", owner: "Client" },
-      { id: "3.2", task: "Click Add Partner and enter Plait's Business Center ID: 7661057070241759248", owner: "Client" },
+      { id: "3.2", task: "Click Add Partner and enter Plait's Business Center ID:", owner: "Client", copyId: "7661057070241759248" },
       { id: "3.3", task: "Share assets with the partner: select your Ad Account and your Pixel. If we will run Spark Ads or Shop campaigns, also share your TikTok account and catalog when they exist.", owner: "Client" },
       { id: "3.4", task: "Set the permission level to Admin on each shared asset so I can build, edit, and manage tracking.", owner: "Client" },
       { id: "3.5", task: "I accept the partnership on my end and confirm access is live.", owner: "Luke" },
@@ -115,6 +115,14 @@ const SECTION_STORAGE_KEY = "tiktok_onboarding_sections_v1";
 function StepRow({ step, checked, onToggle, sectionComplete }) {
   const isLuke = step.owner === "Luke";
   const greenBg = sectionComplete && checked;
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = (e) => {
+    e.stopPropagation();
+    navigator.clipboard.writeText(step.copyId);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
   return (
     <div
       className={`flex items-start gap-4 p-4 rounded-2xl border cursor-pointer transition-all ${
@@ -137,6 +145,20 @@ function StepRow({ step, checked, onToggle, sectionComplete }) {
             {step.owner}
           </span>
         </div>
+        {step.copyId && (
+          <div className="flex items-center gap-2 mt-2">
+            <code className="text-sm font-mono font-semibold text-[#2d2d2d] bg-gray-100 px-3 py-1 rounded-lg">{step.copyId}</code>
+            <button
+              onClick={handleCopy}
+              className={`inline-flex items-center gap-1 text-xs font-semibold px-3 py-1.5 rounded-full border transition-colors ${
+                copied ? "bg-green-50 border-green-200 text-green-600" : "bg-white border-gray-200 text-[#2d2d2d] hover:bg-gray-50"
+              }`}
+            >
+              {copied ? <Check className="w-3 h-3" strokeWidth={3} /> : <Copy className="w-3 h-3" />}
+              {copied ? "Copied" : "Copy ID"}
+            </button>
+          </div>
+        )}
         {step.links && step.links.length > 0 && (
           <div className="flex flex-wrap gap-2 mt-2">
             {step.links.map((link) => (
