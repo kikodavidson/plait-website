@@ -40,7 +40,7 @@ export default function Book() {
               A fresh set of eyes on your marketing.
             </h1>
             <p className="text-[#525252] text-lg max-w-lg leading-relaxed">
-              Free 30-minute strategy call. No pitch, no deck. Just an honest look at where your funnel is leaking and whether PLAIT can help.
+              We'll spend 30 minutes learning about your business, unpacking your biggest challenges, and seeing if there's an opportunity to grow together.
             </p>
           </motion.div>
         </div>
