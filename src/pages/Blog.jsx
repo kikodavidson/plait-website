@@ -59,7 +59,7 @@ export default function Blog() {
 
       {/* Coming Soon badge — overlays entire blog container */}
       <div className="max-w-6xl mx-auto px-6 relative">
-        <div className="absolute top-6 left-1/2 -translate-x-1/2 z-30 bg-[#2d2d2d] text-white text-xs font-bold uppercase tracking-widest px-5 py-2 rounded-full shadow-lg">
+        <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-30 bg-[#2d2d2d] text-white text-xs font-bold uppercase tracking-widest px-5 py-2 rounded-full shadow-lg">
           Coming Soon
         </div>
         <motion.div
