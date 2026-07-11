@@ -160,9 +160,9 @@ export default function HeroSection() {
         >
           Like couples therapy for your ads, website, attribution, and analytics.{' '}
           <span
-            className="italic font-semibold"
+            className="italic font-semibold hero-text-gradient"
             style={{
-              background: 'linear-gradient(160deg, #2563EB 0%, #1E40AF 100%)',
+              background: 'linear-gradient(90deg, #4F46E5 0%, #38BDF8 100%)',
               WebkitBackgroundClip: 'text',
               backgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
