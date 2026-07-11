@@ -37,7 +37,7 @@ export default function Book() {
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <p className="text-xs font-semibold text-[#2d2d2d] uppercase tracking-widest mb-4">Book a Call</p>
             <h1 className="font-body text-5xl sm:text-6xl font-bold text-[#2d2d2d] tracking-tight leading-tight mb-4">
-              Let's find some time.
+              A fresh set of eyes on your marketing.
             </h1>
             <p className="text-[#525252] text-lg max-w-lg leading-relaxed">
               Free 30-minute strategy call. No pitch, no deck. Just an honest look at where your funnel is leaking and whether PLAIT can help.
