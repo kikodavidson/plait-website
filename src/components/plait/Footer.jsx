@@ -15,6 +15,7 @@ export default function Footer() {
             <Link to="/case-studies" className="hover:text-[#0A0A0A] transition-colors">Case Studies</Link>
             <Link to="/about" className="hover:text-[#0A0A0A] transition-colors">About</Link>
             <Link to="/contact" className="hover:text-[#0A0A0A] transition-colors">Contact</Link>
+            <Link to="/blog" className="hover:text-[#0A0A0A] transition-colors">Blog</Link>
           </div>
           <Link
             to="/book"

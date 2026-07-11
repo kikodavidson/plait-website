@@ -18,6 +18,8 @@ import MetaOnboarding from './pages/MetaOnboarding';
 import TikTokOnboarding from './pages/TikTokOnboarding';
 import GoogleAdsOnboarding from './pages/GoogleAdsOnboarding';
 import Book from './pages/Book';
+import Blog from './pages/Blog';
+import BlogPostDetail from './pages/BlogPostDetail';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -53,6 +55,8 @@ const AuthenticatedApp = () => {
         <Route path="/tiktok-onboarding" element={<TikTokOnboarding />} />
         <Route path="/google-ads-onboarding" element={<GoogleAdsOnboarding />} />
         <Route path="/book" element={<Book />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/blog/:slug" element={<BlogPostDetail />} />
       </Route>
       <Route path="*" element={<PageNotFound />} />
     </Routes>
