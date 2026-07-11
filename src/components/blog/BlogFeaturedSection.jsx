@@ -14,24 +14,24 @@ export default function BlogFeaturedSection({ featured, secondaryPosts = [] }) {
   return (
     <div className="p-6 sm:p-8">
       {/* Title row */}
-      <div className="flex items-center justify-between mb-6">
-        <h2 className="font-body text-2xl sm:text-3xl font-bold text-[#2d2d2d] tracking-tight">
+      <div className="flex items-end justify-between mb-8">
+        <h2 className="font-body text-3xl sm:text-4xl lg:text-5xl font-bold text-[#2d2d2d] tracking-tight leading-none">
           Plait Industry Insights
         </h2>
         <a
           href="#blog-list"
-          className="text-sm font-semibold text-[#525252] hover:text-[#2d2d2d] transition-colors flex items-center gap-1 whitespace-nowrap"
+          className="text-sm font-semibold text-[#525252] hover:text-[#2d2d2d] transition-colors flex items-center gap-1 whitespace-nowrap mb-1"
         >
-          see all posts <ArrowRight className="w-4 h-4" />
+          See all posts <ArrowRight className="w-4 h-4" />
         </a>
       </div>
 
-      {/* 3-post layout: large left card + 2 stacked right cards */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+      {/* 3-post layout: large left card + 2 stacked right cards, equal height */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:h-[460px]">
         {/* Left large featured card */}
         <Link
           to={`/blog/${featured.slug}`}
-          className="lg:col-span-2 group relative block overflow-hidden rounded-xl min-h-[280px] lg:min-h-[440px]"
+          className="lg:col-span-2 group relative block overflow-hidden rounded-xl h-[300px] lg:h-full"
         >
           {featured.featured_image ? (
             <img
@@ -42,7 +42,7 @@ export default function BlogFeaturedSection({ featured, secondaryPosts = [] }) {
           ) : (
             <div className="absolute inset-0 bg-[#1a1a1a]" />
           )}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/10" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
           <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
             {featured.category && (
               <span className="inline-block bg-white/15 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1.5 mb-4 rounded-full">
@@ -74,12 +74,12 @@ export default function BlogFeaturedSection({ featured, secondaryPosts = [] }) {
           </div>
         </Link>
 
-        {/* Right stacked cards */}
-        <div className="flex flex-col gap-4">
+        {/* Right stacked cards — equal height, tight gap */}
+        <div className="flex flex-col gap-4 h-[300px] lg:h-full">
           {post2 && (
             <Link
               to={`/blog/${post2.slug}`}
-              className="group relative block overflow-hidden rounded-xl flex-1 min-h-[200px] lg:min-h-[212px]"
+              className="group relative block overflow-hidden rounded-xl flex-1 min-h-0"
             >
               {post2.featured_image ? (
                 <img
@@ -106,7 +106,7 @@ export default function BlogFeaturedSection({ featured, secondaryPosts = [] }) {
           {post3 && (
             <Link
               to={`/blog/${post3.slug}`}
-              className="group relative block overflow-hidden rounded-xl flex-1 min-h-[200px] lg:min-h-[212px]"
+              className="group relative block overflow-hidden rounded-xl flex-1 min-h-0"
             >
               {post3.featured_image ? (
                 <img
