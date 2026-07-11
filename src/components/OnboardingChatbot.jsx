@@ -13,6 +13,7 @@ export default function OnboardingChatbot() {
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [conversation, setConversation] = useState(null);
+  const [subscribed, setSubscribed] = useState(false);
   const scrollRef = useRef(null);
 
   useEffect(() => {
@@ -20,6 +21,23 @@ export default function OnboardingChatbot() {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
   }, [messages, loading]);
+
+  // Subscribe to the conversation to receive streamed assistant responses
+  useEffect(() => {
+    if (!conversation?.id || subscribed) return;
+
+    const unsubscribe = base44.agents.subscribeToConversation(conversation.id, (data) => {
+      if (data?.messages) {
+        setMessages(data.messages);
+        setLoading(false);
+      }
+    });
+
+    setSubscribed(true);
+    return () => {
+      if (typeof unsubscribe === "function") unsubscribe();
+    };
+  }, [conversation, subscribed]);
 
   const handleSend = async () => {
     const text = input.trim();
@@ -37,18 +55,25 @@ export default function OnboardingChatbot() {
           metadata: { source: "meta_onboarding_page" },
         });
         setConversation(conv);
+
+        // Subscribe immediately after creating
+        base44.agents.subscribeToConversation(conv.id, (data) => {
+          if (data?.messages) {
+            setMessages(data.messages);
+            setLoading(false);
+          }
+        });
+        setSubscribed(true);
       }
 
-      const updated = await base44.agents.addMessage(conv, { role: "user", content: text });
-      setMessages(updated.messages || [{ role: "assistant", content: GREETING }, { role: "user", content: text }]);
+      await base44.agents.addMessage(conv, { role: "user", content: text });
     } catch {
       setMessages((prev) => [
         ...prev,
         { role: "assistant", content: "Something went wrong on my end. Try asking again, or scroll down to the form at the bottom of this page to reach Luke directly." },
       ]);
+      setLoading(false);
     }
-
-    setLoading(false);
   };
 
   const handleKeyDown = (e) => {
@@ -60,7 +85,7 @@ export default function OnboardingChatbot() {
 
   return (
     <>
-      {/* Floating toggle button */}
+      {/* Floating toggle button with label */}
       <AnimatePresence>
         {!open && (
           <motion.button
@@ -68,10 +93,11 @@ export default function OnboardingChatbot() {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
             onClick={() => setOpen(true)}
-            className="fixed bottom-6 left-6 z-50 w-14 h-14 rounded-full bg-[#2d2d2d] text-white flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow"
-            aria-label="Open chat"
+            className="fixed bottom-6 left-6 z-50 bg-[#2d2d2d] text-white flex items-center gap-2.5 shadow-lg hover:shadow-xl transition-all rounded-full pl-4 pr-5 py-3.5"
+            aria-label="Open Plait Onboarding Assistant"
           >
-            <MessageCircle className="w-6 h-6" />
+            <MessageCircle className="w-5 h-5 shrink-0" />
+            <span className="font-bold text-sm whitespace-nowrap">Plait Onboarding Assistant</span>
           </motion.button>
         )}
       </AnimatePresence>
