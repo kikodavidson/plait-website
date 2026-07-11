@@ -50,12 +50,12 @@ export default function Blog() {
 
   return (
     <div className="pt-28 pb-24 relative">
-      {/* Fixed full-viewport background image — replace URL with your own */}
+      {/* Background image — covers main content only, not header/footer */}
       <div
-        className="fixed inset-0 -z-10 bg-cover bg-center bg-no-repeat"
+        className="absolute inset-0 -z-10 bg-cover bg-center bg-no-repeat"
         style={{
           backgroundImage:
-            "url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&q=80')",
+            "url('https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/540277ea2_pexels-bruno-12179283.jpg')",
         }}
       />
 
