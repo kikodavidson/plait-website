@@ -120,17 +120,6 @@ export default function HeroSection() {
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-indigo-200/30 rounded-full blur-3xl pointer-events-none" />
 
       <div className="relative max-w-4xl mx-auto flex flex-col items-center">
-        {/* Subtitle with highlighted tagline */}
-        <motion.p
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="text-[#525252] text-lg max-w-xl leading-relaxed mt-6 mb-10 font-medium"
-        >
-          Like couples therapy for your ads, website, attribution, and analytics.{' '}
-          <span className="text-indigo-600 italic font-semibold">Battle Tested Marketing, Enhanced by AI.</span>
-        </motion.p>
-
         {/* Static headline */}
         <motion.h1
           className="text-[clamp(2.4rem,6.5vw,5rem)] font-bold text-[#2d2d2d] leading-[1.05] tracking-tight mb-0 font-body"
@@ -161,6 +150,27 @@ export default function HeroSection() {
             </span>
           </div>
         </div>
+
+        {/* Subtitle with highlighted tagline */}
+        <motion.p
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.25 }}
+          className="text-[#525252] text-lg max-w-xl leading-relaxed mb-10 font-medium"
+        >
+          Like couples therapy for your ads, website, attribution, and analytics.{' '}
+          <span
+            className="italic font-semibold"
+            style={{
+              background: 'linear-gradient(160deg, #2563EB 0%, #1E40AF 100%)',
+              WebkitBackgroundClip: 'text',
+              backgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+            }}
+          >
+            Plait uses Battle Tested Marketing, Enhanced by AI.
+          </span>
+        </motion.p>
 
         {/* CTA */}
         <motion.div
