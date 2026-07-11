@@ -89,7 +89,7 @@ export default function HeroSection() {
     let timeout;
 
     if (!isDeleting && displayText === word) {
-      timeout = setTimeout(() => setIsDeleting(true), 900);
+      timeout = setTimeout(() => setIsDeleting(true), 1900);
     } else if (isDeleting && displayText === "") {
       setIsDeleting(false);
       setIndex((i) => (i + 1) % ROTATING.length);
