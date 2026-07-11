@@ -57,26 +57,6 @@ export default function Blog() {
         }}
       />
 
-      {/* Transparent header — sits over the dark page background */}
-      <div className="max-w-6xl mx-auto px-6 mb-8">
-        <div className="flex items-end justify-between">
-          <div>
-            <h2 className="font-body text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-none mb-3">
-              Plait Industry Insights
-            </h2>
-            <p className="text-white/50 text-base sm:text-lg max-w-2xl leading-relaxed">
-              Real-world insights from the front lines of marketing.
-            </p>
-          </div>
-          <a
-            href="#blog-list"
-            className="text-sm font-semibold text-white/50 hover:text-white transition-colors flex items-center gap-1 whitespace-nowrap mb-1"
-          >
-            See all posts <ArrowRight className="w-4 h-4" />
-          </a>
-        </div>
-      </div>
-
       {/* Unified white container: hero flush into blog section */}
       <div className="max-w-6xl mx-auto px-6">
         <motion.div
@@ -85,6 +65,26 @@ export default function Blog() {
           transition={{ duration: 0.6 }}
           className="bg-white shadow-xl overflow-hidden"
         >
+          {/* Header — inside white container, semi-transparent for muted glass effect */}
+          <div className="p-6 sm:p-8 pb-0">
+            <div className="flex items-end justify-between">
+              <div>
+                <h2 className="font-body text-3xl sm:text-4xl lg:text-5xl font-bold text-[#2d2d2d]/20 tracking-tight leading-none mb-3">
+                  Plait Industry Insights
+                </h2>
+                <p className="text-[#525252]/30 text-base sm:text-lg max-w-2xl leading-relaxed">
+                  Real-world insights from the front lines of marketing.
+                </p>
+              </div>
+              <a
+                href="#blog-list"
+                className="text-sm font-semibold text-[#525252]/30 hover:text-[#2d2d2d] transition-colors flex items-center gap-1 whitespace-nowrap mb-1"
+              >
+                See all posts <ArrowRight className="w-4 h-4" />
+              </a>
+            </div>
+          </div>
+
           {/* Plait Industry Insights — staggered 3-post featured layout */}
           <BlogFeaturedSection featured={featured} secondaryPosts={secondaryPosts} />
 

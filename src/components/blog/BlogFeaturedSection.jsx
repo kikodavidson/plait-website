@@ -12,7 +12,7 @@ export default function BlogFeaturedSection({ featured, secondaryPosts = [] }) {
   const [post2, post3] = secondaryPosts;
 
   return (
-    <div className="p-6 sm:p-8">
+    <div className="p-6 sm:p-8 pt-6">
       {/* Staggered layout: right column starts at top, left card offset down */}
       <div className="flex flex-col lg:flex-row gap-4">
         {/* Left large featured card — offset down on desktop for stagger */}
