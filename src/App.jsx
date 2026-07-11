@@ -16,6 +16,7 @@ import OurProcess from './pages/OurProcess';
 import Industries from './pages/Industries';
 import MetaOnboarding from './pages/MetaOnboarding';
 import TikTokOnboarding from './pages/TikTokOnboarding';
+import GoogleAdsOnboarding from './pages/GoogleAdsOnboarding';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -49,6 +50,7 @@ const AuthenticatedApp = () => {
         <Route path="/industries" element={<Industries />} />
         <Route path="/meta-onboarding" element={<MetaOnboarding />} />
         <Route path="/tiktok-onboarding" element={<TikTokOnboarding />} />
+        <Route path="/google-ads-onboarding" element={<GoogleAdsOnboarding />} />
       </Route>
       <Route path="*" element={<PageNotFound />} />
     </Routes>
