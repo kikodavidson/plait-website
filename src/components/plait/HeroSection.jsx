@@ -175,16 +175,16 @@ export default function HeroSection() {
           <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4">
             <Link
               to="/services"
-              className="btn-hero-gradient inline-flex items-center gap-2 sm:gap-3 font-bold text-sm sm:text-base px-5 sm:px-8 py-3 sm:py-4 rounded-full shadow-lg group transition-transform duration-300 ease-out"
+              className="inline-flex items-center gap-2 sm:gap-3 font-bold text-sm sm:text-base px-5 sm:px-8 py-3 sm:py-4 rounded-full shadow-lg bg-white text-[#2d2d2d] border border-gray-200 hover:bg-gray-50 transition-colors"
             >
               What We Do
-              <span className="w-5 h-5 sm:w-7 sm:h-7 bg-white/20 rounded-full flex items-center justify-center group-hover:bg-white/30 transition-colors text-xs sm:text-sm">→</span>
             </Link>
             <Link
               to="/book"
-              className="inline-flex items-center gap-2 sm:gap-3 font-bold text-sm sm:text-base px-5 sm:px-8 py-3 sm:py-4 rounded-full shadow-lg bg-white text-[#2d2d2d] border border-gray-200 hover:bg-gray-50 transition-colors"
+              className="btn-hero-gradient inline-flex items-center gap-2 sm:gap-3 font-bold text-sm sm:text-base px-5 sm:px-8 py-3 sm:py-4 rounded-full shadow-lg group transition-transform duration-300 ease-out"
             >
               Book a Free Audit
+              <span className="w-5 h-5 sm:w-7 sm:h-7 bg-white/20 rounded-full flex items-center justify-center group-hover:bg-white/30 transition-colors text-xs sm:text-sm">→</span>
             </Link>
           </div>
         </motion.div>
