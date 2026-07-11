@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Check, Loader2 } from "lucide-react";
 import { base44 } from "@/api/base44Client";
 import { useToast } from "@/components/ui/use-toast";
+import OnboardingChatbot from "@/components/OnboardingChatbot";
 
 const sections = [
   {
@@ -251,6 +252,8 @@ export default function MetaOnboarding() {
           </form>
         )}
       </motion.div>
+
+      <OnboardingChatbot />
     </div>
   );
 }
