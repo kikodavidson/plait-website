@@ -74,39 +74,35 @@ export default function BlogFeaturedSection({ featured, secondaryPosts = [] }) {
           </div>
         </Link>
 
-        {/* Right stacked cards — equal height, tight gap */}
+        {/* Right stacked cards — top CTA card (shorter) + bottom image card (taller) */}
         <div className="flex flex-col gap-4 h-[300px] lg:h-full">
-          {post2 && (
-            <Link
-              to={`/blog/${post2.slug}`}
-              className="group relative block overflow-hidden rounded-xl flex-1 min-h-0"
-            >
-              {post2.featured_image ? (
-                <img
-                  src={post2.featured_image}
-                  alt={post2.title}
-                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-              ) : (
-                <div className="absolute inset-0 bg-[#1a1a1a]" />
-              )}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-5">
-                {post2.category && (
-                  <span className="inline-block bg-white/15 backdrop-blur-sm text-white text-xs font-semibold px-2.5 py-1 mb-2 rounded-full">
-                    {post2.category}
-                  </span>
-                )}
-                <h4 className="font-body text-sm sm:text-base font-bold text-white leading-snug line-clamp-2">
-                  {post2.title}
+          {/* Top right — black CTA card */}
+          <Link
+            to="/book"
+            className="group relative block overflow-hidden rounded-xl bg-[#0a0a0a] flex-[2] min-h-0"
+          >
+            <div className="absolute inset-0 flex flex-col justify-between p-5">
+              <div>
+                <span className="inline-block bg-white/10 text-white/80 text-xs font-semibold px-2.5 py-1 mb-3 rounded-full">
+                  CTA
+                </span>
+                <p className="text-white/40 text-[10px] font-bold uppercase tracking-widest mb-2">
+                  Book a free audit
+                </p>
+                <h4 className="font-body text-base sm:text-lg font-bold text-white leading-snug">
+                  Want to see exactly where your funnel is leaking revenue?
                 </h4>
               </div>
-            </Link>
-          )}
+              <span className="flex items-center gap-1 text-sm font-semibold text-white group-hover:gap-2 transition-all">
+                Learn more <ArrowRight className="w-4 h-4" />
+              </span>
+            </div>
+          </Link>
+          {/* Bottom right — image card (taller) */}
           {post3 && (
             <Link
               to={`/blog/${post3.slug}`}
-              className="group relative block overflow-hidden rounded-xl flex-1 min-h-0"
+              className="group relative block overflow-hidden rounded-xl flex-[3] min-h-0"
             >
               {post3.featured_image ? (
                 <img
