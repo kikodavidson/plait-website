@@ -6,6 +6,7 @@ import { InlineWidget } from "react-calendly";
 export default function Book() {
   useEffect(() => {
     const handler = (e) => {
+      if (e.origin !== 'https://calendly.com') return;
       const event = e.data.event;
       if (!window.gtag) return;
 
