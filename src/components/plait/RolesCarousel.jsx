@@ -15,7 +15,7 @@ const ROLES = [
 
 const N = ROLES.length;
 const ANGLE = 360 / N; // degrees between each card
-const RADIUS = 280; // px — how wide the cylinder is
+const RADIUS = 420; // px — how wide the cylinder is
 
 export default function RolesCarousel() {
   const [active, setActive] = useState(0);
