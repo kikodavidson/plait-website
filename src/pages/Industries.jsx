@@ -142,14 +142,12 @@ export default function Industries() {
                 </ul>
 
                 <div className="mt-8 pt-6 border-t border-indigo-100">
-                  <a
-                    href="https://calendly.com/luke-plaitgrowth"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <Link
+                    to="/book"
                     className="btn-gradient inline-flex items-center gap-2 font-bold text-sm px-6 py-3.5 rounded-full"
                   >
                     Start a Conversation
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
