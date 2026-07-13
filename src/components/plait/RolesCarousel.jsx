@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { Users } from "lucide-react";
 
 const ROLES = [
@@ -34,56 +34,14 @@ export default function RolesCarousel() {
   const next = () => goTo(rotateIndex(center, 1));
   const prev = () => goTo(rotateIndex(center, -1));
 
-  const variants = {
-    enter: (dir) => ({
-      x: dir > 0 ? 320 : -320,
-      opacity: 0,
-      scale: 0.7,
-      rotateY: dir > 0 ? 45 : -45,
-      zIndex: 0,
-    }),
-    center: {
-      x: 0,
-      opacity: 1,
-      scale: 1,
-      rotateY: 0,
-      zIndex: 10,
-    },
-    exit: (dir) => ({
-      x: dir > 0 ? -320 : 320,
-      opacity: 0,
-      scale: 0.7,
-      rotateY: dir > 0 ? -45 : 45,
-      zIndex: 0,
-    }),
-  };
-
-  const sideVariants = {
-    enter: (dir) => ({
-      x: dir > 0 ? 320 : -320,
-      opacity: 0,
-      scale: 0.6,
-      rotateY: dir > 0 ? 55 : -55,
-      zIndex: 0,
-    }),
-    center: (isRight) => ({
-      x: isRight ? 200 : -200,
-      opacity: 0.45,
-      scale: 0.7,
-      rotateY: isRight ? -35 : 35,
-      zIndex: 1,
-    }),
-    exit: (dir) => ({
-      x: dir > 0 ? -320 : 320,
-      opacity: 0,
-      scale: 0.6,
-      rotateY: dir > 0 ? -55 : 55,
-      zIndex: 0,
-    }),
-  };
-
   const prevRole = rotateIndex(center, -1);
   const nextRole = rotateIndex(center, 1);
+
+  const slide = {
+    initial: (dir) => ({ x: dir > 0 ? 60 : -60, opacity: 0 }),
+    animate: { x: 0, opacity: 1 },
+    exit: (dir) => ({ x: dir > 0 ? -60 : 60, opacity: 0 }),
+  };
 
   return (
     <section className="py-28 px-6 border-t border-gray-100/50 overflow-hidden">
@@ -112,21 +70,23 @@ export default function RolesCarousel() {
         </motion.div>
 
         {/* Coverflow Carousel */}
-        <div className="relative h-[280px] flex items-center justify-center" style={{ perspective: "1200px" }}>
-          {/* Left side card */}
-          <AnimatePresence custom={direction} mode="popLayout">
-            <motion.div
-              key={`side-left-${prevRole}`}
-              custom={direction}
-              variants={sideVariants}
-              initial="enter"
-              animate="center"
-              exit="exit"
-              transition={{ duration: 0.45, ease: [0.4, 0, 0.2, 1] }}
-              className="absolute pointer-events-none"
-              style={{ transformStyle: "preserve-3d" }}
+        <div className="relative h-[260px] flex items-center justify-center" style={{ perspective: "1200px" }}>
+          <motion.div
+            key={center}
+            custom={direction}
+            variants={slide}
+            initial="initial"
+            animate="animate"
+            transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+            className="relative flex items-center justify-center w-full h-full"
+            style={{ transformStyle: "preserve-3d" }}
+          >
+            {/* Left side card */}
+            <div
+              className="absolute"
+              style={{ transform: "translateX(-190px) rotateY(35deg)", zIndex: 1 }}
             >
-              <div className="bg-white shadow-lg border border-gray-100 w-[200px] h-[120px] rounded-xl flex items-center justify-center text-center px-4">
+              <div className="bg-white shadow-lg border border-gray-100 w-[180px] h-[110px] rounded-xl flex items-center justify-center text-center px-4">
                 <span
                   className="text-[#525252] text-sm font-bold leading-tight"
                   style={{ fontFamily: "Inter, sans-serif", letterSpacing: "0.02em" }}
@@ -134,46 +94,10 @@ export default function RolesCarousel() {
                   {ROLES[prevRole]}
                 </span>
               </div>
-            </motion.div>
-          </AnimatePresence>
+            </div>
 
-          {/* Right side card */}
-          <AnimatePresence custom={direction} mode="popLayout">
-            <motion.div
-              key={`side-right-${nextRole}`}
-              custom={direction}
-              variants={sideVariants}
-              initial="enter"
-              animate="center"
-              exit="exit"
-              transition={{ duration: 0.45, ease: [0.4, 0, 0.2, 1] }}
-              className="absolute pointer-events-none"
-              style={{ transformStyle: "preserve-3d" }}
-            >
-              <div className="bg-white shadow-lg border border-gray-100 w-[200px] h-[120px] rounded-xl flex items-center justify-center text-center px-4">
-                <span
-                  className="text-[#525252] text-sm font-bold leading-tight"
-                  style={{ fontFamily: "Inter, sans-serif", letterSpacing: "0.02em" }}
-                >
-                  {ROLES[nextRole]}
-                </span>
-              </div>
-            </motion.div>
-          </AnimatePresence>
-
-          {/* Center card */}
-          <AnimatePresence custom={direction} mode="popLayout">
-            <motion.div
-              key={`center-${center}`}
-              custom={direction}
-              variants={variants}
-              initial="enter"
-              animate="center"
-              exit="exit"
-              transition={{ duration: 0.45, ease: [0.4, 0, 0.2, 1] }}
-              className="absolute"
-              style={{ transformStyle: "preserve-3d" }}
-            >
+            {/* Center card */}
+            <div className="relative z-10">
               <div className="bg-white shadow-2xl border border-gray-100 w-[280px] h-[160px] rounded-2xl flex items-center justify-center text-center px-6">
                 <span
                   className="text-[#2d2d2d] text-xl font-bold leading-tight"
@@ -182,11 +106,26 @@ export default function RolesCarousel() {
                   {ROLES[center]}
                 </span>
               </div>
-            </motion.div>
-          </AnimatePresence>
+            </div>
+
+            {/* Right side card */}
+            <div
+              className="absolute"
+              style={{ transform: "translateX(190px) rotateY(-35deg)", zIndex: 1 }}
+            >
+              <div className="bg-white shadow-lg border border-gray-100 w-[180px] h-[110px] rounded-xl flex items-center justify-center text-center px-4">
+                <span
+                  className="text-[#525252] text-sm font-bold leading-tight"
+                  style={{ fontFamily: "Inter, sans-serif", letterSpacing: "0.02em" }}
+                >
+                  {ROLES[nextRole]}
+                </span>
+              </div>
+            </div>
+          </motion.div>
         </div>
 
-        {/* Navigation arrows */}
+        {/* Navigation arrows + dots */}
         <div className="flex justify-center items-center gap-6 mt-8">
           <button
             onClick={prev}
@@ -196,7 +135,6 @@ export default function RolesCarousel() {
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" /></svg>
           </button>
 
-          {/* Dot indicator */}
           <div className="flex items-center gap-2">
             {ROLES.map((_, i) => (
               <button
