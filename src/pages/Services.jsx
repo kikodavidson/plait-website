@@ -213,14 +213,12 @@ export default function Services() {
                 If your marketing feels disconnected, inefficient, or harder than it should be, there's usually a reason. Let's find it.
               </p>
               <div className="flex flex-col sm:flex-row gap-3 mt-2">
-                <a
-                  href="https://calendly.com/luke-plaitgrowth"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link
+                  to="/book"
                   className="btn-gradient inline-flex items-center justify-center gap-2 font-bold text-sm px-6 py-3.5 rounded-full"
                 >
                   Pull The Thread
-                </a>
+                </Link>
                 <Link
                   to="/case-studies"
                   className="inline-flex items-center justify-center gap-2 border border-[#f4f2ee]/20 text-[#f4f2ee] font-bold text-sm px-6 py-3.5 rounded-full hover:bg-white/10 transition-colors"
