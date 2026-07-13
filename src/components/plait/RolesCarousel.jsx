@@ -54,8 +54,26 @@ export default function RolesCarousel() {
           </p>
         </motion.div>
 
-        {/* Cylinder carousel */}
-        <div className="relative h-[280px] flex items-center justify-center" style={{ perspective: "1400px" }}>
+        {/* Mobile: single contained card */}
+        <div className="sm:hidden flex justify-center">
+          <motion.div
+            key={active}
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+            className="bg-white shadow-xl border border-gray-100 rounded-2xl w-full max-w-[300px] h-[150px] flex items-center justify-center text-center px-6 mx-8"
+          >
+            <span
+              className="leading-tight font-bold text-[#2d2d2d] text-lg"
+              style={{ fontFamily: "Inter, sans-serif", letterSpacing: "0.02em" }}
+            >
+              {ROLES[active]}
+            </span>
+          </motion.div>
+        </div>
+
+        {/* Desktop: cylinder carousel */}
+        <div className="hidden sm:flex relative h-[280px] items-center justify-center" style={{ perspective: "1400px" }}>
           <motion.div
             className="relative"
             style={{ transformStyle: "preserve-3d", width: 0, height: 0 }}
