@@ -32,8 +32,8 @@ export default function RolesCarousel() {
   const next = () => goTo(rotateIndex(center, 1));
   const prev = () => goTo(rotateIndex(center, -1));
 
-  // Cards visible in the carousel (center + 3 on each side)
-  const offsets = [-3, -2, -1, 0, 1, 2, 3];
+  // Only render front-facing cards — no cards behind the center to show through
+  const offsets = [-2, -1, 0, 1, 2];
 
   return (
     <section className="py-28 px-6 border-t border-gray-100/50 overflow-hidden">
@@ -97,7 +97,7 @@ export default function RolesCarousel() {
                       className={`flex items-center justify-center text-center px-8 transition-all duration-300 ${
                         isCenter
                           ? "bg-white shadow-2xl border border-gray-100 w-[300px] h-[180px] rounded-2xl"
-                          : "bg-white/60 shadow-lg border border-gray-100 w-[220px] h-[130px] rounded-xl backdrop-blur-sm"
+                          : "bg-white shadow-lg border border-gray-100 w-[220px] h-[130px] rounded-xl"
                       }`}
                     >
                       <span
