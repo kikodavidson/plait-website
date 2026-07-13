@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Users } from "lucide-react";
 
@@ -22,18 +22,23 @@ function rotateIndex(i, delta) {
 export default function RolesCarousel() {
   const [center, setCenter] = useState(0);
   const [rotation, setRotation] = useState(0);
-  const isAnimating = useRef(false);
 
   const goTo = (newCenter) => {
+    const diff = newCenter - center;
+    // shortest path
+    const shortest = ((diff % N) + N) % N;
+    const forward = shortest <= N / 2;
+    const steps = forward ? shortest : N - shortest;
+    const dir = forward ? -1 : 1;
     setCenter(newCenter);
-    setRotation((r) => r - 45);
+    setRotation((r) => r + dir * steps * (360 / N));
   };
 
   const next = () => goTo(rotateIndex(center, 1));
   const prev = () => goTo(rotateIndex(center, -1));
 
-  // Only render front-facing cards — no cards behind the center to show through
-  const offsets = [-2, -1, 0, 1, 2];
+  // Only front-facing cards: center + 1 on each side
+  const offsets = [-1, 0, 1];
 
   return (
     <section className="py-28 px-6 border-t border-gray-100/50 overflow-hidden">
@@ -63,13 +68,7 @@ export default function RolesCarousel() {
 
         {/* 3D Carousel */}
         <div className="relative h-[320px] flex items-center justify-center">
-          <motion.div
-            className="relative"
-            style={{
-              perspective: "1400px",
-              perspectiveOrigin: "center center",
-            }}
-          >
+          <div style={{ perspective: "1200px", perspectiveOrigin: "center center" }}>
             <motion.div
               animate={{ rotateY: rotation }}
               transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
@@ -80,7 +79,7 @@ export default function RolesCarousel() {
                 const roleIndex = rotateIndex(center, offset);
                 const isCenter = offset === 0;
                 const angle = (360 / N) * offset;
-                const radius = 460;
+                const radius = 280;
 
                 return (
                   <div
@@ -89,22 +88,21 @@ export default function RolesCarousel() {
                     style={{
                       transform: `rotateY(${angle}deg) translateZ(${radius}px)`,
                       transformOrigin: "center center",
-                      left: "-150px",
-                      top: "-90px",
+                      left: "-110px",
+                      top: "-65px",
+                      backfaceVisibility: "hidden",
                     }}
                   >
                     <div
-                      className={`flex items-center justify-center text-center px-8 transition-all duration-300 ${
+                      className={`flex items-center justify-center text-center px-6 transition-all duration-300 ${
                         isCenter
-                          ? "bg-white shadow-2xl border border-gray-100 w-[300px] h-[180px] rounded-2xl"
-                          : "bg-white shadow-lg border border-gray-100 w-[220px] h-[130px] rounded-xl"
+                          ? "bg-white shadow-2xl border border-gray-100 w-[220px] h-[130px] rounded-2xl"
+                          : "bg-white shadow-lg border border-gray-100 w-[170px] h-[100px] rounded-xl opacity-80"
                       }`}
                     >
                       <span
                         className={`font-bold leading-tight ${
-                          isCenter
-                            ? "text-[#2d2d2d] text-xl sm:text-2xl"
-                            : "text-[#525252] text-sm sm:text-base"
+                          isCenter ? "text-[#2d2d2d] text-lg sm:text-xl" : "text-[#525252] text-sm"
                         }`}
                         style={{ fontFamily: "Inter, sans-serif", letterSpacing: "0.02em" }}
                       >
@@ -115,7 +113,7 @@ export default function RolesCarousel() {
                 );
               })}
             </motion.div>
-          </motion.div>
+          </div>
 
           {/* Navigation arrows */}
           <button
