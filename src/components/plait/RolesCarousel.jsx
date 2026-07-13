@@ -14,34 +14,19 @@ const ROLES = [
 ];
 
 const N = ROLES.length;
-
-function rotateIndex(i, delta) {
-  return (i + delta + N) % N;
-}
+const ANGLE = 360 / N; // degrees between each card
+const RADIUS = 280; // px — how wide the cylinder is
 
 export default function RolesCarousel() {
-  const [center, setCenter] = useState(0);
-  const [direction, setDirection] = useState(0);
+  const [active, setActive] = useState(0);
 
-  const goTo = (newCenter) => {
-    const diff = newCenter - center;
-    const shortest = ((diff % N) + N) % N;
-    const forward = shortest <= N / 2;
-    setDirection(forward ? 1 : -1);
-    setCenter(newCenter);
-  };
+  const goTo = (i) => setActive(((i % N) + N) % N);
+  const next = () => goTo(active + 1);
+  const prev = () => goTo(active - 1);
 
-  const next = () => goTo(rotateIndex(center, 1));
-  const prev = () => goTo(rotateIndex(center, -1));
-
-  const prevRole = rotateIndex(center, -1);
-  const nextRole = rotateIndex(center, 1);
-
-  const slide = {
-    initial: (dir) => ({ x: dir > 0 ? 60 : -60, opacity: 0 }),
-    animate: { x: 0, opacity: 1 },
-    exit: (dir) => ({ x: dir > 0 ? -60 : 60, opacity: 0 }),
-  };
+  // Rotate the ring so the active card faces front.
+  // Negative because we rotate the ring opposite to the card's position.
+  const ringRotation = -active * ANGLE;
 
   return (
     <section className="py-28 px-6 border-t border-gray-100/50 overflow-hidden">
@@ -69,59 +54,53 @@ export default function RolesCarousel() {
           </p>
         </motion.div>
 
-        {/* Coverflow Carousel */}
-        <div className="relative h-[260px] flex items-center justify-center" style={{ perspective: "1200px" }}>
+        {/* Cylinder carousel */}
+        <div className="relative h-[280px] flex items-center justify-center" style={{ perspective: "1400px" }}>
           <motion.div
-            key={center}
-            custom={direction}
-            variants={slide}
-            initial="initial"
-            animate="animate"
-            transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
-            className="relative flex items-center justify-center w-full h-full"
-            style={{ transformStyle: "preserve-3d" }}
+            className="relative"
+            style={{ transformStyle: "preserve-3d", width: 0, height: 0 }}
+            animate={{ rotateY: ringRotation }}
+            transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
           >
-            {/* Left side card */}
-            <div
-              className="absolute"
-              style={{ transform: "translateX(-190px) rotateY(35deg)", zIndex: 1 }}
-            >
-              <div className="bg-white shadow-lg border border-gray-100 w-[180px] h-[110px] rounded-xl flex items-center justify-center text-center px-4">
-                <span
-                  className="text-[#525252] text-sm font-bold leading-tight"
-                  style={{ fontFamily: "Inter, sans-serif", letterSpacing: "0.02em" }}
+            {ROLES.map((role, i) => {
+              const cardAngle = i * ANGLE;
+              const isActive = i === active;
+              return (
+                <div
+                  key={i}
+                  className="absolute"
+                  style={{
+                    transform: `rotateY(${cardAngle}deg) translateZ(${RADIUS}px)`,
+                    transformStyle: "preserve-3d",
+                    marginLeft: "-140px",
+                    marginTop: "-80px",
+                    top: "50%",
+                    left: "50%",
+                  }}
                 >
-                  {ROLES[prevRole]}
-                </span>
-              </div>
-            </div>
-
-            {/* Center card */}
-            <div className="relative z-10">
-              <div className="bg-white shadow-2xl border border-gray-100 w-[280px] h-[160px] rounded-2xl flex items-center justify-center text-center px-6">
-                <span
-                  className="text-[#2d2d2d] text-xl font-bold leading-tight"
-                  style={{ fontFamily: "Inter, sans-serif", letterSpacing: "0.02em" }}
-                >
-                  {ROLES[center]}
-                </span>
-              </div>
-            </div>
-
-            {/* Right side card */}
-            <div
-              className="absolute"
-              style={{ transform: "translateX(190px) rotateY(-35deg)", zIndex: 1 }}
-            >
-              <div className="bg-white shadow-lg border border-gray-100 w-[180px] h-[110px] rounded-xl flex items-center justify-center text-center px-4">
-                <span
-                  className="text-[#525252] text-sm font-bold leading-tight"
-                  style={{ fontFamily: "Inter, sans-serif", letterSpacing: "0.02em" }}
-                >
-                  {ROLES[nextRole]}
-                </span>
-              </div>
-            </div>
+                  <div
+                    className={`rounded-2xl border flex items-center justify-center text-center px-6 transition-shadow duration-300 ${
+                      isActive
+                        ? "bg-white shadow-2xl border-gray-100 w-[280px] h-[160px]"
+                        : "bg-white shadow-lg border-gray-100 w-[280px] h-[160px]"
+                    }`}
+                    style={{
+                      backfaceVisibility: "hidden",
+                      WebkitBackfaceVisibility: "hidden",
+                    }}
+                  >
+                    <span
+                      className={`leading-tight font-bold ${
+                        isActive ? "text-[#2d2d2d] text-xl" : "text-[#525252] text-lg"
+                      }`}
+                      style={{ fontFamily: "Inter, sans-serif", letterSpacing: "0.02em" }}
+                    >
+                      {role}
+                    </span>
+                  </div>
+                </div>
+              );
+            })}
           </motion.div>
         </div>
 
@@ -141,7 +120,7 @@ export default function RolesCarousel() {
                 key={i}
                 onClick={() => goTo(i)}
                 className={`h-2 rounded-full transition-all ${
-                  i === center ? "bg-[#2d2d2d] w-6" : "bg-gray-300 w-2 hover:bg-gray-400"
+                  i === active ? "bg-[#2d2d2d] w-6" : "bg-gray-300 w-2 hover:bg-gray-400"
                 }`}
                 aria-label={`Go to role ${i + 1}`}
               />
