@@ -21,6 +21,7 @@ export default function ClientPortal() {
       try {
         const me = await base44.auth.me();
         setUser(me);
+        if (me?.role === "admin") { window.location.href = "/admin/clients"; return; }
         const slug = me?.data?.client_slug || me?.client_slug;
         if (!slug) { setLoading(false); return; }
         const clients = await base44.entities.Client.filter({ slug });
