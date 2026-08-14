@@ -116,84 +116,94 @@ export default function ClientPortal() {
 
   const showAdminPick = isAdmin && !adminSlug;
   const showEmptyClient = !isAdmin && !client;
+  const showSidebar = !showAdminPick && !showEmptyClient && plans.length > 0;
+
+  const headerEl = (
+    <header className="bg-[#222222] text-white px-6 py-3 flex items-center justify-between sticky top-0 z-30">
+      <div className="flex items-center gap-3 min-w-0 flex-1">
+        {client?.logo && <img src={client.logo} alt="" className="h-8 w-8 rounded object-contain bg-white/10 shrink-0" />}
+        <div className="min-w-0">
+          <p className="text-xs uppercase tracking-widest opacity-50">{isAdmin ? "Admin preview" : "Client Portal"}</p>
+          <h1 className="text-lg font-bold truncate">{client?.name || "Select a client"}</h1>
+        </div>
+      </div>
+      <div className="hidden md:flex items-center gap-2 justify-center px-4">
+        <img src={PLAIT_LOGO} alt="Plait" className="h-8 object-contain" />
+        <span className="text-white/40 text-base leading-none">|</span>
+        <span className="text-sm font-semibold tracking-wide whitespace-nowrap">Creative Gameplan Studio</span>
+      </div>
+      <div className="flex items-center gap-3 justify-end flex-1">
+        <button onClick={() => base44.auth.logout()} className="flex items-center gap-2 text-sm bg-white/10 hover:bg-white/20 px-4 py-2 rounded-full shrink-0">
+          <LogOut className="w-4 h-4" /> Log out
+        </button>
+      </div>
+    </header>
+  );
+
+  const contentEl = (
+    <>
+      {!selectedPlanId ? (
+        <div className="py-10 max-w-2xl">
+          <p className="text-[#777777] leading-relaxed">{INTRO}</p>
+        </div>
+      ) : (
+        <div>
+          {selectedPlan.headline && (
+            <h2 className="text-2xl font-bold text-[#222222] mb-2">{selectedPlan.headline}</h2>
+          )}
+          {selectedPlan.strategy_note && (
+            <p className="text-[#777777] leading-relaxed mb-6">{selectedPlan.strategy_note}</p>
+          )}
+          {loadingChildren ? (
+            <div className="flex justify-center py-10">
+              <Loader2 className="w-5 h-5 animate-spin text-gray-400" />
+            </div>
+          ) : selectedPlanAngles.length === 0 ? (
+            <p className="text-gray-400">No published angles yet.</p>
+          ) : (
+            <div className="space-y-4">
+              {selectedPlanAngles.map((angle) => (
+                <AngleSection key={angle.id} angle={angle} blocks={blocks} examples={examples} />
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+    </>
+  );
 
   return (
-    <div className="min-h-screen bg-[#F5F5F5]">
-      <header className="bg-[#222222] text-white px-6 py-3 flex items-center justify-between sticky top-0 z-30">
-        <div className="flex items-center gap-3 min-w-0 flex-1">
-          {client?.logo && <img src={client.logo} alt="" className="h-8 w-8 rounded object-contain bg-white/10 shrink-0" />}
-          <div className="min-w-0">
-            <p className="text-xs uppercase tracking-widest opacity-50">{isAdmin ? "Admin preview" : "Client Portal"}</p>
-            <h1 className="text-lg font-bold truncate">{client?.name || "Select a client"}</h1>
-          </div>
-        </div>
-        <div className="hidden md:flex items-center gap-2 justify-center px-4">
-          <img src={PLAIT_LOGO} alt="Plait" className="h-8 object-contain" />
-          <span className="text-white/40 text-base leading-none">|</span>
-          <span className="text-sm font-semibold tracking-wide whitespace-nowrap">Creative Gameplan Studio</span>
-        </div>
-        <div className="flex items-center gap-3 justify-end flex-1">
-          <button onClick={() => base44.auth.logout()} className="flex items-center gap-2 text-sm bg-white/10 hover:bg-white/20 px-4 py-2 rounded-full shrink-0">
-            <LogOut className="w-4 h-4" /> Log out
-          </button>
-        </div>
-      </header>
-
-      <main className="max-w-6xl mx-auto px-6 py-8">
-        {showAdminPick ? (
-          <div className="text-center py-20 flex flex-col items-center gap-6">
-            {isAdmin && <ClientSwitcher clients={adminClients} value={adminSlug} onChange={setAdminSlug} />}
-            <p className="text-gray-500">Use the switcher above to preview any client's portal exactly as they see it.</p>
-          </div>
-        ) : showEmptyClient ? (
-          <div className="text-center py-20">
-            <p className="text-lg font-medium text-[#2d2d2d]">Your account isn't linked to a client.</p>
-            <button onClick={() => base44.auth.logout()} className="text-sm text-gray-500 underline mt-3">Log out</button>
-          </div>
-        ) : plans.length === 0 ? (
-          <p className="text-center text-[#777777] py-10">No published plans yet. Published content will appear here.</p>
-        ) : (
-          <div className="flex gap-6 items-start">
-            <aside className="w-[260px] shrink-0 bg-[#121418] rounded-2xl p-4 sticky top-24 self-start">
-              {client?.logo && (
-                <div className="flex justify-center mb-3">
-                  <img src={client.logo} alt={client.name} className="max-h-10 object-contain" />
-                </div>
-              )}
-              <PlanSidebar plans={plans} anglesByPlan={anglesByPlan} selectedPlanId={selectedPlanId} onSelect={setSelectedPlanId} clientName={client?.name} />
-            </aside>
-            <section className="flex-1 min-w-0">
-              {!selectedPlanId ? (
-                <div className="py-10 max-w-2xl">
-                  <p className="text-[#777777] leading-relaxed">{INTRO}</p>
-                </div>
-              ) : (
-                <div>
-                  {selectedPlan.headline && (
-                    <h2 className="text-2xl font-bold text-[#222222] mb-2">{selectedPlan.headline}</h2>
-                  )}
-                  {selectedPlan.strategy_note && (
-                    <p className="text-[#777777] leading-relaxed mb-6">{selectedPlan.strategy_note}</p>
-                  )}
-                  {loadingChildren ? (
-                    <div className="flex justify-center py-10">
-                      <Loader2 className="w-5 h-5 animate-spin text-gray-400" />
-                    </div>
-                  ) : selectedPlanAngles.length === 0 ? (
-                    <p className="text-gray-400">No published angles yet.</p>
-                  ) : (
-                    <div className="space-y-4">
-                      {selectedPlanAngles.map((angle) => (
-                        <AngleSection key={angle.id} angle={angle} blocks={blocks} examples={examples} />
-                      ))}
-                    </div>
-                  )}
-                </div>
-              )}
-            </section>
-          </div>
-        )}
-      </main>
+    <div className="min-h-screen bg-[#F5F5F5] flex">
+      {showSidebar && (
+        <aside className="w-64 shrink-0 bg-[#121418] h-screen sticky top-0 flex flex-col p-4 overflow-y-auto">
+          {client?.logo && (
+            <div className="flex justify-center mb-4">
+              <img src={client.logo} alt={client.name} className="max-h-10 object-contain" />
+            </div>
+          )}
+          <PlanSidebar plans={plans} anglesByPlan={anglesByPlan} selectedPlanId={selectedPlanId} onSelect={setSelectedPlanId} clientName={client?.name} />
+        </aside>
+      )}
+      <div className="flex-1 min-w-0 flex flex-col">
+        {headerEl}
+        <main className="max-w-5xl mx-auto px-8 py-8 w-full">
+          {showAdminPick ? (
+            <div className="text-center py-20 flex flex-col items-center gap-6">
+              {isAdmin && <ClientSwitcher clients={adminClients} value={adminSlug} onChange={setAdminSlug} />}
+              <p className="text-gray-500">Use the switcher above to preview any client's portal exactly as they see it.</p>
+            </div>
+          ) : showEmptyClient ? (
+            <div className="text-center py-20">
+              <p className="text-lg font-medium text-[#2d2d2d]">Your account isn't linked to a client.</p>
+              <button onClick={() => base44.auth.logout()} className="text-sm text-gray-500 underline mt-3">Log out</button>
+            </div>
+          ) : plans.length === 0 ? (
+            <p className="text-center text-[#777777] py-10">No published plans yet. Published content will appear here.</p>
+          ) : (
+            contentEl
+          )}
+        </main>
+      </div>
     </div>
   );
 }
