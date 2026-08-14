@@ -153,8 +153,8 @@ export default function ClientPortal() {
         ) : plans.length === 0 ? (
           <p className="text-center text-[#777777] py-10">No published plans yet. Published content will appear here.</p>
         ) : (
-          <div className="flex flex-col gap-8 items-stretch">
-            <aside className="w-full bg-white rounded-2xl border border-gray-100 shadow-sm p-4">
+          <div className="space-y-8">
+            <aside className="block w-full bg-white rounded-2xl border border-gray-100 shadow-sm p-4">
               {client?.logo && (
                 <div className="flex justify-center mb-3">
                   <img src={client.logo} alt={client.name} className="max-h-10 object-contain" />
@@ -162,10 +162,10 @@ export default function ClientPortal() {
               )}
               <PlanSidebar plans={plans} anglesByPlan={anglesByPlan} selectedPlanId={selectedPlanId} onSelect={setSelectedPlanId} clientName={client?.name} />
             </aside>
-            <section className="w-full">
+            <section className="block w-full">
               {!selectedPlanId ? (
-                <div className="py-10">
-                  <p className="text-[#777777] leading-relaxed max-w-xl">{INTRO}</p>
+                <div className="py-10 max-w-2xl">
+                  <p className="text-[#777777] leading-relaxed">{INTRO}</p>
                 </div>
               ) : (
                 <div>
