@@ -27,6 +27,8 @@ import ForgotPassword from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
 import ClientPortal from './pages/ClientPortal';
 import Library from './pages/Library';
+import Clients from './pages/Clients';
+import ClientBuilder from './pages/ClientBuilder';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -73,6 +75,8 @@ const AuthenticatedApp = () => {
       <Route element={<ProtectedRoute unauthenticatedElement={<Navigate to="/creativelogin" replace />} />}>
         <Route path="/client" element={<ClientPortal />} />
         <Route path="/library" element={<Library />} />
+        <Route path="/admin/clients" element={<Clients />} />
+        <Route path="/admin/clients/:clientId" element={<ClientBuilder />} />
       </Route>
       <Route path="*" element={<PageNotFound />} />
     </Routes>
