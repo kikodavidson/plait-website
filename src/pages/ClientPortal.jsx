@@ -3,6 +3,11 @@ import { base44 } from "@/api/base44Client";
 import { motion } from "framer-motion";
 import { Loader2, LogOut, ChevronRight, Image as ImageIcon } from "lucide-react";
 
+const TYPE_BADGE = {
+  audience: "Audience",
+  concept: "Concept",
+};
+
 export default function ClientPortal() {
   const [user, setUser] = useState(null);
   const [client, setClient] = useState(null);
@@ -122,7 +127,14 @@ export default function ClientPortal() {
                       <div className="space-y-4">
                         {children[plan.id].angles.map((angle) => (
                           <div key={angle.id} className="bg-white rounded-xl border border-gray-100 p-4">
-                            <p className="font-semibold text-[#2d2d2d] text-sm">{angle.label}</p>
+                            <div className="flex items-center gap-2">
+                              <p className="font-semibold text-[#2d2d2d] text-sm">{angle.label}</p>
+                              {angle.type && (
+                                <span className={`text-[10px] font-bold uppercase tracking-wide px-2 py-0.5 rounded-full ${angle.type === "audience" ? "bg-blue-100 text-blue-700" : "bg-purple-100 text-purple-700"}`}>
+                                  {TYPE_BADGE[angle.type] || angle.type}
+                                </span>
+                              )}
+                            </div>
                             {angle.description && (
                               <p className="text-xs text-gray-500 mt-1 leading-relaxed">{angle.description}</p>
                             )}
