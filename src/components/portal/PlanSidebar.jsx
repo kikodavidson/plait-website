@@ -25,7 +25,7 @@ export default function PlanSidebar({ plans, anglesByPlan, selectedPlanId, onSel
 
   return (
     <div className="flex flex-col text-white px-4 py-5">
-      <h2 className="text-base font-bold mb-4">{clientName ? `${clientName} Content gameplan` : "Content gameplan"}</h2>
+      <h2 className="text-base font-bold mb-4">{clientName ? `${clientName} Content Gameplan` : "Content Gameplan"}</h2>
       <nav className="flex flex-col gap-1">
         {groups.map((g) => {
           const isActive = g.key === activeKey;
