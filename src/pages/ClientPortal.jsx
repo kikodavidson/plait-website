@@ -131,7 +131,6 @@ export default function ClientPortal() {
           <img src={PLAIT_LOGO} alt="Plait" className="h-16 object-contain" />
           <span className="text-white/40 text-2xl leading-none">|</span>
           <span className="text-2xl font-bold tracking-wide whitespace-nowrap">Creative Gameplan Studio</span>
-          {isAdmin && <ClientSwitcher clients={adminClients} value={adminSlug} onChange={setAdminSlug} />}
         </div>
         <div className="flex items-center gap-3 justify-end flex-1">
           <button onClick={() => base44.auth.logout()} className="flex items-center gap-2 text-sm bg-white/10 hover:bg-white/20 px-4 py-2 rounded-full shrink-0">
@@ -142,7 +141,8 @@ export default function ClientPortal() {
 
       <main className="max-w-6xl mx-auto px-6 py-8">
         {showAdminPick ? (
-          <div className="text-center py-20">
+          <div className="text-center py-20 flex flex-col items-center gap-6">
+            {isAdmin && <ClientSwitcher clients={adminClients} value={adminSlug} onChange={setAdminSlug} />}
             <p className="text-gray-500">Use the switcher above to preview any client's portal exactly as they see it.</p>
           </div>
         ) : showEmptyClient ? (
