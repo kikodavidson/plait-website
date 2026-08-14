@@ -173,19 +173,16 @@ export default function ClientPortal() {
   );
 
   return (
-    <div className="min-h-screen bg-[#F5F5F5] flex">
+    <div className="min-h-screen bg-[#F5F5F5]">
+      {headerEl}
       {showSidebar && (
-        <aside className="w-64 shrink-0 bg-black h-screen sticky top-0 flex flex-col p-4 overflow-y-auto">
-          {client?.logo && (
-            <div className="flex justify-center mb-4">
-              <img src={client.logo} alt={client.name} className="max-h-10 object-contain" />
-            </div>
-          )}
-          <PlanSidebar plans={plans} anglesByPlan={anglesByPlan} selectedPlanId={selectedPlanId} onSelect={setSelectedPlanId} clientName={client?.name} />
-        </aside>
+        <nav className="bg-black">
+          <div className="max-w-5xl mx-auto px-8 py-3">
+            <PlanSidebar plans={plans} anglesByPlan={anglesByPlan} selectedPlanId={selectedPlanId} onSelect={setSelectedPlanId} clientName={client?.name} />
+          </div>
+        </nav>
       )}
       <div className="flex-1 min-w-0 flex flex-col">
-        {headerEl}
         <main className="max-w-5xl mx-auto px-8 py-8 w-full">
           {showAdminPick ? (
             <div className="text-center py-20 flex flex-col items-center gap-6">
