@@ -146,13 +146,18 @@ export default function ClientPortal() {
               <p className="text-center text-[#777777] py-10">No published plans yet. Published content will appear here.</p>
             ) : (
               <>
-                <h2 className="text-center text-lg font-bold text-[#222222] mb-3">Your monthly gameplan</h2>
+                <div className="flex flex-col items-center gap-3 mb-3">
+                  {client?.logo && <img src={client.logo} alt={client.name} className="max-h-12 object-contain" />}
+                  <h2 className="text-lg font-bold text-[#222222]">Content gameplan</h2>
+                </div>
                 <div className="flex justify-center mb-6">
                   <MonthSelector plans={plans} selectedPlanId={selectedPlanId} onSelect={setSelectedPlanId} onReveal={() => setRevealed(true)} />
                 </div>
-                <p className="text-center text-[#777777] mb-8 leading-relaxed max-w-2xl mx-auto">
-                  This is where strategy turns into reality. Each plan lays out the audiences and concepts we're testing, the types of content we need to test them, and a visual example of a creative that's already winning so there's no guessing what good looks like. Then we take a method that already works and make it yours. New plans go up whenever there's something new to test. Pick one above to see what's in motion.
-                </p>
+                {!revealed && (
+                  <p className="text-center text-[#777777] mb-8 leading-relaxed max-w-2xl mx-auto">
+                    This is where strategy turns into reality. Each plan lays out the audiences and concepts we're testing, the types of content we need to test them, and a visual example of a creative that's already winning so there's no guessing what good looks like. Then we take a method that already works and make it yours. New plans go up whenever there's something new to test. Pick one above to see what's in motion.
+                  </p>
+                )}
 
                 {revealed && selectedPlan && (
                   <div className="mt-6">
