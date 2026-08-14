@@ -39,7 +39,18 @@
         "draft",
         "published"
       ],
-      "default": "draft"
+      "default": "draft",
+      "description": "Visibility: draft plans are hidden from clients via RLS; published plans are visible."
+    },
+    "strategy_status": {
+      "type": "string",
+      "enum": [
+        "Proposed",
+        "In Progress",
+        "Completed"
+      ],
+      "default": "Proposed",
+      "description": "Creative strategy stage set by admin. Drives the client portal grouping: Proposed = Upcoming, In Progress = Current, Completed = Completed."
     }
   },
   "required": [

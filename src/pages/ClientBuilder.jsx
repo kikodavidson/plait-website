@@ -110,6 +110,12 @@ export default function ClientBuilder() {
     return <div className="min-h-screen flex items-center justify-center bg-gray-50"><Loader2 className="w-6 h-6 animate-spin text-gray-300" /></div>;
   }
 
+  const changeStrategyStatus = async (planId, val) => {
+    await base44.entities.Plan.update(planId, { strategy_status: val });
+    setPlans((prev) => prev.map((p) => (p.id === planId ? { ...p, strategy_status: val } : p)));
+    if (selectedPlan?.id === planId) setSelectedPlan((s) => (s ? { ...s, strategy_status: val } : s));
+  };
+
   const statusBadge = (s) => (s === "published" ? "bg-green-100 text-green-700" : "bg-gray-100 text-gray-500");
 
   return (
@@ -153,6 +159,16 @@ export default function ClientBuilder() {
                     </button>
                     <div className="flex items-center gap-2 ml-3">
                       <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${statusBadge(p.status)}`}>{p.status}</span>
+                      <select
+                        value={p.strategy_status || "Proposed"}
+                        onChange={(e) => changeStrategyStatus(p.id, e.target.value)}
+                        className="h-8 rounded-md border border-gray-200 bg-white px-1 text-xs focus:outline-none focus:ring-1 focus:ring-[#2d2d2d]"
+                        title="Strategy status"
+                      >
+                        <option value="Proposed">Proposed</option>
+                        <option value="In Progress">In Progress</option>
+                        <option value="Completed">Completed</option>
+                      </select>
                       <button onClick={() => setMonthDialog({ mode: "duplicate", source: p })} className="text-gray-400 hover:text-[#2d2d2d]" title="Duplicate plan"><Copy className="w-4 h-4" /></button>
                       <button onClick={() => deletePlan(p.id)} className="text-gray-400 hover:text-red-500"><Trash2 className="w-4 h-4" /></button>
                     </div>

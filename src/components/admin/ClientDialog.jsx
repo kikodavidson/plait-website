@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { base44 } from "@/api/base44Client";
 import { X, Loader2, AlertCircle } from "lucide-react";
 import { slugify } from "@/lib/slug";
@@ -11,6 +11,7 @@ export default function ClientDialog({ open, client, clients, onClose, onSaved }
   const [slugTouched, setSlugTouched] = useState(false);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
+  const logoInputRef = useRef(null);
 
   useEffect(() => {
     if (open) {
@@ -26,7 +27,7 @@ export default function ClientDialog({ open, client, clients, onClose, onSaved }
   const onName = (v) => setForm((f) => ({ ...f, name: v, slug: slugTouched ? f.slug : slugify(v) }));
 
   const save = async () => {
-    if (!form.name || !form.slug) { setError("Name and slug are required."); return; }
+    if (!form.name || !form.slug || !form.logo) { setError("Name, slug, and logo are required."); return; }
     if (slugTaken) { setError("That slug is already taken. Choose another."); return; }
     setSaving(true);
     try {
@@ -72,8 +73,29 @@ export default function ClientDialog({ open, client, clients, onClose, onSaved }
             )}
           </div>
           <div>
-            <label className="text-xs font-semibold text-gray-500 uppercase">Logo URL</label>
-            <input className={inputCls} value={form.logo || ""} onChange={(e) => setForm((f) => ({ ...f, logo: e.target.value }))} placeholder="https://…" />
+            <label className="text-xs font-semibold text-gray-500 uppercase">Logo <span className="text-red-500">*</span></label>
+            <div className="flex gap-2">
+              <input className={inputCls} value={form.logo || ""} onChange={(e) => setForm((f) => ({ ...f, logo: e.target.value }))} placeholder="https://…" />
+              <button type="button" onClick={() => logoInputRef.current?.click()} className="shrink-0 inline-flex items-center gap-2 text-sm border border-gray-200 rounded-lg px-3 hover:bg-gray-50">Upload</button>
+              <input
+                ref={logoInputRef}
+                type="file"
+                accept="image/*"
+                className="hidden"
+                onChange={async (e) => {
+                  const file = e.target.files?.[0];
+                  if (!file) return;
+                  try {
+                    const { file_url } = await base44.integrations.Core.UploadFile({ file });
+                    setForm((f) => ({ ...f, logo: file_url }));
+                  } catch {
+                    setError("Logo upload failed.");
+                  }
+                  if (logoInputRef.current) logoInputRef.current.value = "";
+                }}
+              />
+            </div>
+            {form.logo && <img src={form.logo} alt="" className="h-8 mt-2 object-contain" />}
           </div>
           <div>
             <label className="text-xs font-semibold text-gray-500 uppercase">Accent color</label>

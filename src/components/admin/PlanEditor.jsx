@@ -177,6 +177,14 @@ export default function PlanEditor({ plan, onDuplicate }) {
               <option value="published">Published</option>
             </select>
           </div>
+          <div>
+            <label className="text-xs font-semibold text-gray-500 uppercase">Strategy</label>
+            <select value={p.strategy_status || "Proposed"} onChange={(e) => commitPlan({ strategy_status: e.target.value })} className="block h-10 rounded-lg border border-gray-200 px-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#2d2d2d]">
+              <option value="Proposed">Proposed</option>
+              <option value="In Progress">In Progress</option>
+              <option value="Completed">Completed</option>
+            </select>
+          </div>
           {onDuplicate && (
             <button onClick={() => onDuplicate(p)} className="ml-auto inline-flex items-center gap-2 text-sm border border-gray-200 rounded-full px-4 py-2 hover:bg-gray-50">
               <Copy className="w-4 h-4" /> Duplicate plan
