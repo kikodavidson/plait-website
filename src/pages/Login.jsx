@@ -34,7 +34,7 @@ export default function Login() {
 
   return (
     <AuthLayout
-      logo="https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/34553fa3b_Screenshot2026-08-14at12941AM.png"
+      logo="https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/56e6c8a0d_logos5.png"
       title="Creative Gameplan Portal"
       subtitle="Log in to your account"
       footer={
