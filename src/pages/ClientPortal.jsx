@@ -176,8 +176,8 @@ export default function ClientPortal() {
     <div className="min-h-screen bg-[#F5F5F5]">
       {headerEl}
       {showSidebar && (
-        <nav className="bg-black">
-          <div className="max-w-5xl mx-auto px-8 py-3">
+        <nav className="bg-black border-b border-white/10">
+          <div className="max-w-5xl mx-auto px-8 pt-3 pb-5">
             <PlanSidebar plans={plans} anglesByPlan={anglesByPlan} selectedPlanId={selectedPlanId} onSelect={setSelectedPlanId} clientName={client?.name} />
           </div>
         </nav>
