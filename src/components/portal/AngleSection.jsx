@@ -4,7 +4,7 @@ import BlockSection from "./BlockSection";
 
 const TYPE_BADGE = { audience: "Audience", concept: "Concept" };
 
-export default function AngleSection({ angle, blocks, examples, defaultOpen = true }) {
+export default function AngleSection({ angle, blocks, examples, defaultOpen = false }) {
   const [open, setOpen] = useState(defaultOpen);
   const angleBlocks = blocks.filter((b) => b.angle_id === angle.id);
 
@@ -15,15 +15,15 @@ export default function AngleSection({ angle, blocks, examples, defaultOpen = tr
         className="w-full flex items-center gap-3 text-left px-6 py-5 hover:bg-gray-50 transition-colors"
       >
         <ChevronDown className={`w-4 h-4 text-[#777777] shrink-0 transition-transform ${open ? "" : "-rotate-90"}`} />
-        <div className="flex items-center gap-2 flex-wrap min-w-0">
-          <h2 className="text-lg font-bold text-[#222222] truncate">{angle.label}</h2>
+        <div className="flex items-center gap-2 flex-1 min-w-0">
+          <h2 className="text-base font-bold text-[#222222] truncate">{angle.label}</h2>
           {angle.type && (
             <span className={`text-[10px] font-bold uppercase tracking-wide px-2 py-0.5 rounded-full ${angle.type === "audience" ? "bg-blue-100 text-blue-700" : "bg-purple-100 text-purple-700"}`}>
               {TYPE_BADGE[angle.type] || angle.type}
             </span>
           )}
-          <span className="text-xs text-[#777777]">{angleBlocks.length} block{angleBlocks.length === 1 ? "" : "s"}</span>
         </div>
+        <span className="text-xs text-[#777777] shrink-0">{angleBlocks.length} block{angleBlocks.length === 1 ? "" : "s"}</span>
       </button>
 
       {open && (
