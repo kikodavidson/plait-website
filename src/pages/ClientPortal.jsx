@@ -16,7 +16,7 @@ export default function ClientPortal() {
       try {
         const me = await base44.auth.me();
         setUser(me);
-        const slug = me?.data?.client_slug;
+        const slug = me?.data?.client_slug || me?.client_slug;
         if (!slug) { setLoading(false); return; }
         const clients = await base44.entities.Client.filter({ slug });
         setClient(clients[0] || null);
@@ -57,7 +57,7 @@ export default function ClientPortal() {
     );
   }
 
-  if (!user?.data?.client_slug) {
+  if (!(user?.data?.client_slug || user?.client_slug)) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center gap-4 p-6 bg-gray-50">
         <p className="text-lg font-medium text-[#2d2d2d]">Your account isn't linked to a client.</p>
