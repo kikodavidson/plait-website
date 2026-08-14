@@ -119,7 +119,7 @@ export default function ClientPortal() {
 
   return (
     <div className="min-h-screen bg-[#F5F5F5]">
-      <header className="bg-[#222222] text-white px-6 py-1 flex items-center justify-between sticky top-0 z-30">
+      <header className="bg-[#222222] text-white px-6 py-3 flex items-center justify-between sticky top-0 z-30">
         <div className="flex items-center gap-3 min-w-0 flex-1">
           {client?.logo && <img src={client.logo} alt="" className="h-8 w-8 rounded object-contain bg-white/10 shrink-0" />}
           <div className="min-w-0">
