@@ -17,6 +17,7 @@ export default function ClientPortal() {
   const [loadingChildren, setLoadingChildren] = useState(false);
   const [adminClients, setAdminClients] = useState([]);
   const [adminSlug, setAdminSlug] = useState(null);
+  const [revealed, setRevealed] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -53,6 +54,7 @@ export default function ClientPortal() {
       );
       setPlans(sorted);
       setSelectedPlanId(null);
+      setRevealed(false);
       setChildren({ angles: [], blocks: [], examples: [] });
     } catch (e) {
       console.error(e);
@@ -106,8 +108,8 @@ export default function ClientPortal() {
   const showEmptyClient = !isAdmin && !client;
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <header className="bg-[#2d2d2d] text-white px-6 py-4 flex items-center justify-between sticky top-0 z-30">
+    <div className="min-h-screen bg-[#F5F5F5]">
+      <header className="bg-[#222222] text-white px-6 py-4 flex items-center justify-between sticky top-0 z-30">
         <div className="flex items-center gap-3 min-w-0">
           {client?.logo && <img src={client.logo} alt="" className="h-8 w-8 rounded object-contain bg-white/10" />}
           <div className="min-w-0">
@@ -140,23 +142,28 @@ export default function ClientPortal() {
                 <img src={client.logo} alt={client.name} className="max-h-20 object-contain" />
               </div>
             )}
-            {client?.intro_note && (
-              <p className="text-center text-gray-600 mb-6 leading-relaxed max-w-2xl mx-auto">{client.intro_note}</p>
-            )}
+            <p className="text-center text-[#777777] mb-2 leading-relaxed max-w-2xl mx-auto">
+              Welcome to your {client?.name || ""} client portal — published content will appear here.
+            </p>
+            <p className="text-center text-[#777777] mb-6 leading-relaxed max-w-2xl mx-auto">
+              This is your dedicated space for monthly creative gameplans. Each month, your strategy team publishes the angles, content blocks, and example creative you'll be running — so you always know what's being made, why it's being made, and what to expect. Pick a month below to view that month's plan.
+            </p>
 
             {plans.length === 0 ? (
-              <p className="text-center text-gray-400 py-10">No published plans yet. Published content will appear here.</p>
+              <p className="text-center text-[#777777] py-10">No published plans yet. Published content will appear here.</p>
             ) : (
               <>
-                <MonthSelector plans={plans} selectedPlanId={selectedPlanId} onSelect={setSelectedPlanId} />
+                <div className="flex justify-center mb-8">
+                  <MonthSelector plans={plans} selectedPlanId={selectedPlanId} onSelect={setSelectedPlanId} onReveal={() => setRevealed(true)} />
+                </div>
 
-                {selectedPlan && (
+                {revealed && selectedPlan && (
                   <div className="mt-6">
                     {selectedPlan.headline && (
-                      <h2 className="text-2xl font-bold text-[#2d2d2d] mb-2">{selectedPlan.headline}</h2>
+                      <h2 className="text-2xl font-bold text-[#222222] mb-2">{selectedPlan.headline}</h2>
                     )}
                     {selectedPlan.strategy_note && (
-                      <p className="text-gray-600 leading-relaxed mb-6">{selectedPlan.strategy_note}</p>
+                      <p className="text-[#777777] leading-relaxed mb-6">{selectedPlan.strategy_note}</p>
                     )}
 
                     {loadingChildren ? (
