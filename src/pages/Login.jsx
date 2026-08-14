@@ -20,7 +20,8 @@ export default function Login() {
     setLoading(true);
     try {
       await base44.auth.loginViaEmailPassword(email, password);
-      window.location.href = "/client";
+      const me = await base44.auth.me();
+      window.location.href = me?.role === "admin" ? "/admin/clients" : "/client";
     } catch (err) {
       setError(err.message || "Invalid email or password");
     } finally {
@@ -29,7 +30,7 @@ export default function Login() {
   };
 
   const handleGoogle = () => {
-    base44.auth.loginWithProvider("google", "/client");
+    base44.auth.loginWithProvider("google", "/admin/clients");
   };
 
   return (
