@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { base44 } from "@/api/base44Client";
-import { Loader2, LogOut } from "lucide-react";
+import { Loader2, LogOut, Menu, X } from "lucide-react";
 import PlanSidebar from "@/components/portal/PlanSidebar";
 import AngleSection from "@/components/portal/AngleSection";
 import ClientSwitcher from "@/components/portal/ClientSwitcher";
@@ -21,6 +21,7 @@ export default function ClientPortal() {
   const [loadingChildren, setLoadingChildren] = useState(false);
   const [adminClients, setAdminClients] = useState([]);
   const [adminSlug, setAdminSlug] = useState(null);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -119,8 +120,13 @@ export default function ClientPortal() {
   const showSidebar = !showAdminPick && !showEmptyClient && plans.length > 0;
 
   const headerEl = (
-    <header className="bg-[#222222] text-white px-6 py-3 flex items-center justify-between sticky top-0 z-30">
+    <header className="bg-[#222222] text-white px-6 py-3 flex items-center justify-between shrink-0 z-30">
       <div className="flex items-center gap-3 min-w-0 flex-1">
+        {showSidebar && (
+          <button onClick={() => setMobileOpen(true)} className="md:hidden p-2 -ml-2 rounded hover:bg-white/10 shrink-0" aria-label="Open menu">
+            <Menu className="w-5 h-5" />
+          </button>
+        )}
         {client?.logo && <img src={client.logo} alt="" className="h-8 w-8 rounded object-contain bg-white/10 shrink-0" />}
         <div className="min-w-0">
           <p className="text-xs uppercase tracking-widest opacity-50">{isAdmin ? "Admin preview" : "Client Portal"}</p>
@@ -173,32 +179,47 @@ export default function ClientPortal() {
   );
 
   return (
-    <div className="min-h-screen bg-[#F5F5F5]">
+    <div className="h-screen flex flex-col bg-[#F5F5F5]">
       {headerEl}
-      {showSidebar && (
-        <nav className="bg-black border-b border-white/10">
-          <div className="max-w-5xl mx-auto px-8 pt-3 pb-5">
-            <PlanSidebar plans={plans} anglesByPlan={anglesByPlan} selectedPlanId={selectedPlanId} onSelect={setSelectedPlanId} clientName={client?.name} />
+      <div className="flex-1 flex min-h-0">
+        {showSidebar && (
+          <>
+            <aside className="hidden md:block w-[260px] shrink-0 bg-black overflow-y-auto">
+              <PlanSidebar plans={plans} anglesByPlan={anglesByPlan} selectedPlanId={selectedPlanId} onSelect={setSelectedPlanId} clientName={client?.name} />
+            </aside>
+            {mobileOpen && (
+              <div className="md:hidden fixed inset-0 z-40">
+                <div className="absolute inset-0 bg-black/50" onClick={() => setMobileOpen(false)} />
+                <aside className="absolute left-0 top-0 bottom-0 w-[260px] bg-black overflow-y-auto">
+                  <div className="flex justify-end p-2">
+                    <button onClick={() => setMobileOpen(false)} className="p-2 text-white/70 hover:text-white" aria-label="Close menu">
+                      <X className="w-5 h-5" />
+                    </button>
+                  </div>
+                  <PlanSidebar plans={plans} anglesByPlan={anglesByPlan} selectedPlanId={selectedPlanId} onSelect={setSelectedPlanId} clientName={client?.name} onNavigate={() => setMobileOpen(false)} />
+                </aside>
+              </div>
+            )}
+          </>
+        )}
+        <main className="flex-1 min-w-0 overflow-y-auto">
+          <div className="max-w-5xl mx-auto px-8 py-8 w-full">
+            {showAdminPick ? (
+              <div className="text-center py-20 flex flex-col items-center gap-6">
+                {isAdmin && <ClientSwitcher clients={adminClients} value={adminSlug} onChange={setAdminSlug} />}
+                <p className="text-gray-500">Use the switcher above to preview any client's portal exactly as they see it.</p>
+              </div>
+            ) : showEmptyClient ? (
+              <div className="text-center py-20">
+                <p className="text-lg font-medium text-[#2d2d2d]">Your account isn't linked to a client.</p>
+                <button onClick={() => base44.auth.logout()} className="text-sm text-gray-500 underline mt-3">Log out</button>
+              </div>
+            ) : plans.length === 0 ? (
+              <p className="text-center text-[#777777] py-10">No published plans yet. Published content will appear here.</p>
+            ) : (
+              contentEl
+            )}
           </div>
-        </nav>
-      )}
-      <div className="flex-1 min-w-0 flex flex-col">
-        <main className="max-w-5xl mx-auto px-8 py-8 w-full">
-          {showAdminPick ? (
-            <div className="text-center py-20 flex flex-col items-center gap-6">
-              {isAdmin && <ClientSwitcher clients={adminClients} value={adminSlug} onChange={setAdminSlug} />}
-              <p className="text-gray-500">Use the switcher above to preview any client's portal exactly as they see it.</p>
-            </div>
-          ) : showEmptyClient ? (
-            <div className="text-center py-20">
-              <p className="text-lg font-medium text-[#2d2d2d]">Your account isn't linked to a client.</p>
-              <button onClick={() => base44.auth.logout()} className="text-sm text-gray-500 underline mt-3">Log out</button>
-            </div>
-          ) : plans.length === 0 ? (
-            <p className="text-center text-[#777777] py-10">No published plans yet. Published content will appear here.</p>
-          ) : (
-            contentEl
-          )}
         </main>
       </div>
     </div>
