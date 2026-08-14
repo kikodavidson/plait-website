@@ -7,7 +7,7 @@ const TABS = [
   { key: "Completed", label: "Completed" },
 ];
 
-export default function PlanSidebar({ plans, anglesByPlan, selectedPlanId, onSelect }) {
+export default function PlanSidebar({ plans, anglesByPlan, selectedPlanId, onSelect, clientName }) {
   const [tab, setTab] = useState("Proposed");
 
   const groups = TABS.map((t) => {
@@ -21,7 +21,7 @@ export default function PlanSidebar({ plans, anglesByPlan, selectedPlanId, onSel
 
   return (
     <div>
-      <h2 className="text-lg font-bold text-[#222222]">Content gameplan</h2>
+      <h2 className="text-lg font-bold text-[#222222]">{clientName ? `${clientName} ` : ""}Content gameplan</h2>
       <div className="flex gap-1 mt-3 mb-3">
         {groups.map((g) => (
           <button
