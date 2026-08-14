@@ -4,6 +4,7 @@ import { Loader2, LogOut, Menu, X } from "lucide-react";
 import PlanSidebar from "@/components/portal/PlanSidebar";
 import AngleSection from "@/components/portal/AngleSection";
 import ClientSwitcher from "@/components/portal/ClientSwitcher";
+import PlanStatusCallout from "@/components/portal/PlanStatusCallout";
 
 const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 const PLAIT_LOGO = "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/9f9827363_Untitleddesign-2026-08-14T032711954.png";
@@ -107,6 +108,15 @@ export default function ClientPortal() {
   const selectedPlan = plans.find((p) => p.id === selectedPlanId);
   const isAdmin = user?.role === "admin";
 
+  const handleStatusChange = async (newStatus) => {
+    try {
+      await base44.entities.Plan.update(selectedPlanId, { strategy_status: newStatus });
+      setPlans((prev) => prev.map((p) => (p.id === selectedPlanId ? { ...p, strategy_status: newStatus } : p)));
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
@@ -154,9 +164,10 @@ export default function ClientPortal() {
         </div>
       ) : (
         <div>
-          {selectedPlan.headline && (
-            <h2 className="text-2xl font-bold text-[#222222] mb-2">{selectedPlan.headline}</h2>
-          )}
+          <div className="flex items-center gap-3 mb-2">
+            {selectedPlan.headline && <h2 className="text-2xl font-bold text-[#222222]">{selectedPlan.headline}</h2>}
+            <PlanStatusCallout plan={selectedPlan} isAdmin={isAdmin} onChange={handleStatusChange} />
+          </div>
           {selectedPlan.strategy_note && (
             <p className="text-[#777777] leading-relaxed mb-6">{selectedPlan.strategy_note}</p>
           )}
