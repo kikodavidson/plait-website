@@ -175,7 +175,7 @@ export default function ClientPortal() {
   return (
     <div className="min-h-screen bg-[#F5F5F5] flex">
       {showSidebar && (
-        <aside className="w-64 shrink-0 bg-[#121418] h-screen sticky top-0 flex flex-col p-4 overflow-y-auto">
+        <aside className="w-64 shrink-0 bg-black h-screen sticky top-0 flex flex-col p-4 overflow-y-auto">
           {client?.logo && (
             <div className="flex justify-center mb-4">
               <img src={client.logo} alt={client.name} className="max-h-10 object-contain" />
