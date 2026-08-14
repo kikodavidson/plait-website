@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { base44 } from "@/api/base44Client";
-import { Upload, ShieldAlert, LogOut } from "lucide-react";
+import { Upload, ShieldAlert, LogOut, Users } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import LibraryFilters from "@/components/library/LibraryFilters";
 import SwipeGrid from "@/components/library/SwipeGrid";
 import SwipeDetailPanel from "@/components/library/SwipeDetailPanel";
 import BulkIntake from "@/components/library/BulkIntake";
 
 export default function Library() {
+  const navigate = useNavigate();
   const [user, setUser] = useState(null);
   const [swipes, setSwipes] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -87,6 +89,9 @@ export default function Library() {
           <h1 className="text-xl font-bold">Swipe Library</h1>
         </div>
         <div className="flex items-center gap-3">
+          <button onClick={() => navigate("/admin/clients")} className="inline-flex items-center gap-2 text-sm font-medium text-white/80 hover:text-white px-3 py-2 rounded-full hover:bg-white/10">
+            <Users className="w-4 h-4" /> Clients
+          </button>
           {mode === "intake" ? (
             <button onClick={() => setMode("library")} className="text-sm bg-white/10 hover:bg-white/20 px-4 py-2 rounded-full">View library</button>
           ) : (
