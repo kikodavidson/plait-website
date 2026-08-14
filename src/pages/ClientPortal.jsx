@@ -95,11 +95,12 @@ export default function ClientPortal() {
 
   const selectedPlan = plans.find((p) => p.id === selectedPlanId);
   const isAdmin = user?.role === "admin";
+  const accent = client?.accent_color || "#2d2d2d";
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
-        <Loader2 className="w-6 h-6 animate-spin text-gray-400" />
+      <div className="min-h-screen flex items-center justify-center bg-[#F5F1E9]">
+        <Loader2 className="w-6 h-6 animate-spin text-[#8C8480]" />
       </div>
     );
   }
@@ -108,32 +109,32 @@ export default function ClientPortal() {
   const showEmptyClient = !isAdmin && !client;
 
   return (
-    <div className="min-h-screen bg-[#F5F5F5]">
-      <header className="bg-[#222222] text-white px-6 py-4 flex items-center justify-between sticky top-0 z-30">
+    <div className="min-h-screen bg-[#F5F1E9]">
+      <header className="bg-[#F5F1E9] border-b border-[#E9E2D6] px-5 sm:px-6 py-4 flex items-center justify-between sticky top-0 z-30">
         <div className="flex items-center gap-3 min-w-0">
-          {client?.logo && <img src={client.logo} alt="" className="h-8 w-8 rounded object-contain bg-white/10" />}
+          {client?.logo && <img src={client.logo} alt="" className="h-8 w-8 rounded object-contain" />}
           <div className="min-w-0">
-            <p className="text-xs uppercase tracking-widest opacity-50">{isAdmin ? "Admin preview" : "Client Portal"}</p>
-            <h1 className="text-lg font-bold truncate">{client?.name || "Select a client"}</h1>
+            <p className="text-[10px] uppercase tracking-widest text-[#8C8480]">{isAdmin ? "Admin preview" : "Client Portal"}</p>
+            <h1 className="text-base font-semibold text-[#2B2B2B] truncate">{client?.name || "Select a client"}</h1>
           </div>
         </div>
-        <div className="flex items-center gap-3 shrink-0">
+        <div className="flex items-center gap-2 sm:gap-3 shrink-0">
           {isAdmin && <ClientSwitcher clients={adminClients} value={adminSlug} onChange={setAdminSlug} />}
-          <button onClick={() => base44.auth.logout()} className="flex items-center gap-2 text-sm bg-white/10 hover:bg-white/20 px-4 py-2 rounded-full">
-            <LogOut className="w-4 h-4" /> Log out
+          <button onClick={() => base44.auth.logout()} className="flex items-center gap-2 text-xs sm:text-sm text-[#6B6258] hover:text-[#2B2B2B] border border-[#E9E2D6] hover:border-[#2B2B2B] px-3 sm:px-4 py-2 rounded-full transition-colors">
+            <LogOut className="w-3.5 h-3.5" /> Log out
           </button>
         </div>
       </header>
 
-      <main className="max-w-4xl mx-auto px-6 py-8">
+      <main className="max-w-3xl mx-auto px-5 sm:px-6 py-10 sm:py-14">
         {showAdminPick ? (
           <div className="text-center py-20">
-            <p className="text-gray-500">Use the switcher above to preview any client's portal exactly as they see it.</p>
+            <p className="text-[#6B6258]">Use the switcher above to preview any client's portal exactly as they see it.</p>
           </div>
         ) : showEmptyClient ? (
           <div className="text-center py-20">
-            <p className="text-lg font-medium text-[#2d2d2d]">Your account isn't linked to a client.</p>
-            <button onClick={() => base44.auth.logout()} className="text-sm text-gray-500 underline mt-3">Log out</button>
+            <p className="text-lg font-medium text-[#2B2B2B]">Your account isn't linked to a client.</p>
+            <button onClick={() => base44.auth.logout()} className="text-sm text-[#6B6258] underline mt-3">Log out</button>
           </div>
         ) : (
           <>
@@ -143,40 +144,41 @@ export default function ClientPortal() {
               </div>
             )}
             {plans.length === 0 ? (
-              <p className="text-center text-[#777777] py-10">No published plans yet. Published content will appear here.</p>
+              <p className="text-center text-[#8C8480] py-10">No published plans yet. Published content will appear here.</p>
             ) : (
               <>
-                <h2 className="text-center text-lg font-bold text-[#222222] mb-3">Your monthly gameplan</h2>
+                <h2 className="text-center text-lg font-semibold text-[#2B2B2B] mb-3">Your monthly gameplan</h2>
                 <div className="flex justify-center mb-6">
-                  <MonthSelector plans={plans} selectedPlanId={selectedPlanId} onSelect={setSelectedPlanId} onReveal={() => setRevealed(true)} />
+                  <MonthSelector plans={plans} selectedPlanId={selectedPlanId} onSelect={setSelectedPlanId} onReveal={() => setRevealed(true)} accent={accent} />
                 </div>
-                <p className="text-center text-[#777777] mb-8 leading-relaxed max-w-2xl mx-auto">
+                <p className="text-center text-[#6B6258] mb-8 leading-relaxed max-w-xl mx-auto text-sm">
                   This is where strategy turns into reality. Each plan lays out the audiences and concepts we're testing, the types of content we need to test them, and a visual example of a creative that's already winning so there's no guessing what good looks like. Then we take a method that already works and make it yours. New plans go up whenever there's something new to test. Pick one above to see what's in motion.
                 </p>
 
                 {revealed && selectedPlan && (
-                  <div className="mt-6">
+                  <div className="mt-8">
                     {selectedPlan.headline && (
-                      <h2 className="text-2xl font-bold text-[#222222] mb-2">{selectedPlan.headline}</h2>
+                      <h2 className="text-xl sm:text-2xl font-semibold text-[#2B2B2B] mb-3">{selectedPlan.headline}</h2>
                     )}
                     {selectedPlan.strategy_note && (
-                      <p className="text-[#777777] leading-relaxed mb-6">{selectedPlan.strategy_note}</p>
+                      <p className="text-[#6B6258] leading-relaxed mb-8">{selectedPlan.strategy_note}</p>
                     )}
 
                     {loadingChildren ? (
                       <div className="flex justify-center py-10">
-                        <Loader2 className="w-5 h-5 animate-spin text-gray-400" />
+                        <Loader2 className="w-5 h-5 animate-spin text-[#8C8480]" />
                       </div>
                     ) : children.angles.length === 0 ? (
-                      <p className="text-gray-400">No published angles yet.</p>
+                      <p className="text-[#8C8480]">No published angles yet.</p>
                     ) : (
-                      <div className="space-y-4">
+                      <div className="space-y-3">
                         {children.angles.map((angle) => (
                           <AngleSection
                             key={angle.id}
                             angle={angle}
                             blocks={children.blocks}
                             examples={children.examples}
+                            accent={accent}
                           />
                         ))}
                       </div>

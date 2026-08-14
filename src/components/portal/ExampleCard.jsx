@@ -21,7 +21,7 @@ export default function ExampleCard({ ex }) {
   };
 
   return (
-    <div className="rounded-xl overflow-hidden bg-[#2d2d2d] shadow-sm">
+    <div className="rounded-xl overflow-hidden bg-[#2B2B2B] border border-[#1f1f1f]">
       <div className="relative bg-black aspect-[9/16]">
         {ex.file_url ? (
           <video
