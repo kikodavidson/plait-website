@@ -1,0 +1,84 @@
+{
+  "name": "Angle",
+  "type": "object",
+  "properties": {
+    "client_slug": {
+      "type": "string",
+      "description": "The slug of the Client this angle belongs to"
+    },
+    "plan_id": {
+      "type": "string",
+      "description": "ID of the parent Plan"
+    },
+    "label": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "audience",
+        "concept"
+      ]
+    },
+    "order": {
+      "type": "number"
+    },
+    "description": {
+      "type": "string"
+    },
+    "insight": {
+      "type": "string"
+    },
+    "plan_status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "published"
+      ],
+      "default": "draft",
+      "description": "Mirror of the parent Plan status so draft children are hidden from clients via RLS. Kept in sync whenever the parent Plan status changes."
+    }
+  },
+  "required": [
+    "client_slug",
+    "plan_id",
+    "label",
+    "type"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "$and": [
+            {
+              "data.client_slug": "{{user.data.client_slug}}"
+            },
+            {
+              "data.plan_status": "published"
+            }
+          ]
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

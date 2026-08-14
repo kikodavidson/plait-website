@@ -1,0 +1,67 @@
+{
+  "name": "Client",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "string",
+      "description": "Unique, lowercase identifier matching the client_slug on User and Plan records"
+    },
+    "logo": {
+      "type": "string",
+      "description": "URL of the client logo file"
+    },
+    "accent_color": {
+      "type": "string",
+      "description": "Hex color string for client portal theming"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "paused",
+        "archived"
+      ],
+      "default": "active"
+    },
+    "intro_note": {
+      "type": "string",
+      "description": "Intro text shown to the client in their portal"
+    }
+  },
+  "required": [
+    "name",
+    "slug"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "data.slug": "{{user.data.client_slug}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

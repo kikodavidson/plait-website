@@ -1,0 +1,86 @@
+{
+  "name": "Plan",
+  "type": "object",
+  "properties": {
+    "client_slug": {
+      "type": "string",
+      "description": "The slug of the Client this plan belongs to"
+    },
+    "month": {
+      "type": "string",
+      "enum": [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December"
+      ]
+    },
+    "year": {
+      "type": "number"
+    },
+    "headline": {
+      "type": "string"
+    },
+    "strategy_note": {
+      "type": "string",
+      "description": "High level strategy text for the month"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "published"
+      ],
+      "default": "draft"
+    }
+  },
+  "required": [
+    "client_slug",
+    "month",
+    "year"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "$and": [
+            {
+              "data.client_slug": "{{user.data.client_slug}}"
+            },
+            {
+              "data.status": "published"
+            }
+          ]
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

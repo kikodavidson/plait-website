@@ -5,8 +5,12 @@
       "description": "The role of the user in the app",
       "enum": [
         "admin",
-        "user"
+        "client"
       ]
+    },
+    "client_slug": {
+      "type": "string",
+      "description": "The slug of the Client this user belongs to. Empty/null for admin users."
     }
   },
   "required": [

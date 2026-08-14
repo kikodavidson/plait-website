@@ -1,0 +1,85 @@
+{
+  "name": "Example",
+  "type": "object",
+  "properties": {
+    "client_slug": {
+      "type": "string",
+      "description": "The slug of the Client this example belongs to"
+    },
+    "block_id": {
+      "type": "string",
+      "description": "ID of the parent Block"
+    },
+    "swipe_id": {
+      "type": "string",
+      "description": "ID of the source Swipe (admin reference only; clients never read Swipe)"
+    },
+    "file_url": {
+      "type": "string",
+      "description": "Denormalized from the source Swipe so the client portal never touches the Swipe entity"
+    },
+    "thumbnail_url": {
+      "type": "string",
+      "description": "Denormalized thumbnail from the source Swipe"
+    },
+    "label": {
+      "type": "string"
+    },
+    "note": {
+      "type": "string"
+    },
+    "order": {
+      "type": "number"
+    },
+    "plan_status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "published"
+      ],
+      "default": "draft",
+      "description": "Mirror of the parent Plan status so draft children are hidden from clients via RLS. Kept in sync whenever the parent Plan status changes."
+    }
+  },
+  "required": [
+    "client_slug",
+    "block_id",
+    "swipe_id"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "$and": [
+            {
+              "data.client_slug": "{{user.data.client_slug}}"
+            },
+            {
+              "data.plan_status": "published"
+            }
+          ]
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}
