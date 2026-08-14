@@ -8,7 +8,7 @@ const TABS = [
 ];
 
 export default function PlanSidebar({ plans, anglesByPlan, selectedPlanId, onSelect, clientName }) {
-  const [tab, setTab] = useState("Proposed");
+  const [tab, setTab] = useState(null);
 
   const groups = TABS.map((t) => {
     const ps = plans
@@ -17,7 +17,7 @@ export default function PlanSidebar({ plans, anglesByPlan, selectedPlanId, onSel
     const count = ps.reduce((sum, p) => sum + (anglesByPlan[p.id] || 0), 0);
     return { ...t, plans: ps, count };
   });
-  const active = groups.find((g) => g.key === tab) || groups[0];
+  const active = groups.find((g) => g.key === tab) || null;
 
   return (
     <div>
@@ -34,7 +34,9 @@ export default function PlanSidebar({ plans, anglesByPlan, selectedPlanId, onSel
         ))}
       </div>
       <div className="space-y-1">
-        {active.plans.length === 0 ? (
+        {!active ? (
+          <p className="text-sm text-gray-400 py-4">Select a category to view plans.</p>
+        ) : active.plans.length === 0 ? (
           <p className="text-sm text-gray-400 py-4">No {active.label.toLowerCase()} plans.</p>
         ) : (
           active.plans.map((p) => (
