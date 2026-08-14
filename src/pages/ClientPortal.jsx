@@ -128,7 +128,7 @@ export default function ClientPortal() {
           </div>
         </div>
         <div className="hidden md:flex items-center gap-2 justify-center px-4">
-          <img src={PLAIT_LOGO} alt="Plait" className="h-6 object-contain" />
+          <img src={PLAIT_LOGO} alt="Plait" className="h-12 object-contain" />
           <span className="text-white/40">|</span>
           <span className="text-sm font-semibold tracking-wide whitespace-nowrap">Creative Gameplan Studio</span>
         </div>
