@@ -3,7 +3,7 @@ import React from "react";
 const STATUS_OPTIONS = [
   { value: "Proposed", label: "Proposed" },
   { value: "In Progress", label: "In Progress" },
-  { value: "Completed", label: "Delivered" },
+  { value: "Completed", label: "Completed" },
 ];
 
 const STYLES = {

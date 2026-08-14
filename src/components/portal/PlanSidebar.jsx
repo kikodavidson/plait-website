@@ -2,9 +2,9 @@ import React, { useState } from "react";
 
 const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 const GROUPS = [
-  { key: "Proposed", label: "Proposed" },
-  { key: "In Progress", label: "In Progress" },
-  { key: "Completed", label: "Delivered" },
+  { key: "Proposed", label: "Upcoming" },
+  { key: "In Progress", label: "Current" },
+  { key: "Completed", label: "Completed" },
 ];
 const BLUE = "#4F6EF7";
 
