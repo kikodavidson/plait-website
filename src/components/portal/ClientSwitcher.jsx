@@ -10,7 +10,7 @@ export default function ClientSwitcher({ clients, value, onChange }) {
         onChange={(e) => onChange(e.target.value)}
         className="appearance-none text-sm font-medium text-[#2d2d2d] bg-white pl-9 pr-8 py-2 rounded-full border-0 focus:outline-none cursor-pointer max-w-[220px]"
       >
-        <option value="" disabled>View as client…</option>
+        <option value="" disabled>Choose client portal…</option>
         {clients.map((c) => (
           <option key={c.id} value={c.slug}>{c.name}</option>
         ))}
