@@ -4,7 +4,7 @@ import { ChevronDown } from "lucide-react";
 const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 const monthIndex = (m) => MONTHS.indexOf(m);
 
-export default function MonthSelector({ plans, selectedPlanId, onSelect, onReveal, accent = "#2d2d2d" }) {
+export default function MonthSelector({ plans, selectedPlanId, onSelect, onReveal }) {
   const [open, setOpen] = useState(false);
   const ref = useRef(null);
 
@@ -36,22 +36,21 @@ export default function MonthSelector({ plans, selectedPlanId, onSelect, onRevea
   if (sorted.length === 0) return null;
 
   return (
-    <div className="relative w-full sm:w-auto" ref={ref}>
+    <div className="relative" ref={ref}>
       <button
         onClick={handleToggle}
-        className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white border border-[#E9E2D6] text-[#2B2B2B] px-5 py-3 rounded-full text-sm font-semibold hover:border-[#2B2B2B] transition-colors"
+        className="inline-flex items-center gap-2 bg-[#222222] text-white px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-[#2d2d2d] transition-colors"
       >
         {selected ? `${selected.month} ${selected.year}` : "Select a month"}
-        <ChevronDown className={`w-4 h-4 transition-transform ${open ? "rotate-180" : ""}`} style={{ color: open ? accent : undefined }} />
+        <ChevronDown className={`w-4 h-4 transition-transform ${open ? "rotate-180" : ""}`} />
       </button>
       {open && (
-        <div className="absolute z-20 mt-2 left-1/2 -translate-x-1/2 sm:left-0 sm:translate-x-0 w-48 bg-white rounded-xl border border-[#E9E2D6] py-1 max-h-64 overflow-y-auto">
+        <div className="absolute z-20 mt-2 w-44 bg-white rounded-xl border border-gray-100 shadow-lg py-1 max-h-64 overflow-y-auto">
           {sorted.map((p) => (
             <button
               key={p.id}
               onClick={() => handleSelect(p.id)}
-              className="w-full text-left px-4 py-2.5 text-sm hover:bg-[#F5F1E9] transition-colors"
-              style={{ color: p.id === selectedPlanId ? accent : "#6B6258", fontWeight: p.id === selectedPlanId ? 600 : 400 }}
+              className={`w-full text-left px-4 py-2 text-sm hover:bg-gray-50 ${p.id === selectedPlanId ? "font-bold text-[#222222]" : "text-gray-600"}`}
             >
               {p.month} {p.year}
             </button>
