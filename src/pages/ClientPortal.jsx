@@ -6,7 +6,7 @@ import AngleSection from "@/components/portal/AngleSection";
 import ClientSwitcher from "@/components/portal/ClientSwitcher";
 
 const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-const PLAIT_LOGO = "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/1526ed8af_Untitleddesign-2026-08-14T031532883.png";
+const PLAIT_LOGO = "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/9f9827363_Untitleddesign-2026-08-14T032711954.png";
 const INTRO = "This is where strategy turns into reality. Each plan lays out the audiences and concepts we're testing, the types of content we need to test them, and a visual example of a creative that's already winning so there's no guessing what good looks like. Then we take a method that already works and make it yours. New plans go up whenever there's something new to test. Pick one to see what's in motion.";
 
 export default function ClientPortal() {
