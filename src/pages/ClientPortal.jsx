@@ -6,7 +6,7 @@ import AngleSection from "@/components/portal/AngleSection";
 import ClientSwitcher from "@/components/portal/ClientSwitcher";
 
 const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-const PLAIT_LOGO = "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/56e6c8a0d_logos5.png";
+const PLAIT_LOGO = "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/1526ed8af_Untitleddesign-2026-08-14T031532883.png";
 const INTRO = "This is where strategy turns into reality. Each plan lays out the audiences and concepts we're testing, the types of content we need to test them, and a visual example of a creative that's already winning so there's no guessing what good looks like. Then we take a method that already works and make it yours. New plans go up whenever there's something new to test. Pick one to see what's in motion.";
 
 export default function ClientPortal() {
@@ -128,7 +128,8 @@ export default function ClientPortal() {
           </div>
         </div>
         <div className="hidden md:flex items-center gap-2 justify-center px-4">
-          <img src={PLAIT_LOGO} alt="" className="h-6 w-6 rounded object-contain bg-white/10" />
+          <img src={PLAIT_LOGO} alt="Plait" className="h-6 object-contain" />
+          <span className="text-white/40">|</span>
           <span className="text-sm font-semibold tracking-wide whitespace-nowrap">Creative Gameplan Studio</span>
         </div>
         <div className="flex items-center gap-3 justify-end flex-1">
