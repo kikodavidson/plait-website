@@ -150,11 +150,8 @@ export default function ClientPortal() {
                 <div className="flex justify-center mb-6">
                   <MonthSelector plans={plans} selectedPlanId={selectedPlanId} onSelect={setSelectedPlanId} onReveal={() => setRevealed(true)} />
                 </div>
-                <p className="text-center text-[#777777] mb-2 leading-relaxed max-w-2xl mx-auto">
-                  Welcome to your {client?.name || ""} client portal — published content will appear here.
-                </p>
                 <p className="text-center text-[#777777] mb-8 leading-relaxed max-w-2xl mx-auto">
-                  This is your dedicated space for monthly creative gameplans. Each month, your strategy team publishes the angles, content blocks, and example creative you'll be running — so you always know what's being made, why it's being made, and what to expect. Pick a month above to view that month's plan.
+                  This is where strategy turns into reality. Each plan lays out the audiences and concepts we're testing, the types of content we need to test them, and a visual example of a creative that's already winning so there's no guessing what good looks like. Then we take a method that already works and make it yours. New plans go up whenever there's something new to test. Pick one above to see what's in motion.
                 </p>
 
                 {revealed && selectedPlan && (
