@@ -101,6 +101,7 @@ export default function Library() {
       <main className="max-w-7xl mx-auto px-6 py-8">
         {mode === "intake" ? (
           <BulkIntake
+            existingSwipes={swipes}
             onSaved={() => { setMode("library"); loadSwipes(); }}
             onCancel={() => setMode("library")}
           />

@@ -10,6 +10,14 @@
       "type": "string",
       "description": "URL of the video thumbnail image"
     },
+    "file_name": {
+      "type": "string",
+      "description": "Original uploaded file name, used for duplicate detection"
+    },
+    "file_size": {
+      "type": "number",
+      "description": "Original uploaded file size in bytes, used for duplicate detection"
+    },
     "source_brand": {
       "type": "string",
       "description": "Brand the ad belongs to"
