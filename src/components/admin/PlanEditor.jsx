@@ -4,7 +4,7 @@ import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
 import { Plus, Copy } from "lucide-react";
 import AngleCard from "./AngleCard";
 import { MONTHS, exampleLabel } from "@/lib/planBuilder";
-import { cascadePlanStatus } from "@/lib/planStatus";
+// plan_status cascade runs through the shared syncPlanStatus backend function.
 
 const arrayMove = (arr, from, to) => {
   const a = [...arr];
@@ -55,7 +55,7 @@ export default function PlanEditor({ plan, onDuplicate }) {
   const changeStatus = async (newStatus) => {
     setP((prev) => ({ ...prev, status: newStatus }));
     await base44.entities.Plan.update(plan.id, { status: newStatus });
-    await cascadePlanStatus(plan.id, newStatus);
+    try { await base44.functions.invoke("syncPlanStatus", { planId: plan.id, status: newStatus }); } catch (e) { console.error(e); }
     setAngles((prev) => prev.map((a) => ({ ...a, plan_status: newStatus })));
     setBlocks((prev) => prev.map((b) => ({ ...b, plan_status: newStatus })));
     setExamples((prev) => prev.map((e) => ({ ...e, plan_status: newStatus })));
@@ -123,6 +123,19 @@ export default function PlanEditor({ plan, onDuplicate }) {
     });
     const created = await base44.entities.Example.bulkCreate(records);
     setExamples((prev) => [...prev, ...created]);
+    // New examples inherit the parent plan's current status via the shared sync function.
+    try { await base44.functions.invoke("syncPlanStatus", { planId: plan.id, status: p.status }); } catch (e) { console.error(e); }
+  };
+
+  const reorderExamples = (blockId, result) => {
+    if (!result.destination) return;
+    const be = examples.filter((e) => e.block_id === blockId).sort((a, b) => (a.order || 0) - (b.order || 0));
+    const moved = arrayMove(be, result.source.index, result.destination.index).map((e, i) => ({ ...e, order: i + 1 }));
+    base44.entities.Example.bulkUpdate(moved.map((e) => ({ id: e.id, order: e.order }))).catch(console.error);
+    setExamples((prev) => {
+      const m = new Map(moved.map((e) => [e.id, e]));
+      return prev.map((e) => m.get(e.id) || e);
+    });
   };
 
   const deleteExample = async (id) => {
@@ -137,7 +150,7 @@ export default function PlanEditor({ plan, onDuplicate }) {
     setAngles(moved);
   };
 
-  const api = { set: setEntity, commit: commitEntity, deleteAngle, addBlock, deleteBlock, reorderBlocks, addExamples, deleteExample };
+  const api = { set: setEntity, commit: commitEntity, deleteAngle, addBlock, deleteBlock, reorderBlocks, reorderExamples, addExamples, deleteExample };
 
   const blocksForAngle = (angleId) => blocks.filter((b) => b.angle_id === angleId).sort((a, b) => (a.order || 0) - (b.order || 0));
   const examplesForBlock = (blockId) => examples.filter((e) => e.block_id === blockId).sort((a, b) => (a.order || 0) - (b.order || 0));

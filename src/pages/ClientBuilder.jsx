@@ -5,7 +5,7 @@ import { ArrowLeft, Plus, Copy, Trash2, ShieldAlert, LogOut, Loader2 } from "luc
 import PlanEditor from "@/components/admin/PlanEditor";
 import PlanMonthDialog from "@/components/admin/PlanMonthDialog";
 import { exampleLabel } from "@/lib/planBuilder";
-import { cascadePlanStatus } from "@/lib/planStatus";
+// plan_status cascade runs through the shared syncPlanStatus backend function.
 
 export default function ClientBuilder() {
   const { clientId } = useParams();
@@ -73,7 +73,7 @@ export default function ClientBuilder() {
         }
       }
     }
-    await cascadePlanStatus(newPlan.id, "draft");
+    try { await base44.functions.invoke("syncPlanStatus", { planId: newPlan.id, status: "draft" }); } catch (e) { console.error(e); }
     setMonthDialog(null);
     loadPlans(client.slug);
   };

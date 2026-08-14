@@ -1,9 +1,10 @@
 import React from "react";
-import { Trash2, Image as ImageIcon } from "lucide-react";
+import { Trash2, GripVertical, Image as ImageIcon } from "lucide-react";
 
-export default function ExampleItem({ example, api }) {
+export default function ExampleItem({ example, api, innerRef, draggableProps, dragHandleProps }) {
   return (
-    <div className="flex items-start gap-2 py-2">
+    <div ref={innerRef} {...draggableProps} className="flex items-start gap-2 py-2">
+      <span {...dragHandleProps} className="cursor-grab text-gray-300 mt-3"><GripVertical className="w-4 h-4" /></span>
       <div className="w-12 h-12 rounded-md overflow-hidden bg-gray-200 shrink-0 flex items-center justify-center">
         {example.thumbnail_url ? (
           <img src={example.thumbnail_url} alt="" className="w-full h-full object-cover" />

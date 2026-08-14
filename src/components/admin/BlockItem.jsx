@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
 import { Trash2, Plus, GripVertical } from "lucide-react";
 import ExampleItem from "./ExampleItem";
 import ExamplePicker from "./ExamplePicker";
@@ -40,9 +41,28 @@ export default function BlockItem({ block, examples, api, innerRef, draggablePro
         placeholder="Creative direction…"
         className="w-full text-sm text-gray-600 bg-white rounded border border-gray-200 px-2 py-1 focus:outline-none focus:ring-1 focus:ring-[#2d2d2d]"
       />
-      <div className="mt-2 divide-y divide-gray-200">
-        {examples.map((ex) => <ExampleItem key={ex.id} example={ex} api={api} />)}
-      </div>
+      <DragDropContext onDragEnd={(result) => api.reorderExamples(block.id, result)}>
+        <Droppable droppableId={`examples-${block.id}`} type="example">
+          {(provided) => (
+            <div ref={provided.innerRef} {...provided.droppableProps} className="mt-2 divide-y divide-gray-200">
+              {examples.map((ex, i) => (
+                <Draggable key={ex.id} draggableId={ex.id} index={i}>
+                  {(pp) => (
+                    <ExampleItem
+                      example={ex}
+                      api={api}
+                      innerRef={pp.innerRef}
+                      draggableProps={pp.draggableProps}
+                      dragHandleProps={pp.dragHandleProps}
+                    />
+                  )}
+                </Draggable>
+              ))}
+              {provided.placeholder}
+            </div>
+          )}
+        </Droppable>
+      </DragDropContext>
       <button onClick={() => setPickerOpen(true)} className="mt-2 inline-flex items-center gap-1 text-xs text-gray-500 hover:text-[#2d2d2d]">
         <Plus className="w-3.5 h-3.5" /> Add example
       </button>
