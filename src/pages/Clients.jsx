@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { base44 } from "@/api/base44Client";
-import { Plus, Pencil, ShieldAlert, LogOut, Loader2, FolderDown } from "lucide-react";
+import { Plus, Pencil, ShieldAlert, LogOut, Loader2, FolderDown, Eye } from "lucide-react";
 import ClientDialog from "@/components/admin/ClientDialog";
 
 export default function Clients() {
@@ -58,6 +58,9 @@ export default function Clients() {
         <div className="flex items-center gap-3">
           <button onClick={() => navigate("/library")} className="inline-flex items-center gap-2 text-sm font-medium text-white/80 hover:text-white px-3 py-2 rounded-full hover:bg-white/10">
             <FolderDown className="w-4 h-4" /> Swipe library
+          </button>
+          <button onClick={() => navigate("/client")} className="inline-flex items-center gap-2 text-sm font-medium text-white/80 hover:text-white px-3 py-2 rounded-full hover:bg-white/10">
+            <Eye className="w-4 h-4" /> View portal
           </button>
           <button onClick={() => { setEditing(null); setDialogOpen(true); }} className="inline-flex items-center gap-2 bg-white text-[#2d2d2d] text-sm font-bold px-4 py-2 rounded-full hover:bg-gray-100">
             <Plus className="w-4 h-4" /> New client

@@ -1,33 +1,35 @@
 import React, { useState, useEffect } from "react";
 import { base44 } from "@/api/base44Client";
-import { motion } from "framer-motion";
-import { Loader2, LogOut, ChevronRight, Image as ImageIcon } from "lucide-react";
+import { Loader2, LogOut } from "lucide-react";
+import MonthSelector from "@/components/portal/MonthSelector";
+import AngleSection from "@/components/portal/AngleSection";
+import ClientSwitcher from "@/components/portal/ClientSwitcher";
 
-const TYPE_BADGE = {
-  audience: "Audience",
-  concept: "Concept",
-};
+const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 export default function ClientPortal() {
   const [user, setUser] = useState(null);
   const [client, setClient] = useState(null);
   const [plans, setPlans] = useState([]);
+  const [selectedPlanId, setSelectedPlanId] = useState(null);
+  const [children, setChildren] = useState({ angles: [], blocks: [], examples: [] });
   const [loading, setLoading] = useState(true);
-  const [openPlan, setOpenPlan] = useState(null);
-  const [children, setChildren] = useState({});
+  const [loadingChildren, setLoadingChildren] = useState(false);
+  const [adminClients, setAdminClients] = useState([]);
+  const [adminSlug, setAdminSlug] = useState(null);
 
   useEffect(() => {
     (async () => {
       try {
         const me = await base44.auth.me();
         setUser(me);
-        if (me?.role === "admin") { window.location.href = "/admin/clients"; return; }
-        const slug = me?.data?.client_slug || me?.client_slug;
-        if (!slug) { setLoading(false); return; }
-        const clients = await base44.entities.Client.filter({ slug });
-        setClient(clients[0] || null);
-        const ps = await base44.entities.Plan.filter({ client_slug: slug }, "-year");
-        setPlans(ps);
+        if (me?.role === "admin") {
+          const cs = await base44.entities.Client.list();
+          setAdminClients(cs);
+        } else {
+          const slug = me?.data?.client_slug || me?.client_slug;
+          if (slug) await loadClient(slug);
+        }
       } catch (e) {
         console.error(e);
       }
@@ -35,25 +37,62 @@ export default function ClientPortal() {
     })();
   }, []);
 
-  const loadChildren = async (planId) => {
-    if (children[planId]) return;
-    const angles = await base44.entities.Angle.filter({ plan_id: planId }, "order");
-    const angIds = angles.map((a) => a.id);
-    let blocks = [];
-    if (angIds.length) blocks = await base44.entities.Block.filter({ angle_id: { $in: angIds } }, "order");
-    const blkIds = blocks.map((b) => b.id);
-    let examples = [];
-    if (blkIds.length) examples = await base44.entities.Example.filter({ block_id: { $in: blkIds } }, "order");
-    setChildren((prev) => ({ ...prev, [planId]: { angles, blocks, examples } }));
+  useEffect(() => {
+    if (adminSlug) loadClient(adminSlug);
+  }, [adminSlug]);
+
+  const loadClient = async (slug) => {
+    setLoading(true);
+    try {
+      const cs = await base44.entities.Client.filter({ slug });
+      setClient(cs[0] || null);
+      const ps = await base44.entities.Plan.filter({ client_slug: slug }, "-year");
+      const published = ps.filter((p) => p.status === "published");
+      const sorted = [...published].sort(
+        (a, b) => (a.year - b.year) || (MONTHS.indexOf(a.month) - MONTHS.indexOf(b.month))
+      );
+      setPlans(sorted);
+      setSelectedPlanId(null);
+      setChildren({ angles: [], blocks: [], examples: [] });
+    } catch (e) {
+      console.error(e);
+    }
+    setLoading(false);
   };
 
-  const togglePlan = (planId) => {
-    setOpenPlan(openPlan === planId ? null : planId);
-    loadChildren(planId);
-  };
+  useEffect(() => {
+    if (plans.length === 0) { setSelectedPlanId(null); return; }
+    const now = new Date();
+    const cur = plans.find((p) => p.month === MONTHS[now.getMonth()] && p.year === now.getFullYear());
+    setSelectedPlanId((cur || plans[plans.length - 1]).id);
+  }, [plans]);
 
-  const blocksFor = (angleId) => (children[openPlan]?.blocks || []).filter((b) => b.angle_id === angleId);
-  const examplesFor = (blockId) => (children[openPlan]?.examples || []).filter((e) => e.block_id === blockId);
+  useEffect(() => {
+    if (!selectedPlanId) return;
+    (async () => {
+      setLoadingChildren(true);
+      try {
+        const angles = await base44.entities.Angle.filter({ plan_id: selectedPlanId }, "order");
+        const angIds = angles.map((a) => a.id);
+        let blocks = [];
+        if (angIds.length) blocks = await base44.entities.Block.filter({ angle_id: { $in: angIds } }, "order");
+        const blkIds = blocks.map((b) => b.id);
+        let examples = [];
+        if (blkIds.length) examples = await base44.entities.Example.filter({ block_id: { $in: blkIds } }, "order");
+        setChildren({
+          angles: angles.filter((a) => a.plan_status === "published"),
+          blocks: blocks.filter((b) => b.plan_status === "published"),
+          examples: examples.filter((e) => e.plan_status === "published"),
+        });
+      } catch (e) {
+        console.error(e);
+      }
+      setLoadingChildren(false);
+    })();
+  }, [selectedPlanId]);
+
+  const selectedPlan = plans.find((p) => p.id === selectedPlanId);
+  const isAdmin = user?.role === "admin";
 
   if (loading) {
     return (
@@ -63,121 +102,86 @@ export default function ClientPortal() {
     );
   }
 
-  if (!(user?.data?.client_slug || user?.client_slug)) {
-    return (
-      <div className="min-h-screen flex flex-col items-center justify-center gap-4 p-6 bg-gray-50">
-        <p className="text-lg font-medium text-[#2d2d2d]">Your account isn't linked to a client.</p>
-        <button onClick={() => base44.auth.logout()} className="text-sm text-gray-500 underline">Log out</button>
-      </div>
-    );
-  }
+  const showAdminPick = isAdmin && !adminSlug;
+  const showEmptyClient = !isAdmin && !client;
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <header className="bg-[#2d2d2d] text-white px-6 py-5 flex items-center justify-between">
-        <div>
-          <p className="text-xs uppercase tracking-widest opacity-50">Client Portal</p>
-          <h1 className="text-xl font-bold">{client?.name || "Client"}</h1>
+      <header className="bg-[#2d2d2d] text-white px-6 py-4 flex items-center justify-between sticky top-0 z-30">
+        <div className="flex items-center gap-3 min-w-0">
+          {client?.logo && <img src={client.logo} alt="" className="h-8 w-8 rounded object-contain bg-white/10" />}
+          <div className="min-w-0">
+            <p className="text-xs uppercase tracking-widest opacity-50">{isAdmin ? "Admin preview" : "Client Portal"}</p>
+            <h1 className="text-lg font-bold truncate">{client?.name || "Select a client"}</h1>
+          </div>
         </div>
-        <div className="flex items-center gap-4">
-          <span className="text-sm opacity-60 hidden sm:block">{user?.email}</span>
+        <div className="flex items-center gap-3 shrink-0">
+          {isAdmin && <ClientSwitcher clients={adminClients} value={adminSlug} onChange={setAdminSlug} />}
           <button onClick={() => base44.auth.logout()} className="flex items-center gap-2 text-sm bg-white/10 hover:bg-white/20 px-4 py-2 rounded-full">
             <LogOut className="w-4 h-4" /> Log out
           </button>
         </div>
       </header>
 
-      <main className="max-w-4xl mx-auto px-6 py-10">
-        {client?.intro_note && (
-          <p className="text-gray-600 mb-8 leading-relaxed">{client.intro_note}</p>
-        )}
-
-        <h2 className="text-lg font-bold text-[#2d2d2d] mb-4">Your Content Gameplans</h2>
-
-        {plans.length === 0 ? (
-          <p className="text-gray-500">No published plans yet. Published content will appear here.</p>
+      <main className="max-w-4xl mx-auto px-6 py-8">
+        {showAdminPick ? (
+          <div className="text-center py-20">
+            <p className="text-gray-500">Use the switcher above to preview any client's portal exactly as they see it.</p>
+          </div>
+        ) : showEmptyClient ? (
+          <div className="text-center py-20">
+            <p className="text-lg font-medium text-[#2d2d2d]">Your account isn't linked to a client.</p>
+            <button onClick={() => base44.auth.logout()} className="text-sm text-gray-500 underline mt-3">Log out</button>
+          </div>
         ) : (
-          <div className="space-y-3">
-            {plans.map((plan) => (
-              <div key={plan.id} className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
-                <button
-                  onClick={() => togglePlan(plan.id)}
-                  className="w-full flex items-center justify-between p-5 text-left hover:bg-gray-50 transition-colors"
-                >
-                  <div>
-                    <p className="font-bold text-[#2d2d2d]">{plan.month} {plan.year}</p>
-                    {plan.headline && <p className="text-sm text-gray-500 mt-1">{plan.headline}</p>}
-                  </div>
-                  <ChevronRight className={`w-5 h-5 text-gray-400 transition-transform ${openPlan === plan.id ? "rotate-90" : ""}`} />
-                </button>
+          <>
+            {client?.logo && (
+              <div className="flex justify-center mb-4">
+                <img src={client.logo} alt={client.name} className="max-h-20 object-contain" />
+              </div>
+            )}
+            {client?.intro_note && (
+              <p className="text-center text-gray-600 mb-6 leading-relaxed max-w-2xl mx-auto">{client.intro_note}</p>
+            )}
 
-                {openPlan === plan.id && (
-                  <motion.div
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: "auto" }}
-                    className="border-t border-gray-100 p-5 bg-gray-50/50"
-                  >
-                    {plan.strategy_note && (
-                      <p className="text-sm text-gray-600 mb-5 leading-relaxed">{plan.strategy_note}</p>
+            {plans.length === 0 ? (
+              <p className="text-center text-gray-400 py-10">No published plans yet. Published content will appear here.</p>
+            ) : (
+              <>
+                <MonthSelector plans={plans} selectedPlanId={selectedPlanId} onSelect={setSelectedPlanId} />
+
+                {selectedPlan && (
+                  <div className="mt-6">
+                    {selectedPlan.headline && (
+                      <h2 className="text-2xl font-bold text-[#2d2d2d] mb-2">{selectedPlan.headline}</h2>
                     )}
-                    {!children[plan.id] && <Loader2 className="w-5 h-5 animate-spin text-gray-400" />}
-                    {children[plan.id] && children[plan.id].angles.length === 0 && (
-                      <p className="text-sm text-gray-400">No published angles yet.</p>
+                    {selectedPlan.strategy_note && (
+                      <p className="text-gray-600 leading-relaxed mb-6">{selectedPlan.strategy_note}</p>
                     )}
-                    {children[plan.id] && children[plan.id].angles.length > 0 && (
+
+                    {loadingChildren ? (
+                      <div className="flex justify-center py-10">
+                        <Loader2 className="w-5 h-5 animate-spin text-gray-400" />
+                      </div>
+                    ) : children.angles.length === 0 ? (
+                      <p className="text-gray-400">No published angles yet.</p>
+                    ) : (
                       <div className="space-y-4">
-                        {children[plan.id].angles.map((angle) => (
-                          <div key={angle.id} className="bg-white rounded-xl border border-gray-100 p-4">
-                            <div className="flex items-center gap-2">
-                              <p className="font-semibold text-[#2d2d2d] text-sm">{angle.label}</p>
-                              {angle.type && (
-                                <span className={`text-[10px] font-bold uppercase tracking-wide px-2 py-0.5 rounded-full ${angle.type === "audience" ? "bg-blue-100 text-blue-700" : "bg-purple-100 text-purple-700"}`}>
-                                  {TYPE_BADGE[angle.type] || angle.type}
-                                </span>
-                              )}
-                            </div>
-                            {angle.description && (
-                              <p className="text-xs text-gray-500 mt-1 leading-relaxed">{angle.description}</p>
-                            )}
-                            <div className="mt-3 space-y-3">
-                              {blocksFor(angle.id).map((block) => (
-                                <div key={block.id} className="pl-3 border-l-2 border-gray-200">
-                                  <p className="text-xs font-bold uppercase tracking-wide text-gray-500">
-                                    {block.content_type}{block.quantity ? ` ×${block.quantity}` : ""}
-                                  </p>
-                                  {block.direction && (
-                                    <p className="text-xs text-gray-600 mt-1 leading-relaxed">{block.direction}</p>
-                                  )}
-                                  {examplesFor(block.id).length > 0 && (
-                                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mt-2">
-                                      {examplesFor(block.id).map((ex) => (
-                                        <div key={ex.id} className="rounded-lg overflow-hidden bg-gray-100">
-                                          {ex.thumbnail_url ? (
-                                            <img src={ex.thumbnail_url} alt={ex.label || ""} className="w-full h-24 object-cover" />
-                                          ) : (
-                                            <div className="w-full h-24 flex items-center justify-center">
-                                              <ImageIcon className="w-6 h-6 text-gray-300" />
-                                            </div>
-                                          )}
-                                          {ex.label && (
-                                            <p className="text-xs text-gray-500 px-2 py-1 truncate">{ex.label}</p>
-                                          )}
-                                        </div>
-                                      ))}
-                                    </div>
-                                  )}
-                                </div>
-                              ))}
-                            </div>
-                          </div>
+                        {children.angles.map((angle) => (
+                          <AngleSection
+                            key={angle.id}
+                            angle={angle}
+                            blocks={children.blocks}
+                            examples={children.examples}
+                          />
                         ))}
                       </div>
                     )}
-                  </motion.div>
+                  </div>
                 )}
-              </div>
-            ))}
-          </div>
+              </>
+            )}
+          </>
         )}
       </main>
     </div>
