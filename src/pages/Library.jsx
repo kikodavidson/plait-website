@@ -13,7 +13,7 @@ export default function Library() {
   const [swipes, setSwipes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
-  const [filters, setFilters] = useState({ platform: "", format: "", hook_type: "", vertical: "", angle_type: "" });
+  const [filters, setFilters] = useState({ platform: "", format: "", hook_type: "", structure: "", talent: "", vertical: "", angle_type: "" });
   const [selected, setSelected] = useState(null);
   const [mode, setMode] = useState("library");
 
@@ -47,14 +47,16 @@ export default function Library() {
       if (!hay.includes(search.toLowerCase())) return false;
     }
     for (const k of Object.keys(filters)) {
-      if (filters[k] && s[k] !== filters[k]) return false;
+      if (!filters[k]) continue;
+      if (Array.isArray(s[k])) { if (!s[k].includes(filters[k])) return false; }
+      else if (s[k] !== filters[k]) return false;
     }
     return true;
   });
 
   const clearFilters = () => {
     setSearch("");
-    setFilters({ platform: "", format: "", hook_type: "", vertical: "", angle_type: "" });
+    setFilters({ platform: "", format: "", hook_type: "", structure: "", talent: "", vertical: "", angle_type: "" });
   };
 
   const handleUpdate = async (id, payload) => {

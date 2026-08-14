@@ -1,6 +1,6 @@
 import React from "react";
 import { Search, X } from "lucide-react";
-import { SWIPE_OPTIONS } from "@/lib/swipeOptions";
+import { SWIPE_OPTIONS, FIELD_LABELS } from "@/lib/swipeOptions";
 
 export default function LibraryFilters({ search, setSearch, filters, setFilters, onClear }) {
   const activeCount = Object.values(filters).filter(Boolean).length + (search ? 1 : 0);
@@ -24,7 +24,7 @@ export default function LibraryFilters({ search, setSearch, filters, setFilters,
             onChange={(e) => setFilters({ ...filters, [key]: e.target.value })}
             className="h-9 rounded-lg border border-gray-200 bg-white px-2 text-sm capitalize focus:outline-none focus:ring-2 focus:ring-[#2d2d2d]"
           >
-            <option value="">{key.replace("_", " ")}</option>
+            <option value="">{FIELD_LABELS[key] || key.replace("_", " ")}</option>
             {SWIPE_OPTIONS[key].map((opt) => (
               <option key={opt} value={opt}>{opt}</option>
             ))}

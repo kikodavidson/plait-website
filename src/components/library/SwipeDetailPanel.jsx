@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { X, Trash2, Loader2, Save } from "lucide-react";
-import { SWIPE_OPTIONS, FIELD_LABELS } from "@/lib/swipeOptions";
+import { SWIPE_OPTIONS, FIELD_LABELS, MULTI_COLS } from "@/lib/swipeOptions";
+import MultiSelect from "./MultiSelect";
 import { isImageUrl } from "@/lib/thumbnail";
 
 export default function SwipeDetailPanel({ swipe, onClose, onUpdate, onDelete }) {
@@ -63,10 +64,19 @@ export default function SwipeDetailPanel({ swipe, onClose, onUpdate, onDelete })
           </Field>
           {Object.keys(SWIPE_OPTIONS).map((key) => (
             <Field key={key} label={FIELD_LABELS[key]}>
-              <select className={inputCls} value={form[key] || ""} onChange={(e) => set(key, e.target.value)}>
-                <option value="">—</option>
-                {SWIPE_OPTIONS[key].map((o) => <option key={o} value={o}>{o}</option>)}
-              </select>
+              {MULTI_COLS.includes(key) ? (
+                <MultiSelect
+                  options={SWIPE_OPTIONS[key]}
+                  value={Array.isArray(form[key]) ? form[key] : []}
+                  onChange={(v) => set(key, v)}
+                  placeholder="Select…"
+                />
+              ) : (
+                <select className={inputCls} value={form[key] || ""} onChange={(e) => set(key, e.target.value)}>
+                  <option value="">—</option>
+                  {SWIPE_OPTIONS[key].map((o) => <option key={o} value={o}>{o}</option>)}
+                </select>
+              )}
             </Field>
           ))}
           <Field label="Why it works">

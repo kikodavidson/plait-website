@@ -40,28 +40,96 @@
     "format": {
       "type": "string",
       "enum": [
-        "UGC",
-        "talking head",
-        "testimonial",
+        "UGC talking head",
+        "UGC voiceover with b roll",
+        "founder direct to camera",
+        "customer testimonial",
+        "creator review",
         "product demo",
-        "founder",
-        "listicle",
-        "POV",
-        "static",
-        "carousel",
-        "motion graphic"
+        "screen recording or app demo",
+        "street interview",
+        "text over video",
+        "green screen reaction",
+        "split screen comparison",
+        "unboxing",
+        "podcast clip",
+        "tutorial",
+        "image carousel",
+        "static image",
+        "motion graphic",
+        "day in the life",
+        "mashup or compilation",
+        "animated explainer",
+        "meme",
+        "ASMR",
+        "AI generated",
+        "cinematic brand film",
+        "whiteboard"
       ]
     },
     "hook_type": {
       "type": "string",
       "enum": [
-        "question",
+        "problem callout",
         "bold claim",
-        "problem",
-        "stat",
-        "pattern interrupt",
-        "before and after",
-        "story"
+        "question",
+        "callout to audience",
+        "stat or number",
+        "negative warning",
+        "curiosity gap",
+        "before and after reveal",
+        "social proof drop",
+        "us versus them",
+        "personal story open",
+        "price reveal",
+        "POV",
+        "pattern interrupt visual",
+        "list open",
+        "mistake confession",
+        "authority intro",
+        "trend or audio hook",
+        "competitor callout",
+        "unboxing reveal"
+      ]
+    },
+    "structure": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "problem solution",
+          "listicle",
+          "testimonial arc",
+          "before and after",
+          "demonstration",
+          "story arc",
+          "tutorial",
+          "comparison",
+          "objection handling",
+          "myth bust",
+          "transformation",
+          "founder story",
+          "data reveal",
+          "FAQ",
+          "reaction",
+          "day in the life",
+          "review roundup",
+          "unboxing"
+        ]
+      },
+      "description": "Multi-select: the narrative structure(s) used in the ad"
+    },
+    "talent": {
+      "type": "string",
+      "enum": [
+        "creator",
+        "customer",
+        "founder",
+        "none or product only",
+        "employee",
+        "actor",
+        "influencer",
+        "animated or AI"
       ]
     },
     "vertical": {
@@ -77,11 +145,24 @@
     "angle_type": {
       "type": "string",
       "enum": [
-        "value",
+        "pain point",
+        "benefit or value",
         "social proof",
+        "offer or discount",
         "objection handling",
-        "offer",
-        "education"
+        "education",
+        "differentiation",
+        "authority",
+        "urgency or scarcity",
+        "cost of inaction",
+        "ease and convenience",
+        "speed of result",
+        "identity and belonging",
+        "aspiration",
+        "risk reversal",
+        "curiosity",
+        "humor",
+        "community"
       ]
     },
     "why_it_works": {

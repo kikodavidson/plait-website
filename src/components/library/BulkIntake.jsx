@@ -1,13 +1,14 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Upload, Loader2, Save, X, AlertCircle, Copy } from "lucide-react";
 import { base44 } from "@/api/base44Client";
-import { SWIPE_OPTIONS, FIELD_LABELS, ENUM_COLS, TEXT_COLS } from "@/lib/swipeOptions";
+import { SWIPE_OPTIONS, FIELD_LABELS, ENUM_COLS, MULTI_COLS, TEXT_COLS } from "@/lib/swipeOptions";
+import MultiSelect from "./MultiSelect";
 import { validateMediaFile, generateThumbnail } from "@/lib/thumbnail";
 
 let rowSeq = 0;
 const nextId = () => `row-${++rowSeq}`;
 const dupKey = (name, size) => `${name}|${size}`;
-const COLS = ["source_brand", "source_url", ...ENUM_COLS, "why_it_works"];
+const COLS = ["source_brand", "source_url", ...ENUM_COLS, ...MULTI_COLS, "why_it_works"];
 
 export default function BulkIntake({ onSaved, onCancel, existingSwipes = [] }) {
   const [rows, setRows] = useState([]);
@@ -64,7 +65,7 @@ export default function BulkIntake({ onSaved, onCancel, existingSwipes = [] }) {
             thumbUrl,
             previewUrl,
             duplicate: isDup,
-            source_brand: "", source_url: "", platform: "", format: "", hook_type: "", vertical: "", angle_type: "", why_it_works: "",
+            source_brand: "", source_url: "", platform: "", format: "", hook_type: "", talent: "", structure: [], vertical: "", angle_type: "", why_it_works: "",
           },
         ]);
       } catch (e) {
@@ -80,7 +81,7 @@ export default function BulkIntake({ onSaved, onCancel, existingSwipes = [] }) {
     setRows((prev) => prev.map((r) => (r.id === id ? { ...r, [field]: value } : r)));
 
   const applyToAll = (field, value) => {
-    if (!value) return;
+    if (!value || (Array.isArray(value) && value.length === 0)) return;
     setRows((prev) => prev.map((r) => ({ ...r, [field]: value })));
   };
 
@@ -118,6 +119,8 @@ export default function BulkIntake({ onSaved, onCancel, existingSwipes = [] }) {
         if (r.hook_type) rec.hook_type = r.hook_type;
         if (r.vertical) rec.vertical = r.vertical;
         if (r.angle_type) rec.angle_type = r.angle_type;
+        if (r.talent) rec.talent = r.talent;
+        if (Array.isArray(r.structure) && r.structure.length) rec.structure = r.structure;
         if (r.why_it_works) rec.why_it_works = r.why_it_works;
         return rec;
       });
@@ -192,7 +195,14 @@ export default function BulkIntake({ onSaved, onCancel, existingSwipes = [] }) {
                 {COLS.map((col) => (
                   <th key={col} className="text-left px-3 py-2 min-w-[150px] align-top">
                     <div className="font-semibold text-xs mb-1">{FIELD_LABELS[col]}</div>
-                    {ENUM_COLS.includes(col) ? (
+                    {MULTI_COLS.includes(col) ? (
+                      <MultiSelect
+                        options={SWIPE_OPTIONS[col]}
+                        value={[]}
+                        onChange={(v) => { if (v.length) applyToAll(col, v); }}
+                        placeholder="Set all…"
+                      />
+                    ) : ENUM_COLS.includes(col) ? (
                       <select
                         value=""
                         onChange={(e) => applyToAll(col, e.target.value)}
@@ -226,7 +236,14 @@ export default function BulkIntake({ onSaved, onCancel, existingSwipes = [] }) {
                   </td>
                   {COLS.map((col) => (
                     <td key={col} className="px-3 py-2">
-                      {ENUM_COLS.includes(col) ? (
+                      {MULTI_COLS.includes(col) ? (
+                        <MultiSelect
+                          options={SWIPE_OPTIONS[col]}
+                          value={Array.isArray(r[col]) ? r[col] : []}
+                          onChange={(v) => setCell(r.id, col, v)}
+                          placeholder="Select…"
+                        />
+                      ) : ENUM_COLS.includes(col) ? (
                         <select className={cellInput} value={r[col]} onChange={(e) => setCell(r.id, col, e.target.value)}>
                           <option value="">—</option>
                           {SWIPE_OPTIONS[col].map((o) => <option key={o} value={o}>{o}</option>)}
