@@ -57,7 +57,7 @@ export default async function(req) {
 </body></html>`;
 
     const rawMessage = [
-      `From: Plait <${user.email}>`,
+      `From: Plait <luke@plaitgrowth.com>`,
       `To: ${toEmail}`,
       `Subject: ${subject}`,
       "MIME-Version: 1.0",
