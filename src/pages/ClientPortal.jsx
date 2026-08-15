@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { base44 } from "@/api/base44Client";
-import { Loader2, LogOut, Menu, X, Pencil, Plus, Trash2 } from "lucide-react";
+import { Loader2, LogOut, Menu, X, Pencil } from "lucide-react";
 import PlanSidebar from "@/components/portal/PlanSidebar";
-import ClientDialog from "@/components/admin/ClientDialog";
 import AngleSection from "@/components/portal/AngleSection";
 import ClientSwitcher from "@/components/portal/ClientSwitcher";
 import PlanStatusCallout from "@/components/portal/PlanStatusCallout";
@@ -27,8 +26,6 @@ export default function ClientPortal() {
   const [adminSlug, setAdminSlug] = useState(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [clientView, setClientView] = useState(false);
-  const [clientDialogOpen, setClientDialogOpen] = useState(false);
-  const [editingClient, setEditingClient] = useState(null);
 
   useEffect(() => {
     (async () => {
@@ -123,41 +120,6 @@ export default function ClientPortal() {
     }
   };
 
-  const openNewClient = () => { setEditingClient(null); setClientDialogOpen(true); };
-  const openEditClient = () => { setEditingClient(client); setClientDialogOpen(true); };
-
-  const onClientSaved = async () => {
-    setClientDialogOpen(false);
-    const cs = await base44.entities.Client.list();
-    setAdminClients(cs);
-    if (editingClient && client) await loadClient(client.slug);
-  };
-
-  const deleteClient = async () => {
-    if (!client) return;
-    if (!window.confirm(`Delete "${client.name}"? This permanently removes the client and ALL of its plans, angles, blocks, and examples. This cannot be undone.`)) return;
-    try {
-      const ps = await base44.entities.Plan.filter({ client_slug: client.slug });
-      if (ps.length) {
-        const angles = await base44.entities.Angle.filter({ client_slug: client.slug });
-        if (angles.length) {
-          const blocks = await base44.entities.Block.filter({ angle_id: { $in: angles.map((a) => a.id) } });
-          if (blocks.length) {
-            await base44.entities.Example.deleteMany({ block_id: { $in: blocks.map((b) => b.id) } });
-            await base44.entities.Block.deleteMany({ angle_id: { $in: angles.map((a) => a.id) } });
-          }
-          await base44.entities.Angle.deleteMany({ client_slug: client.slug });
-        }
-        await base44.entities.Plan.deleteMany({ client_slug: client.slug });
-      }
-      await base44.entities.Client.delete(client.id);
-      setAdminSlug(null);
-      setAdminClients(await base44.entities.Client.list());
-    } catch (e) {
-      alert("Could not delete client. " + (e.message || ""));
-    }
-  };
-
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
@@ -198,23 +160,10 @@ export default function ClientPortal() {
             {clientView ? "Exit client view" : "Client view"}
           </button>
         )}
-        {user?.role === "admin" && (
-          <button onClick={openNewClient} className="flex items-center gap-2 text-sm bg-white text-[#2d2d2d] font-bold px-4 py-2 rounded-full shrink-0 hover:bg-gray-100">
-            <Plus className="w-4 h-4" /> New client
-          </button>
-        )}
         {isAdmin && client && (
-          <>
-            <button onClick={openEditClient} className="flex items-center gap-2 text-sm bg-white/10 hover:bg-white/20 px-4 py-2 rounded-full shrink-0" title="Edit client">
-              <Pencil className="w-4 h-4" />
-            </button>
-            <button onClick={deleteClient} className="flex items-center gap-2 text-sm bg-white/10 hover:bg-red-500/80 px-4 py-2 rounded-full shrink-0" title="Delete client">
-              <Trash2 className="w-4 h-4" />
-            </button>
-            <Link to={`/admin/clients/${client.id}`} className="flex items-center gap-2 text-sm bg-white/10 hover:bg-white/20 px-4 py-2 rounded-full shrink-0">
-              Gameplan Builder
-            </Link>
-          </>
+          <Link to={`/admin/clients/${client.id}`} className="flex items-center gap-2 text-sm bg-white/10 hover:bg-white/20 px-4 py-2 rounded-full shrink-0">
+            <Pencil className="w-4 h-4" /> Gameplan Builder
+          </Link>
         )}
         <button onClick={() => base44.auth.logout()} className="flex items-center gap-2 text-sm bg-white/10 hover:bg-white/20 px-4 py-2 rounded-full shrink-0">
           <LogOut className="w-4 h-4" /> Log out
@@ -304,7 +253,6 @@ export default function ClientPortal() {
           </div>
         </main>
       </div>
-      <ClientDialog open={clientDialogOpen} client={editingClient} clients={adminClients} onClose={() => setClientDialogOpen(false)} onSaved={onClientSaved} />
     </div>
   );
 }
