@@ -141,10 +141,6 @@ export default function ClientPortal() {
           </button>
         )}
         {client?.logo && <img src={client.logo} alt="" className="h-8 w-8 rounded object-contain bg-white/10 shrink-0" />}
-        <div className="min-w-0">
-          <p className="text-xs uppercase tracking-widest opacity-50">{isAdmin ? "Admin preview" : "Client Portal"}</p>
-          <h1 className="text-lg font-bold truncate">{client?.name || "Select a client"}</h1>
-        </div>
       </div>
       <div className="hidden md:flex items-center gap-2 justify-center px-4">
         <img src={PLAIT_LOGO} alt="Plait" className="h-8 object-contain" />
