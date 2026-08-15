@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { base44 } from "@/api/base44Client";
-import { ArrowLeft, Plus, Copy, Trash2, ShieldAlert, LogOut, Loader2 } from "lucide-react";
+import { ArrowLeft, Plus, Copy, Trash2, ShieldAlert, LogOut, Loader2, UserPlus } from "lucide-react";
 import PlanEditor from "@/components/admin/PlanEditor";
 import PlanMonthDialog from "@/components/admin/PlanMonthDialog";
+import InviteClientDialog from "@/components/admin/InviteClientDialog";
 import { exampleLabel } from "@/lib/planBuilder";
 // plan_status cascade runs through the shared syncPlanStatus backend function.
 
@@ -16,6 +17,7 @@ export default function ClientBuilder() {
   const [loading, setLoading] = useState(true);
   const [selectedPlan, setSelectedPlan] = useState(null);
   const [monthDialog, setMonthDialog] = useState(null);
+  const [inviteOpen, setInviteOpen] = useState(false);
 
   const loadPlans = async (slug) => {
     const ps = await base44.entities.Plan.filter({ client_slug: slug }, "-year");
@@ -128,7 +130,12 @@ export default function ClientBuilder() {
             <h1 className="text-xl font-bold">{client.name}</h1>
           </div>
         </div>
-        <button onClick={() => base44.auth.logout()} className="text-sm bg-white/10 hover:bg-white/20 px-4 py-2 rounded-full">Log out</button>
+        <div className="flex items-center gap-2">
+          <button onClick={() => setInviteOpen(true)} className="inline-flex items-center gap-2 text-sm bg-white/10 hover:bg-white/20 px-4 py-2 rounded-full">
+            <UserPlus className="w-4 h-4" /> Invite client
+          </button>
+          <button onClick={() => base44.auth.logout()} className="text-sm bg-white/10 hover:bg-white/20 px-4 py-2 rounded-full">Log out</button>
+        </div>
       </header>
 
       <main className="max-w-5xl mx-auto px-6 py-8">
@@ -179,6 +186,8 @@ export default function ClientBuilder() {
           </div>
         )}
       </main>
+
+      <InviteClientDialog open={inviteOpen} client={client} onClose={() => setInviteOpen(false)} />
 
       <PlanMonthDialog
         open={!!monthDialog}
