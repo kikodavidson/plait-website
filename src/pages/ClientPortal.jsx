@@ -128,7 +128,7 @@ export default function ClientPortal() {
 
   const showAdminPick = isAdmin && !adminSlug;
   const showEmptyClient = !isAdmin && !client;
-  const showSidebar = !showAdminPick && !showEmptyClient && plans.length > 0;
+  const showSidebar = !showAdminPick && !showEmptyClient;
 
   const headerEl = (
     <header className="bg-[#222222] text-white px-6 py-3 flex items-center justify-between shrink-0 z-30">
