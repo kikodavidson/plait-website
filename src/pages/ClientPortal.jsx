@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useMemo } from "react";
+import { Link } from "react-router-dom";
 import { base44 } from "@/api/base44Client";
-import { Loader2, LogOut, Menu, X } from "lucide-react";
+import { Loader2, LogOut, Menu, X, Pencil } from "lucide-react";
 import PlanSidebar from "@/components/portal/PlanSidebar";
 import AngleSection from "@/components/portal/AngleSection";
 import ClientSwitcher from "@/components/portal/ClientSwitcher";
@@ -149,6 +150,11 @@ export default function ClientPortal() {
         <span className="text-sm font-semibold tracking-wide whitespace-nowrap">Creative Gameplan Studio</span>
       </div>
       <div className="flex items-center gap-3 justify-end flex-1">
+        {isAdmin && client && (
+          <Link to={`/admin/clients/${client.id}`} className="flex items-center gap-2 text-sm bg-white/10 hover:bg-white/20 px-4 py-2 rounded-full shrink-0">
+            <Pencil className="w-4 h-4" /> Gameplan Builder
+          </Link>
+        )}
         <button onClick={() => base44.auth.logout()} className="flex items-center gap-2 text-sm bg-white/10 hover:bg-white/20 px-4 py-2 rounded-full shrink-0">
           <LogOut className="w-4 h-4" /> Log out
         </button>
@@ -226,7 +232,14 @@ export default function ClientPortal() {
                 <button onClick={() => base44.auth.logout()} className="text-sm text-gray-500 underline mt-3">Log out</button>
               </div>
             ) : plans.length === 0 ? (
-              <p className="text-center text-[#777777] py-10">No published plans yet. Published content will appear here.</p>
+              <div className="text-center py-10">
+                <p className="text-[#777777] mb-4">No published plans yet. Published content will appear here.</p>
+                {isAdmin && client && (
+                  <Link to={`/admin/clients/${client.id}`} className="inline-flex items-center gap-2 text-sm btn-gradient px-4 py-2 rounded-full">
+                    <Pencil className="w-4 h-4" /> Create a plan in the builder
+                  </Link>
+                )}
+              </div>
             ) : (
               contentEl
             )}
