@@ -24,6 +24,7 @@ export default function ClientPortal() {
   const [adminClients, setAdminClients] = useState([]);
   const [adminSlug, setAdminSlug] = useState(null);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [clientView, setClientView] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -107,7 +108,7 @@ export default function ClientPortal() {
   }, [selectedPlanId, selectedPlanAngles]);
 
   const selectedPlan = plans.find((p) => p.id === selectedPlanId);
-  const isAdmin = user?.role === "admin";
+  const isAdmin = user?.role === "admin" && !(clientView && client);
 
   const handleStatusChange = async (newStatus) => {
     try {
@@ -150,6 +151,14 @@ export default function ClientPortal() {
         <span className="text-sm font-semibold tracking-wide whitespace-nowrap">Creative Gameplan Studio</span>
       </div>
       <div className="flex items-center gap-3 justify-end flex-1">
+        {user?.role === "admin" && client && (
+          <button
+            onClick={() => setClientView((v) => !v)}
+            className="flex items-center gap-2 text-sm bg-white/10 hover:bg-white/20 px-4 py-2 rounded-full shrink-0"
+          >
+            {clientView ? "Exit client view" : "Client view"}
+          </button>
+        )}
         {isAdmin && client && (
           <Link to={`/admin/clients/${client.id}`} className="flex items-center gap-2 text-sm bg-white/10 hover:bg-white/20 px-4 py-2 rounded-full shrink-0">
             <Pencil className="w-4 h-4" /> Gameplan Builder
