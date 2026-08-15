@@ -17,7 +17,7 @@ export default function InviteClientDialog({ open, client, onClose }) {
   const submit = async () => {
     setBusy(true); setErr(null); setMsg(null);
     try {
-      await base44.users.inviteUser(email.trim(), "client");
+      await base44.users.inviteUser(email.trim(), "user");
       try {
         const users = await base44.entities.User.list();
         const u = users.find((x) => x.email?.toLowerCase() === email.trim().toLowerCase());
