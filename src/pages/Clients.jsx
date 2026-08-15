@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { base44 } from "@/api/base44Client";
-import { Plus, Pencil, ShieldAlert, LogOut, Loader2, FolderDown, Eye } from "lucide-react";
+import { Plus, Pencil, Trash2, ShieldAlert, LogOut, Loader2, FolderDown, Eye } from "lucide-react";
 import ClientDialog from "@/components/admin/ClientDialog";
 
 export default function Clients() {
@@ -35,6 +35,30 @@ export default function Clients() {
   }, []);
 
   const publishedCount = (slug) => plans.filter((p) => p.client_slug === slug && p.status === "published").length;
+
+  const deleteClient = async (c) => {
+    if (!window.confirm(`Delete "${c.name}"? This permanently removes the client and ALL of its plans, angles, blocks, and examples. This cannot be undone.`)) return;
+    try {
+      const clientPlans = plans.filter((p) => p.client_slug === c.slug);
+      if (clientPlans.length) {
+        const angles = await base44.entities.Angle.filter({ client_slug: c.slug });
+        if (angles.length) {
+          const blocks = await base44.entities.Block.filter({ angle_id: { $in: angles.map((a) => a.id) } });
+          if (blocks.length) {
+            await base44.entities.Example.deleteMany({ block_id: { $in: blocks.map((b) => b.id) } });
+            await base44.entities.Block.deleteMany({ angle_id: { $in: angles.map((a) => a.id) } });
+          }
+          await base44.entities.Angle.deleteMany({ client_slug: c.slug });
+        }
+        await base44.entities.Plan.deleteMany({ client_slug: c.slug });
+      }
+      await base44.entities.Client.delete(c.id);
+      await load();
+    } catch (e) {
+      console.error(e);
+      alert("Could not delete client. " + (e.message || ""));
+    }
+  };
 
   if (user && user.role !== "admin") {
     return (
@@ -85,9 +109,14 @@ export default function Clients() {
                     <p className="font-bold text-[#2d2d2d] truncate">{c.name}</p>
                     <p className="text-xs text-gray-500 truncate">/{c.slug}</p>
                   </div>
-                  <button onClick={() => { setEditing(c); setDialogOpen(true); }} className="text-gray-400 hover:text-[#2d2d2d]">
-                    <Pencil className="w-4 h-4" />
-                  </button>
+                  <div className="flex items-center gap-1">
+                    <button onClick={() => { setEditing(c); setDialogOpen(true); }} className="text-gray-400 hover:text-[#2d2d2d]">
+                      <Pencil className="w-4 h-4" />
+                    </button>
+                    <button onClick={() => deleteClient(c)} className="text-gray-400 hover:text-red-500">
+                      <Trash2 className="w-4 h-4" />
+                    </button>
+                  </div>
                 </div>
                 <div className="flex items-center justify-between mt-3">
                   <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${c.status === "active" ? "bg-green-100 text-green-700" : c.status === "paused" ? "bg-amber-100 text-amber-700" : "bg-gray-100 text-gray-500"}`}>
