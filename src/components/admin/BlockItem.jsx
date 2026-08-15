@@ -151,8 +151,11 @@ export default function BlockItem({ block, examples, api, innerRef, draggablePro
           )}
         </Droppable>
       </DragDropContext>
-      <button onClick={() => setPickerOpen(true)} className="mt-2 inline-flex items-center gap-1 text-xs text-gray-500 hover:text-[#2d2d2d]">
-        <Plus className="w-3.5 h-3.5" /> Add example
+      <button
+        onClick={() => setPickerOpen(true)}
+        className="mt-3 w-full inline-flex items-center justify-center gap-2 bg-[#2d2d2d] hover:bg-[#1a1a1a] text-white text-sm font-bold py-2.5 rounded-lg transition-colors"
+      >
+        <Plus className="w-4 h-4" /> Add example
       </button>
       <ExamplePicker
         open={pickerOpen}
