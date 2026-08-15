@@ -4,7 +4,7 @@ export const MONTHS = [
 ];
 
 export const CONTENT_TYPES = [
-  "HQ photo", "graphic carousel", "UGC", "HQ video edit", "static graphic", "motion graphic",
+  "Video", "Image", "Carousel",
 ];
 
 export const VIDEO_FORMATS = [
@@ -62,12 +62,9 @@ export const CAROUSEL_PRODUCTION_TIERS = [
 ];
 
 const CONTENT_CODE = {
-  "HQ photo": "HQ",
-  "graphic carousel": "CAR",
-  "UGC": "UGC",
-  "HQ video edit": "VID",
-  "static graphic": "STAT",
-  "motion graphic": "MO",
+  "Video": "VID",
+  "Image": "IMG",
+  "Carousel": "CAR",
 };
 
 // Label format: MONTH_ANGLE_NUMBER e.g. JUN_A1_HQ_01

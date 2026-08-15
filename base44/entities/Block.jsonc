@@ -13,13 +13,11 @@
     "content_type": {
       "type": "string",
       "enum": [
-        "HQ photo",
-        "graphic carousel",
-        "UGC",
-        "HQ video edit",
-        "static graphic",
-        "motion graphic"
-      ]
+        "Video",
+        "Image",
+        "Carousel"
+      ],
+      "description": "Top-level media type for this creative block. Drives which type-specific fields appear."
     },
     "video_format": {
       "type": "string",

@@ -33,84 +33,94 @@ export default function BlockItem({ block, examples, api, innerRef, draggablePro
           <Trash2 className="w-4 h-4" />
         </button>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 mb-2">
-        <select
-          value={block.video_format || ""}
-          onChange={(e) => api.commit("Block", block.id, { video_format: e.target.value })}
-          className="text-xs rounded border border-gray-200 bg-white px-2 py-1 focus:outline-none focus:ring-1 focus:ring-[#2d2d2d]"
-        >
-          <option value="">Video format…</option>
-          {VIDEO_FORMATS.map((c) => <option key={c} value={c}>{c}</option>)}
-        </select>
-        <select
-          value={block.on_camera || ""}
-          onChange={(e) => api.commit("Block", block.id, { on_camera: e.target.value })}
-          className="text-xs rounded border border-gray-200 bg-white px-2 py-1 focus:outline-none focus:ring-1 focus:ring-[#2d2d2d]"
-        >
-          <option value="">On camera…</option>
-          {ON_CAMERA.map((c) => <option key={c} value={c}>{c}</option>)}
-        </select>
-        <select
-          value={block.video_production_tier || ""}
-          onChange={(e) => api.commit("Block", block.id, { video_production_tier: e.target.value })}
-          className="text-xs rounded border border-gray-200 bg-white px-2 py-1 focus:outline-none focus:ring-1 focus:ring-[#2d2d2d]"
-        >
-          <option value="">Production tier…</option>
-          {VIDEO_PRODUCTION_TIERS.map((c) => <option key={c} value={c}>{c}</option>)}
-        </select>
-      </div>
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 mb-2">
-        <select
-          value={block.image_style || ""}
-          onChange={(e) => api.commit("Block", block.id, { image_style: e.target.value })}
-          className="text-xs rounded border border-gray-200 bg-white px-2 py-1 focus:outline-none focus:ring-1 focus:ring-[#2d2d2d]"
-        >
-          <option value="">Image style…</option>
-          {IMAGE_STYLES.map((c) => <option key={c} value={c}>{c}</option>)}
-        </select>
-        <select
-          value={block.image_subject || ""}
-          onChange={(e) => api.commit("Block", block.id, { image_subject: e.target.value })}
-          className="text-xs rounded border border-gray-200 bg-white px-2 py-1 focus:outline-none focus:ring-1 focus:ring-[#2d2d2d]"
-        >
-          <option value="">What's in it…</option>
-          {IMAGE_SUBJECTS.map((c) => <option key={c} value={c}>{c}</option>)}
-        </select>
-        <select
-          value={block.image_production_tier || ""}
-          onChange={(e) => api.commit("Block", block.id, { image_production_tier: e.target.value })}
-          className="text-xs rounded border border-gray-200 bg-white px-2 py-1 focus:outline-none focus:ring-1 focus:ring-[#2d2d2d]"
-        >
-          <option value="">Production tier…</option>
-          {IMAGE_PRODUCTION_TIERS.map((c) => <option key={c} value={c}>{c}</option>)}
-        </select>
-      </div>
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 mb-2">
-        <select
-          value={block.carousel_style || ""}
-          onChange={(e) => api.commit("Block", block.id, { carousel_style: e.target.value })}
-          className="text-xs rounded border border-gray-200 bg-white px-2 py-1 focus:outline-none focus:ring-1 focus:ring-[#2d2d2d]"
-        >
-          <option value="">Carousel style…</option>
-          {CAROUSEL_STYLES.map((c) => <option key={c} value={c}>{c}</option>)}
-        </select>
-        <select
-          value={block.slide_count || ""}
-          onChange={(e) => api.commit("Block", block.id, { slide_count: e.target.value })}
-          className="text-xs rounded border border-gray-200 bg-white px-2 py-1 focus:outline-none focus:ring-1 focus:ring-[#2d2d2d]"
-        >
-          <option value="">Slide count…</option>
-          {SLIDE_COUNTS.map((c) => <option key={c} value={c}>{c}</option>)}
-        </select>
-        <select
-          value={block.carousel_production_tier || ""}
-          onChange={(e) => api.commit("Block", block.id, { carousel_production_tier: e.target.value })}
-          className="text-xs rounded border border-gray-200 bg-white px-2 py-1 focus:outline-none focus:ring-1 focus:ring-[#2d2d2d]"
-        >
-          <option value="">Production tier…</option>
-          {CAROUSEL_PRODUCTION_TIERS.map((c) => <option key={c} value={c}>{c}</option>)}
-        </select>
-      </div>
+
+      {block.content_type === "Video" && (
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 mb-2">
+          <select
+            value={block.video_format || ""}
+            onChange={(e) => api.commit("Block", block.id, { video_format: e.target.value })}
+            className="text-xs rounded border border-gray-200 bg-white px-2 py-1 focus:outline-none focus:ring-1 focus:ring-[#2d2d2d]"
+          >
+            <option value="">Video format…</option>
+            {VIDEO_FORMATS.map((c) => <option key={c} value={c}>{c}</option>)}
+          </select>
+          <select
+            value={block.on_camera || ""}
+            onChange={(e) => api.commit("Block", block.id, { on_camera: e.target.value })}
+            className="text-xs rounded border border-gray-200 bg-white px-2 py-1 focus:outline-none focus:ring-1 focus:ring-[#2d2d2d]"
+          >
+            <option value="">On camera…</option>
+            {ON_CAMERA.map((c) => <option key={c} value={c}>{c}</option>)}
+          </select>
+          <select
+            value={block.video_production_tier || ""}
+            onChange={(e) => api.commit("Block", block.id, { video_production_tier: e.target.value })}
+            className="text-xs rounded border border-gray-200 bg-white px-2 py-1 focus:outline-none focus:ring-1 focus:ring-[#2d2d2d]"
+          >
+            <option value="">Production tier…</option>
+            {VIDEO_PRODUCTION_TIERS.map((c) => <option key={c} value={c}>{c}</option>)}
+          </select>
+        </div>
+      )}
+
+      {block.content_type === "Image" && (
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 mb-2">
+          <select
+            value={block.image_style || ""}
+            onChange={(e) => api.commit("Block", block.id, { image_style: e.target.value })}
+            className="text-xs rounded border border-gray-200 bg-white px-2 py-1 focus:outline-none focus:ring-1 focus:ring-[#2d2d2d]"
+          >
+            <option value="">Image style…</option>
+            {IMAGE_STYLES.map((c) => <option key={c} value={c}>{c}</option>)}
+          </select>
+          <select
+            value={block.image_subject || ""}
+            onChange={(e) => api.commit("Block", block.id, { image_subject: e.target.value })}
+            className="text-xs rounded border border-gray-200 bg-white px-2 py-1 focus:outline-none focus:ring-1 focus:ring-[#2d2d2d]"
+          >
+            <option value="">What's in it…</option>
+            {IMAGE_SUBJECTS.map((c) => <option key={c} value={c}>{c}</option>)}
+          </select>
+          <select
+            value={block.image_production_tier || ""}
+            onChange={(e) => api.commit("Block", block.id, { image_production_tier: e.target.value })}
+            className="text-xs rounded border border-gray-200 bg-white px-2 py-1 focus:outline-none focus:ring-1 focus:ring-[#2d2d2d]"
+          >
+            <option value="">Production tier…</option>
+            {IMAGE_PRODUCTION_TIERS.map((c) => <option key={c} value={c}>{c}</option>)}
+          </select>
+        </div>
+      )}
+
+      {block.content_type === "Carousel" && (
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 mb-2">
+          <select
+            value={block.carousel_style || ""}
+            onChange={(e) => api.commit("Block", block.id, { carousel_style: e.target.value })}
+            className="text-xs rounded border border-gray-200 bg-white px-2 py-1 focus:outline-none focus:ring-1 focus:ring-[#2d2d2d]"
+          >
+            <option value="">Carousel style…</option>
+            {CAROUSEL_STYLES.map((c) => <option key={c} value={c}>{c}</option>)}
+          </select>
+          <select
+            value={block.slide_count || ""}
+            onChange={(e) => api.commit("Block", block.id, { slide_count: e.target.value })}
+            className="text-xs rounded border border-gray-200 bg-white px-2 py-1 focus:outline-none focus:ring-1 focus:ring-[#2d2d2d]"
+          >
+            <option value="">Slide count…</option>
+            {SLIDE_COUNTS.map((c) => <option key={c} value={c}>{c}</option>)}
+          </select>
+          <select
+            value={block.carousel_production_tier || ""}
+            onChange={(e) => api.commit("Block", block.id, { carousel_production_tier: e.target.value })}
+            className="text-xs rounded border border-gray-200 bg-white px-2 py-1 focus:outline-none focus:ring-1 focus:ring-[#2d2d2d]"
+          >
+            <option value="">Production tier…</option>
+            {CAROUSEL_PRODUCTION_TIERS.map((c) => <option key={c} value={c}>{c}</option>)}
+          </select>
+        </div>
+      )}
+
       <textarea
         value={block.direction || ""}
         onChange={(e) => api.set("Block", block.id, { direction: e.target.value })}
