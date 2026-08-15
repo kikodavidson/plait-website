@@ -16,22 +16,46 @@ export default function InviteClientDialog({ open, client, onClose }) {
 
   const submit = async () => {
     setBusy(true); setErr(null); setMsg(null);
+    const emailAddr = email.trim();
     try {
-      await base44.users.inviteUser(email.trim(), "user");
+      let existing = null;
       try {
         const users = await base44.entities.User.list();
-        const u = users.find((x) => x.email?.toLowerCase() === email.trim().toLowerCase());
-        if (u) await base44.entities.User.update(u.id, { client_slug: client.slug });
-      } catch (e) { console.error("link failed", e); }
+        existing = users.find((x) => x.email?.toLowerCase() === emailAddr.toLowerCase());
+      } catch (e) { console.error("user lookup failed", e); }
+
+      if (!existing) {
+        try {
+          await base44.users.inviteUser(emailAddr, "user");
+        } catch (e) { console.error("inviteUser failed", e); }
+        try {
+          const users = await base44.entities.User.list();
+          existing = users.find((x) => x.email?.toLowerCase() === emailAddr.toLowerCase());
+        } catch (e) { console.error("re-lookup failed", e); }
+      }
+
+      if (existing) {
+        try {
+          await base44.entities.User.update(existing.id, { client_slug: client.slug });
+        } catch (e) { console.error("link failed", e); }
+      }
+
+      let emailError = null;
       try {
-        await base44.functions.invoke("sendClientInviteEmail", {
-          toEmail: email.trim(),
+        const res = await base44.functions.invoke("sendClientInviteEmail", {
+          toEmail: emailAddr,
           clientName: client.name,
           portalUrl: `${window.location.origin}/creativelogin`
         });
-      } catch (e) { console.error("invite email failed", e); }
-      setMsg(`Invitation sent to ${email.trim()} and linked to ${client.name}.`);
-      setEmail("");
+        if (!res?.data?.ok) emailError = res?.data?.error || "unknown error";
+      } catch (e) { emailError = e.message; }
+
+      if (emailError) {
+        setErr(`Account ${existing ? "updated" : "invited"}, but the Gmail invite email failed: ${emailError}`);
+      } else {
+        setMsg(`Invitation sent to ${emailAddr} and linked to ${client.name}.`);
+        setEmail("");
+      }
     } catch (e) {
       setErr(e.message || "Failed to invite user.");
     }
