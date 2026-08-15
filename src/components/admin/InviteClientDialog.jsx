@@ -17,6 +17,7 @@ export default function InviteClientDialog({ open, client, onClose }) {
   const submit = async () => {
     setBusy(true); setErr(null); setMsg(null);
     const emailAddr = email.trim();
+    const role = "client";
     try {
       let existing = null;
       try {
@@ -26,7 +27,7 @@ export default function InviteClientDialog({ open, client, onClose }) {
 
       if (!existing) {
         try {
-          await base44.users.inviteUser(emailAddr, "user");
+          await base44.users.inviteUser(emailAddr, role);
         } catch (e) { console.error("inviteUser failed", e); }
         try {
           const users = await base44.entities.User.list();
@@ -36,9 +37,13 @@ export default function InviteClientDialog({ open, client, onClose }) {
 
       if (existing) {
         try {
-          await base44.entities.User.update(existing.id, { client_slug: client.slug });
+          await base44.entities.User.update(existing.id, { client_slug: client.slug, role });
         } catch (e) { console.error("link failed", e); }
       }
+
+      try {
+        await base44.entities.PendingInvite.create({ email: emailAddr, client_slug: client.slug, role });
+      } catch (e) { console.error("pending invite create failed", e); }
 
       let emailError = null;
       try {

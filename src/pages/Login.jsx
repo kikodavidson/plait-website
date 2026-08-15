@@ -30,7 +30,7 @@ export default function Login() {
   };
 
   const handleGoogle = () => {
-    base44.auth.loginWithProvider("google", "/admin/clients");
+    base44.auth.loginWithProvider("google", "/");
   };
 
   return (

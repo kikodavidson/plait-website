@@ -1,7 +1,7 @@
 import { Toaster } from "@/components/ui/toaster"
 import { QueryClientProvider } from '@tanstack/react-query'
 import { queryClientInstance } from '@/lib/query-client'
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import PageNotFound from './lib/PageNotFound';
 import { AuthProvider, useAuth } from '@/lib/AuthContext';
 import UserNotRegisteredError from '@/components/UserNotRegisteredError';
@@ -29,9 +29,40 @@ import ClientPortal from './pages/ClientPortal';
 import Library from './pages/Library';
 import Clients from './pages/Clients';
 import ClientBuilder from './pages/ClientBuilder';
+import AccessNotSetUp from './pages/AccessNotSetUp';
+import { useEffect } from 'react';
+import { base44 } from "@/api/base44Client";
 
 const AuthenticatedApp = () => {
-  const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
+  const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin, isAuthenticated, user, checkUserAuth } = useAuth();
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isLoadingAuth || isLoadingPublicSettings || authError || !isAuthenticated || !user) return;
+    const path = location.pathname;
+    if (user.role === "admin") {
+      if (path === "/") navigate("/admin/clients", { replace: true });
+      return;
+    }
+    const slug = user.client_slug || user.data?.client_slug;
+    if (!slug) {
+      (async () => {
+        try {
+          const res = await base44.functions.invoke("finalizeUserAccess", {});
+          if (res?.data?.repaired && res.data.client_slug) {
+            await checkUserAuth();
+          } else {
+            navigate("/access-not-setup", { replace: true });
+          }
+        } catch (e) {
+          navigate("/access-not-setup", { replace: true });
+        }
+      })();
+      return;
+    }
+    if (path === "/") navigate("/client", { replace: true });
+  }, [isLoadingAuth, isLoadingPublicSettings, authError, isAuthenticated, user, location.pathname, checkUserAuth, navigate]);
 
   if (isLoadingPublicSettings || isLoadingAuth) {
     return (
@@ -77,6 +108,7 @@ const AuthenticatedApp = () => {
         <Route path="/library" element={<Library />} />
         <Route path="/admin/clients" element={<Clients />} />
         <Route path="/admin/clients/:clientId" element={<ClientBuilder />} />
+        <Route path="/access-not-setup" element={<AccessNotSetUp />} />
       </Route>
       <Route path="*" element={<PageNotFound />} />
     </Routes>

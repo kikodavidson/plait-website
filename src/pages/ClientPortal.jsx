@@ -6,6 +6,7 @@ import PlanSidebar from "@/components/portal/PlanSidebar";
 import AngleSection from "@/components/portal/AngleSection";
 import ClientSwitcher from "@/components/portal/ClientSwitcher";
 import PlanStatusCallout from "@/components/portal/PlanStatusCallout";
+import AccessNotSetUp from "@/pages/AccessNotSetUp";
 
 const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 const PLAIT_LOGO = "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/9f9827363_Untitleddesign-2026-08-14T032711954.png";
@@ -236,10 +237,7 @@ export default function ClientPortal() {
                 <p className="text-gray-500">Use the switcher above to preview any client's portal exactly as they see it.</p>
               </div>
             ) : showEmptyClient ? (
-              <div className="text-center py-20">
-                <p className="text-lg font-medium text-[#2d2d2d]">Your account isn't linked to a client.</p>
-                <button onClick={() => base44.auth.logout()} className="text-sm text-gray-500 underline mt-3">Log out</button>
-              </div>
+              <AccessNotSetUp />
             ) : plans.length === 0 ? (
               <div className="text-center py-10">
                 <p className="text-[#777777] mb-4">No published plans yet. Published content will appear here.</p>
