@@ -27,7 +27,7 @@ export default function InviteClientDialog({ open, client, onClose }) {
         await base44.functions.invoke("sendClientInviteEmail", {
           toEmail: email.trim(),
           clientName: client.name,
-          portalUrl: `${window.location.origin}/client`
+          portalUrl: `${window.location.origin}/creativelogin`
         });
       } catch (e) { console.error("invite email failed", e); }
       setMsg(`Invitation sent to ${email.trim()} and linked to ${client.name}.`);
