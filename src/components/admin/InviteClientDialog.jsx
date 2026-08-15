@@ -40,7 +40,7 @@ export default function InviteClientDialog({ open, client, onClose }) {
         const res = await base44.functions.invoke("sendClientInviteEmail", {
           toEmail: emailAddr,
           clientName: client.name,
-          portalUrl: `${window.location.origin}/creativelogin`
+          portalUrl: `https://plaitgrowth.com/client`
         });
         if (!res?.data?.ok) emailError = res?.data?.error || "unknown error";
       } catch (e) { emailError = e.message; }
