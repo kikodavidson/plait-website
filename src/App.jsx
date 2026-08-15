@@ -27,7 +27,6 @@ import ForgotPassword from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
 import ClientPortal from './pages/ClientPortal';
 import Library from './pages/Library';
-import Clients from './pages/Clients';
 import ClientBuilder from './pages/ClientBuilder';
 import AccessNotSetUp from './pages/AccessNotSetUp';
 import { useEffect } from 'react';
@@ -42,7 +41,7 @@ const AuthenticatedApp = () => {
     if (isLoadingAuth || isLoadingPublicSettings || authError || !isAuthenticated || !user) return;
     const path = location.pathname;
     if (user.role === "admin") {
-      if (path === "/") navigate("/admin/clients", { replace: true });
+      if (path === "/") navigate("/client", { replace: true });
       return;
     }
     const slug = user.client_slug || user.data?.client_slug;
@@ -106,7 +105,6 @@ const AuthenticatedApp = () => {
       <Route element={<ProtectedRoute unauthenticatedElement={<Navigate to="/creativelogin" replace />} />}>
         <Route path="/client" element={<ClientPortal />} />
         <Route path="/library" element={<Library />} />
-        <Route path="/admin/clients" element={<Clients />} />
         <Route path="/admin/clients/:clientId" element={<ClientBuilder />} />
         <Route path="/access-not-setup" element={<AccessNotSetUp />} />
       </Route>
