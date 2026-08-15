@@ -3,7 +3,7 @@ import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
 import { Trash2, Plus, GripVertical } from "lucide-react";
 import ExampleItem from "./ExampleItem";
 import ExamplePicker from "./ExamplePicker";
-import { CONTENT_TYPES, VIDEO_FORMATS, ON_CAMERA, VIDEO_PRODUCTION_TIERS, IMAGE_STYLES, IMAGE_SUBJECTS, IMAGE_PRODUCTION_TIERS } from "@/lib/planBuilder";
+import { CONTENT_TYPES, VIDEO_FORMATS, ON_CAMERA, VIDEO_PRODUCTION_TIERS, IMAGE_STYLES, IMAGE_SUBJECTS, IMAGE_PRODUCTION_TIERS, CAROUSEL_STYLES, SLIDE_COUNTS, CAROUSEL_PRODUCTION_TIERS } from "@/lib/planBuilder";
 
 export default function BlockItem({ block, examples, api, innerRef, draggableProps, dragHandle }) {
   const [pickerOpen, setPickerOpen] = useState(false);
@@ -83,6 +83,32 @@ export default function BlockItem({ block, examples, api, innerRef, draggablePro
         >
           <option value="">Production tier…</option>
           {IMAGE_PRODUCTION_TIERS.map((c) => <option key={c} value={c}>{c}</option>)}
+        </select>
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 mb-2">
+        <select
+          value={block.carousel_style || ""}
+          onChange={(e) => api.commit("Block", block.id, { carousel_style: e.target.value })}
+          className="text-xs rounded border border-gray-200 bg-white px-2 py-1 focus:outline-none focus:ring-1 focus:ring-[#2d2d2d]"
+        >
+          <option value="">Carousel style…</option>
+          {CAROUSEL_STYLES.map((c) => <option key={c} value={c}>{c}</option>)}
+        </select>
+        <select
+          value={block.slide_count || ""}
+          onChange={(e) => api.commit("Block", block.id, { slide_count: e.target.value })}
+          className="text-xs rounded border border-gray-200 bg-white px-2 py-1 focus:outline-none focus:ring-1 focus:ring-[#2d2d2d]"
+        >
+          <option value="">Slide count…</option>
+          {SLIDE_COUNTS.map((c) => <option key={c} value={c}>{c}</option>)}
+        </select>
+        <select
+          value={block.carousel_production_tier || ""}
+          onChange={(e) => api.commit("Block", block.id, { carousel_production_tier: e.target.value })}
+          className="text-xs rounded border border-gray-200 bg-white px-2 py-1 focus:outline-none focus:ring-1 focus:ring-[#2d2d2d]"
+        >
+          <option value="">Production tier…</option>
+          {CAROUSEL_PRODUCTION_TIERS.map((c) => <option key={c} value={c}>{c}</option>)}
         </select>
       </div>
       <textarea

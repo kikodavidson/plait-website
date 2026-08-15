@@ -44,6 +44,23 @@ export const IMAGE_PRODUCTION_TIERS = [
   "Lifestyle shoot", "Stock assembled", "3D render", "AI generated",
 ];
 
+export const CAROUSEL_STYLES = [
+  "Listicle", "Step by step or how to", "Problem then solution", "Before and after",
+  "Comparison or versus", "Myth versus fact", "Feature breakdown", "Testimonial set",
+  "Objection handling or FAQ", "Story sequence", "Stat or data reveal", "Product range or lineup",
+  "Ingredient or materials breakdown", "Founder story", "Checklist", "Do this not that",
+  "Timeline", "Swipe to reveal", "Quote set", "Behind the scenes",
+];
+
+export const SLIDE_COUNTS = [
+  "Two", "Three to four", "Five to six", "Seven to eight", "Nine or more",
+];
+
+export const CAROUSEL_PRODUCTION_TIERS = [
+  "Graphic design", "Photo set", "Creator supplied", "Mixed photo and graphic",
+  "Studio shoot", "Illustration", "AI generated",
+];
+
 const CONTENT_CODE = {
   "HQ photo": "HQ",
   "graphic carousel": "CAR",

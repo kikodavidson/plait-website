@@ -142,6 +142,56 @@
       ],
       "description": "Production tier for an image creative \u2014 decides the budget"
     },
+    "carousel_style": {
+      "type": "string",
+      "enum": [
+        "Listicle",
+        "Step by step or how to",
+        "Problem then solution",
+        "Before and after",
+        "Comparison or versus",
+        "Myth versus fact",
+        "Feature breakdown",
+        "Testimonial set",
+        "Objection handling or FAQ",
+        "Story sequence",
+        "Stat or data reveal",
+        "Product range or lineup",
+        "Ingredient or materials breakdown",
+        "Founder story",
+        "Checklist",
+        "Do this not that",
+        "Timeline",
+        "Swipe to reveal",
+        "Quote set",
+        "Behind the scenes"
+      ],
+      "description": "The structural style of a carousel creative (single select)"
+    },
+    "slide_count": {
+      "type": "string",
+      "enum": [
+        "Two",
+        "Three to four",
+        "Five to six",
+        "Seven to eight",
+        "Nine or more"
+      ],
+      "description": "Number of slides in a carousel creative"
+    },
+    "carousel_production_tier": {
+      "type": "string",
+      "enum": [
+        "Graphic design",
+        "Photo set",
+        "Creator supplied",
+        "Mixed photo and graphic",
+        "Studio shoot",
+        "Illustration",
+        "AI generated"
+      ],
+      "description": "Production tier for a carousel creative \u2014 decides the budget"
+    },
     "order": {
       "type": "number"
     },
