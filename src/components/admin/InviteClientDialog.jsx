@@ -23,6 +23,13 @@ export default function InviteClientDialog({ open, client, onClose }) {
         const u = users.find((x) => x.email?.toLowerCase() === email.trim().toLowerCase());
         if (u) await base44.entities.User.update(u.id, { client_slug: client.slug });
       } catch (e) { console.error("link failed", e); }
+      try {
+        await base44.functions.invoke("sendClientInviteEmail", {
+          toEmail: email.trim(),
+          clientName: client.name,
+          portalUrl: `${window.location.origin}/client`
+        });
+      } catch (e) { console.error("invite email failed", e); }
       setMsg(`Invitation sent to ${email.trim()} and linked to ${client.name}.`);
       setEmail("");
     } catch (e) {
