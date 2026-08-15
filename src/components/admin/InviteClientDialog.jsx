@@ -25,16 +25,6 @@ export default function InviteClientDialog({ open, client, onClose }) {
         existing = users.find((x) => x.email?.toLowerCase() === emailAddr.toLowerCase());
       } catch (e) { console.error("user lookup failed", e); }
 
-      if (!existing) {
-        try {
-          await base44.users.inviteUser(emailAddr, role);
-        } catch (e) { console.error("inviteUser failed", e); }
-        try {
-          const users = await base44.entities.User.list();
-          existing = users.find((x) => x.email?.toLowerCase() === emailAddr.toLowerCase());
-        } catch (e) { console.error("re-lookup failed", e); }
-      }
-
       if (existing) {
         try {
           await base44.entities.User.update(existing.id, { client_slug: client.slug, role });
