@@ -7,6 +7,24 @@ export const CONTENT_TYPES = [
   "HQ photo", "graphic carousel", "UGC", "HQ video edit", "static graphic", "motion graphic",
 ];
 
+export const VIDEO_FORMATS = [
+  "Talking head", "Voiceover over b roll", "Testimonial", "Product demo", "Review",
+  "Before and after", "Tutorial", "Reaction", "Unboxing", "Screen recording or app walkthrough",
+  "Kinetic text", "Skit or scripted comedy", "Street interview", "Split screen comparison",
+  "Transformation", "Duet or stitch", "Podcast clip", "Trend audio", "Day in the life",
+  "Slideshow", "Montage", "Mashup or compilation", "Animated explainer", "Documentary or brand film",
+  "Behind the scenes", "ASMR or sensory", "Vlog", "Livestream clip", "Whiteboard", "AI generated",
+];
+
+export const ON_CAMERA = [
+  "Creator", "Customer", "Founder", "Product only", "Actor", "Employee", "Influencer", "Animated",
+];
+
+export const PRODUCTION_TIERS = [
+  "Phone shot raw", "Phone shot edited", "Creator studio quality", "Motion design",
+  "Studio lit", "Commercial production", "AI generated",
+];
+
 const CONTENT_CODE = {
   "HQ photo": "HQ",
   "graphic carousel": "CAR",

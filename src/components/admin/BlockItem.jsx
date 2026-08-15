@@ -3,7 +3,7 @@ import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
 import { Trash2, Plus, GripVertical } from "lucide-react";
 import ExampleItem from "./ExampleItem";
 import ExamplePicker from "./ExamplePicker";
-import { CONTENT_TYPES } from "@/lib/planBuilder";
+import { CONTENT_TYPES, VIDEO_FORMATS, ON_CAMERA, PRODUCTION_TIERS } from "@/lib/planBuilder";
 
 export default function BlockItem({ block, examples, api, innerRef, draggableProps, dragHandle }) {
   const [pickerOpen, setPickerOpen] = useState(false);
@@ -32,6 +32,32 @@ export default function BlockItem({ block, examples, api, innerRef, draggablePro
         <button onClick={() => api.deleteBlock(block.id)} className="ml-auto text-gray-400 hover:text-red-500">
           <Trash2 className="w-4 h-4" />
         </button>
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 mb-2">
+        <select
+          value={block.video_format || ""}
+          onChange={(e) => api.commit("Block", block.id, { video_format: e.target.value })}
+          className="text-xs rounded border border-gray-200 bg-white px-2 py-1 focus:outline-none focus:ring-1 focus:ring-[#2d2d2d]"
+        >
+          <option value="">Video format…</option>
+          {VIDEO_FORMATS.map((c) => <option key={c} value={c}>{c}</option>)}
+        </select>
+        <select
+          value={block.on_camera || ""}
+          onChange={(e) => api.commit("Block", block.id, { on_camera: e.target.value })}
+          className="text-xs rounded border border-gray-200 bg-white px-2 py-1 focus:outline-none focus:ring-1 focus:ring-[#2d2d2d]"
+        >
+          <option value="">On camera…</option>
+          {ON_CAMERA.map((c) => <option key={c} value={c}>{c}</option>)}
+        </select>
+        <select
+          value={block.production_tier || ""}
+          onChange={(e) => api.commit("Block", block.id, { production_tier: e.target.value })}
+          className="text-xs rounded border border-gray-200 bg-white px-2 py-1 focus:outline-none focus:ring-1 focus:ring-[#2d2d2d]"
+        >
+          <option value="">Production tier…</option>
+          {PRODUCTION_TIERS.map((c) => <option key={c} value={c}>{c}</option>)}
+        </select>
       </div>
       <textarea
         value={block.direction || ""}
