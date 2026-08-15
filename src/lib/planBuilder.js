@@ -20,9 +20,28 @@ export const ON_CAMERA = [
   "Creator", "Customer", "Founder", "Product only", "Actor", "Employee", "Influencer", "Animated",
 ];
 
-export const PRODUCTION_TIERS = [
+export const VIDEO_PRODUCTION_TIERS = [
   "Phone shot raw", "Phone shot edited", "Creator studio quality", "Motion design",
   "Studio lit", "Commercial production", "AI generated",
+];
+
+export const IMAGE_STYLES = [
+  "Product on plain background", "Lifestyle photo", "Text only or typographic", "Review or testimonial screenshot",
+  "Offer or promo graphic", "Before and after", "Stat or data card", "Comparison chart",
+  "Quote card", "Founder or team photo", "Flat lay", "Infographic",
+  "Phone shot UGC photo", "Packaging or unboxing shot", "Meme", "In use or demonstration",
+  "Press or logo bar", "Ingredient or materials breakdown", "Size or fit guide", "Collage or grid",
+  "Editorial or campaign shot", "Screenshot of app or interface", "Illustration", "AI generated",
+];
+
+export const IMAGE_SUBJECTS = [
+  "Product only", "Product in use", "Customer or model", "Founder or team",
+  "Text only", "Illustration or graphic", "Screenshot", "Animated or AI",
+];
+
+export const IMAGE_PRODUCTION_TIERS = [
+  "Graphic design", "Phone shot raw", "Studio product photography", "Creator supplied photo",
+  "Lifestyle shoot", "Stock assembled", "3D render", "AI generated",
 ];
 
 const CONTENT_CODE = {

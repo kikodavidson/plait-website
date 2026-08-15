@@ -69,9 +69,9 @@
         "Influencer",
         "Animated"
       ],
-      "description": "Who appears on camera \u2014 decides who needs to be booked"
+      "description": "Who appears on camera for a video creative \u2014 decides who needs to be booked"
     },
-    "production_tier": {
+    "video_production_tier": {
       "type": "string",
       "enum": [
         "Phone shot raw",
@@ -82,7 +82,65 @@
         "Commercial production",
         "AI generated"
       ],
-      "description": "Production tier \u2014 decides the budget"
+      "description": "Production tier for a video creative \u2014 decides the budget"
+    },
+    "image_style": {
+      "type": "string",
+      "enum": [
+        "Product on plain background",
+        "Lifestyle photo",
+        "Text only or typographic",
+        "Review or testimonial screenshot",
+        "Offer or promo graphic",
+        "Before and after",
+        "Stat or data card",
+        "Comparison chart",
+        "Quote card",
+        "Founder or team photo",
+        "Flat lay",
+        "Infographic",
+        "Phone shot UGC photo",
+        "Packaging or unboxing shot",
+        "Meme",
+        "In use or demonstration",
+        "Press or logo bar",
+        "Ingredient or materials breakdown",
+        "Size or fit guide",
+        "Collage or grid",
+        "Editorial or campaign shot",
+        "Screenshot of app or interface",
+        "Illustration",
+        "AI generated"
+      ],
+      "description": "The visual style of an image creative (single select)"
+    },
+    "image_subject": {
+      "type": "string",
+      "enum": [
+        "Product only",
+        "Product in use",
+        "Customer or model",
+        "Founder or team",
+        "Text only",
+        "Illustration or graphic",
+        "Screenshot",
+        "Animated or AI"
+      ],
+      "description": "What is in the image"
+    },
+    "image_production_tier": {
+      "type": "string",
+      "enum": [
+        "Graphic design",
+        "Phone shot raw",
+        "Studio product photography",
+        "Creator supplied photo",
+        "Lifestyle shoot",
+        "Stock assembled",
+        "3D render",
+        "AI generated"
+      ],
+      "description": "Production tier for an image creative \u2014 decides the budget"
     },
     "order": {
       "type": "number"

@@ -3,7 +3,7 @@ import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
 import { Trash2, Plus, GripVertical } from "lucide-react";
 import ExampleItem from "./ExampleItem";
 import ExamplePicker from "./ExamplePicker";
-import { CONTENT_TYPES, VIDEO_FORMATS, ON_CAMERA, PRODUCTION_TIERS } from "@/lib/planBuilder";
+import { CONTENT_TYPES, VIDEO_FORMATS, ON_CAMERA, VIDEO_PRODUCTION_TIERS, IMAGE_STYLES, IMAGE_SUBJECTS, IMAGE_PRODUCTION_TIERS } from "@/lib/planBuilder";
 
 export default function BlockItem({ block, examples, api, innerRef, draggableProps, dragHandle }) {
   const [pickerOpen, setPickerOpen] = useState(false);
@@ -51,12 +51,38 @@ export default function BlockItem({ block, examples, api, innerRef, draggablePro
           {ON_CAMERA.map((c) => <option key={c} value={c}>{c}</option>)}
         </select>
         <select
-          value={block.production_tier || ""}
-          onChange={(e) => api.commit("Block", block.id, { production_tier: e.target.value })}
+          value={block.video_production_tier || ""}
+          onChange={(e) => api.commit("Block", block.id, { video_production_tier: e.target.value })}
           className="text-xs rounded border border-gray-200 bg-white px-2 py-1 focus:outline-none focus:ring-1 focus:ring-[#2d2d2d]"
         >
           <option value="">Production tier…</option>
-          {PRODUCTION_TIERS.map((c) => <option key={c} value={c}>{c}</option>)}
+          {VIDEO_PRODUCTION_TIERS.map((c) => <option key={c} value={c}>{c}</option>)}
+        </select>
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 mb-2">
+        <select
+          value={block.image_style || ""}
+          onChange={(e) => api.commit("Block", block.id, { image_style: e.target.value })}
+          className="text-xs rounded border border-gray-200 bg-white px-2 py-1 focus:outline-none focus:ring-1 focus:ring-[#2d2d2d]"
+        >
+          <option value="">Image style…</option>
+          {IMAGE_STYLES.map((c) => <option key={c} value={c}>{c}</option>)}
+        </select>
+        <select
+          value={block.image_subject || ""}
+          onChange={(e) => api.commit("Block", block.id, { image_subject: e.target.value })}
+          className="text-xs rounded border border-gray-200 bg-white px-2 py-1 focus:outline-none focus:ring-1 focus:ring-[#2d2d2d]"
+        >
+          <option value="">What's in it…</option>
+          {IMAGE_SUBJECTS.map((c) => <option key={c} value={c}>{c}</option>)}
+        </select>
+        <select
+          value={block.image_production_tier || ""}
+          onChange={(e) => api.commit("Block", block.id, { image_production_tier: e.target.value })}
+          className="text-xs rounded border border-gray-200 bg-white px-2 py-1 focus:outline-none focus:ring-1 focus:ring-[#2d2d2d]"
+        >
+          <option value="">Production tier…</option>
+          {IMAGE_PRODUCTION_TIERS.map((c) => <option key={c} value={c}>{c}</option>)}
         </select>
       </div>
       <textarea
