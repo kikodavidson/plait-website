@@ -139,6 +139,12 @@ export default function ClientBuilder() {
       </header>
 
       <main className="max-w-5xl mx-auto px-6 py-8">
+        <button
+          onClick={() => navigate("/admin/clients")}
+          className="inline-flex items-center gap-1 text-sm text-gray-500 hover:text-[#2d2d2d] mb-4"
+        >
+          <ArrowLeft className="w-4 h-4" /> Back to client overview
+        </button>
         {selectedPlan ? (
           <div className="space-y-4">
             <button onClick={() => setSelectedPlan(null)} className="inline-flex items-center gap-1 text-sm text-gray-500 hover:text-[#2d2d2d]">
