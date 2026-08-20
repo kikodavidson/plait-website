@@ -30,6 +30,7 @@ export default function Login() {
   };
 
   const handleGoogle = () => {
+    sessionStorage.setItem("plait_post_oauth", "1");
     base44.auth.loginWithProvider("google", "/");
   };
 

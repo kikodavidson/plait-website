@@ -43,8 +43,15 @@ const AuthenticatedApp = () => {
     if (isLoadingAuth || isLoadingPublicSettings || authError || !isAuthenticated || !user) return;
     const path = location.pathname;
     if (user.role === "admin") {
+      // One-time redirect after Google OAuth so admins land in the builder.
+      if (sessionStorage.getItem("plait_post_oauth") === "1") {
+        sessionStorage.removeItem("plait_post_oauth");
+        navigate("/admin/clients", { replace: true });
+      }
       return;
     }
+    // Root always renders the public home page for every user type.
+    if (path === "/") return;
     const slug = user.client_slug || user.data?.client_slug;
     if (!slug) {
       (async () => {
@@ -61,7 +68,6 @@ const AuthenticatedApp = () => {
       })();
       return;
     }
-    if (path === "/") navigate("/client", { replace: true });
   }, [isLoadingAuth, isLoadingPublicSettings, authError, isAuthenticated, user, location.pathname, checkUserAuth, navigate]);
 
   if (isLoadingPublicSettings || isLoadingAuth) {
