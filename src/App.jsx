@@ -43,7 +43,6 @@ const AuthenticatedApp = () => {
     if (isLoadingAuth || isLoadingPublicSettings || authError || !isAuthenticated || !user) return;
     const path = location.pathname;
     if (user.role === "admin") {
-      if (path === "/") navigate("/admin/clients", { replace: true });
       return;
     }
     const slug = user.client_slug || user.data?.client_slug;
