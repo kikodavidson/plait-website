@@ -1,255 +1,308 @@
-import React, { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { base44 } from "@/api/base44Client";
-import { Plus, ChevronDown, ChevronRight, Loader2 } from "lucide-react";
-import { CHECKLIST_SECTIONS, ALL_ITEM_IDS, TOTAL_ITEMS } from "@/components/checklistTemplate";
-
-const STATUS_OPTIONS = [
-  { id: "active", label: "Active" },
-  { id: "launched", label: "Launched" },
-  { id: "paused", label: "Paused" },
-];
-
-const STATUS_STYLES = {
-  active: "bg-green-600 text-white",
-  launched: "bg-[#2d2d2d] text-white",
-  paused: "bg-gray-200 text-gray-600",
-};
+import { CHECKLIST, ALL_ITEM_IDS } from "@/components/checklistTemplate";
 
 export default function ShopifyChecklist() {
-  const [builds, setBuilds] = useState([]);
-  const [selectedId, setSelectedId] = useState(null);
+  const [projects, setProjects] = useState([]);
+  const [activeId, setActiveId] = useState(null);
+  const [newName, setNewName] = useState("");
   const [loading, setLoading] = useState(true);
-  const [newClient, setNewClient] = useState("");
-  const [busy, setBusy] = useState(false);
-  const [notesDraft, setNotesDraft] = useState("");
-  const [collapsed, setCollapsed] = useState({});
-
-  const load = async () => {
-    setLoading(true);
-    try {
-      const list = await base44.entities.BuildProject.list("-created_date");
-      setBuilds(list);
-      setSelectedId((prev) => (prev && list.find((b) => b.id === prev) ? prev : list[0]?.id || null));
-    } catch (e) {
-      console.error(e);
-    }
-    setLoading(false);
-  };
-
-  useEffect(() => { load(); }, []);
-
-  const selected = useMemo(() => builds.find((b) => b.id === selectedId) || null, [builds, selectedId]);
+  const [message, setMessage] = useState("");
+  const [openSections, setOpenSections] = useState(() =>
+    Object.fromEntries(CHECKLIST.map((s) => [s.id, true]))
+  );
 
   useEffect(() => {
-    setNotesDraft(selected?.notes || "");
-  }, [selectedId, selected?.notes]);
+    loadProjects();
+  }, []);
 
-  const addBuild = async () => {
-    const name = newClient.trim();
+  async function loadProjects() {
+    setLoading(true);
+    try {
+      const list = await base44.entities.BuildProject.list();
+      const sorted = [...list].sort((a, b) =>
+        (a.client_name || "").localeCompare(b.client_name || "")
+      );
+      setProjects(sorted);
+      setActiveId((current) => current || (sorted[0] ? sorted[0].id : null));
+      setMessage("");
+    } catch (err) {
+      setMessage("Projects did not load. Refresh the page to try again.");
+    }
+    setLoading(false);
+  }
+
+  const active = useMemo(
+    () => projects.find((p) => p.id === activeId) || null,
+    [projects, activeId]
+  );
+
+  const done = active?.completed_items || [];
+
+  const overall = Math.round((done.length / ALL_ITEM_IDS.length) * 100) || 0;
+
+  function sectionProgress(section) {
+    const total = section.items.length;
+    const complete = section.items.filter((i) => done.includes(i.id)).length;
+    return { total, complete, pct: Math.round((complete / total) * 100) };
+  }
+
+  async function addProject() {
+    const name = newName.trim();
     if (!name) return;
-    setBusy(true);
     try {
       const created = await base44.entities.BuildProject.create({
         client_name: name,
         status: "active",
-        completed_items: [],
-        notes: "",
+        completed_items: []
       });
-      setBuilds((prev) => [created, ...prev]);
-      setSelectedId(created.id);
-      setNewClient("");
-    } catch (e) {
-      console.error(e);
+      setProjects((prev) =>
+        [...prev, created].sort((a, b) =>
+          (a.client_name || "").localeCompare(b.client_name || "")
+        )
+      );
+      setActiveId(created.id);
+      setNewName("");
+      setMessage("");
+    } catch (err) {
+      setMessage("That build did not save. Try again.");
     }
-    setBusy(false);
-  };
+  }
 
-  const setStatus = async (status) => {
-    if (!selected) return;
-    setBuilds((prev) => prev.map((b) => (b.id === selected.id ? { ...b, status } : b)));
-    try {
-      await base44.entities.BuildProject.update(selected.id, { status });
-    } catch (e) {
-      console.error(e);
-    }
-  };
+  async function toggleItem(itemId) {
+    if (!active) return;
+    const next = done.includes(itemId)
+      ? done.filter((id) => id !== itemId)
+      : [...done, itemId];
 
-  const toggleItem = async (itemId) => {
-    if (!selected) return;
-    const current = selected.completed_items || [];
-    const next = current.includes(itemId) ? current.filter((x) => x !== itemId) : [...current, itemId];
-    setBuilds((prev) => prev.map((b) => (b.id === selected.id ? { ...b, completed_items: next } : b)));
-    try {
-      await base44.entities.BuildProject.update(selected.id, { completed_items: next });
-    } catch (e) {
-      console.error(e);
-    }
-  };
-
-  const saveNotes = async () => {
-    if (!selected) return;
-    if ((selected.notes || "") === notesDraft) return;
-    setBuilds((prev) => prev.map((b) => (b.id === selected.id ? { ...b, notes: notesDraft } : b)));
-    try {
-      await base44.entities.BuildProject.update(selected.id, { notes: notesDraft });
-    } catch (e) {
-      console.error(e);
-    }
-  };
-
-  const completedCount = useMemo(() => {
-    if (!selected) return 0;
-    const set = new Set(selected.completed_items || []);
-    return ALL_ITEM_IDS.filter((id) => set.has(id)).length;
-  }, [selected]);
-
-  const sectionCount = (section) => {
-    if (!selected) return 0;
-    const set = new Set(selected.completed_items || []);
-    return section.items.filter((i) => set.has(i.id)).length;
-  };
-
-  const toggleSection = (id) => setCollapsed((prev) => ({ ...prev, [id]: !prev[id] }));
-
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-[#F5F5F5]">
-        <Loader2 className="w-5 h-5 animate-spin text-gray-400" />
-      </div>
+    setProjects((prev) =>
+      prev.map((p) => (p.id === active.id ? { ...p, completed_items: next } : p))
     );
+
+    try {
+      await base44.entities.BuildProject.update(active.id, {
+        completed_items: next
+      });
+    } catch (err) {
+      setMessage("That change did not save. Check the item again.");
+      loadProjects();
+    }
+  }
+
+  async function setStatus(status) {
+    if (!active) return;
+    setProjects((prev) =>
+      prev.map((p) => (p.id === active.id ? { ...p, status } : p))
+    );
+    try {
+      await base44.entities.BuildProject.update(active.id, { status });
+    } catch (err) {
+      setMessage("Status did not save.");
+      loadProjects();
+    }
+  }
+
+  async function saveNotes(value) {
+    if (!active) return;
+    try {
+      await base44.entities.BuildProject.update(active.id, { notes: value });
+    } catch (err) {
+      setMessage("Notes did not save.");
+    }
+  }
+
+  function toggleSection(id) {
+    setOpenSections((prev) => ({ ...prev, [id]: !prev[id] }));
   }
 
   return (
-    <div className="min-h-screen bg-[#F5F5F5] text-[#222222]">
-      <div className="max-w-3xl mx-auto px-5 py-10">
+    <div className="min-h-screen bg-stone-50 text-stone-900">
+      <div className="mx-auto max-w-5xl px-5 py-10">
         <header className="mb-8">
-          <p className="font-mono text-[11px] uppercase tracking-widest text-gray-400 mb-1">Internal</p>
-          <h1 className="text-2xl font-bold tracking-tight">Shopify Build Process</h1>
+          <p className="font-mono text-xs uppercase tracking-widest text-stone-500">
+            Plait build system
+          </p>
+          <h1 className="mt-1 text-3xl font-semibold tracking-tight">
+            Shopify build checklist
+          </h1>
         </header>
 
-        {/* Build switcher + add */}
-        <div className="flex flex-col sm:flex-row gap-2 mb-3">
-          <select
-            value={selectedId || ""}
-            onChange={(e) => setSelectedId(e.target.value)}
-            className="flex-1 min-w-0 border border-gray-200 bg-white rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-[#2d2d2d]"
-          >
-            <option value="">Select a build…</option>
-            {builds.map((b) => (
-              <option key={b.id} value={b.id}>{b.client_name}</option>
-            ))}
-          </select>
-          <div className="flex gap-2">
-            <input
-              value={newClient}
-              onChange={(e) => setNewClient(e.target.value)}
-              onKeyDown={(e) => e.key === "Enter" && addBuild()}
-              placeholder="New client name"
-              className="flex-1 min-w-0 sm:w-48 border border-gray-200 bg-white rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-[#2d2d2d]"
-            />
-            <button
-              onClick={addBuild}
-              disabled={busy || !newClient.trim()}
-              className="inline-flex items-center gap-1.5 bg-[#2d2d2d] hover:bg-[#1a1a1a] text-white text-sm font-medium px-4 py-2.5 rounded-lg disabled:opacity-40"
-            >
-              <Plus className="w-4 h-4" /> Add
-            </button>
+        {message ? (
+          <div className="mb-6 rounded border border-amber-300 bg-amber-50 px-4 py-3 text-sm text-amber-900">
+            {message}
           </div>
-        </div>
+        ) : null}
 
-        {selected ? (
-          <>
-            {/* Status buttons */}
-            <div className="flex gap-2 mb-6">
-              {STATUS_OPTIONS.map((s) => (
-                <button
-                  key={s.id}
-                  onClick={() => setStatus(s.id)}
-                  className={`flex-1 text-sm font-medium py-2 rounded-lg border transition-colors ${
-                    selected.status === s.id
-                      ? `${STATUS_STYLES[s.id]} border-transparent`
-                      : "bg-white text-gray-500 border-gray-200 hover:border-gray-300"
-                  }`}
+        <section className="mb-8 rounded-lg border border-stone-200 bg-white p-5">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+            <div className="flex-1">
+              <label className="block font-mono text-xs uppercase tracking-widest text-stone-500">
+                Build
+              </label>
+              {projects.length ? (
+                <select
+                  value={activeId || ""}
+                  onChange={(e) => setActiveId(e.target.value)}
+                  className="mt-2 w-full rounded border border-stone-300 bg-white px-3 py-2 text-sm focus:border-stone-900 focus:outline-none"
                 >
-                  {s.label}
-                </button>
-              ))}
+                  {projects.map((p) => (
+                    <option key={p.id} value={p.id}>
+                      {p.client_name}
+                      {p.status && p.status !== "active" ? ` (${p.status})` : ""}
+                    </option>
+                  ))}
+                </select>
+              ) : (
+                <p className="mt-2 text-sm text-stone-500">
+                  {loading ? "Loading." : "No builds yet. Add one to start."}
+                </p>
+              )}
             </div>
 
-            {/* Progress */}
-            <div className="mb-8">
-              <div className="flex items-baseline justify-between mb-2">
-                <span className="font-mono text-[11px] uppercase tracking-widest text-gray-400">Overall progress</span>
-                <span className="font-mono text-sm text-[#222222]">{completedCount} / {TOTAL_ITEMS}</span>
-              </div>
-              <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
-                <div
-                  className="h-full bg-green-600 transition-all duration-300"
-                  style={{ width: `${TOTAL_ITEMS ? (completedCount / TOTAL_ITEMS) * 100 : 0}%` }}
+            <div className="flex items-end gap-2">
+              <div>
+                <label className="block font-mono text-xs uppercase tracking-widest text-stone-500">
+                  New build
+                </label>
+                <input
+                  value={newName}
+                  onChange={(e) => setNewName(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") addProject();
+                  }}
+                  placeholder="Client name"
+                  className="mt-2 rounded border border-stone-300 px-3 py-2 text-sm focus:border-stone-900 focus:outline-none"
                 />
               </div>
+              <button
+                onClick={addProject}
+                className="rounded bg-stone-900 px-4 py-2 text-sm font-medium text-white hover:bg-stone-700 focus:outline-none focus:ring-2 focus:ring-stone-900 focus:ring-offset-2"
+              >
+                Add build
+              </button>
             </div>
+          </div>
 
-            {/* Checklist */}
-            <div className="space-y-2 mb-8">
-              {CHECKLIST_SECTIONS.map((section) => {
-                const done = sectionCount(section);
-                const total = section.items.length;
-                const isCollapsed = collapsed[section.id];
+          {active ? (
+            <div className="mt-6">
+              <div className="flex items-baseline justify-between">
+                <span className="font-mono text-xs uppercase tracking-widest text-stone-500">
+                  Overall
+                </span>
+                <span className="font-mono text-sm tabular-nums">
+                  {done.length} of {ALL_ITEM_IDS.length} · {overall}%
+                </span>
+              </div>
+              <div className="mt-2 h-1 w-full bg-stone-200">
+                <div
+                  className="h-1 bg-emerald-700 transition-all duration-300"
+                  style={{ width: `${overall}%` }}
+                />
+              </div>
+
+              <div className="mt-4 flex flex-wrap gap-2">
+                {["active", "launched", "paused"].map((s) => (
+                  <button
+                    key={s}
+                    onClick={() => setStatus(s)}
+                    className={`rounded-full border px-3 py-1 text-xs capitalize ${
+                      active.status === s
+                        ? "border-stone-900 bg-stone-900 text-white"
+                        : "border-stone-300 text-stone-600 hover:border-stone-500"
+                    }`}
+                  >
+                    {s}
+                  </button>
+                ))}
+              </div>
+            </div>
+          ) : null}
+        </section>
+
+        {active ? (
+          <>
+            <div className="space-y-4">
+              {CHECKLIST.map((section) => {
+                const { total, complete, pct } = sectionProgress(section);
+                const open = openSections[section.id];
                 return (
-                  <div key={section.id} className="border border-gray-200 bg-white rounded-lg overflow-hidden">
+                  <section
+                    key={section.id}
+                    className="overflow-hidden rounded-lg border border-stone-200 bg-white"
+                  >
                     <button
                       onClick={() => toggleSection(section.id)}
-                      className="w-full flex items-center gap-2 px-4 py-3 text-left hover:bg-gray-50"
+                      className="flex w-full items-center gap-4 px-5 py-4 text-left hover:bg-stone-50 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-stone-900"
                     >
-                      {isCollapsed ? <ChevronRight className="w-4 h-4 text-gray-400" /> : <ChevronDown className="w-4 h-4 text-gray-400" />}
-                      <span className="font-medium text-sm flex-1">{section.title}</span>
-                      <span className={`font-mono text-xs ${done === total ? "text-green-600" : "text-gray-400"}`}>{done}/{total}</span>
+                      <span
+                        className={`h-8 w-1 rounded ${
+                          pct === 100 ? "bg-emerald-700" : "bg-stone-200"
+                        }`}
+                      />
+                      <span className="flex-1">
+                        <span className="block text-base font-medium tracking-tight">
+                          {section.title}
+                        </span>
+                        {section.note ? (
+                          <span className="block text-sm text-stone-500">
+                            {section.note}
+                          </span>
+                        ) : null}
+                      </span>
+                      <span className="font-mono text-xs tabular-nums text-stone-500">
+                        {complete}/{total}
+                      </span>
+                      <span className="text-stone-400">{open ? "−" : "+"}</span>
                     </button>
-                    {!isCollapsed && (
-                      <div className="divide-y divide-gray-100">
+
+                    {open ? (
+                      <ul className="border-t border-stone-100 px-5 py-2">
                         {section.items.map((item) => {
-                          const checked = (selected.completed_items || []).includes(item.id);
+                          const checked = done.includes(item.id);
                           return (
-                            <label key={item.id} className="flex items-start gap-3 px-4 py-2.5 cursor-pointer hover:bg-gray-50">
-                              <input
-                                type="checkbox"
-                                checked={checked}
-                                onChange={() => toggleItem(item.id)}
-                                className="mt-0.5 w-4 h-4 rounded border-gray-300 text-green-600 focus:ring-green-500 focus:ring-offset-0"
-                              />
-                              <span className={`text-sm ${checked ? "text-gray-400 line-through" : "text-[#222222]"}`}>{item.label}</span>
-                            </label>
+                            <li key={item.id}>
+                              <label className="flex cursor-pointer items-start gap-3 py-2">
+                                <input
+                                  type="checkbox"
+                                  checked={checked}
+                                  onChange={() => toggleItem(item.id)}
+                                  className="mt-1 h-4 w-4 accent-emerald-700"
+                                />
+                                <span
+                                  className={`text-sm ${
+                                    checked
+                                      ? "text-stone-400 line-through"
+                                      : "text-stone-800"
+                                  }`}
+                                >
+                                  {item.text}
+                                </span>
+                              </label>
+                            </li>
                           );
                         })}
-                      </div>
-                    )}
-                  </div>
+                      </ul>
+                    ) : null}
+                  </section>
                 );
               })}
             </div>
 
-            {/* Notes */}
-            <div>
-              <div className="flex items-baseline justify-between mb-2">
-                <span className="font-mono text-[11px] uppercase tracking-widest text-gray-400">Notes</span>
-                <span className="font-mono text-[11px] text-gray-300">saves on blur</span>
-              </div>
+            <section className="mt-8 rounded-lg border border-stone-200 bg-white p-5">
+              <label className="block font-mono text-xs uppercase tracking-widest text-stone-500">
+                Notes
+              </label>
               <textarea
-                value={notesDraft}
-                onChange={(e) => setNotesDraft(e.target.value)}
-                onBlur={saveNotes}
-                rows={5}
-                placeholder="Anything worth remembering for this build…"
-                className="w-full border border-gray-200 bg-white rounded-lg px-3 py-2.5 text-sm leading-relaxed focus:outline-none focus:ring-1 focus:ring-[#2d2d2d]"
+                defaultValue={active.notes || ""}
+                onBlur={(e) => saveNotes(e.target.value)}
+                rows={4}
+                placeholder="What is blocking this build"
+                className="mt-2 w-full rounded border border-stone-300 px-3 py-2 text-sm focus:border-stone-900 focus:outline-none"
               />
-            </div>
+              <p className="mt-2 text-xs text-stone-500">Saves when you click away.</p>
+            </section>
           </>
-        ) : (
-          <div className="text-center py-20 text-gray-400 text-sm">
-            {builds.length === 0 ? "Add your first build above to get started." : "Select a build to view its checklist."}
-          </div>
-        )}
+        ) : null}
       </div>
     </div>
   );
