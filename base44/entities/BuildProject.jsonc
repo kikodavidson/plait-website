@@ -4,11 +4,11 @@
   "properties": {
     "client_name": {
       "type": "string",
-      "description": "Client this Shopify build is for"
+      "description": "Client or store name"
     },
     "store_url": {
       "type": "string",
-      "description": "Shopify store URL"
+      "description": "myshopify or live domain"
     },
     "status": {
       "type": "string",
@@ -17,8 +17,7 @@
         "launched",
         "paused"
       ],
-      "default": "active",
-      "description": "Current state of the build"
+      "default": "active"
     },
     "target_launch": {
       "type": "string",
@@ -31,11 +30,11 @@
         "type": "string"
       },
       "default": [],
-      "description": "Checklist item IDs that are complete. IDs are stable and defined in checklistTemplate.js."
+      "description": "IDs of checked items from the checklist template"
     },
     "notes": {
       "type": "string",
-      "description": "Free-form notes for this build"
+      "description": "Free notes on this build"
     }
   },
   "required": [
