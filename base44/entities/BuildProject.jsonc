@@ -1,0 +1,44 @@
+{
+  "name": "BuildProject",
+  "type": "object",
+  "properties": {
+    "client_name": {
+      "type": "string",
+      "description": "Client this Shopify build is for"
+    },
+    "store_url": {
+      "type": "string",
+      "description": "Shopify store URL"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "launched",
+        "paused"
+      ],
+      "default": "active",
+      "description": "Current state of the build"
+    },
+    "target_launch": {
+      "type": "string",
+      "format": "date",
+      "description": "Target launch date"
+    },
+    "completed_items": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": [],
+      "description": "Checklist item IDs that are complete. IDs are stable and defined in checklistTemplate.js."
+    },
+    "notes": {
+      "type": "string",
+      "description": "Free-form notes for this build"
+    }
+  },
+  "required": [
+    "client_name"
+  ]
+}

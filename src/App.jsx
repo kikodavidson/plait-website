@@ -29,6 +29,7 @@ import ClientPortal from './pages/ClientPortal';
 import Library from './pages/Library';
 import Clients from './pages/Clients';
 import ClientBuilder from './pages/ClientBuilder';
+import ShopifyChecklist from './pages/ShopifyChecklist';
 import AccessNotSetUp from './pages/AccessNotSetUp';
 import { useEffect } from 'react';
 import { base44 } from "@/api/base44Client";
@@ -108,6 +109,7 @@ const AuthenticatedApp = () => {
         <Route path="/library" element={<Library />} />
         <Route path="/admin/clients" element={<Clients />} />
         <Route path="/admin/clients/:clientId" element={<ClientBuilder />} />
+        <Route path="/shopify-builds" element={<ShopifyChecklist />} />
         <Route path="/access-not-setup" element={<AccessNotSetUp />} />
       </Route>
       <Route path="*" element={<PageNotFound />} />
