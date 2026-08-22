@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import { Check, Loader2, ExternalLink, Copy } from "lucide-react";
 import { base44 } from "@/api/base44Client";
 import { useToast } from "@/components/ui/use-toast";
-import LeverSwitch from "@/components/ui/lever-switch";
 
 const sections = [
   {
@@ -362,15 +361,15 @@ export default function TikTokOnboarding() {
               {/* Conditional toggle */}
               {section.conditional && (
                 <div className="pl-14 mb-4">
-                  <div className="inline-flex items-center gap-2">
-                    <LeverSwitch checked={isOpen} onChange={() => toggleSection(section.num)} />
-                    <span
-                      onClick={() => toggleSection(section.num)}
-                      className="text-xs font-semibold text-[#525252] hover:text-[#2d2d2d] transition-colors cursor-pointer"
-                    >
-                      {section.toggleLabel || "Does this apply to you?"}
-                    </span>
-                  </div>
+                  <button
+                    onClick={() => toggleSection(section.num)}
+                    className="inline-flex items-center gap-2 text-xs font-semibold text-[#525252] hover:text-[#2d2d2d] transition-colors"
+                  >
+                    <div className={`w-9 h-5 rounded-full relative transition-colors ${isOpen ? "bg-[#2d2d2d]" : "bg-gray-300"}`}>
+                      <div className={`absolute top-0.5 w-4 h-4 bg-white rounded-full transition-transform ${isOpen ? "translate-x-4" : "translate-x-0.5"}`} />
+                    </div>
+                    {section.toggleLabel || "Does this apply to you?"}
+                  </button>
                 </div>
               )}
 

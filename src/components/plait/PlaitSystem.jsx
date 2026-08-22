@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import LeverSwitch from "@/components/ui/lever-switch";
 
 function getState(ads, website, attribution) {
   const count = [ads, website, attribution].filter(Boolean).length;
@@ -183,18 +184,7 @@ export default function PlaitSystem() {
                     >
                       {label}
                     </span>
-                    <button
-                      onClick={() => setters[key](!active)}
-                      className={`relative w-11 h-6 rounded-full transition-colors focus:outline-none ${
-                        active ? "bg-gradient-to-r from-[#a0b4ff] via-[#c084fc] to-[#f472b6]" : "bg-gray-200"
-                      }`}
-                    >
-                      <div
-                        className={`absolute top-0.5 w-5 h-5 rounded-full bg-white shadow transition-transform ${
-                          active ? "translate-x-5" : "translate-x-0.5"
-                        }`}
-                      />
-                    </button>
+                    <LeverSwitch checked={active} onChange={(v) => setters[key](v)} />
                   </div>
                 );
               })}
