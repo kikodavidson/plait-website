@@ -54,8 +54,7 @@
       transparent,
       var(--shiny-cta-highlight) var(--gradient-percent),
       var(--gradient-shine) calc(var(--gradient-percent) * 2),
-      var(--shiny-cta-highlight) calc(var(--gradient-percent) * 3),
-      transparent calc(var(--gradient-percent) * 4)
+      transparent calc(var(--gradient-percent) * 3)
     ) border-box;
   box-shadow: inset 0 0 0 1px var(--shiny-cta-bg-subtle);
   transition: var(--transition);
@@ -99,7 +98,7 @@
     black
   );
   border-radius: inherit;
-  opacity: 0.7;
+  opacity: 0.6;
   z-index: -1;
 }
 
