@@ -135,7 +135,7 @@ export default function HeroSection() {
         {/* Rotating word */}
         <div className="relative">
           <div className="text-[clamp(1.8rem,5vw,4rem)] font-bold text-[#2d2d2d] leading-[1.15] tracking-tight mb-8 h-[1.4em] flex items-center justify-center overflow-visible font-body" style={{ fontFamily: 'Inter, sans-serif', letterSpacing: '-0.02em' }}>
-            <TextEffect per="char" preset="blur" as="span" trigger={trigger} className="inline-block text-[#2d2d2d]">
+            <TextEffect per="line" preset="fade" as="span" trigger={trigger} className="inline-block text-[#2d2d2d]">
               {ROTATING[index]}
             </TextEffect>
           </div>
