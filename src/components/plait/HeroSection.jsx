@@ -61,7 +61,7 @@ export default function HeroSection() {
       <ConstellationGrid className="pointer-events-none opacity-[0.6]" />
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-indigo-200/30 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="relative max-w-4xl mx-auto flex flex-col items-start">
+      <div className="relative max-w-4xl flex flex-col items-start">
         {/* Static headline */}
         <motion.h1
           className="text-[clamp(2.4rem,6.5vw,5rem)] font-bold text-[#2d2d2d] leading-[1.05] tracking-tight mb-0 font-body"
