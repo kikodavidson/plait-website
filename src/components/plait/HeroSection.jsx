@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import ShinyButton from "@/components/ui/shiny-button";
 import { motion, AnimatePresence } from "framer-motion";
 
 const ROTATING = [
@@ -61,6 +62,7 @@ export default function HeroSection() {
   const [statsStarted, setStatsStarted] = useState(false);
   const statsRef = useRef(null);
   const ctaRef = useRef(null);
+  const navigate = useNavigate();
 
   const handleMagneticMove = (e) => {
     const btn = ctaRef.current;
@@ -179,13 +181,10 @@ export default function HeroSection() {
             >
               What We Do
             </Link>
-            <Link
-              to="/book"
-              className="btn-hero-gradient inline-flex items-center gap-2 sm:gap-3 font-bold text-sm sm:text-base px-5 sm:px-8 py-3 sm:py-4 rounded-full shadow-lg group transition-transform duration-300 ease-out"
-            >
+            <ShinyButton onClick={() => navigate("/book")}>
               Book a Free Audit
-              <span className="w-5 h-5 sm:w-7 sm:h-7 bg-white/20 rounded-full flex items-center justify-center group-hover:bg-white/30 transition-colors text-xs sm:text-sm">→</span>
-            </Link>
+              <span className="w-5 h-5 sm:w-7 sm:h-7 bg-white/20 rounded-full inline-flex items-center justify-center ml-2 align-middle text-xs sm:text-sm">→</span>
+            </ShinyButton>
           </div>
         </motion.div>
 
