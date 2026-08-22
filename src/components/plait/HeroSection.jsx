@@ -178,7 +178,7 @@ export default function HeroSection() {
           onMouseLeave={handleMagneticLeave}
         >
           <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4">
-            <LiquidButton size="xl" className="bg-[#2d2d2d] text-white" onClick={() => navigate("/services")}>
+            <LiquidButton size="xl" className="bg-white/30 text-[#2d2d2d] font-semibold" onClick={() => navigate("/services")}>
               What We Do
             </LiquidButton>
             <ShinyButton onClick={() => navigate("/book")}>
