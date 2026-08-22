@@ -87,7 +87,7 @@
   height: var(--size);
   background: radial-gradient(
     circle at var(--position) var(--position),
-    white calc(var(--position) / 4),
+    white calc(var(--position) / 2),
     transparent 0
   ) padding-box;
   background-size: var(--space) var(--space);
@@ -99,7 +99,7 @@
     black
   );
   border-radius: inherit;
-  opacity: 0.4;
+  opacity: 0.7;
   z-index: -1;
 }
 
