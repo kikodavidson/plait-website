@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { LiquidButton } from "@/components/ui/liquid-glass-button";
 import ShinyButton from "@/components/ui/shiny-button";
 import ConstellationGrid from "@/components/ui/constellation-grid";
+import { TextEffect } from "@/components/ui/text-effect";
 import { motion, AnimatePresence } from "framer-motion";
 
 const ROTATING = [
@@ -59,8 +60,7 @@ function CashBurst() {
 
 export default function HeroSection() {
   const [index, setIndex] = useState(0);
-  const [displayText, setDisplayText] = useState("");
-  const [isDeleting, setIsDeleting] = useState(false);
+  const [trigger, setTrigger] = useState(true);
   const [statsStarted, setStatsStarted] = useState(false);
   const statsRef = useRef(null);
   const ctaRef = useRef(null);
@@ -89,24 +89,13 @@ export default function HeroSection() {
   };
 
   useEffect(() => {
-    const word = ROTATING[index];
-    let timeout;
-
-    if (!isDeleting && displayText === word) {
-      timeout = setTimeout(() => setIsDeleting(true), 1900);
-    } else if (isDeleting && displayText === "") {
-      setIsDeleting(false);
+    const t1 = setTimeout(() => setTrigger(false), 2000);
+    const t2 = setTimeout(() => {
       setIndex((i) => (i + 1) % ROTATING.length);
-    } else {
-      timeout = setTimeout(() => {
-        setDisplayText((prev) =>
-          isDeleting ? word.substring(0, prev.length - 1) : word.substring(0, prev.length + 1)
-        );
-      }, isDeleting ? 30 : 60);
-    }
-
-    return () => clearTimeout(timeout);
-  }, [displayText, isDeleting, index]);
+      setTrigger(true);
+    }, 2550);
+    return () => { clearTimeout(t1); clearTimeout(t2); };
+  }, [index]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -116,8 +105,6 @@ export default function HeroSection() {
     if (statsRef.current) observer.observe(statsRef.current);
     return () => observer.disconnect();
   }, []);
-
-  const isScale = displayText === "Scale.";
 
   return (
     <section className="hero-gradient min-h-[92vh] flex flex-col items-center justify-center text-center px-6 pt-40 sm:pt-48 pb-20 relative overflow-hidden">
@@ -145,14 +132,13 @@ export default function HeroSection() {
           Built to Help Brands
         </motion.h1>
 
-        {/* Rotating word + cash burst */}
+        {/* Rotating word */}
         <div className="relative">
-          <CashBurst active={isScale} />
-          <div           className="text-[clamp(1.8rem,5vw,4rem)] font-bold text-[#2d2d2d] leading-[1.15] tracking-tight mb-8 h-[1.4em] flex items-center justify-center overflow-visible font-body" style={{ fontFamily: 'Inter, sans-serif', letterSpacing: '-0.02em' }}>
-            <span className="block">
-              {displayText}
-              <span className="inline-block w-[3px] h-[0.8em] bg-[#2d2d2d] ml-1 align-middle animate-pulse" />
-            </span>
+          <div className="text-[clamp(1.8rem,5vw,4rem)] font-bold text-[#2d2d2d] leading-[1.15] tracking-tight mb-8 h-[1.4em] flex items-center justify-center overflow-visible font-body" style={{ fontFamily: 'Inter, sans-serif', letterSpacing: '-0.02em' }}>
+            <TextEffect per="char" preset="blur" as="span" trigger={trigger} className="inline-block text-[#2d2d2d]">
+              {ROTATING[index]}
+            </TextEffect>
+            <span className="inline-block w-[3px] h-[0.8em] bg-[#2d2d2d] ml-1 align-middle animate-pulse" />
           </div>
         </div>
 
