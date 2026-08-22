@@ -138,7 +138,6 @@ export default function HeroSection() {
             <TextEffect per="char" preset="blur" as="span" trigger={trigger} className="inline-block text-[#2d2d2d]">
               {ROTATING[index]}
             </TextEffect>
-            <span className="inline-block w-[3px] h-[0.8em] bg-[#2d2d2d] ml-1 align-middle animate-pulse" />
           </div>
         </div>
 

@@ -164,7 +164,7 @@ export function TextEffect({
   };
 
   return (
-    <AnimatePresence mode="popLayout">
+    <AnimatePresence mode="wait">
       {trigger && (
         <MotionTag
           initial="hidden"
