@@ -25,7 +25,7 @@ export default function ConstellationGrid({ className = "" }) {
 
     const initNodes = () => {
       nodes = [];
-      const spacing = 44; // tight mesh
+      const spacing = 30; // tighter mesh
       const cols = Math.ceil(width / spacing) + 1;
       const rows = Math.ceil(height / spacing) + 1;
       for (let i = 0; i < cols; i++) {
@@ -34,11 +34,19 @@ export default function ConstellationGrid({ className = "" }) {
           const y = j * spacing;
           nodes.push({
             x, y, vx: 0, vy: 0, baseX: x, baseY: y,
-            radius: Math.random() * 1.1 + 1.1,
+            radius: Math.random() * 1.6 + 0.8,
             pulse: Math.random() * Math.PI * 2,
           });
         }
       }
+      // central anchor node — dark, larger, for visual hierarchy
+      let best = 0, bestD = Infinity;
+      const ccx = width / 2, ccy = height / 2;
+      for (let i = 0; i < nodes.length; i++) {
+        const d = (nodes[i].baseX - ccx) ** 2 + (nodes[i].baseY - ccy) ** 2;
+        if (d < bestD) { bestD = d; best = i; }
+      }
+      if (nodes[best]) { nodes[best].anchor = true; nodes[best].radius = 3.4; }
     };
 
     const setup = () => {
@@ -78,9 +86,10 @@ export default function ConstellationGrid({ className = "" }) {
     window.addEventListener("mouseout", onLeave);
     setup();
 
-    const NODE = "45,45,45";       // dark dots on light header
-    const ACCENT = "79,70,229";    // indigo highlight
-    const MAX = 74;
+    const NODE = "151,151,226";    // medium purple #9797E2
+    const ACCENT = "99,102,241";   // indigo hover highlight
+    const LINE = "209,209,209";    // light gray connections
+    const MAX = 52;
     const MAX_SQ = MAX * MAX;
     const CELL = MAX; // hash cell = connection range
     const offsets = [[0, 0], [1, 0], [-1, 1], [0, 1], [1, 1]];
@@ -100,8 +109,8 @@ export default function ConstellationGrid({ className = "" }) {
       ctx.clearRect(0, 0, width, height);
 
       // Physics — spring back to anchor + cursor shockwave
-      const SPRING_K = 18;
-      const DAMPING = 0.82;
+      const SPRING_K = 10;
+      const DAMPING = 0.86;
       for (let i = 0; i < nodes.length; i++) {
         const n = nodes[i];
         n.pulse += dt * 3;
@@ -110,7 +119,7 @@ export default function ConstellationGrid({ className = "" }) {
         const dist = Math.sqrt(dx * dx + dy * dy);
         if (dist < mouse.radius && dist > 0) {
           const power = 1 - dist / mouse.radius;
-          const force = power * (1500 + speed * 150);
+          const force = power * (900 + speed * 110);
           const angle = Math.atan2(dy, dx);
           n.vx -= Math.cos(angle) * force * dt;
           n.vy -= Math.sin(angle) * force * dt;
@@ -162,7 +171,7 @@ export default function ConstellationGrid({ className = "" }) {
                 if (dsq < MAX_SQ) {
                   const nd = Math.sqrt(dsq);
                   const alpha = (1 - nd / MAX) * 0.12;
-                  ctx.strokeStyle = `rgba(${NODE},${alpha})`;
+                  ctx.strokeStyle = `rgba(${LINE},${0.1 + alpha * 2})`;
                   ctx.lineWidth = 0.7;
                   ctx.beginPath();
                   ctx.moveTo(n.x, n.y);
@@ -182,9 +191,13 @@ export default function ConstellationGrid({ className = "" }) {
         const dy = mouse.y - n.y;
         const dist = Math.sqrt(dx * dx + dy * dy);
         const isNear = dist < mouse.radius;
-        const baseAlpha = isNear ? 0.9 : 0.2 + Math.sin(n.pulse) * 0.08;
-        ctx.fillStyle = isNear ? `rgba(${ACCENT},${baseAlpha})` : `rgba(${NODE},${baseAlpha})`;
-        const r = isNear ? n.radius * 2.1 : n.radius + Math.sin(n.pulse) * 0.3;
+        const r = n.anchor ? n.radius : isNear ? n.radius * 1.8 : n.radius + Math.sin(n.pulse) * 0.25;
+        if (n.anchor) {
+          ctx.fillStyle = "rgba(51,51,51,0.92)";
+        } else {
+          const baseAlpha = isNear ? 0.85 : 0.25 + Math.sin(n.pulse) * 0.1;
+          ctx.fillStyle = isNear ? `rgba(${ACCENT},${baseAlpha})` : `rgba(${NODE},${baseAlpha})`;
+        }
         ctx.beginPath();
         ctx.arc(n.x, n.y, Math.max(0.5, r), 0, Math.PI * 2);
         ctx.fill();
