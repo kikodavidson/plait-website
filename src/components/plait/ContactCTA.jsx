@@ -1,8 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import { LiquidButton } from "@/components/ui/liquid-glass-button";
 
 export default function ContactCTA() {
+  const navigate = useNavigate();
   return (
     <section className="section-gradient py-28 px-6">
       <div className="max-w-6xl mx-auto">
@@ -32,18 +34,12 @@ export default function ContactCTA() {
               If your marketing feels disconnected, inefficient, or harder than it should be, there's usually a reason. Let's find it.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 mt-2">
-              <Link
-                to="/book"
-                className="btn-gradient inline-flex items-center justify-center gap-2 font-bold text-sm px-6 py-3.5 rounded-full"
-              >
+              <LiquidButton size="lg" onClick={() => navigate("/book")}>
                 Pull The Thread
-              </Link>
-              <Link
-                to="/case-studies"
-                className="inline-flex items-center justify-center gap-2 border border-[#f4f2ee]/20 text-[#f4f2ee] font-bold text-sm px-6 py-3.5 rounded-full hover:bg-white/10 transition-colors"
-              >
+              </LiquidButton>
+              <LiquidButton size="lg" onClick={() => navigate("/case-studies")}>
                 View Our Work
-              </Link>
+              </LiquidButton>
             </div>
           </div>
         </motion.div>

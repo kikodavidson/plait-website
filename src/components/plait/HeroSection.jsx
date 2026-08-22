@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import ShinyButton from "@/components/ui/shiny-button";
+import { useNavigate } from "react-router-dom";
+import { LiquidButton } from "@/components/ui/liquid-glass-button";
 import { motion, AnimatePresence } from "framer-motion";
 
 const ROTATING = [
@@ -175,16 +175,13 @@ export default function HeroSection() {
           onMouseLeave={handleMagneticLeave}
         >
           <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4">
-            <Link
-              to="/services"
-              className="inline-flex items-center gap-2 sm:gap-3 font-bold text-sm sm:text-base px-5 sm:px-8 py-3 sm:py-4 rounded-full shadow-lg bg-white text-[#2d2d2d] border border-gray-200 hover:bg-gray-50 transition-colors"
-            >
+            <LiquidButton size="xl" onClick={() => navigate("/services")}>
               What We Do
-            </Link>
-            <ShinyButton onClick={() => navigate("/book")}>
+            </LiquidButton>
+            <LiquidButton size="xl" onClick={() => navigate("/book")}>
               Book a Free Audit
-              <span className="w-5 h-5 sm:w-7 sm:h-7 bg-white/20 rounded-full inline-flex items-center justify-center ml-2 align-middle text-xs sm:text-sm">→</span>
-            </ShinyButton>
+              <span className="inline-flex items-center justify-center ml-2 text-sm">→</span>
+            </LiquidButton>
           </div>
         </motion.div>
 

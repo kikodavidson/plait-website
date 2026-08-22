@@ -1,7 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Check } from "lucide-react";
+import { LiquidButton } from "@/components/ui/liquid-glass-button";
 
 const packages = [
   {
@@ -53,6 +54,7 @@ const packages = [
 ];
 
 export default function PackagesSection() {
+  const navigate = useNavigate();
   return (
     <section className="py-28 px-6 border-t border-gray-100/50">
       <div className="max-w-6xl mx-auto">
@@ -109,12 +111,9 @@ export default function PackagesSection() {
                 </div>
               )}
 
-              <Link
-                to="/book"
-                className="btn-gradient inline-flex items-center justify-center gap-2 font-bold text-sm px-6 py-3.5 rounded-full transition-colors"
-              >
+              <LiquidButton size="lg" className="w-full" onClick={() => navigate("/book")}>
                 {pkg.cta}
-              </Link>
+              </LiquidButton>
             </motion.div>
           ))}
         </div>
