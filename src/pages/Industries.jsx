@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
+import { LiquidMetalButton } from "@/components/ui/liquid-metal-button";
 import { Check } from "lucide-react";
 
 const industries = [
@@ -65,6 +66,7 @@ const industries = [
 
 export default function Industries() {
   const [active, setActive] = useState("ecommerce");
+  const navigate = useNavigate();
   const industry = industries.find((i) => i.id === active);
 
   return (
@@ -142,12 +144,7 @@ export default function Industries() {
                 </ul>
 
                 <div className="mt-8 pt-6 border-t border-indigo-100">
-                  <Link
-                    to="/book"
-                    className="btn-gradient inline-flex items-center gap-2 font-bold text-sm px-6 py-3.5 rounded-full"
-                  >
-                    Start a Conversation
-                  </Link>
+                  <LiquidMetalButton label="Start a Conversation" onClick={() => navigate("/book")} />
                 </div>
               </div>
             </div>

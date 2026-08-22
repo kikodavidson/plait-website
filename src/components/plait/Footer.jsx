@@ -1,8 +1,10 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { LiquidMetalButton } from "@/components/ui/liquid-metal-button";
 
 export default function Footer() {
   const location = useLocation();
+  const navigate = useNavigate();
   const isDarkPage = location.pathname.startsWith("/blog");
 
   return (
@@ -20,12 +22,7 @@ export default function Footer() {
             <Link to="/contact" className={`transition-colors ${isDarkPage ? "hover:text-white" : "hover:text-[#0A0A0A]"}`}>Contact</Link>
             <Link to="/blog" className={`transition-colors ${isDarkPage ? "hover:text-white" : "hover:text-[#0A0A0A]"}`}>Blog</Link>
           </div>
-          <Link
-            to="/book"
-            className="btn-gradient inline-flex items-center gap-2 text-sm font-semibold px-5 py-2.5 rounded-full"
-          >
-            Get Started
-          </Link>
+          <LiquidMetalButton label="Get Started" onClick={() => navigate("/book")} />
         </div>
         <div className={`border-t mt-10 pt-6 text-xs ${isDarkPage ? "border-white/10 text-white/40" : "border-gray-100 text-[#525252]"}`}>
           © {new Date().getFullYear()} PLAIT. Luke Davidson. All rights reserved.

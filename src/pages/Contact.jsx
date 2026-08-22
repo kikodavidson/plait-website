@@ -3,10 +3,12 @@ import { base44 } from "@/api/base44Client";
 import { motion } from "framer-motion";
 import { useToast } from "@/components/ui/use-toast";
 import { Loader2, CheckCircle2 } from "lucide-react";
-import { Link } from "react-router-dom";
+import { LiquidMetalButton } from "@/components/ui/liquid-metal-button";
+import { useNavigate } from "react-router-dom";
 
 export default function Contact() {
   const { toast } = useToast();
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [form, setForm] = useState({ name: "", email: "", company: "", service_interest: "", message: "" });
@@ -43,12 +45,7 @@ export default function Contact() {
           <div className="mt-8 bg-[#F8F7FF] border border-indigo-100 rounded-2xl p-6">
             <p className="text-sm font-semibold text-[#2d2d2d] mb-2">Book a time directly</p>
             <p className="text-xs text-[#525252] mb-4">30-minute strategy call, no strings attached.</p>
-            <Link
-              to="/book"
-              className="btn-gradient inline-flex items-center gap-2 text-sm font-semibold px-6 py-3 rounded-full"
-            >
-              Book a Call
-            </Link>
+            <LiquidMetalButton label="Book a Call" onClick={() => navigate("/book")} />
           </div>
         </motion.div>
       </div>
@@ -160,12 +157,7 @@ export default function Contact() {
               <p className="text-sm text-[#525252] mb-5 leading-relaxed">
                 Grab a free 30-minute strategy call. No pitch, no deck. Just an honest look at your funnel.
               </p>
-              <Link
-                to="/book"
-                className="btn-gradient inline-flex items-center gap-2 text-sm font-semibold px-6 py-3 rounded-full"
-              >
-                Book a Call
-              </Link>
+              <LiquidMetalButton label="Book a Call" onClick={() => navigate("/book")} />
             </div>
 
             <div className="bg-white border border-gray-100 rounded-3xl p-8 space-y-4">

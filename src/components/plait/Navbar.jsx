@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Menu } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
+import { LiquidMetalButton } from "@/components/ui/liquid-metal-button";
 
 const links = [
   { label: "Services", path: "/services" },
@@ -16,6 +17,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 10);
@@ -59,12 +61,7 @@ export default function Navbar() {
 
         {/* CTA — matches Draftr's dark pill "Login now" button */}
         <div className="hidden md:flex items-center gap-3">
-          <Link
-            to="/book"
-            className="btn-gradient inline-flex items-center gap-2 text-sm font-bold px-5 py-2.5 rounded-full"
-          >
-            Get Started
-          </Link>
+          <LiquidMetalButton label="Get Started" onClick={() => navigate("/book")} />
         </div>
 
         <button className="md:hidden text-[#2d2d2d]" onClick={() => setOpen(!open)}>
@@ -86,9 +83,9 @@ export default function Navbar() {
                   {l.label}
                 </Link>
               ))}
-              <Link to="/book" className="mt-2 text-center btn-gradient text-sm font-bold px-5 py-3 rounded-full">
-                Get in Touch
-              </Link>
+              <div className="mt-2 flex justify-center">
+                <LiquidMetalButton label="Get in Touch" onClick={() => navigate("/book")} />
+              </div>
             </div>
           </motion.div>
         )}

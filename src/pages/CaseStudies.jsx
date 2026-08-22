@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import { LiquidMetalButton } from "@/components/ui/liquid-metal-button";
 
 const studies = [
   {
@@ -177,6 +178,7 @@ const studies = [
 
 export default function CaseStudies() {
   const [active, setActive] = useState(null);
+  const navigate = useNavigate();
 
   if (active !== null) {
     const s = studies[active];
@@ -232,9 +234,9 @@ export default function CaseStudies() {
                   ))}
                 </div>
               </div>
-              <Link to="/book" className="btn-gradient mt-6 block text-center font-bold px-6 py-3.5 rounded-full text-sm shadow-lg hover:shadow-xl transition-all">
-                Get in Touch
-              </Link>
+              <div className="mt-6 flex justify-center">
+                <LiquidMetalButton label="Get in Touch" onClick={() => navigate("/book")} />
+              </div>
             </div>
           </div>
         </div>

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { LiquidMetalButton } from "@/components/ui/liquid-metal-button";
 import { motion } from "framer-motion";
 
 const steps = [
@@ -96,14 +96,7 @@ export default function OurProcess() {
               Every engagement starts with an honest conversation. No pitch, no pressure.
             </p>
           </div>
-          <a
-            href="https://calendly.com/luke-plaitgrowth"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-gradient shrink-0 inline-flex items-center gap-2 font-bold text-sm px-8 py-4 rounded-full"
-          >
-            Let's Talk
-          </a>
+          <LiquidMetalButton label="Let's Talk" onClick={() => window.open("https://calendly.com/luke-plaitgrowth", "_blank", "noopener,noreferrer")} />
         </motion.div>
       </div>
     </div>

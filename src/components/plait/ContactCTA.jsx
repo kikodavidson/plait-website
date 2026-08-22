@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { LiquidButton } from "@/components/ui/liquid-glass-button";
+import { LiquidMetalButton } from "@/components/ui/liquid-metal-button";
 
 export default function ContactCTA() {
   const navigate = useNavigate();
@@ -34,12 +34,8 @@ export default function ContactCTA() {
               If your marketing feels disconnected, inefficient, or harder than it should be, there's usually a reason. Let's find it.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 mt-2">
-              <LiquidButton size="lg" onClick={() => navigate("/book")}>
-                Pull The Thread
-              </LiquidButton>
-              <LiquidButton size="lg" onClick={() => navigate("/case-studies")}>
-                View Our Work
-              </LiquidButton>
+              <LiquidMetalButton label="Pull The Thread" onClick={() => navigate("/book")} />
+              <LiquidMetalButton label="View Our Work" onClick={() => navigate("/case-studies")} />
             </div>
           </div>
         </motion.div>

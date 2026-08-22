@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Check } from "lucide-react";
-import { LiquidButton } from "@/components/ui/liquid-glass-button";
+import { LiquidMetalButton } from "@/components/ui/liquid-metal-button";
 
 const packages = [
   {
@@ -111,9 +111,9 @@ export default function PackagesSection() {
                 </div>
               )}
 
-              <LiquidButton size="lg" className="w-full" onClick={() => navigate("/book")}>
-                {pkg.cta}
-              </LiquidButton>
+              <div className="flex justify-center">
+                <LiquidMetalButton label={pkg.cta} onClick={() => navigate("/book")} />
+              </div>
             </motion.div>
           ))}
         </div>
