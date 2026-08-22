@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { LiquidButton } from "@/components/ui/liquid-glass-button";
 import ShinyButton from "@/components/ui/shiny-button";
+import ConstellationGrid from "@/components/ui/constellation-grid";
 import { motion, AnimatePresence } from "framer-motion";
 
 const ROTATING = [
@@ -120,6 +121,7 @@ export default function HeroSection() {
 
   return (
     <section className="hero-gradient min-h-[92vh] flex flex-col items-center justify-center text-center px-6 pt-40 sm:pt-48 pb-20 relative overflow-hidden">
+      <ConstellationGrid className="pointer-events-none opacity-[0.6]" />
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-indigo-200/30 rounded-full blur-3xl pointer-events-none" />
 
       <div className="relative max-w-4xl mx-auto flex flex-col items-center">
