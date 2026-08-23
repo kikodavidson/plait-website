@@ -21,7 +21,7 @@ export default function ConstellationGrid({ className = "" }) {
     let rect = { left: 0, top: 0 };
     let nodes = [];
 
-    const mouse = { x: -1000, y: -1000, prevX: -1000, prevY: -1000, vx: 0, vy: 0, radius: 48 };
+    const mouse = { x: -1000, y: -1000, prevX: -1000, prevY: -1000, vx: 0, vy: 0, radius: 120 };
 
     const initNodes = () => {
       nodes = [];
