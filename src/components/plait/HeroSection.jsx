@@ -64,8 +64,8 @@ export default function HeroSection() {
       <div className="relative max-w-4xl flex flex-col items-start">
         {/* Static headline */}
         <motion.h1
-          className="text-[clamp(2.4rem,6.5vw,5rem)] font-bold text-[#2d2d2d] leading-[1.05] tracking-tight mb-0 font-body"
-          style={{ fontFamily: 'Inter, sans-serif', letterSpacing: '-0.02em' }}
+          className="text-[clamp(2.6rem,7vw,5.5rem)] font-black text-[#2d2d2d] leading-[0.95] tracking-[-0.04em] mb-0 font-body uppercase"
+          style={{ fontFamily: 'Inter, sans-serif', letterSpacing: '-0.04em' }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
@@ -73,8 +73,8 @@ export default function HeroSection() {
           Your Growth Partner,
         </motion.h1>
         <motion.h1
-          className="text-[clamp(2.4rem,6.5vw,5rem)] font-bold text-[#2d2d2d] leading-[1.05] tracking-tight mb-2 font-body"
-          style={{ fontFamily: 'Inter, sans-serif', letterSpacing: '-0.02em' }}
+          className="text-[clamp(2.6rem,7vw,5.5rem)] font-black text-[#2d2d2d] leading-[0.95] tracking-[-0.04em] mb-2 font-body uppercase"
+          style={{ fontFamily: 'Inter, sans-serif', letterSpacing: '-0.04em' }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.15 }}
