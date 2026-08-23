@@ -96,6 +96,17 @@ html {
   }
 }
 
+/* Hero headline — dimensional dark gradient with a soft white highlight at the top,
+   reads like printed ink rather than a flat AI fill. */
+.hero-headline {
+  background: linear-gradient(180deg, #8c8c8c 0%, #3a3a3a 28%, #1c1c1c 70%, #0e0e0e 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #2d2d2d;
+  text-shadow: none;
+}
+
 /* Soft, diffused shadows for matte depth */
 .shadow-sm { box-shadow: 0 2px 15px -3px rgba(45, 45, 45, 0.04); }
 .shadow-md { box-shadow: 0 8px 30px -6px rgba(45, 45, 45, 0.06); }
