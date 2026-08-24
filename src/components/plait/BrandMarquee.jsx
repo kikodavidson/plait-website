@@ -12,7 +12,7 @@ const BRAND_LOGOS = [
   { name: "airia", logo: "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/8a877c4ba_Untitleddesign-2026-08-23T190010531.png" },
   { name: "BAMF HAMMER", logo: "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/62bb1b08e_Untitleddesign-2026-08-23T190026408.png" },
   { name: "EDERRA", logo: "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/b98d87b91_Untitleddesign-2026-08-23T190047744.png" },
-  { name: "krýo.", logo: "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/fbaa237f3_Untitleddesign-2026-08-23T190104397.png" },
+  { name: "krýo.", logo: "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/250a5df20_Untitleddesign-2026-08-23T191615541.png" },
   { name: "Protouch Golf Wedges", logo: "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/4b02ab878_Untitleddesign-2026-08-23T190133474.png" },
   { name: "Ivy", logo: "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/e1cdb24d7_Untitleddesign-2026-08-23T190146436.png" },
   { name: "Board", logo: "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/d2a795161_Untitleddesign-2026-08-23T190159439.png" },
