@@ -20,15 +20,16 @@ const BRAND_LOGOS = [
 
 export default function BrandMarquee() {
   return (
-    <section className="bg-white py-20 px-6">
+    <section className="bg-white py-10 px-6">
       <div className="max-w-6xl mx-auto">
-        <p className="text-center text-xs font-bold uppercase tracking-[0.18em] text-[#7a7a7a] mb-10">
+        <p className="text-center text-xs font-bold uppercase tracking-[0.18em] text-[#7a7a7a] mb-6">
           Brands we&apos;ve scaled
         </p>
         <PerspectiveMarquee
           items={BRAND_LOGOS}
-          itemWidth={200}
-          logoHeight={56}
+          itemWidth={240}
+          logoHeight={88}
+          logoPadding={4}
           pixelsPerFrame={1.2}
           rotateY={-22}
           rotateX={6}

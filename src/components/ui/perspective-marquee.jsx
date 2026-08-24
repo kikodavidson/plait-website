@@ -24,8 +24,10 @@ export function PerspectiveMarquee({
   fadeColor = "#ffffff",
   background = "transparent",
   speed = 1,
+  logoPadding,
   className = "",
 }) {
+  const verticalPad = logoPadding ?? logoHeight;
   const containerRef = useRef(null);
   const trackRef = useRef(null);
   const itemRefs = useRef([]);
@@ -100,7 +102,7 @@ export function PerspectiveMarquee({
           justifyContent: "flex-start",
           transform: `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
           transformStyle: "preserve-3d",
-          padding: `${logoHeight}px 0`,
+          padding: `${verticalPad}px 0`,
         }}
       >
         <div
