@@ -25,17 +25,17 @@ export default function BrandMarquee() {
   return (
     <section className="bg-white py-10 px-6">
       <div className="max-w-6xl mx-auto">
-        <p className="text-center text-xs font-bold uppercase tracking-[0.18em] text-[#7a7a7a] mb-6">
+        <p className="text-center text-xs font-bold uppercase tracking-[0.18em] text-black mb-8">
           Brands we&apos;ve worked with
         </p>
         <PerspectiveMarquee
           items={BRAND_LOGOS}
-          itemWidth={300}
-          logoHeight={120}
-          logoPadding={6}
+          itemWidth={340}
+          logoHeight={140}
+          logoPadding={8}
           pixelsPerFrame={1.2}
-          rotateY={-22}
-          rotateX={6}
+          rotateY={-18}
+          rotateX={4}
           fadeColor="#ffffff"
           background="transparent"
         />

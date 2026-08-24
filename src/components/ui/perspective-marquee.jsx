@@ -65,8 +65,8 @@ export function PerspectiveMarquee({
         const itemCenter = i * itemWidth + itemWidth / 2 + offset;
         const norm = center ? (itemCenter - center) / center : 0;
         const distance = Math.min(1, Math.abs(norm));
-        const blurPx = distance * 6;
-        const opacity = 1 - distance * 0.45;
+        const blurPx = distance * 3;
+        const opacity = 1 - distance * 0.25;
         el.style.filter = `blur(${blurPx}px)`;
         el.style.opacity = String(opacity);
       }
