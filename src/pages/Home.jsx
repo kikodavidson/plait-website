@@ -7,6 +7,7 @@ import TestimonialsSection from "../components/plait/TestimonialsSection";
 import OrbitSection from "../components/plait/OrbitSection";
 import ResultsSection from "../components/plait/ResultsSection";
 import PlaitSystem from "../components/plait/PlaitSystem";
+import BrandMarquee from "../components/plait/BrandMarquee";
 import RolesCarousel from "../components/plait/RolesCarousel";
 import PackagesSection from "../components/plait/PackagesSection";
 import ContactCTA from "../components/plait/ContactCTA";
@@ -17,6 +18,7 @@ export default function Home() {
       <HeroSection />
       <PlatformMarquee />
       <PlaitSystem />
+      <BrandMarquee />
       <RolesCarousel />
       <WhatYouGet />
       <ProcessSteps />
