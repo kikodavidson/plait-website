@@ -23,7 +23,7 @@ const BRAND_LOGOS = [
 
 export default function BrandMarquee() {
   return (
-    <section className="bg-white py-10 px-6">
+    <section className="px-6">
       <div className="max-w-6xl mx-auto">
         <p className="text-center text-xs font-bold uppercase tracking-[0.18em] text-black mb-8">
           Brands we&apos;ve worked with
@@ -36,7 +36,7 @@ export default function BrandMarquee() {
           pixelsPerFrame={1.2}
           rotateY={-18}
           rotateX={4}
-          fadeColor="#ffffff"
+          fadeColor="transparent"
           background="transparent"
         />
       </div>
