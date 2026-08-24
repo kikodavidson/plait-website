@@ -17,7 +17,7 @@ const BRAND_LOGOS = [
 { name: "Ivy", logo: "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/e1cdb24d7_Untitleddesign-2026-08-23T190146436.png" },
 { name: "Board", logo: "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/d2a795161_Untitleddesign-2026-08-23T190159439.png" },
 { name: "Athletics", logo: "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/f7c736524_Untitleddesign-2026-08-23T190215463.png" },
-{ name: "Open Heart", logo: "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/1b68406ab_Untitleddesign-2026-08-23T190226405.png" },
+{ name: "Open Heart", logo: "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/deab1646a_Untitled_design_-_2026-08-23T192605202.png" },
 { name: "Left Behind Golf", logo: "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/a82c85dad_Untitleddesign-2026-08-23T190244427.png" }];
 
 
