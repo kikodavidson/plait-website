@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import FeatureCarousel from "@/components/ui/feature-carousel";
+import VerticalTabs from "@/components/ui/vertical-tabs";
 
 export default function WhatYouGet() {
   return (
@@ -21,7 +21,7 @@ export default function WhatYouGet() {
           </h2>
         </motion.div>
 
-        <FeatureCarousel />
+        <VerticalTabs />
       </div>
     </section>
   );
