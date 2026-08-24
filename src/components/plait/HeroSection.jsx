@@ -5,6 +5,7 @@ import ShinyButton from "@/components/ui/shiny-button";
 import ConstellationGrid from "@/components/ui/constellation-grid";
 import { TextEffect } from "@/components/ui/text-effect";
 import { motion, AnimatePresence } from "framer-motion";
+import HeroMediaCard from "@/components/plait/HeroMediaCard";
 
 const ROTATING = [
   "Scale.",
@@ -61,7 +62,8 @@ export default function HeroSection() {
       <ConstellationGrid className="pointer-events-none opacity-[0.6]" />
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-indigo-200/30 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="relative max-w-4xl flex flex-col items-start">
+      <div className="relative w-full max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div className="flex flex-col items-start">
         {/* Static headline */}
         <motion.h1
           className="hero-headline text-[clamp(2rem,5.2vw,3.8rem)] font-black leading-[0.98] tracking-[-0.03em] mb-0 font-body uppercase"
@@ -122,7 +124,11 @@ export default function HeroSection() {
             </ShinyButton>
           </div>
         </motion.div>
+      </div>
 
+        <div className="flex justify-center lg:justify-end mt-12 lg:mt-0">
+          <HeroMediaCard />
+        </div>
       </div>
     </section>
   );
