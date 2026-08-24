@@ -110,7 +110,7 @@ export function FeatureCarousel() {
 
   return (
     <div className="w-full max-w-7xl mx-auto md:p-8">
-      <div className="relative overflow-hidden rounded-[2.5rem] lg:rounded-[4rem] flex flex-col lg:flex-row min-h-[600px] lg:aspect-video border border-border/40">
+      <div className="relative overflow-hidden rounded-[2.5rem] lg:rounded-[4rem] flex flex-col lg:flex-row min-h-[600px] lg:aspect-video border border-indigo-400/30 shadow-[0_0_40px_rgba(99,102,241,0.35),0_0_90px_rgba(99,102,241,0.25),0_0_160px_rgba(99,102,241,0.18)]">
         {/* Left: deliverable chips */}
         <div className="w-full lg:w-[40%] min-h-[350px] md:min-h-[450px] lg:h-full relative z-30 flex flex-col items-start justify-center overflow-hidden px-8 md:px-16 lg:pl-16 bg-black">
           <div className="absolute inset-x-0 top-0 h-12 md:h-20 lg:h-16 bg-gradient-to-b from-black via-black/80 to-transparent z-40" />
@@ -173,12 +173,7 @@ export function FeatureCarousel() {
                     pointerEvents: isActive ? "auto" : "none",
                   }}
                   transition={{ type: "spring", stiffness: 260, damping: 25, mass: 0.8 }}
-                  className={cn(
-                    "absolute inset-0 rounded-[2rem] md:rounded-[2.8rem] overflow-hidden border border-indigo-400/40 bg-background origin-center transition-shadow duration-500",
-                    isActive
-                      ? "shadow-[0_0_30px_rgba(99,102,241,0.55),0_0_70px_rgba(99,102,241,0.45),0_0_130px_rgba(99,102,241,0.3)]"
-                      : "shadow-[0_0_18px_rgba(99,102,241,0.2)]"
-                  )}
+                  className="absolute inset-0 rounded-[2rem] md:rounded-[2.8rem] overflow-hidden border border-border/40 bg-background origin-center"
                 >
                   <img
                     src={feature.image}
