@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import PlaitHelix from "@/components/plait/PlaitHelix";
 
 function getState(ads, website, attribution) {
   const count = [ads, website, attribution].filter(Boolean).length;
@@ -62,13 +63,10 @@ function getState(ads, website, attribution) {
   return { label: "", title: "", body: "", color: "#dc2626" };
 }
 
-// Single static braid image — used for every toggle state.
-const BRAID_IMAGE = "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/736190da3_generated_image.png";
-
 const STRANDS = [
-  { key: "ads", label: "ADS", color: "#7D9AFF" },
-  { key: "website", label: "WEBSITE", color: "#FF73AD" },
-  { key: "attribution", label: "ATTRIBUTION", color: "#A67CFF" },
+  { key: "ads", label: "ADS", color: "#879AF4" },
+  { key: "website", label: "WEBSITE", color: "#E668A6" },
+  { key: "attribution", label: "ATTRIBUTION", color: "#D476C5" },
 ];
 
 function CapsuleToggle({ checked, onChange }) {
@@ -99,7 +97,6 @@ export default function PlaitSystem() {
   const setters = { ads: setAds, website: setWebsite, attribution: setAttribution };
   const values = { ads, website, attribution };
   const state = getState(ads, website, attribution);
-  const image = BRAID_IMAGE;
 
   return (
     <section className="relative py-28 px-6 overflow-hidden bg-[#F2F2F2]">
@@ -185,19 +182,14 @@ export default function PlaitSystem() {
           {/* Right: plait image with strand labels */}
           <div className="relative flex justify-center items-center py-4">
             <div className="relative w-full max-w-[320px]">
-              <AnimatePresence mode="wait">
-                <motion.img
-                  key={image}
-                  src={image}
-                  alt="Plait braid"
-                  initial={{ opacity: 0, scale: 0.98 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 1.02 }}
-                  transition={{ duration: 0.4, ease: "easeInOut" }}
-                  className="w-full rounded-2xl select-none"
-                  draggable={false}
-                />
-              </AnimatePresence>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.98 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.4, ease: "easeInOut" }}
+                className="w-full select-none"
+              >
+                <PlaitHelix className="w-full h-auto" />
+              </motion.div>
 
               {/* Strand labels with dashed leaders */}
               {/* ADS — right top */}
@@ -205,8 +197,8 @@ export default function PlaitSystem() {
                 className="absolute top-[14%] -right-2 sm:right-2 flex items-center gap-2"
                 style={{ opacity: ads ? 1 : 0.35 }}
               >
-                <div className="w-8 border-t border-dashed" style={{ borderColor: "#7D9AFF" }} />
-                <span className="text-[10px] font-bold tracking-[0.12em]" style={{ color: "#7D9AFF" }}>
+                <div className="w-8 border-t border-dashed" style={{ borderColor: "#879AF4" }} />
+                <span className="text-[10px] font-bold tracking-[0.12em]" style={{ color: "#879AF4" }}>
                   ADS
                 </span>
               </div>
@@ -215,18 +207,18 @@ export default function PlaitSystem() {
                 className="absolute top-1/2 -left-2 sm:left-2 -translate-y-1/2 flex items-center gap-2"
                 style={{ opacity: attribution ? 1 : 0.35 }}
               >
-                <span className="text-[10px] font-bold tracking-[0.12em]" style={{ color: "#A67CFF" }}>
+                <span className="text-[10px] font-bold tracking-[0.12em]" style={{ color: "#D476C5" }}>
                   ATTRIBUTION
                 </span>
-                <div className="w-8 border-t border-dashed" style={{ borderColor: "#A67CFF" }} />
+                <div className="w-8 border-t border-dashed" style={{ borderColor: "#D476C5" }} />
               </div>
               {/* WEBSITE — right bottom */}
               <div
                 className="absolute bottom-[14%] -right-2 sm:right-2 flex items-center gap-2"
                 style={{ opacity: website ? 1 : 0.35 }}
               >
-                <div className="w-8 border-t border-dashed" style={{ borderColor: "#FF73AD" }} />
-                <span className="text-[10px] font-bold tracking-[0.12em]" style={{ color: "#FF73AD" }}>
+                <div className="w-8 border-t border-dashed" style={{ borderColor: "#E668A6" }} />
+                <span className="text-[10px] font-bold tracking-[0.12em]" style={{ color: "#E668A6" }}>
                   WEBSITE
                 </span>
               </div>
