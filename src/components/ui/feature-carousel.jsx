@@ -2,88 +2,66 @@
 
 import React, { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  Target,
-  Award,
-  Rocket,
-  Network,
-  Library,
-  ShoppingCart,
-  LineChart,
-  Repeat,
-  LayoutDashboard,
-  Workflow,
-} from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const FEATURES = [
   {
     id: "motives",
     label: "Verified Buyer Motives",
-    icon: Target,
     image: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=1200",
     description: "We map the real reasons your customers buy so every message hits the nerve that converts.",
   },
   {
     id: "advantages",
     label: "Defined Market Advantages",
-    icon: Award,
     image: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=1200",
     description: "Sharp positioning that separates you from competitors and makes the choice obvious.",
   },
   {
     id: "efficiency",
     label: "Higher Ad Efficiency",
-    icon: Rocket,
     image: "https://images.unsplash.com/photo-1521737711867-e3b97375f902?q=80&w=1200",
     description: "More revenue from the same spend through tighter targeting, creative, and bidding.",
   },
   {
     id: "architecture",
     label: "Optimal Account Architecture",
-    icon: Network,
     image: "https://images.unsplash.com/photo-1578574577315-3fbeb0cecdc2?q=80&w=1200",
     description: "Campaign, ad set, and audience structures built to scale without waste.",
   },
   {
     id: "swipe",
     label: "Swipe File Warehouse",
-    icon: Library,
     image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1200",
     description: "A living library of proven ads and angles that fuels nonstop content ideation.",
   },
   {
     id: "checkout",
     label: "Optimized Checkout Flows",
-    icon: ShoppingCart,
     image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=1200",
     description: "Conversion paths engineered to move visitors from interest to purchase.",
   },
   {
     id: "tracking",
     label: "Clean Data Tracking",
-    icon: LineChart,
     image: "https://images.unsplash.com/photo-1551288049-bbda38a10ad5?q=80&w=1200",
     description: "Accurate events and attribution so you trust every number in your reports.",
   },
   {
     id: "nurture",
     label: "Automated Nurture & Retention",
-    icon: Repeat,
     image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1200",
     description: "Email and lifecycle sequences that turn one-time buyers into repeat revenue.",
   },
   {
     id: "dashboard",
     label: "Custom KPI Dashboard",
-    icon: LayoutDashboard,
     image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=1200",
     description: "A dashboard built around the metrics that actually drive your business.",
   },
   {
     id: "pipelines",
     label: "Managed Content Pipelines",
-    icon: Workflow,
     image: "https://images.unsplash.com/photo-1556761175-b413da4baf72?q=80&w=1200",
     description: "A production pipeline that keeps fresh, on-brand creative shipping on schedule.",
   },
@@ -134,15 +112,14 @@ export function FeatureCarousel() {
     <div className="w-full max-w-7xl mx-auto md:p-8">
       <div className="relative overflow-hidden rounded-[2.5rem] lg:rounded-[4rem] flex flex-col lg:flex-row min-h-[600px] lg:aspect-video border border-border/40">
         {/* Left: deliverable chips */}
-        <div className="w-full lg:w-[40%] min-h-[350px] md:min-h-[450px] lg:h-full relative z-30 flex flex-col items-start justify-center overflow-hidden px-8 md:px-16 lg:pl-16 bg-[#62B2FE]">
-          <div className="absolute inset-x-0 top-0 h-12 md:h-20 lg:h-16 bg-gradient-to-b from-[#62B2FE] via-[#62B2FE]/80 to-transparent z-40" />
-          <div className="absolute inset-x-0 bottom-0 h-12 md:h-20 lg:h-16 bg-gradient-to-t from-[#62B2FE] via-[#62B2FE]/80 to-transparent z-40" />
+        <div className="w-full lg:w-[40%] min-h-[350px] md:min-h-[450px] lg:h-full relative z-30 flex flex-col items-start justify-center overflow-hidden px-8 md:px-16 lg:pl-16 bg-black">
+          <div className="absolute inset-x-0 top-0 h-12 md:h-20 lg:h-16 bg-gradient-to-b from-black via-black/80 to-transparent z-40" />
+          <div className="absolute inset-x-0 bottom-0 h-12 md:h-20 lg:h-16 bg-gradient-to-t from-black via-black/80 to-transparent z-40" />
           <div className="relative w-full h-full flex items-center justify-center lg:justify-start z-20">
             {FEATURES.map((feature, index) => {
               const isActive = index === currentIndex;
               const distance = index - currentIndex;
               const wrappedDistance = wrap(-(FEATURES.length / 2), FEATURES.length / 2, distance);
-              const Icon = feature.icon;
               return (
                 <motion.div
                   key={feature.id}
@@ -161,13 +138,10 @@ export function FeatureCarousel() {
                     className={cn(
                       "relative flex items-center gap-4 px-6 md:px-10 lg:px-8 py-3.5 md:py-5 lg:py-4 rounded-full transition-all duration-700 text-left group border",
                       isActive
-                        ? "bg-white text-[#62B2FE] border-white z-10"
+                        ? "bg-white text-black border-white z-10"
                         : "bg-transparent text-white/60 border-white/20 hover:border-white/40 hover:text-white"
                     )}
                   >
-                    <div className={cn("flex items-center justify-center transition-colors duration-500", isActive ? "text-[#62B2FE]" : "text-white/40")}>
-                      <Icon className="w-[18px] h-[18px]" strokeWidth={2} />
-                    </div>
                     <span className="font-normal text-sm md:text-[15px] tracking-tight whitespace-nowrap uppercase">
                       {feature.label}
                     </span>
@@ -199,7 +173,12 @@ export function FeatureCarousel() {
                     pointerEvents: isActive ? "auto" : "none",
                   }}
                   transition={{ type: "spring", stiffness: 260, damping: 25, mass: 0.8 }}
-                  className="absolute inset-0 rounded-[2rem] md:rounded-[2.8rem] overflow-hidden border-4 md:border-8 border-background bg-background origin-center"
+                  className={cn(
+                    "absolute inset-0 rounded-[2rem] md:rounded-[2.8rem] overflow-hidden border border-white/70 bg-background origin-center transition-shadow duration-500",
+                    isActive
+                      ? "shadow-[0_0_30px_rgba(255,255,255,0.6),0_0_70px_rgba(255,255,255,0.35)]"
+                      : "shadow-[0_0_18px_rgba(255,255,255,0.2)]"
+                  )}
                 >
                   <img
                     src={feature.image}
@@ -226,10 +205,6 @@ export function FeatureCarousel() {
                       </motion.div>
                     )}
                   </AnimatePresence>
-                  <div className={cn("absolute top-8 left-8 flex items-center gap-3 transition-opacity duration-300", isActive ? "opacity-100" : "opacity-0")}>
-                    <div className="w-2 h-2 rounded-full bg-white shadow-[0_0_10px_white]" />
-                    <span className="text-white/80 text-[10px] font-normal uppercase tracking-[0.3em] font-mono">Deliverable</span>
-                  </div>
                 </motion.div>
               );
             })}
