@@ -48,10 +48,15 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="mt-1 hero-headline text-[clamp(1.6rem,3.6vw,2.6rem)] font-black tracking-[-0.02em] font-body uppercase"
-            style={{ fontFamily: "Inter, sans-serif", letterSpacing: "-0.02em" }}
+            className="mt-2"
+            style={{ fontFamily: "Inter, sans-serif" }}
           >
-            <AnimatedTextRoller words={ROTATING} interval={2500} lineClassName="hero-headline" />
+            <AnimatedTextRoller
+              words={ROTATING}
+              interval={2500}
+              heightRem={3}
+              lineClassName="hero-headline text-2xl sm:text-3xl lg:text-4xl font-black uppercase tracking-[-0.02em]"
+            />
           </motion.div>
 
           {/* Subtitle */}

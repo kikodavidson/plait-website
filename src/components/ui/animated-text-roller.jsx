@@ -5,7 +5,8 @@ import { cn } from "@/lib/utils";
 
 export default function AnimatedTextRoller({
   words = [],
-  interval = 2500,
+  interval = 2000,
+  heightRem = 2,
   className = "",
   lineClassName = "",
 }) {
@@ -18,15 +19,19 @@ export default function AnimatedTextRoller({
   }, [words.length, interval]);
 
   return (
-    <div className={cn("overflow-hidden h-[1.1em] leading-[1.1]", className)}>
+    <div
+      className={cn("overflow-hidden text-left", className)}
+      style={{ height: `${heightRem}rem` }}
+    >
       <div
         className="transition-transform duration-700 ease-in-out"
-        style={{ transform: `translateY(-${index * 1.1}em)` }}
+        style={{ transform: `translateY(-${index * heightRem}rem)` }}
       >
         {words.map((w, i) => (
           <p
             key={i}
-            className={cn("h-[1.1em] leading-[1.1] flex items-center whitespace-nowrap", lineClassName)}
+            className={cn("flex items-center justify-start whitespace-nowrap", lineClassName)}
+            style={{ height: `${heightRem}rem` }}
           >
             {w}
           </p>
