@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import ScrollRevealText from "@/components/ui/scroll-reveal-text";
 
 function getState(ads, website, attribution) {
   const count = [ads, website, attribution].filter(Boolean).length;
@@ -121,18 +120,41 @@ export default function PlaitSystem() {
 
       <div className="relative max-w-6xl mx-auto">
         {/* Definition */}
-        <div className="mb-20 border-l-2 border-black pl-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mb-20 border-l-2 border-black pl-6"
+        >
           <p className="text-[#2d2d2d] text-base leading-relaxed">
             <span className="font-bold">plait</span>{" "}
             <span className="text-[#525252] italic text-sm">/plāt/</span>{" "}
             <span className="text-[#525252] text-xs font-bold uppercase tracking-widest">noun</span>
             {"  "}
-            <ScrollRevealText
-              text="A single length formed by intertwining three or more strands. Stronger, more flexible, and more resistant to unraveling than any single strand alone."
-              activeColor="#2d2d2d"
-            />
+            <span className="text-[#4D4D4D]">A single length formed by intertwining three or more strands. Stronger, more flexible, and more resistant to unraveling than any single strand alone.</span>
           </p>
-        </div>
+        </motion.div>
+
+        {/* Connected summary — updates per state, sits above the toggles */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={state.title}
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.25 }}
+            className="mb-20 max-w-3xl"
+          >
+            <p className="text-xs font-bold uppercase tracking-[0.14em] mb-3" style={{ color: state.color }}>
+              {state.label}
+            </p>
+            <p className="text-[#2d2d2d] font-bold text-3xl sm:text-4xl mb-5 leading-tight" style={{ fontFamily: "Inter, sans-serif" }}>
+              {state.title}
+            </p>
+            <p className="text-[#525252] text-lg leading-relaxed">{state.body}</p>
+          </motion.div>
+        </AnimatePresence>
 
         {/* Interactive grid */}
         <motion.div
@@ -221,26 +243,6 @@ export default function PlaitSystem() {
             </div>
           </div>
         </motion.div>
-
-        {/* Bottom: connected summary — updates per state */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={state.title}
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.25 }}
-            className="mt-24 max-w-2xl"
-          >
-            <p className="text-xs font-bold uppercase tracking-[0.14em] mb-3" style={{ color: state.color }}>
-              {state.label}
-            </p>
-            <p className="text-[#2d2d2d] font-bold text-2xl mb-4" style={{ fontFamily: "Inter, sans-serif" }}>
-              {state.title}
-            </p>
-            <p className="text-[#525252] text-base leading-relaxed">{state.body}</p>
-          </motion.div>
-        </AnimatePresence>
       </div>
     </section>
   );
