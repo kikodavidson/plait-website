@@ -174,10 +174,10 @@ export function FeatureCarousel() {
                   }}
                   transition={{ type: "spring", stiffness: 260, damping: 25, mass: 0.8 }}
                   className={cn(
-                    "absolute inset-0 rounded-[2rem] md:rounded-[2.8rem] overflow-hidden border border-white/70 bg-background origin-center transition-shadow duration-500",
+                    "absolute inset-0 rounded-[2rem] md:rounded-[2.8rem] overflow-hidden border border-indigo-300/50 bg-background origin-center transition-shadow duration-500",
                     isActive
-                      ? "shadow-[0_0_30px_rgba(255,255,255,0.6),0_0_70px_rgba(255,255,255,0.35)]"
-                      : "shadow-[0_0_18px_rgba(255,255,255,0.2)]"
+                      ? "shadow-[0_0_25px_rgba(129,140,248,0.45),0_0_60px_rgba(129,140,248,0.35),0_0_100px_rgba(129,140,248,0.2)]"
+                      : "shadow-[0_0_15px_rgba(129,140,248,0.2)]"
                   )}
                 >
                   <img
