@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 // Default media — swap these out or pass a `media` array to use your own
@@ -60,7 +59,7 @@ export default function HeroMediaCard({
   return (
     <div
       className={cn(
-        "relative aspect-square w-full max-w-[420px] rounded-3xl shadow-[0_4px_24px_rgba(0,0,0,0.2)] border-8 border-white overflow-hidden transition-all duration-500 hover:shadow-[0_8px_40px_rgba(0,0,0,0.3)] hover:scale-[1.02]",
+        "relative aspect-square w-full max-w-[420px] rounded-3xl overflow-hidden transition-all duration-500 hover:scale-[1.02] ring-1 ring-indigo-300/40 shadow-[0_0_30px_-2px_rgba(99,102,241,0.45),0_0_70px_-8px_rgba(99,102,241,0.35)]",
         className
       )}
     >
@@ -98,17 +97,11 @@ export default function HeroMediaCard({
       />
 
       <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/50 to-transparent">
-        <div className="flex items-end justify-between px-6 py-6 group">
+        <div className="px-6 py-6">
           <div className="flex flex-col">
             <h2 className="text-lg font-semibold text-white">{current.caption}</h2>
             <p className="text-sm text-white/90">{current.sub}</p>
           </div>
-          <button
-            type="button"
-            className="h-10 w-10 rounded-full bg-white shadow-lg ring-1 ring-black/5 flex items-center justify-center hover:bg-gray-100 transition-all duration-300 hover:shadow-xl hover:scale-110 active:scale-95"
-          >
-            <ArrowRight className="w-5 h-5 text-gray-800" />
-          </button>
         </div>
       </div>
 
