@@ -49,9 +49,6 @@ export default function RolesCarousel() {
           >
             The roles you're adding<br />to your team.
           </h2>
-          <p className="text-[#525252] text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
-            When you work with us, you're not just getting an agency, you're filling eight specialized seats that would otherwise cost a fortune to hire in house.
-          </p>
         </motion.div>
 
         {/* Mobile: single contained card */}
