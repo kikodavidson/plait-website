@@ -29,7 +29,7 @@ export default function RolesCarousel() {
   const ringRotation = -active * ANGLE;
 
   return (
-    <section className="py-28 px-6 border-t border-gray-100/50 overflow-hidden">
+    <section className="py-28 px-6 overflow-hidden">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <motion.div
