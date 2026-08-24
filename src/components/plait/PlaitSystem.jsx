@@ -188,13 +188,14 @@ export default function PlaitSystem() {
                 transition={{ duration: 0.4, ease: "easeInOut" }}
                 className="w-full select-none"
               >
-                <PlaitHelix className="w-full h-auto" />
+                <PlaitHelix active={{ ads, website, attribution }} className="w-full h-auto" />
               </motion.div>
 
-              {/* Strand labels with dashed leaders */}
-              {/* ADS — right top */}
+              {/* Strand labels with dashed leaders — each points to where its
+                  own strand is on top of the braid. */}
+              {/* ADS — right, upper (strand on top here) */}
               <div
-                className="absolute top-[14%] -right-2 sm:right-2 flex items-center gap-2"
+                className="absolute top-[13%] -right-2 sm:right-2 flex items-center gap-2"
                 style={{ opacity: ads ? 1 : 0.35 }}
               >
                 <div className="w-8 border-t border-dashed" style={{ borderColor: "#879AF4" }} />
@@ -202,25 +203,25 @@ export default function PlaitSystem() {
                   ADS
                 </span>
               </div>
-              {/* ATTRIBUTION — left middle */}
+              {/* WEBSITE — left, upper (strand on top here) */}
               <div
-                className="absolute top-1/2 -left-2 sm:left-2 -translate-y-1/2 flex items-center gap-2"
+                className="absolute top-[23%] -left-2 sm:left-2 flex items-center gap-2"
+                style={{ opacity: website ? 1 : 0.35 }}
+              >
+                <span className="text-[10px] font-bold tracking-[0.12em]" style={{ color: "#E668A6" }}>
+                  WEBSITE
+                </span>
+                <div className="w-8 border-t border-dashed" style={{ borderColor: "#E668A6" }} />
+              </div>
+              {/* ATTRIBUTION — left, lower (strand on top here) */}
+              <div
+                className="absolute top-[65%] -left-2 sm:left-2 flex items-center gap-2"
                 style={{ opacity: attribution ? 1 : 0.35 }}
               >
                 <span className="text-[10px] font-bold tracking-[0.12em]" style={{ color: "#D476C5" }}>
                   ATTRIBUTION
                 </span>
                 <div className="w-8 border-t border-dashed" style={{ borderColor: "#D476C5" }} />
-              </div>
-              {/* WEBSITE — right bottom */}
-              <div
-                className="absolute bottom-[14%] -right-2 sm:right-2 flex items-center gap-2"
-                style={{ opacity: website ? 1 : 0.35 }}
-              >
-                <div className="w-8 border-t border-dashed" style={{ borderColor: "#E668A6" }} />
-                <span className="text-[10px] font-bold tracking-[0.12em]" style={{ color: "#E668A6" }}>
-                  WEBSITE
-                </span>
               </div>
             </div>
           </div>
