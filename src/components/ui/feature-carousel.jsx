@@ -136,10 +136,10 @@ export function FeatureCarousel() {
                     onMouseEnter={() => setIsPaused(true)}
                     onMouseLeave={() => setIsPaused(false)}
                     className={cn(
-                      "relative flex items-center gap-4 px-6 md:px-10 lg:px-8 py-3.5 md:py-5 lg:py-4 rounded-full transition-all duration-700 text-left group border",
+                      "relative flex items-center gap-3 px-5 md:px-7 py-2.5 md:py-3 rounded-full transition-all duration-500 text-left group border",
                       isActive
                         ? "bg-white text-black border-white z-10"
-                        : "bg-transparent text-white/60 border-white/20 hover:border-white/40 hover:text-white"
+                        : "bg-transparent text-white/45 border-white/15 hover:border-white/30 hover:text-white/80"
                     )}
                   >
                     <span className="font-normal text-sm md:text-[15px] tracking-tight whitespace-nowrap uppercase">
