@@ -1,39 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { TrendingUp, Target, BarChart3, Lightbulb, Megaphone, Globe } from "lucide-react";
-
-const deliverables = [
-  {
-    icon: Globe,
-    title: "A Full Funnel",
-    desc: "A cross-channel top to bottom funnel that generates and captures demand via paid and organic strategies.",
-  },
-  {
-    icon: BarChart3,
-    title: "Complete Attribution",
-    desc: "iOS 14 f***ed up attribution, but a high EMQ score is possible (and necessary).",
-  },
-  {
-    icon: TrendingUp,
-    title: "Growth Opportunities",
-    desc: "Identify untapped channels, audiences, and angles you and/or your competitors haven't found yet.",
-  },
-  {
-    icon: Lightbulb,
-    title: "Ideate Killer Content to Test",
-    desc: "Develop hooks, angles, messaging, offers, and formats, built for your audiences.",
-  },
-  {
-    icon: Megaphone,
-    title: "Paid Ads Launched and Optimized",
-    desc: "Launch new campaigns or take over existing ones. Meta, Google, TikTok, and beyond — to generate and capture demand in the market.",
-  },
-  {
-    icon: Target,
-    title: "Website Buildout / Uplift",
-    desc: "Driving traffic to a poorly optimised site is burning money. Every page is built to bring visitors across the finish line.",
-  },
-];
+import FeatureCarousel from "@/components/ui/feature-carousel";
 
 export default function WhatYouGet() {
   return (
@@ -46,7 +13,7 @@ export default function WhatYouGet() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <p className="text-xs font-bold text-[#2d2d2d] uppercase tracking-widest mb-3">What You Get</p>
+          <p className="text-xs font-bold text-[#2d2d2d] uppercase tracking-widest mb-3">What You Receive</p>
           <h2
             className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#2d2d2d] tracking-tight leading-[1.4] sm:leading-[1.1] mb-4"
             style={{ fontFamily: 'Inter, sans-serif' }}
@@ -83,28 +50,7 @@ export default function WhatYouGet() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-gray-100 rounded-3xl overflow-hidden shadow-sm border border-gray-100">
-          {deliverables.map((item, i) => {
-            const Icon = item.icon;
-            return (
-              <motion.div
-                key={item.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.07 }}
-                className="bg-white p-8 flex flex-col gap-4 hover:bg-[#F8F7FF] transition-colors"
-              >
-                <div>
-                  <h3 className="font-bold text-[#2d2d2d] text-base mb-1" style={{ fontFamily: 'Inter, sans-serif' }}>
-                    {item.title}
-                  </h3>
-                  <p className="text-[#525252] text-sm leading-relaxed">{item.desc}</p>
-                </div>
-              </motion.div>
-            );
-          })}
-        </div>
+        <FeatureCarousel />
       </div>
     </section>
   );
