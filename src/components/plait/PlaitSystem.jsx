@@ -62,17 +62,8 @@ function getState(ads, website, attribution) {
   return { label: "", title: "", body: "", color: "#dc2626" };
 }
 
-// Per-state plait images — keyed by `${ads}${website}${attribution}` (1/0)
-const PLAIT_IMAGES = {
-  "111": "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/f4ae64cd3_generated_image.png",
-  "110": "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/9266cf63c_generated_image.png",
-  "101": "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/f122ab03e_generated_image.png",
-  "011": "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/683ce16bf_generated_image.png",
-  "100": "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/ba6af146d_generated_image.png",
-  "010": "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/6905438ed_generated_image.png",
-  "001": "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/98a28c93c_generated_image.png",
-  "000": "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/c712c92af_generated_image.png",
-};
+// Single static braid image — used for every toggle state.
+const BRAID_IMAGE = "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/736190da3_generated_image.png";
 
 const STRANDS = [
   { key: "ads", label: "ADS", color: "#7D9AFF" },
@@ -108,8 +99,7 @@ export default function PlaitSystem() {
   const setters = { ads: setAds, website: setWebsite, attribution: setAttribution };
   const values = { ads, website, attribution };
   const state = getState(ads, website, attribution);
-  const stateKey = `${ads ? 1 : 0}${website ? 1 : 0}${attribution ? 1 : 0}`;
-  const image = PLAIT_IMAGES[stateKey];
+  const image = BRAID_IMAGE;
 
   return (
     <section className="relative py-28 px-6 overflow-hidden bg-[#F2F2F2]">
