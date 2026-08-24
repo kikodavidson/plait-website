@@ -24,7 +24,7 @@ export default function HeroSection() {
       <ConstellationGrid className="pointer-events-none opacity-[0.6]" />
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-indigo-200/30 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="relative w-full max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <div className="relative w-full max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center lg:pl-16 lg:pr-8">
         <div className="flex flex-col items-start">
           {/* Static headline — continuous printed-ink gradient across all lines */}
           <motion.h1
