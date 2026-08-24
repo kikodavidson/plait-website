@@ -111,42 +111,28 @@ export function FeatureCarousel() {
   return (
     <div className="w-full max-w-7xl mx-auto md:p-8">
       <div className="relative overflow-hidden rounded-[2.5rem] lg:rounded-[4rem] flex flex-col lg:flex-row min-h-[600px] lg:aspect-video border border-indigo-400/30 shadow-[0_0_40px_rgba(99,102,241,0.35),0_0_90px_rgba(99,102,241,0.25),0_0_160px_rgba(99,102,241,0.18)]">
-        {/* Left: deliverable chips */}
-        <div className="w-full lg:w-[40%] min-h-[350px] md:min-h-[450px] lg:h-full relative z-30 flex flex-col items-start justify-center overflow-hidden px-8 md:px-16 lg:pl-16 bg-black">
-          <div className="absolute inset-x-0 top-0 h-12 md:h-20 lg:h-16 bg-gradient-to-b from-black via-black/80 to-transparent z-40" />
-          <div className="absolute inset-x-0 bottom-0 h-12 md:h-20 lg:h-16 bg-gradient-to-t from-black via-black/80 to-transparent z-40" />
-          <div className="relative w-full h-full flex items-center justify-center lg:justify-start z-20">
+        {/* Left: deliverable pills — static vertical stack */}
+        <div className="w-full lg:w-[40%] relative z-30 flex flex-col items-start justify-center overflow-hidden px-8 md:px-12 lg:pl-12 lg:pr-10 bg-black py-10 lg:py-12">
+          <div className="relative w-full flex flex-col justify-center gap-2 md:gap-2.5 z-20">
             {FEATURES.map((feature, index) => {
               const isActive = index === currentIndex;
-              const distance = index - currentIndex;
-              const wrappedDistance = wrap(-(FEATURES.length / 2), FEATURES.length / 2, distance);
               return (
-                <motion.div
+                <button
                   key={feature.id}
-                  style={{ height: ITEM_HEIGHT, width: "fit-content" }}
-                  animate={{
-                    y: wrappedDistance * ITEM_HEIGHT,
-                    opacity: 1 - Math.abs(wrappedDistance) * 0.25,
-                  }}
-                  transition={{ type: "spring", stiffness: 90, damping: 22, mass: 1 }}
-                  className="absolute flex items-center justify-start"
+                  onClick={() => handleChipClick(index)}
+                  onMouseEnter={() => setIsPaused(true)}
+                  onMouseLeave={() => setIsPaused(false)}
+                  className={cn(
+                    "relative flex items-center px-5 md:px-6 py-2.5 md:py-3 rounded-full transition-all duration-500 text-left group border",
+                    isActive
+                      ? "bg-white text-black border-white"
+                      : "bg-transparent text-white/45 border-white/15 hover:border-white/30 hover:text-white/80"
+                  )}
                 >
-                  <button
-                    onClick={() => handleChipClick(index)}
-                    onMouseEnter={() => setIsPaused(true)}
-                    onMouseLeave={() => setIsPaused(false)}
-                    className={cn(
-                      "relative flex items-center gap-3 px-5 md:px-7 py-2.5 md:py-3 rounded-full transition-all duration-500 text-left group border",
-                      isActive
-                        ? "bg-white text-black border-white z-10"
-                        : "bg-transparent text-white/45 border-white/15 hover:border-white/30 hover:text-white/80"
-                    )}
-                  >
-                    <span className="font-normal text-sm md:text-[15px] tracking-tight whitespace-nowrap uppercase">
-                      {feature.label}
-                    </span>
-                  </button>
-                </motion.div>
+                  <span className="font-normal text-xs md:text-sm tracking-tight whitespace-nowrap uppercase">
+                    {feature.label}
+                  </span>
+                </button>
               );
             })}
           </div>
