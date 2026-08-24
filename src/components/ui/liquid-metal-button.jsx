@@ -59,7 +59,7 @@ export function LiquidMetalButton({ label = "Get Started", onClick, viewMode = "
             u_shape: 1,
             u_offsetX: 0.1,
             u_offsetY: -0.1,
-          }, undefined, 0.6);
+          }, undefined, 0);
         }
       } catch (error) {
         console.error("[v0] Failed to load shader:", error);
@@ -78,22 +78,16 @@ export function LiquidMetalButton({ label = "Get Started", onClick, viewMode = "
 
   const handleMouseEnter = () => {
     setIsHovered(true);
-    shaderMount.current?.setSpeed?.(1);
   };
 
   const handleMouseLeave = () => {
     setIsHovered(false);
     setIsPressed(false);
-    shaderMount.current?.setSpeed?.(0.6);
   };
 
   const handleClick = (e) => {
     if (shaderMount.current?.setSpeed) {
-      shaderMount.current.setSpeed(2.4);
-      setTimeout(() => {
-        if (isHovered) shaderMount.current?.setSpeed?.(1);
-        else shaderMount.current?.setSpeed?.(0.6);
-      }, 300);
+      shaderMount.current.setSpeed(0);
     }
 
     if (buttonRef.current) {
