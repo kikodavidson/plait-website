@@ -129,7 +129,7 @@ export function PerspectiveMarquee({
                   src={item.logo}
                   alt={item.name || ""}
                   className="object-contain"
-                  style={{ maxHeight: `${logoHeight}px`, maxWidth: `${itemWidth * 0.8}px` }}
+                  style={{ maxHeight: `${logoHeight}px`, maxWidth: `${itemWidth * 0.92}px` }}
                   draggable={false}
                 />
               ) : (
