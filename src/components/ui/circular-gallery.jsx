@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ShaderBackground } from "@/components/ui/shader-background";
 
 const cn = (...classes) => classes.filter(Boolean).join(" ");
 
@@ -205,11 +206,6 @@ const CircularGallery = React.forwardRef(
                       ? "bg-card/70 backdrop-blur-lg"
                       : "flex flex-col items-center justify-center text-center px-6"
                   )}
-                  style={
-                    hasImage
-                      ? undefined
-                      : { background: "radial-gradient(125% 125% at 50% 10%, #000 40%, #6633ee 100%)" }
-                  }
                 >
                   {hasImage ? (
                     <>
@@ -228,14 +224,15 @@ const CircularGallery = React.forwardRef(
                     </>
                   ) : (
                     <>
+                      <ShaderBackground className="absolute inset-0 w-full h-full" cursorEnabled={false} />
                       <h2
-                        className="text-2xl sm:text-3xl font-bold text-white leading-tight"
+                        className="relative z-10 text-2xl sm:text-3xl font-bold text-white leading-tight"
                         style={{ fontFamily: "Inter, sans-serif", letterSpacing: "0.02em" }}
                       >
                         {item.common}
                       </h2>
                       {item.binomial && (
-                        <p className="text-base text-white/70 mt-3">{item.binomial}</p>
+                        <p className="relative z-10 text-base text-white/80 mt-3">{item.binomial}</p>
                       )}
                     </>
                   )}
