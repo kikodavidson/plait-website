@@ -139,7 +139,7 @@ export default function PlaitSystem() {
             <p className="text-[#2d2d2d] font-bold text-3xl sm:text-4xl mb-5 leading-tight" style={{ fontFamily: "Inter, sans-serif" }}>
               {state.title}
             </p>
-            <p className="text-[#525252] text-lg leading-relaxed">{state.body}</p>
+            <p className="text-black text-lg leading-relaxed">{state.body}</p>
           </motion.div>
         </AnimatePresence>
 
