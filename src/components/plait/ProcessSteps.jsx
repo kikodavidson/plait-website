@@ -31,7 +31,7 @@ const steps = [
 
 export default function ProcessSteps() {
   return (
-    <section className="py-28 px-6 bg-[#2d2d2d]">
+    <section className="py-28 px-6 bg-black">
       <div className="max-w-6xl mx-auto">
         <motion.div
           className="mb-16"
