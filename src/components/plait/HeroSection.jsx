@@ -28,7 +28,7 @@ export default function HeroSection() {
         <div className="flex flex-col items-start">
           {/* Static headline — continuous printed-ink gradient across all lines */}
           <motion.h1
-            className="hero-headline text-[clamp(2rem,5.2vw,3.8rem)] leading-[0.95] tracking-[-0.03em] mb-0 uppercase font-medium [font-family:'Bebas_Neue',_system-ui]"
+            className="hero-headline text-[clamp(2rem,5.2vw,3.8rem)] leading-[0.95] tracking-[-0.03em] mb-0 uppercase font-bold [font-family:'Neue_Haas_Grotesk_Display_Pro',_sans-serif]"
             style={{ fontFamily: "Inter, sans-serif", letterSpacing: "-0.03em" }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
