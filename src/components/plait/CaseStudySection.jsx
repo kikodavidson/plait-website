@@ -26,27 +26,6 @@ const SECONDARY = [
     subtitle: "30M+ impressions in two months.",
     link: "/case-studies",
   },
-  {
-    company: "Tsunami Bar Sports",
-    tags: "SPORTS EQUIPMENT / D2C",
-    title: "We increased sales by 500%+ in 6 months.",
-    subtitle: "At a consistent 5-15x ROAS.",
-    link: "/case-studies",
-  },
-  {
-    company: "Ivy Dating",
-    tags: "APP / D2C",
-    title: "How we doubled the number of users over two months.",
-    subtitle: "205% increase in app downloads.",
-    link: "/case-studies",
-  },
-  {
-    company: "HG Training",
-    tags: "COACHING / LEAD GEN",
-    title: "Finding qualified leads in a market most advertisers would ignore.",
-    subtitle: "$8 cost per lead at 12.4x blended ROAS.",
-    link: "/case-studies",
-  },
 ];
 
 const DOTTED = "hidden w-28 shrink-0 bg-[radial-gradient(#00000022_1px,transparent_1px)] [background-size:10px_10px] opacity-15 xl:block";
