@@ -5,81 +5,81 @@ import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 const FEATURES = [
-  {
-    id: "motives",
-    label: "Verified Buyer Motives",
-    image: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=1200",
-    description: "We map the real reasons your customers buy so every message hits the nerve that converts.",
-  },
-  {
-    id: "advantages",
-    label: "Defined Market Advantages",
-    image: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=1200",
-    description: "Sharp positioning that separates you from competitors and makes the choice obvious.",
-  },
-  {
-    id: "efficiency",
-    label: "Higher Ad Efficiency",
-    image: "https://images.unsplash.com/photo-1521737711867-e3b97375f902?q=80&w=1200",
-    description: "More revenue from the same spend through tighter targeting, creative, and bidding.",
-  },
-  {
-    id: "architecture",
-    label: "Optimal Account Architecture",
-    image: "https://images.unsplash.com/photo-1578574577315-3fbeb0cecdc2?q=80&w=1200",
-    description: "Campaign, ad set, and audience structures built to scale without waste.",
-  },
-  {
-    id: "swipe",
-    label: "Swipe File Warehouse",
-    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1200",
-    description: "A living library of proven ads and angles that fuels nonstop content ideation.",
-  },
-  {
-    id: "checkout",
-    label: "Optimized Checkout Flows",
-    image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=1200",
-    description: "Conversion paths engineered to move visitors from interest to purchase.",
-  },
-  {
-    id: "tracking",
-    label: "Clean Data Tracking",
-    image: "https://images.unsplash.com/photo-1551288049-bbda38a10ad5?q=80&w=1200",
-    description: "Accurate events and attribution so you trust every number in your reports.",
-  },
-  {
-    id: "nurture",
-    label: "Automated Nurture & Retention",
-    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1200",
-    description: "Email and lifecycle sequences that turn one-time buyers into repeat revenue.",
-  },
-  {
-    id: "dashboard",
-    label: "Custom KPI Dashboard",
-    image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=1200",
-    description: "A dashboard built around the metrics that actually drive your business.",
-  },
-  {
-    id: "pipelines",
-    label: "Managed Content Pipelines",
-    image: "https://images.unsplash.com/photo-1556761175-b413da4baf72?q=80&w=1200",
-    description: "A production pipeline that keeps fresh, on-brand creative shipping on schedule.",
-  },
-];
+{
+  id: "motives",
+  label: "Verified Buyer Motives",
+  image: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=1200",
+  description: "We map the real reasons your customers buy so every message hits the nerve that converts."
+},
+{
+  id: "advantages",
+  label: "Defined Market Advantages",
+  image: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=1200",
+  description: "Sharp positioning that separates you from competitors and makes the choice obvious."
+},
+{
+  id: "efficiency",
+  label: "Higher Ad Efficiency",
+  image: "https://images.unsplash.com/photo-1521737711867-e3b97375f902?q=80&w=1200",
+  description: "More revenue from the same spend through tighter targeting, creative, and bidding."
+},
+{
+  id: "architecture",
+  label: "Optimal Account Architecture",
+  image: "https://images.unsplash.com/photo-1578574577315-3fbeb0cecdc2?q=80&w=1200",
+  description: "Campaign, ad set, and audience structures built to scale without waste."
+},
+{
+  id: "swipe",
+  label: "Swipe File Warehouse",
+  image: "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/157605fc5_ChatGPT_Image_Aug_25__2026__04_24_02_PM.png",
+  description: "A living library of proven ads and angles that fuels nonstop content ideation."
+},
+{
+  id: "checkout",
+  label: "Optimized Checkout Flows",
+  image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=1200",
+  description: "Conversion paths engineered to move visitors from interest to purchase."
+},
+{
+  id: "tracking",
+  label: "Clean Data Tracking",
+  image: "https://images.unsplash.com/photo-1551288049-bbda38a10ad5?q=80&w=1200",
+  description: "Accurate events and attribution so you trust every number in your reports."
+},
+{
+  id: "nurture",
+  label: "Automated Nurture & Retention",
+  image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1200",
+  description: "Email and lifecycle sequences that turn one-time buyers into repeat revenue."
+},
+{
+  id: "dashboard",
+  label: "Custom KPI Dashboard",
+  image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=1200",
+  description: "A dashboard built around the metrics that actually drive your business."
+},
+{
+  id: "pipelines",
+  label: "Managed Content Pipelines",
+  image: "https://images.unsplash.com/photo-1556761175-b413da4baf72?q=80&w=1200",
+  description: "A production pipeline that keeps fresh, on-brand creative shipping on schedule."
+}];
+
 
 const AUTO_PLAY_INTERVAL = 3000;
 const ITEM_HEIGHT = 65;
 
 const wrap = (min, max, v) => {
   const rangeSize = max - min;
-  return ((((v - min) % rangeSize) + rangeSize) % rangeSize) + min;
+  return ((v - min) % rangeSize + rangeSize) % rangeSize + min;
 };
 
 export function FeatureCarousel() {
   const [step, setStep] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
 
-  const currentIndex = ((step % FEATURES.length) + FEATURES.length) % FEATURES.length;
+  const currentIndex = (step % FEATURES.length + FEATURES.length) % FEATURES.length;
 
   const nextStep = useCallback(() => {
     setStep((prev) => prev + 1);
@@ -124,16 +124,16 @@ export function FeatureCarousel() {
                   onMouseLeave={() => setIsPaused(false)}
                   className={cn(
                     "relative flex items-center px-5 md:px-6 py-2.5 md:py-3 rounded-full transition-all duration-500 text-left group border",
-                    isActive
-                      ? "bg-white text-black border-white"
-                      : "bg-transparent text-white/45 border-white/15 hover:border-white/30 hover:text-white/80"
-                  )}
-                >
+                    isActive ?
+                    "bg-white text-black border-white" :
+                    "bg-transparent text-white/45 border-white/15 hover:border-white/30 hover:text-white/80"
+                  )}>
+                  
                   <span className="font-normal text-xs md:text-sm tracking-tight whitespace-nowrap uppercase">
                     {feature.label}
                   </span>
-                </button>
-              );
+                </button>);
+
             })}
           </div>
         </div>
@@ -156,27 +156,27 @@ export function FeatureCarousel() {
                     opacity: isActive ? 1 : isPrev || isNext ? 0.4 : 0,
                     rotate: isPrev ? -3 : isNext ? 3 : 0,
                     zIndex: isActive ? 20 : isPrev || isNext ? 10 : 0,
-                    pointerEvents: isActive ? "auto" : "none",
+                    pointerEvents: isActive ? "auto" : "none"
                   }}
                   transition={{ type: "spring", stiffness: 260, damping: 25, mass: 0.8 }}
-                  className="absolute inset-0 rounded-[2rem] md:rounded-[2.8rem] overflow-hidden border border-border/40 bg-background origin-center"
-                >
+                  className="absolute inset-0 rounded-[2rem] md:rounded-[2.8rem] overflow-hidden border border-border/40 bg-background origin-center">
+                  
                   <img
                     src={feature.image}
                     alt={feature.label}
                     className={cn(
                       "w-full h-full object-cover transition-all duration-700",
                       isActive ? "grayscale-0 blur-0" : "grayscale blur-[2px] brightness-75"
-                    )}
-                  />
+                    )} />
+                  
                   <AnimatePresence>
-                    {isActive && (
-                      <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 10 }}
-                        className="absolute inset-x-0 bottom-0 p-10 pt-32 bg-gradient-to-t from-black/90 via-black/40 to-transparent flex flex-col justify-end pointer-events-none"
-                      >
+                    {isActive &&
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 10 }}
+                      className="absolute inset-x-0 bottom-0 p-10 pt-32 bg-gradient-to-t from-black/90 via-black/40 to-transparent flex flex-col justify-end pointer-events-none">
+                      
                         <div className="bg-background text-foreground px-4 py-1.5 rounded-full text-[11px] font-normal uppercase tracking-[0.2em] w-fit shadow-lg mb-3 border border-border/50">
                           {index + 1} • {feature.label}
                         </div>
@@ -184,16 +184,16 @@ export function FeatureCarousel() {
                           {feature.description}
                         </p>
                       </motion.div>
-                    )}
+                    }
                   </AnimatePresence>
-                </motion.div>
-              );
+                </motion.div>);
+
             })}
           </div>
         </div>
       </div>
-    </div>
-  );
+    </div>);
+
 }
 
 export default FeatureCarousel;
