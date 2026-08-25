@@ -180,7 +180,7 @@ const CircularGallery = React.forwardRef(
             const normalizedAngle = Math.abs(
               relativeAngle > 180 ? 360 - relativeAngle : relativeAngle
             );
-            const opacity = Math.max(0.3, 1 - normalizedAngle / 180);
+            const opacity = 1;
             const hasImage = !!item.photo?.url;
 
             return (
