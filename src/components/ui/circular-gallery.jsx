@@ -200,11 +200,16 @@ const CircularGallery = React.forwardRef(
               >
                 <div
                   className={cn(
-                    "relative w-full h-full rounded-2xl overflow-hidden border border-border shadow-2xl",
+                    "relative w-full h-full rounded-2xl overflow-hidden border border-white/10 shadow-2xl",
                     hasImage
                       ? "bg-card/70 backdrop-blur-lg"
-                      : "bg-white flex flex-col items-center justify-center text-center px-6"
+                      : "flex flex-col items-center justify-center text-center px-6"
                   )}
+                  style={
+                    hasImage
+                      ? undefined
+                      : { background: "radial-gradient(125% 125% at 50% 10%, #000 40%, #6633ee 100%)" }
+                  }
                 >
                   {hasImage ? (
                     <>
@@ -224,13 +229,13 @@ const CircularGallery = React.forwardRef(
                   ) : (
                     <>
                       <h2
-                        className="text-xl font-bold text-[#2d2d2d] leading-tight"
+                        className="text-2xl sm:text-3xl font-bold text-white leading-tight"
                         style={{ fontFamily: "Inter, sans-serif", letterSpacing: "0.02em" }}
                       >
                         {item.common}
                       </h2>
                       {item.binomial && (
-                        <p className="text-sm text-[#525252] mt-3">{item.binomial}</p>
+                        <p className="text-base text-white/70 mt-3">{item.binomial}</p>
                       )}
                     </>
                   )}
