@@ -8,13 +8,13 @@ import HeroMediaCard from "@/components/plait/HeroMediaCard";
 import AnimatedTextRoller from "@/components/ui/animated-text-roller";
 
 const ROTATING = [
-  "Scale.",
-  "Convert More Customers.",
-  "Attract Attention.",
-  "Attribute Sales.",
-  "Improve Performance.",
-  "Maximize Clicks.",
-];
+"Scale.",
+"Convert More Customers.",
+"Attract Attention.",
+"Attribute Sales.",
+"Improve Performance.",
+"Maximize Clicks."];
+
 
 export default function HeroSection() {
   const navigate = useNavigate();
@@ -24,7 +24,7 @@ export default function HeroSection() {
       <ConstellationGrid className="pointer-events-none opacity-[0.6]" />
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-indigo-200/30 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="relative w-full max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center lg:pl-16 lg:pr-8">
+      <div className="relative w-full max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center lg:pl-16 lg:pr-8 opacity-100">
         <div className="flex flex-col items-start">
           {/* Static headline — continuous printed-ink gradient across all lines */}
           <motion.h1
@@ -32,8 +32,8 @@ export default function HeroSection() {
             style={{ fontFamily: "Inter, sans-serif", letterSpacing: "-0.03em" }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-          >
+            transition={{ duration: 0.6, delay: 0.1 }}>
+            
             Your Growth
             <br />
             Partner,
@@ -49,14 +49,14 @@ export default function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             className="mt-2"
-            style={{ fontFamily: "Inter, sans-serif" }}
-          >
+            style={{ fontFamily: "Inter, sans-serif" }}>
+            
             <AnimatedTextRoller
               words={ROTATING}
               interval={2500}
               heightRem={3}
-              lineClassName="hero-headline text-2xl sm:text-3xl lg:text-4xl font-black uppercase tracking-[-0.02em]"
-            />
+              lineClassName="hero-headline text-2xl sm:text-3xl lg:text-4xl font-black uppercase tracking-[-0.02em]" />
+            
           </motion.div>
 
           {/* Subtitle */}
@@ -64,8 +64,8 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.35 }}
-            className="text-black text-lg max-w-xl leading-relaxed mt-10 mb-10 font-medium"
-          >
+            className="text-black text-lg max-w-xl leading-relaxed mt-10 mb-10 font-medium">
+            
             Like couples therapy for your ads, website, attribution, and analytics. Plait uses{" "}
             <span className="italic font-semibold text-indigo-600">
               Battle Tested Marketing, Enhanced by AI.
@@ -77,13 +77,13 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.45 }}
-            className="flex flex-col sm:flex-row items-start gap-3 sm:gap-4"
-          >
+            className="flex flex-col sm:flex-row items-start gap-3 sm:gap-4">
+            
             <LiquidButton
               size="xl"
               className="bg-white/30 text-[#2d2d2d] font-semibold"
-              onClick={() => navigate("/services")}
-            >
+              onClick={() => navigate("/services")}>
+              
               What We Do
             </LiquidButton>
             <ShinyButton onClick={() => navigate("/book")}>
@@ -99,6 +99,6 @@ export default function HeroSection() {
           <HeroMediaCard />
         </div>
       </div>
-    </section>
-  );
+    </section>);
+
 }
