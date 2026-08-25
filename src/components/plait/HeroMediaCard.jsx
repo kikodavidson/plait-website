@@ -69,78 +69,78 @@ export default function HeroMediaCard({
   const current = media[index % media.length];
   const canTile = current.type === "image" && !!current.src;
 
-  return (
-    <div
-      className={cn(
-        "relative aspect-square w-full max-w-[420px] rounded-3xl overflow-hidden transition-all duration-500 hover:scale-[1.02] ring-1 ring-indigo-300/40 shadow-[0_0_30px_-2px_rgba(99,102,241,0.45),0_0_70px_-8px_rgba(99,102,241,0.35)] hidden",
-        className
-      )}>
-      
-      {/* Base media — the clean image/video that sits beneath the pixelated transition */}
-      {current.type === "video" ?
-      <video
-        key={index}
-        src={current.src}
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover" /> :
+  return null;
 
 
-      <img
-        key={index}
-        src={current.src}
-        alt={current.caption}
-        className="absolute inset-0 w-full h-full object-cover hidden" />
 
-      }
 
-      {/* Pixelated reveal transition — tiles fade out to expose the media below */}
-      <AnimatePresence>
-        {transitioning && canTile &&
-        <motion.div
-          key={`tiles-${index}`}
-          className="absolute inset-0 z-20"
-          initial={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.2 }}>
-          
-            <AnimatedTiles
-            imageUrl={current.src}
-            onRevealed={() => setTransitioning(false)} />
-          
-          </motion.div>
-        }
-      </AnimatePresence>
 
-      <ProgressiveBlur
-        className="pointer-events-none absolute bottom-0 left-0 h-[45%] w-full"
-        blurIntensity={8} />
-      
 
-      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/50 to-transparent">
-        <div className="px-6 py-6">
-          <div className="flex flex-col">
-            <h2 className="text-lg font-semibold text-white">{current.caption}</h2>
-            <p className="text-sm text-white/90">{current.sub}</p>
-          </div>
-        </div>
-      </div>
 
-      {media.length > 1 &&
-      <div className="absolute top-4 right-4 flex gap-1.5 z-10">
-          {media.map((_, i) =>
-        <span
-          key={i}
-          className={cn(
-            "h-1.5 rounded-full transition-all duration-300",
-            i === index ? "w-5 bg-white" : "w-1.5 bg-white/50"
-          )} />
 
-        )}
-        </div>
-      }
-    </div>);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
