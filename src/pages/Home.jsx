@@ -5,7 +5,7 @@ import WhatYouGet from "../components/plait/WhatYouGet";
 import ProcessSteps from "../components/plait/ProcessSteps";
 import TestimonialsSection from "../components/plait/TestimonialsSection";
 import OrbitSection from "../components/plait/OrbitSection";
-import ResultsSection from "../components/plait/ResultsSection";
+import CaseStudySection from "../components/plait/CaseStudySection";
 import PlaitSystem from "../components/plait/PlaitSystem";
 import BrandMarquee from "../components/plait/BrandMarquee";
 import RolesCarousel from "../components/plait/RolesCarousel";
@@ -23,8 +23,8 @@ export default function Home() {
       <WhatYouGet />
       <ProcessSteps />
       <TestimonialsSection />
+      <CaseStudySection />
       <OrbitSection />
-      <ResultsSection />
       <PackagesSection />
       <ContactCTA />
     </>
