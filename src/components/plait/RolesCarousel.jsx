@@ -45,8 +45,8 @@ export default function RolesCarousel() {
         </motion.div>
 
         {/* Circular 3D gallery — auto-rotates and responds to page scroll */}
-        <div className="relative h-[520px]">
-          <CircularGallery items={GALLERY_ITEMS} radius={500} autoRotateSpeed={0.015} />
+        <div className="relative h-[560px]">
+          <CircularGallery items={GALLERY_ITEMS} radius={480} autoRotateSpeed={0.015} />
         </div>
       </div>
     </section>
