@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { AnimatedTiles } from "@/components/ui/animated-tiles";
 
 // Default media — swap these out or pass a `media` array to use your own
 // images/videos. Each item: { type: 'image' | 'video', src, caption, sub }
@@ -47,14 +48,26 @@ export default function HeroMediaCard({
   className = "",
 }) {
   const [index, setIndex] = useState(0);
+  const [transitioning, setTransitioning] = useState(false);
 
   useEffect(() => {
     if (media.length <= 1) return;
-    const t = setInterval(() => setIndex((i) => (i + 1) % media.length), interval);
+    const t = setInterval(() => {
+      setTransitioning(true);
+      setIndex((i) => (i + 1) % media.length);
+    }, interval);
     return () => clearInterval(t);
   }, [media.length, interval]);
 
+  // Safety: never leave the transition overlay stuck on.
+  useEffect(() => {
+    if (!transitioning) return;
+    const t = setTimeout(() => setTransitioning(false), 1600);
+    return () => clearTimeout(t);
+  }, [transitioning, index]);
+
   const current = media[index % media.length];
+  const canTile = current.type === "image" && !!current.src;
 
   return (
     <div
@@ -63,32 +76,42 @@ export default function HeroMediaCard({
         className
       )}
     >
-      <AnimatePresence mode="wait">
-        <motion.div
+      {/* Base media — the clean image/video that sits beneath the pixelated transition */}
+      {current.type === "video" ? (
+        <video
           key={index}
-          initial={{ opacity: 0, scale: 1.04 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.98 }}
-          transition={{ duration: 0.7, ease: "easeInOut" }}
-          className="absolute inset-0"
-        >
-          {current.type === "video" ? (
-            <video
-              src={current.src}
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="absolute inset-0 w-full h-full object-cover"
+          src={current.src}
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+      ) : (
+        <img
+          key={index}
+          src={current.src}
+          alt={current.caption}
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+      )}
+
+      {/* Pixelated reveal transition — tiles fade out to expose the media below */}
+      <AnimatePresence>
+        {transitioning && canTile && (
+          <motion.div
+            key={`tiles-${index}`}
+            className="absolute inset-0 z-20"
+            initial={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+          >
+            <AnimatedTiles
+              imageUrl={current.src}
+              onRevealed={() => setTransitioning(false)}
             />
-          ) : (
-            <img
-              src={current.src}
-              alt={current.caption}
-              className="absolute inset-0 w-full h-full object-cover"
-            />
-          )}
-        </motion.div>
+          </motion.div>
+        )}
       </AnimatePresence>
 
       <ProgressiveBlur
