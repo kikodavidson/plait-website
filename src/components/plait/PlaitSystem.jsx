@@ -99,7 +99,7 @@ export default function PlaitSystem() {
   const state = getState(ads, website, attribution);
 
   return (
-    <section className="relative py-16 px-6 overflow-hidden bg-[#F2F2F2]">
+    <section className="relative py-16 px-6 overflow-hidden">
       {/* soft multi-color gradient blooms, top-right */}
       <div className="pointer-events-none absolute -top-20 -right-20 h-[420px] w-[420px] rounded-full bg-[#D1F2D1]/40 blur-3xl" />
       <div className="pointer-events-none absolute top-10 right-40 h-[300px] w-[300px] rounded-full bg-[#D1D1F2]/40 blur-3xl" />
