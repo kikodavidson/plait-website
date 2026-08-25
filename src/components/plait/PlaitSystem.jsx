@@ -99,7 +99,7 @@ export default function PlaitSystem() {
   const state = getState(ads, website, attribution);
 
   return (
-    <section className="relative py-28 px-6 overflow-hidden bg-[#F2F2F2]">
+    <section className="relative py-16 px-6 overflow-hidden bg-[#F2F2F2]">
       {/* soft multi-color gradient blooms, top-right */}
       <div className="pointer-events-none absolute -top-20 -right-20 h-[420px] w-[420px] rounded-full bg-[#D1F2D1]/40 blur-3xl" />
       <div className="pointer-events-none absolute top-10 right-40 h-[300px] w-[300px] rounded-full bg-[#D1D1F2]/40 blur-3xl" />
@@ -112,7 +112,7 @@ export default function PlaitSystem() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mb-20 border-l-2 border-black pl-6"
+          className="mb-8 border-l-2 border-black pl-6"
         >
           <p className="text-[#2d2d2d] text-base leading-relaxed">
             <span className="font-bold">plait</span>{" "}
@@ -131,7 +131,7 @@ export default function PlaitSystem() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.25 }}
-            className="mb-20 max-w-3xl"
+            className="mb-10 max-w-3xl"
           >
             <p className="text-xs font-bold uppercase tracking-[0.14em] mb-3" style={{ color: state.color }}>
               {state.label}
@@ -149,11 +149,11 @@ export default function PlaitSystem() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
         >
           {/* Left: toggles */}
           <div>
-            <p className="text-[#4D4D4D] text-sm leading-relaxed mb-10 max-w-md">
+            <p className="text-[#4D4D4D] text-sm leading-relaxed mb-6 max-w-md">
               Toggle a strand off and watch what breaks. This is what happens when ads, site, and
               tracking aren't speaking to each other.
             </p>
@@ -181,7 +181,7 @@ export default function PlaitSystem() {
 
           {/* Right: plait image with strand labels */}
           <div className="relative flex justify-center items-center py-4">
-            <div className="relative w-full max-w-[320px]">
+            <div className="relative w-full max-w-[200px]">
               <motion.div
                 initial={{ opacity: 0, scale: 0.98 }}
                 animate={{ opacity: 1, scale: 1 }}
