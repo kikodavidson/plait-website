@@ -15,11 +15,11 @@ export default function PlatformMarquee() {
   const doubled = [...platforms, ...platforms, ...platforms, ...platforms];
 
   return (
-    <div className="bg-[#f4f2ee] border-y border-gray-100 py-8 overflow-hidden">
+    <div className="bg-white border-y border-gray-100 py-4 overflow-hidden">
       <div className="marquee-track">
         {doubled.map((p, i) => (
           <div key={i} className="flex items-center gap-10 px-10">
-            <img src={p.logo} alt={p.name} className="h-28 w-auto object-contain" style={{ maxWidth: '320px' }} />
+            <img src={p.logo} alt={p.name} className="h-16 w-auto object-contain" style={{ maxWidth: '320px' }} />
             <span className="text-[#D0D0D0] text-2xl">·</span>
           </div>
         ))}
