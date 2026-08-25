@@ -64,7 +64,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.35 }}
-            className="text-[#525252] text-lg max-w-xl leading-relaxed mt-10 mb-10 font-medium"
+            className="text-black text-lg max-w-xl leading-relaxed mt-10 mb-10 font-medium"
           >
             Like couples therapy for your ads, website, attribution, and analytics. Plait uses{" "}
             <span className="italic font-semibold text-indigo-600">

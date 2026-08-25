@@ -99,12 +99,8 @@ html {
 /* Hero headline — dimensional dark gradient with a soft white highlight at the top,
    reads like printed ink rather than a flat AI fill. */
 .hero-headline {
-  background: linear-gradient(180deg, #8a9099 0%, #6a6e74 30%, #3a3a3a 65%, #262626 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: #2d2d2d;
-  text-shadow: none;
+  color: #000000;
+  -webkit-text-fill-color: #000000;
 }
 
 /* Soft, diffused shadows for matte depth */

@@ -49,9 +49,7 @@ export default function Navbar() {
               key={l.path}
               to={l.path}
               className={`text-sm font-semibold transition-colors ${
-                scrolled
-                  ? location.pathname === l.path ? "text-[#2d2d2d]" : "text-[#525252] hover:text-[#2d2d2d]"
-                  : location.pathname === l.path ? "text-[#2d2d2d]" : "text-[#525252] hover:text-[#2d2d2d]"
+                location.pathname === l.path ? "text-black" : "text-black/70 hover:text-black"
               }`}
             >
               {l.label}
@@ -79,7 +77,7 @@ export default function Navbar() {
           >
             <div className="px-6 py-5 flex flex-col gap-4">
               {links.map((l) => (
-                <Link key={l.path} to={l.path} className="text-sm font-semibold text-[#525252] hover:text-[#2d2d2d] py-1">
+                <Link key={l.path} to={l.path} className="text-sm font-semibold text-black/70 hover:text-black py-1">
                   {l.label}
                 </Link>
               ))}
