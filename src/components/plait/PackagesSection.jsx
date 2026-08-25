@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Check, Star } from "lucide-react";
+import { Check } from "lucide-react";
 import { LiquidMetalButton } from "@/components/ui/liquid-metal-button";
 
 const packages = [
@@ -17,7 +17,7 @@ const packages = [
       "90 day growth roadmap",
     ],
     cta: "Book an Audit",
-    highlight: false,
+    featured: false,
   },
   {
     name: "Growth Partner",
@@ -32,7 +32,7 @@ const packages = [
       "Flexible pricing models",
     ],
     cta: "Let's Talk",
-    highlight: true,
+    featured: true,
   },
   {
     name: "Launch System",
@@ -46,26 +46,26 @@ const packages = [
       "Messaging and offer strategy",
     ],
     cta: "Let's Launch",
-    highlight: false,
+    featured: false,
   },
 ];
 
 export default function PackagesSection() {
   const navigate = useNavigate();
   return (
-    <section className="py-28 px-6 border-t border-gray-100/50">
+    <section className="py-24 px-6 border-t border-gray-100/50">
       <div className="max-w-6xl mx-auto">
         <div className="mb-14 max-w-xl">
           <p className="text-xs font-bold text-[#2d2d2d] uppercase tracking-widest mb-3">Packages</p>
-          <h2 className="text-4xl sm:text-5xl font-bold text-[#2d2d2d] leading-tight mb-4 font-body">
+          <h2 className="text-4xl sm:text-5xl font-bold text-[#2d2d2d] leading-tight mb-4 font-body text-balance">
             Pick your entry point.
           </h2>
-          <p className="text-[#525252] text-base">
-            Not sure where to start? The Clarity Audit tells you exactly what to fix. Most clients begin there.
+          <p className="text-[#525252] text-base text-pretty">
+            Not sure where to start? The Clarity Audit tells you exactly what to fix. Most clients begin there. Reach out for pricing.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid lg:grid-cols-3 gap-4 items-stretch">
           {packages.map((pkg, i) => (
             <motion.div
               key={pkg.name}
@@ -74,38 +74,36 @@ export default function PackagesSection() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
               whileHover={{ scale: 1.03 }}
-              className={`relative rounded-2xl border p-8 flex flex-col bg-white shadow-md transition-all ${
-                pkg.highlight
-                  ? "border-[#4F46E5] shadow-lg md:scale-105"
-                  : "border-gray-100 hover:border-gray-200 hover:shadow-lg"
+              className={`rounded-lg p-8 flex flex-col border transition-all ${
+                pkg.featured
+                  ? "bg-[#2d2d2d] text-white shadow-2xl lg:scale-105 border-transparent"
+                  : "bg-[#F8F7FF] border-gray-200 hover:shadow-lg hover:border-gray-300"
               }`}
             >
-              {pkg.highlight && (
-                <span className="absolute right-3 top-3 flex items-center gap-1 rounded-md bg-[#4F46E5] px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white">
-                  <Star className="h-3 w-3 fill-current" /> Popular
-                </span>
-              )}
-
-              <div className="mb-6">
-                <p className="text-xs font-bold uppercase tracking-widest mb-2 text-[#2d2d2d]">
-                  {pkg.name}
-                </p>
-                <p className="text-sm leading-relaxed text-[#525252]">
+              <div className="text-left mb-8">
+                <h4 className="font-bold text-lg">{pkg.name}</h4>
+                <p className={`text-sm ${pkg.featured ? "text-white/60" : "text-[#525252]"}`}>
                   {pkg.description}
                 </p>
               </div>
 
-              <ul className="space-y-3 flex-1 mb-8">
-                {pkg.items.map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-sm text-[#525252]">
-                    <Check className="w-4 h-4 shrink-0 mt-0.5 text-[#4F46E5]" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
+              <div className="mb-8 text-left">
+                <p className={`text-xs font-bold uppercase tracking-widest ${pkg.featured ? "text-white/70" : "text-[#2d2d2d]"}`}>
+                  Reach out for pricing
+                </p>
+              </div>
 
-              <div className="flex justify-center">
+              <div className="flex justify-center mb-10">
                 <LiquidMetalButton label={pkg.cta} onClick={() => navigate("/book")} />
+              </div>
+
+              <div className={`space-y-4 pt-8 border-t text-left ${pkg.featured ? "border-white/20" : "border-gray-200"}`}>
+                {pkg.items.map((item) => (
+                  <div key={item} className={`flex items-center gap-3 text-sm ${pkg.featured ? "text-white/80" : "text-[#525252]"}`}>
+                    <Check className={`w-4 h-4 shrink-0 ${pkg.featured ? "text-white" : "text-[#4F46E5]"}`} />
+                    {item}
+                  </div>
+                ))}
               </div>
             </motion.div>
           ))}
