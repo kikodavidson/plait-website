@@ -36,7 +36,7 @@ function VideoCard({ t, index, featured }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.12 }}
-      className="relative rounded-3xl overflow-hidden shadow-xl aspect-video"
+      className="relative overflow-hidden border border-black aspect-video"
     >
       {playing ? (
         <iframe
@@ -106,7 +106,7 @@ export default function TestimonialsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.24 }}
-              className="bg-[#5E58D5] rounded-3xl p-8 flex flex-col justify-between flex-1"
+              className="bg-[#5E58D5] border border-black p-8 flex flex-col justify-between flex-1"
             >
               <Quote className="w-8 h-8 text-indigo-300 mb-4" />
               <p className="text-[#f4f2ee] text-base font-medium leading-relaxed flex-1 mb-6" style={{ fontFamily: 'Inter, sans-serif', letterSpacing: '0.02em' }}>
