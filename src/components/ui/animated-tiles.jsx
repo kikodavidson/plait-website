@@ -90,11 +90,11 @@ export function AnimatedTiles({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [rows, cols, imageUrl]);
 
-  return (
-    <div
-      ref={tilesRef}
-      className={cn("relative w-full h-full hidden", className)}
-      style={{ backgroundColor }} />);
+  return null;
+
+
+
+
 
 
 }
