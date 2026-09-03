@@ -8,7 +8,7 @@ export default function AnimatedTextRoller({
   interval = 2000,
   heightRem = 2,
   className = "",
-  lineClassName = "",
+  lineClassName = ""
 }) {
   const [index, setIndex] = useState(0);
 
@@ -21,22 +21,22 @@ export default function AnimatedTextRoller({
   return (
     <div
       className={cn("overflow-hidden text-left", className)}
-      style={{ height: `${heightRem}rem` }}
-    >
+      style={{ height: `${heightRem}rem` }}>
+      
       <div
         className="transition-transform duration-700 ease-in-out"
-        style={{ transform: `translateY(-${index * heightRem}rem)` }}
-      >
-        {words.map((w, i) => (
-          <p
-            key={i}
-            className={cn("flex items-center justify-start whitespace-nowrap", lineClassName)}
-            style={{ height: `${heightRem}rem` }}
-          >
+        style={{ transform: `translateY(-${index * heightRem}rem)` }}>
+        
+        {words.map((w, i) =>
+        <p
+          key={i}
+          className={cn("flex items-center justify-start whitespace-nowrap hidden", lineClassName)}
+          style={{ height: `${heightRem}rem` }}>
+          
             {w}
           </p>
-        ))}
+        )}
       </div>
-    </div>
-  );
+    </div>);
+
 }
