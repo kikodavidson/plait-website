@@ -27,30 +27,14 @@ export default function HeroSection() {
         >
           <span className="block">Growth</span>
           <span className="block">built around</span>
-          <span className="relative inline-block">
-            your customer.
-            <svg
-              className="absolute -bottom-1 left-0 w-full"
-              viewBox="0 0 300 20"
-              fill="none"
-              preserveAspectRatio="none"
-              aria-hidden="true"
-            >
-              <path
-                d="M4 12 C 70 6, 150 16, 296 9"
-                stroke="#2d2d2d"
-                strokeWidth="4"
-                strokeLinecap="round"
-              />
-            </svg>
-          </span>
+          <span className="block">your customer.</span>
         </motion.h1>
 
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.25 }}
-          className="mt-12 flex flex-wrap items-center justify-center gap-4"
+          className="mt-20 flex flex-wrap items-center justify-center gap-4"
         >
           <button
             onClick={() => navigate("/services")}
