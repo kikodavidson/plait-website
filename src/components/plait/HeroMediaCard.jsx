@@ -8,7 +8,7 @@ export default function HeroMediaCard({ className = "" }) {
   return (
     <div
       className={cn(
-        "relative aspect-[4/3] w-full max-w-[520px] overflow-hidden rounded-2xl",
+        "relative aspect-[4/3] w-full max-w-[520px] overflow-hidden",
         className
       )}
     >

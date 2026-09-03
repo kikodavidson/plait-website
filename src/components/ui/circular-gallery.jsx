@@ -201,7 +201,7 @@ const CircularGallery = React.forwardRef(
               >
                 <div
                   className={cn(
-                    "relative w-full h-full rounded-2xl overflow-hidden border border-white/10 shadow-2xl",
+                    "relative w-full h-full overflow-hidden border border-white/10 shadow-2xl",
                     hasImage
                       ? "bg-card/70 backdrop-blur-lg"
                       : "flex flex-col items-center justify-center text-center px-6"
