@@ -1,18 +1,17 @@
 import { useEffect, useRef } from "react";
+import { cn } from "@/lib/utils";
 
 /**
- * AnimatedTiles — renders an image as a pixelated grid of tiles that fade out
- * in a row-staggered sweep, revealing whatever sits behind it. Used as a
- * transition overlay between media items.
+ * AnimatedTiles — renders an image as a pixelated grid of tiles whose
+ * opacities shimmer in a loop (upper tiles stay visible, lower tiles fade
+ * out), filling whatever container it is placed in.
  */
 export function AnimatedTiles({
   rows = 12,
   cols = 8,
   imageUrl,
   backgroundColor = "transparent",
-  revealDuration = 0.55,
-  stagger = 0.06,
-  onRevealed,
+  className = "",
 }) {
   const tilesRef = useRef(null);
 
@@ -33,72 +32,67 @@ export function AnimatedTiles({
 
   useEffect(() => {
     const tilesEl = tilesRef.current;
-    if (!tilesEl || !imageUrl) return;
+    if (!tilesEl) return;
+
     tilesEl.innerHTML = "";
 
-    const rafIds = new Map();
-    let remaining = 0;
-
-    const buildTile = (row, col) => {
-      const tile = document.createElement("div");
-      tile.style.position = "absolute";
-      tile.style.left = `${(col / cols) * 100}%`;
-      tile.style.top = `${(row / rows) * 100}%`;
-      tile.style.width = `${100 / cols}%`;
-      tile.style.height = `${100 / rows}%`;
-      tile.style.backgroundImage = `url(${imageUrl})`;
-      tile.style.backgroundSize = `${cols * 100}% ${rows * 100}%`;
-      tile.style.backgroundPosition = `${(col / (cols - 1)) * 100}% ${
-        (row / (rows - 1)) * 100
-      }%`;
-      tile.style.backgroundRepeat = "no-repeat";
-      return tile;
-    };
+    const rafIds = [];
 
     for (let row = 0; row < rows; row++) {
       for (let col = 0; col < cols; col++) {
         const maxOpacity = maxOpacities[row]?.[col] ?? 0;
         if (maxOpacity === 0) continue;
-        const tile = buildTile(row, col);
-        tile.style.opacity = String(maxOpacity);
+
+        const tile = document.createElement("div");
+        tile.style.position = "absolute";
+        tile.style.left = `${(col / cols) * 100}%`;
+        tile.style.top = `${(row / rows) * 100}%`;
+        tile.style.width = `${100 / cols}%`;
+        tile.style.height = `${100 / rows}%`;
+        tile.style.backgroundImage = `url(${imageUrl})`;
+        tile.style.backgroundSize = `${cols * 100}% ${rows * 100}%`;
+        tile.style.backgroundPosition = `${(col / (cols - 1)) * 100}% ${
+          (row / (rows - 1)) * 100
+        }%`;
+        tile.style.backgroundRepeat = "no-repeat";
+        tile.style.opacity = "0";
         tilesEl.appendChild(tile);
-        remaining++;
 
-        const key = `${row}-${col}`;
-        const delay = row * stagger + Math.random() * 0.08;
-        let start = null;
+        const variance = 0.4;
+        const minOpacity = Math.max(0, maxOpacity - variance);
+        const duration = Math.random() * 0.25 + 0.75; // 0.75 to 1 second
+        const startOffset = Math.random() * duration;
+        let startTime = null;
 
-        const animate = (now) => {
-          if (start === null) start = now;
-          const elapsed = (now - start) / 1000;
-          const progress = Math.max(0, Math.min(1, (elapsed - delay) / revealDuration));
-          tile.style.opacity = String(maxOpacity * (1 - progress));
-          if (progress < 1) {
-            rafIds.set(key, requestAnimationFrame(animate));
-          } else {
-            rafIds.delete(key);
-            remaining -= 1;
-            if (remaining <= 0 && onRevealed) onRevealed();
-          }
+        const animate = (currentTime) => {
+          if (startTime === null) startTime = currentTime;
+          const elapsed = (currentTime - startTime) / 1000;
+          const progress = (elapsed + startOffset) % (duration * 2);
+          const normalizedProgress =
+            progress < duration ? progress / duration : (duration * 2 - progress) / duration;
+
+          const opacity = minOpacity + (maxOpacity - minOpacity) * normalizedProgress;
+          tile.style.opacity = Math.max(minOpacity, Math.min(maxOpacity, opacity)).toString();
+
+          rafIds.push(requestAnimationFrame(animate));
         };
-        rafIds.set(key, requestAnimationFrame(animate));
+
+        rafIds.push(requestAnimationFrame(animate));
       }
     }
 
-    if (remaining === 0 && onRevealed) onRevealed();
-
     return () => {
-      rafIds.forEach((id) => cancelAnimationFrame(id));
-      rafIds.clear();
+      rafIds.forEach((frameId) => cancelAnimationFrame(frameId));
       tilesEl.innerHTML = "";
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [rows, cols, imageUrl, revealDuration, stagger]);
+  }, [rows, cols, imageUrl]);
 
   return (
     <div
       ref={tilesRef}
-      style={{ position: "absolute", inset: 0, backgroundColor }}
+      className={cn("relative w-full h-full overflow-hidden", className)}
+      style={{ backgroundColor }}
     />
   );
 }
