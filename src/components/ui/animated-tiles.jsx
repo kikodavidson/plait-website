@@ -3,32 +3,18 @@ import { cn } from "@/lib/utils";
 
 /**
  * AnimatedTiles — renders an image as a pixelated grid of tiles whose
- * opacities shimmer in a loop (upper tiles stay visible, lower tiles fade
- * out), filling whatever container it is placed in.
+ * opacities shimmer in a loop. Tiles fade out toward the edges and bottom,
+ * so the pixel grid itself forms the visual border of the image. Fills
+ * whatever container it is placed in.
  */
 export function AnimatedTiles({
-  rows = 12,
-  cols = 8,
+  rows = 40,
+  cols = 24,
   imageUrl,
   backgroundColor = "transparent",
   className = "",
 }) {
   const tilesRef = useRef(null);
-
-  const maxOpacities = [
-    [0.0, 0.2, 0.4, 0.6, 0.6, 0.4, 0.2, 0.0],
-    [0.2, 0.4, 0.8, 1.0, 1.0, 0.6, 0.4, 0.2],
-    [0.2, 0.4, 1.0, 1.0, 1.0, 0.8, 0.6, 0.2],
-    [0.2, 0.6, 1.0, 1.0, 1.0, 1.0, 0.6, 0.2],
-    [0.2, 0.6, 1.0, 1.0, 1.0, 1.0, 0.6, 0.2],
-    [0.2, 0.6, 1.0, 1.0, 1.0, 1.0, 0.6, 0.2],
-    [0.2, 0.4, 0.8, 1.0, 1.0, 0.8, 0.6, 0.2],
-    [0.2, 0.4, 0.6, 0.8, 0.8, 0.6, 0.4, 0.1],
-    [0.1, 0.2, 0.4, 0.4, 0.4, 0.4, 0.2, 0.1],
-    [0.0, 0.2, 0.2, 0.2, 0.2, 0.2, 0.1, 0.1],
-    [0.0, 0.1, 0.1, 0.1, 0.1, 0.1, 0.0, 0.0],
-    [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
-  ];
 
   useEffect(() => {
     const tilesEl = tilesRef.current;
@@ -36,12 +22,19 @@ export function AnimatedTiles({
 
     tilesEl.innerHTML = "";
 
-    const rafIds = [];
+    const tiles = [];
 
     for (let row = 0; row < rows; row++) {
       for (let col = 0; col < cols; col++) {
-        const maxOpacity = maxOpacities[row]?.[col] ?? 0;
-        if (maxOpacity === 0) continue;
+        const nx = cols > 1 ? col / (cols - 1) : 0;
+        const ny = rows > 1 ? row / (rows - 1) : 0;
+
+        // Radial falloff — full opacity toward the upper middle, dissolving
+        // out toward the edges and the bottom, like the original 12x8 map.
+        const dx = (nx - 0.5) / 0.55;
+        const dy = (ny - 0.3) / 0.75;
+        const maxOpacity = Math.max(0, Math.min(1, 1 - Math.sqrt(dx * dx + dy * dy)));
+        if (maxOpacity <= 0) continue;
 
         const tile = document.createElement("div");
         tile.style.position = "absolute";
@@ -58,31 +51,40 @@ export function AnimatedTiles({
         tile.style.opacity = "0";
         tilesEl.appendChild(tile);
 
-        const variance = 0.4;
-        const minOpacity = Math.max(0, maxOpacity - variance);
-        const duration = Math.random() * 0.25 + 0.75; // 0.75 to 1 second
-        const startOffset = Math.random() * duration;
-        let startTime = null;
-
-        const animate = (currentTime) => {
-          if (startTime === null) startTime = currentTime;
-          const elapsed = (currentTime - startTime) / 1000;
-          const progress = (elapsed + startOffset) % (duration * 2);
-          const normalizedProgress =
-            progress < duration ? progress / duration : (duration * 2 - progress) / duration;
-
-          const opacity = minOpacity + (maxOpacity - minOpacity) * normalizedProgress;
-          tile.style.opacity = Math.max(minOpacity, Math.min(maxOpacity, opacity)).toString();
-
-          rafIds.push(requestAnimationFrame(animate));
-        };
-
-        rafIds.push(requestAnimationFrame(animate));
+        tiles.push({
+          el: tile,
+          max: maxOpacity,
+          min: Math.max(0, maxOpacity - 0.4),
+          duration: Math.random() * 0.25 + 0.75, // 0.75 to 1 second
+          offset: Math.random() * 1.25,
+        });
       }
     }
 
+    let rafId;
+    let startTime = null;
+
+    const animate = (currentTime) => {
+      if (startTime === null) startTime = currentTime;
+      const elapsed = (currentTime - startTime) / 1000;
+
+      for (let i = 0; i < tiles.length; i++) {
+        const { el, max, min, duration, offset } = tiles[i];
+        const progress = (elapsed + offset) % (duration * 2);
+        const normalizedProgress =
+          progress < duration ? progress / duration : (duration * 2 - progress) / duration;
+
+        const opacity = min + (max - min) * normalizedProgress;
+        el.style.opacity = Math.max(min, Math.min(max, opacity)).toString();
+      }
+
+      rafId = requestAnimationFrame(animate);
+    };
+
+    rafId = requestAnimationFrame(animate);
+
     return () => {
-      rafIds.forEach((frameId) => cancelAnimationFrame(frameId));
+      cancelAnimationFrame(rafId);
       tilesEl.innerHTML = "";
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -91,7 +93,7 @@ export function AnimatedTiles({
   return (
     <div
       ref={tilesRef}
-      className={cn("relative w-full h-full overflow-hidden", className)}
+      className={cn("relative w-full h-full", className)}
       style={{ backgroundColor }}
     />
   );
