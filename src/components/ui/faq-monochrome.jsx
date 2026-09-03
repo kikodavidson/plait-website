@@ -333,7 +333,7 @@ function FAQ1() {
   };
 
   return (
-    <div className={`relative min-h-screen w-full overflow-hidden transition-colors duration-700 ${palette.surface}`}>
+    <div className={`relative w-full overflow-hidden transition-colors duration-700 ${palette.surface}`}>
       <div className="absolute inset-0 z-0" style={{ background: palette.aurora }} />
       <div
         className="pointer-events-none absolute inset-0 z-0 opacity-80"
@@ -341,7 +341,7 @@ function FAQ1() {
       />
 
       <section
-        className={`relative z-10 mx-auto flex max-w-4xl flex-col gap-12 px-6 py-24 lg:max-w-5xl lg:px-12 ${
+        className={`relative z-10 mx-auto flex max-w-4xl flex-col gap-6 px-6 py-12 lg:max-w-5xl lg:px-12 ${
           hasEntered ? "faq1-fade--ready" : "faq1-fade"
         }`}
       >
@@ -357,8 +357,8 @@ function FAQ1() {
           <span className="faq1-intro__tick" aria-hidden="true" />
         </div>
 
-        <header className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
-          <div className="space-y-4">
+        <header className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+          <div className="space-y-2">
             <p className={`text-xs uppercase tracking-[0.35em] ${palette.muted}`}>Deliverables</p>
             <h1 className={`text-4xl font-semibold leading-tight md:text-5xl ${palette.heading}`}>
               What you get.
@@ -390,7 +390,7 @@ function FAQ1() {
           </button>
         </header>
 
-        <ul className="space-y-4">
+        <ul className="space-y-2">
           {faqs.map((item, index) => {
             const open = activeIndex === index;
             const panelId = `faq-panel-${index}`;
@@ -419,10 +419,10 @@ function FAQ1() {
                   aria-expanded={open}
                   onClick={() => toggleQuestion(index)}
                   style={{ "--faq-outline": theme === "dark" ? "rgba(255,255,255,0.35)" : "rgba(17,17,17,0.25)" }}
-                  className="relative flex w-full items-start gap-6 px-8 py-7 text-left transition-colors duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--faq-outline)]"
+                  className="relative flex w-full items-center gap-5 px-5 py-4 text-left transition-colors duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--faq-outline)]"
                 >
                   <span
-                    className={`relative flex h-12 w-12 shrink-0 items-center justify-center rounded-full border transition-all duration-500 group-hover:scale-105 ${palette.iconRing} ${palette.iconSurface}`}
+                    className={`relative flex h-9 w-9 shrink-0 items-center justify-center rounded-full border transition-all duration-500 group-hover:scale-105 ${palette.iconRing} ${palette.iconSurface}`}
                   >
                     <span
                       className={`pointer-events-none absolute inset-0 rounded-full border opacity-30 ${
@@ -440,7 +440,7 @@ function FAQ1() {
                     </svg>
                   </span>
 
-                  <div className="flex flex-1 flex-col gap-4">
+                  <div className="flex flex-1 flex-col gap-2">
                     <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
                       <h2 className={`text-lg font-medium leading-tight sm:text-xl ${palette.heading}`}>
                         {item.question}
