@@ -1,14 +1,22 @@
 import React from "react";
 import { cn } from "@/lib/utils";
-import { AnimatedTiles } from "@/components/ui/animated-tiles";
 
 const IMAGE =
-"https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1260&h=1260&q=80";
+  "https://cdn.prod.website-files.com/6573df751dbab4bb0aac132c/69e121cedcd40a751260f0a9_2a2d4db04953177aef2fde1925614ade22f70a84.png";
 
 export default function HeroMediaCard({ className = "" }) {
-  return null;
-
-
-
-
+  return (
+    <div
+      className={cn(
+        "relative aspect-[4/3] w-full max-w-[520px] overflow-hidden rounded-2xl",
+        className
+      )}
+    >
+      <img
+        src={IMAGE}
+        alt="Two people sitting on a bench looking at their phones"
+        className="absolute inset-0 h-full w-full object-cover"
+      />
+    </div>
+  );
 }
