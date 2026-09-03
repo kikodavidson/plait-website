@@ -2,12 +2,9 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import Navbar from "./plait/Navbar";
 import Footer from "./plait/Footer";
-import DynamicBackground from "./plait/DynamicBackground";
-
 export default function Layout() {
   return (
-    <div className="min-h-screen font-body relative" style={{ background: "transparent" }}>
-      <DynamicBackground />
+    <div className="min-h-screen font-body relative bg-white">
       <div className="relative z-10">
         <Navbar />
         <main>

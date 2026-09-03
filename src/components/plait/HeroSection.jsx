@@ -1,116 +1,78 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { LiquidButton } from "@/components/ui/liquid-glass-button";
-import ShinyButton from "@/components/ui/shiny-button";
-import ConstellationGrid from "@/components/ui/constellation-grid";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import HeroMediaCard from "@/components/plait/HeroMediaCard";
-import AnimatedTextRoller from "@/components/ui/animated-text-roller";
-
-const ROTATING = [
-"Scale.",
-"Convert More Customers.",
-"Attract Attention.",
-"Attribute Sales.",
-"Improve Performance.",
-"Maximize Clicks."];
-
 
 export default function HeroSection() {
   const navigate = useNavigate();
+  const mediaRef = useRef(null);
+
+  // Media scales up as it scrolls into view (DEPT-style)
+  const { scrollYProgress } = useScroll({
+    target: mediaRef,
+    offset: ["start end", "center center"],
+  });
+  const scale = useTransform(scrollYProgress, [0, 1], [0.65, 1]);
 
   return (
-    <section className="hero-gradient min-h-[92vh] flex flex-col items-start justify-center text-left px-6 pt-40 sm:pt-48 pb-20 relative overflow-hidden">
-      <ConstellationGrid className="pointer-events-none opacity-[0.6]" />
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-indigo-200/30 rounded-full blur-3xl pointer-events-none" />
+    <section className="bg-white w-full overflow-hidden">
+      {/* Headline + buttons */}
+      <div className="min-h-[68vh] flex flex-col items-center justify-center px-6 pt-24 pb-16 text-center">
+        <motion.h1
+          className="hero-headline text-[clamp(2.6rem,9vw,7.5rem)] leading-[0.92] tracking-[-0.03em] uppercase font-bold"
+          style={{ fontFamily: "Inter, sans-serif", letterSpacing: "-0.03em" }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+        >
+          <span className="block">Growth</span>
+          <span className="block">built around</span>
+          <span className="relative inline-block">
+            your customer.
+            <svg
+              className="absolute -bottom-1 left-0 w-full"
+              viewBox="0 0 300 20"
+              fill="none"
+              preserveAspectRatio="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M4 12 C 70 6, 150 16, 296 9"
+                stroke="#2d2d2d"
+                strokeWidth="4"
+                strokeLinecap="round"
+              />
+            </svg>
+          </span>
+        </motion.h1>
 
-      <div className="relative w-full max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center lg:pl-16 lg:pr-8 opacity-100">
-        <div className="flex flex-col items-start">
-          {/* Static headline — continuous printed-ink gradient across all lines */}
-          <motion.h1
-            className="hero-headline text-[clamp(1.75rem,3.8vw,3.2rem)] leading-[0.95] tracking-[-0.03em] mb-0 uppercase font-bold [font-family:'Neue_Haas_Grotesk_Display_Pro',_sans-serif]"
-            style={{ fontFamily: "Inter, sans-serif", letterSpacing: "-0.03em" }}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}>
-            
-            <span className="block whitespace-nowrap text-[clamp(2.6rem,5.8vw,4.6rem)] leading-[0.95]">Growth</span>
-            <span className="block whitespace-nowrap">built around</span>
-            <span className="relative inline-block whitespace-nowrap">
-              your customer.
-              <svg
-                className="absolute -bottom-1 left-0 w-full"
-                viewBox="0 0 300 20"
-                fill="none"
-                preserveAspectRatio="none"
-                aria-hidden="true"
-              >
-                <path
-                  d="M4 12 C 70 6, 150 16, 296 9"
-                  stroke="#2d2d2d"
-                  strokeWidth="4"
-                  strokeLinecap="round"
-                />
-              </svg>
-            </span>
-          </motion.h1>
-
-          {/* Rotating word — rolls upward */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="mt-2"
-            style={{ fontFamily: "Inter, sans-serif" }}>
-            
-            <AnimatedTextRoller
-              words={ROTATING}
-              interval={2500}
-              heightRem={3}
-              lineClassName="hero-headline text-2xl sm:text-3xl lg:text-4xl font-black uppercase tracking-[-0.02em]" />
-            
-          </motion.div>
-
-          {/* Subtitle */}
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.35 }}
-            className="text-black text-lg max-w-xl leading-relaxed mt-10 mb-10 font-medium">
-            
-            Like couples therapy for your ads, website, attribution, and analytics. Plait uses{" "}
-            <span className="italic font-semibold text-indigo-600">
-              Battle Tested Marketing, Enhanced by AI.
-            </span>
-          </motion.p>
-
-          {/* CTA */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.45 }}
-            className="flex flex-col sm:flex-row items-start gap-3 sm:gap-4">
-            
-            <LiquidButton
-              size="xl"
-              className="bg-white/30 text-[#2d2d2d] font-semibold"
-              onClick={() => navigate("/services")}>
-              
-              What We Do
-            </LiquidButton>
-            <ShinyButton onClick={() => navigate("/book")}>
-              Book a Free Audit
-              <span className="w-5 h-5 sm:w-7 sm:h-7 bg-white/20 rounded-full inline-flex items-center justify-center ml-2 align-middle text-xs sm:text-sm">
-                →
-              </span>
-            </ShinyButton>
-          </motion.div>
-        </div>
-
-        <div className="flex justify-center lg:justify-end mt-12 lg:mt-0">
-          <HeroMediaCard />
-        </div>
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.25 }}
+          className="mt-12 flex flex-wrap items-center justify-center gap-4"
+        >
+          <button
+            onClick={() => navigate("/services")}
+            className="rounded-full border border-black bg-transparent px-7 py-3 text-xs font-bold uppercase tracking-[0.15em] text-black transition-colors hover:bg-black hover:text-white"
+          >
+            What We Do
+          </button>
+          <button
+            onClick={() => navigate("/book")}
+            className="rounded-full border border-black bg-black px-7 py-3 text-xs font-bold uppercase tracking-[0.15em] text-white transition-colors hover:bg-white hover:text-black"
+          >
+            Book a Free Audit
+          </button>
+        </motion.div>
       </div>
-    </section>);
 
+      {/* Scroll-scaling media */}
+      <div ref={mediaRef} className="flex justify-center px-6 pb-24">
+        <motion.div style={{ scale }} className="w-full max-w-5xl origin-center">
+          <HeroMediaCard className="max-w-none" />
+        </motion.div>
+      </div>
+    </section>
+  );
 }
