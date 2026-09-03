@@ -83,17 +83,17 @@
     --font-display: 'Inter', sans-serif;
 
     --background: 0 0% 100%;
-    --foreground: 30 4% 11%;
+    --foreground: 0 0% 0%;
     --card: 40 14% 94%;
-    --card-foreground: 30 4% 11%;
+    --card-foreground: 0 0% 0%;
     --popover: 40 14% 94%;
-    --popover-foreground: 30 4% 11%;
+    --popover-foreground: 0 0% 0%;
     --primary: 150 24% 50%;
     --primary-foreground: 40 14% 94%;
     --secondary: 213 78% 87%;
     --secondary-foreground: 30 4% 11%;
     --muted: 40 10% 92%;
-    --muted-foreground: 30 4% 40%;
+    --muted-foreground: 0 0% 0%;
     --accent: 150 24% 50%;
     --accent-foreground: 40 14% 94%;
     --destructive: 0 72% 55%;
@@ -132,6 +132,8 @@
     -webkit-font-smoothing: antialiased;
     letter-spacing: 0.04em;
   }
+
+
 }
 
 html {

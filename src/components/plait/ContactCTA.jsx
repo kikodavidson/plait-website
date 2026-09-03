@@ -16,15 +16,15 @@ export default function ContactCTA() {
           className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center"
         >
           <div>
-            <p className="text-xs font-bold text-[#2d2d2d] uppercase tracking-widest mb-4">Not Sure What You Need?</p>
-            <h2 className="font-body text-4xl sm:text-5xl font-bold text-[#2d2d2d] tracking-tight mb-6">That's normal.</h2>
-            <p className="text-[#525252] leading-relaxed mb-4">
+            <p className="text-xs font-bold text-black uppercase tracking-widest mb-4">Not Sure What You Need?</p>
+            <h2 className="font-body text-4xl sm:text-5xl font-bold text-black tracking-tight mb-6">That's normal.</h2>
+            <p className="text-black leading-relaxed mb-4">
               Most clients don't come to us asking for a new attribution model, a landing page rebuild, or a creative testing framework.
             </p>
-            <p className="text-[#525252] leading-relaxed mb-4">
+            <p className="text-black leading-relaxed mb-4">
               They come because something feels off. Performance has stalled. Costs are rising. Revenue isn't matching effort.
             </p>
-            <p className="text-[#525252] leading-relaxed font-medium">
+            <p className="text-black leading-relaxed font-medium">
               We help figure out why.
             </p>
           </div>

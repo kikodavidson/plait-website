@@ -109,12 +109,12 @@ export default function PlaitSystem() {
           transition={{ duration: 0.6 }}
           className="mb-8 border-l-2 border-black pl-6"
         >
-          <p className="text-[#2d2d2d] text-base leading-relaxed">
+          <p className="text-black text-base leading-relaxed">
             <span className="font-bold">plait</span>{" "}
-            <span className="text-[#525252] italic text-sm">/plāt/</span>{" "}
-            <span className="text-[#525252] text-xs font-bold uppercase tracking-widest">noun</span>
+            <span className="text-black italic text-sm">/plāt/</span>{" "}
+            <span className="text-black text-xs font-bold uppercase tracking-widest">noun</span>
             {"  "}
-            <span className="text-[#4D4D4D]">A single length formed by intertwining three or more strands. Stronger, more flexible, and more resistant to unraveling than any single strand alone.</span>
+            <span className="text-black">A single length formed by intertwining three or more strands. Stronger, more flexible, and more resistant to unraveling than any single strand alone.</span>
           </p>
         </motion.div>
 
@@ -131,7 +131,7 @@ export default function PlaitSystem() {
             <p className="text-xs font-bold uppercase tracking-[0.14em] mb-3" style={{ color: state.color }}>
               {state.label}
             </p>
-            <p className="text-[#2d2d2d] font-bold text-3xl sm:text-4xl mb-5 leading-tight" style={{ fontFamily: "Inter, sans-serif" }}>
+            <p className="text-black font-bold text-3xl sm:text-4xl mb-5 leading-tight" style={{ fontFamily: "Inter, sans-serif" }}>
               {state.title}
             </p>
             <p className="text-black text-lg leading-relaxed">{state.body}</p>
@@ -148,7 +148,7 @@ export default function PlaitSystem() {
         >
           {/* Left: toggles */}
           <div>
-            <p className="text-[#4D4D4D] text-sm leading-relaxed mb-6 max-w-md">
+            <p className="text-black text-sm leading-relaxed mb-6 max-w-md">
               Toggle a strand off and watch what breaks. This is what happens when ads, site, and
               tracking aren't speaking to each other.
             </p>
