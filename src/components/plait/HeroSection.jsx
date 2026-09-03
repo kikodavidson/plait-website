@@ -28,16 +28,16 @@ export default function HeroSection() {
         <div className="flex flex-col items-start">
           {/* Static headline — continuous printed-ink gradient across all lines */}
           <motion.h1
-            className="hero-headline text-[clamp(2rem,5.2vw,3.8rem)] leading-[0.95] tracking-[-0.03em] mb-0 uppercase font-bold [font-family:'Neue_Haas_Grotesk_Display_Pro',_sans-serif]"
+            className="hero-headline text-[clamp(1.75rem,3.8vw,3.2rem)] leading-[0.95] tracking-[-0.03em] mb-0 uppercase font-bold [font-family:'Neue_Haas_Grotesk_Display_Pro',_sans-serif]"
             style={{ fontFamily: "Inter, sans-serif", letterSpacing: "-0.03em" }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}>
             
-            <span className="block text-[clamp(3.2rem,7.5vw,5.5rem)] leading-[0.95]">Growth</span>
-            <span className="block">built around</span>
-            <span className="relative inline-block">
-              your customer
+            <span className="block whitespace-nowrap text-[clamp(2.6rem,5.8vw,4.6rem)] leading-[0.95]">Growth</span>
+            <span className="block whitespace-nowrap">built around</span>
+            <span className="relative inline-block whitespace-nowrap">
+              your customer.
               <svg
                 className="absolute -bottom-1 left-0 w-full"
                 viewBox="0 0 300 20"
@@ -53,7 +53,6 @@ export default function HeroSection() {
                 />
               </svg>
             </span>
-            .
           </motion.h1>
 
           {/* Rotating word — rolls upward */}
