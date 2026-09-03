@@ -34,11 +34,26 @@ export default function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}>
             
-            Growth built
-            <br />
-            around your
-            <br />
-            customer.
+            <span className="block text-[clamp(3.2rem,7.5vw,5.5rem)] leading-[0.95]">Growth</span>
+            <span className="block">built around</span>
+            <span className="relative inline-block">
+              your customer
+              <svg
+                className="absolute -bottom-1 left-0 w-full"
+                viewBox="0 0 300 20"
+                fill="none"
+                preserveAspectRatio="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M4 12 C 70 6, 150 16, 296 9"
+                  stroke="#2d2d2d"
+                  strokeWidth="4"
+                  strokeLinecap="round"
+                />
+              </svg>
+            </span>
+            .
           </motion.h1>
 
           {/* Rotating word — rolls upward */}
