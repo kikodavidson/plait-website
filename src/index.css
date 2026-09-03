@@ -109,7 +109,7 @@
     --blush: #EE9CB4;
     --sand-pink: #E8B8BC;
     --cloud-white: #EEF1EF;
-    --radius: 0.5rem;
+    --radius: 0rem;
     --sidebar-background: 40 14% 94%;
     --sidebar-foreground: 30 4% 11%;
     --sidebar-primary: 243 60% 59%;
@@ -136,6 +136,11 @@
 
 html {
   scroll-behavior: smooth;
+}
+
+/* Zero corner rounding everywhere */
+* {
+  border-radius: 0 !important;
 }
 
 /* Backgrounds — transparent to let the DynamicBackground canvas show */
