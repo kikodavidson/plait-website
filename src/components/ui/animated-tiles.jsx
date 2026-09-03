@@ -12,7 +12,7 @@ export function AnimatedTiles({
   cols = 24,
   imageUrl,
   backgroundColor = "transparent",
-  className = "",
+  className = ""
 }) {
   const tilesRef = useRef(null);
 
@@ -38,15 +38,15 @@ export function AnimatedTiles({
 
         const tile = document.createElement("div");
         tile.style.position = "absolute";
-        tile.style.left = `${(col / cols) * 100}%`;
-        tile.style.top = `${(row / rows) * 100}%`;
+        tile.style.left = `${col / cols * 100}%`;
+        tile.style.top = `${row / rows * 100}%`;
         tile.style.width = `${100 / cols}%`;
         tile.style.height = `${100 / rows}%`;
         tile.style.backgroundImage = `url(${imageUrl})`;
         tile.style.backgroundSize = `${cols * 100}% ${rows * 100}%`;
-        tile.style.backgroundPosition = `${(col / (cols - 1)) * 100}% ${
-          (row / (rows - 1)) * 100
-        }%`;
+        tile.style.backgroundPosition = `${col / (cols - 1) * 100}% ${
+        row / (rows - 1) * 100}%`;
+
         tile.style.backgroundRepeat = "no-repeat";
         tile.style.opacity = "0";
         tilesEl.appendChild(tile);
@@ -56,7 +56,7 @@ export function AnimatedTiles({
           max: maxOpacity,
           min: Math.max(0, maxOpacity - 0.4),
           duration: Math.random() * 0.25 + 0.75, // 0.75 to 1 second
-          offset: Math.random() * 1.25,
+          offset: Math.random() * 1.25
         });
       }
     }
@@ -72,7 +72,7 @@ export function AnimatedTiles({
         const { el, max, min, duration, offset } = tiles[i];
         const progress = (elapsed + offset) % (duration * 2);
         const normalizedProgress =
-          progress < duration ? progress / duration : (duration * 2 - progress) / duration;
+        progress < duration ? progress / duration : (duration * 2 - progress) / duration;
 
         const opacity = min + (max - min) * normalizedProgress;
         el.style.opacity = Math.max(min, Math.min(max, opacity)).toString();
@@ -93,8 +93,8 @@ export function AnimatedTiles({
   return (
     <div
       ref={tilesRef}
-      className={cn("relative w-full h-full", className)}
-      style={{ backgroundColor }}
-    />
-  );
+      className={cn("relative w-full h-full hidden", className)}
+      style={{ backgroundColor }} />);
+
+
 }
