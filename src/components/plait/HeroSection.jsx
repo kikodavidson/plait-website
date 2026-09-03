@@ -17,9 +17,9 @@ export default function HeroSection() {
   return (
     <section className="bg-white w-full overflow-hidden">
       {/* Headline + buttons */}
-      <div className="min-h-[68vh] flex flex-col items-center justify-center px-6 pt-24 pb-16 text-center">
+      <div className="min-h-[72vh] flex flex-col items-center justify-center px-6 pt-44 pb-20 text-center">
         <motion.h1
-          className="hero-headline text-[clamp(2.6rem,9vw,7.5rem)] leading-[0.92] tracking-[-0.03em] uppercase font-bold"
+          className="hero-headline text-[clamp(2rem,5.5vw,4.5rem)] leading-[0.95] tracking-[-0.03em] uppercase font-bold"
           style={{ fontFamily: "Inter, sans-serif", letterSpacing: "-0.03em" }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
