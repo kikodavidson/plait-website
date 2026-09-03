@@ -237,6 +237,10 @@ function FAQ1() {
       .faq1-fade--ready {
         animation: faq1-fade-up 860ms cubic-bezier(0.22, 0.68, 0, 1) forwards;
       }
+      .faq1-solid-text {
+        background: none;
+        -webkit-text-fill-color: currentColor;
+      }
     `;
 
     document.head.appendChild(style);
@@ -360,7 +364,7 @@ function FAQ1() {
         <header className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div className="space-y-2">
             <p className={`text-xs uppercase tracking-[0.35em] ${palette.muted}`}>Deliverables</p>
-            <h1 className={`text-4xl font-semibold leading-tight md:text-5xl ${palette.heading}`}>
+            <h1 className={`faq1-solid-text text-4xl font-semibold leading-tight md:text-5xl ${palette.heading}`}>
               What you get.
             </h1>
             <p className={`max-w-xl text-base ${palette.muted}`}>
@@ -442,7 +446,7 @@ function FAQ1() {
 
                   <div className="flex flex-1 flex-col gap-2">
                     <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
-                      <h2 className={`text-lg font-medium leading-tight sm:text-xl ${palette.heading}`}>
+                      <h2 className={`faq1-solid-text text-lg font-medium leading-tight sm:text-xl ${palette.heading}`}>
                         {item.question}
                       </h2>
                       {item.meta && (
