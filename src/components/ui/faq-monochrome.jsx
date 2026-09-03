@@ -364,7 +364,7 @@ function FAQ1() {
               What you get.
             </h1>
             <p className={`max-w-xl text-base ${palette.muted}`}>
-              Everything included when you partner with our team, condensed into calm monochrome clarity.
+              Everything included when you partner with our team.
             </p>
           </div>
 
