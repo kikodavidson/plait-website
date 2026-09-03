@@ -22,6 +22,7 @@ export default function HeroSection() {
   return (
     <section className="hero-gradient min-h-[92vh] flex flex-col items-start justify-center text-left px-6 pt-40 sm:pt-48 pb-20 relative overflow-hidden">
       <ConstellationGrid className="pointer-events-none opacity-[0.6]" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-indigo-200/30 rounded-full blur-3xl pointer-events-none" />
 
       <div className="relative w-full max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center lg:pl-16 lg:pr-8 opacity-100">
         <div className="flex flex-col items-start">
