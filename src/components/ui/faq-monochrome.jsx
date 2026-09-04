@@ -83,20 +83,23 @@ const palettes = {
     overlay: "linear-gradient(130deg, rgba(255,255,255,0.04) 0%, transparent 65%)",
   },
   light: {
-    surface: "bg-[#B34A08] text-neutral-900",
+    surface: "bg-white text-neutral-900",
     panel: "bg-white/80",
     border: "border-neutral-200",
     heading: "text-neutral-900",
     muted: "text-neutral-700",
+    accent: "text-[#B34A08]",
     iconRing: "border-neutral-300",
     iconSurface: "bg-neutral-900/5",
     icon: "text-neutral-900",
     toggle: "border-neutral-200 text-neutral-900",
     toggleSurface: "bg-white",
-    glow: "rgba(120, 60, 10, 0.14)",
-    aurora: "radial-gradient(ellipse 60% 100% at 15% 0%, rgba(255, 190, 130, 0.45), transparent 60%), linear-gradient(160deg, #C75E12 0%, #A84A07 55%, #8F3E05 100%)",
-    shadow: "shadow-[0_36px_120px_-70px_rgba(60,25,0,0.35)]",
-    overlay: "linear-gradient(130deg, rgba(74, 31, 0, 0.10) 0%, transparent 70%)",
+    glow: "rgba(179, 74, 8, 0.10)",
+    aurora: "radial-gradient(ellipse 60% 100% at 15% 0%, rgba(179, 74, 8, 0.07), transparent 60%), #ffffff",
+    pattern: "radial-gradient(rgba(179, 74, 8, 0.14) 1px, transparent 1.6px)",
+    patternSize: "26px 26px",
+    shadow: "shadow-[0_36px_120px_-70px_rgba(45, 25, 5, 0.25)]",
+    overlay: "linear-gradient(130deg, rgba(179, 74, 8, 0.03) 0%, transparent 70%)",
   },
 };
 
@@ -339,6 +342,12 @@ function FAQ1() {
   return (
     <div className={`relative w-full overflow-hidden transition-colors duration-700 ${palette.surface}`}>
       <div className="absolute inset-0 z-0" style={{ background: palette.aurora }} />
+      {palette.pattern && (
+        <div
+          className="pointer-events-none absolute inset-0 z-0"
+          style={{ backgroundImage: palette.pattern, backgroundSize: palette.patternSize, maskImage: "radial-gradient(ellipse 70% 60% at 50% 0%, black 30%, transparent 75%)", WebkitMaskImage: "radial-gradient(ellipse 70% 60% at 50% 0%, black 30%, transparent 75%)" }}
+        />
+      )}
       <div
         className="pointer-events-none absolute inset-0 z-0 opacity-80"
         style={{ background: palette.overlay, mixBlendMode: theme === "dark" ? "screen" : "multiply" }}
@@ -363,7 +372,7 @@ function FAQ1() {
 
         <header className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div className="space-y-2">
-            <p className={`text-xs uppercase tracking-[0.35em] ${palette.muted}`}>Deliverables</p>
+            <p className={`text-xs uppercase tracking-[0.35em] ${palette.accent || palette.muted}`}>Deliverables</p>
             <h1 className={`faq1-solid-text text-4xl font-semibold leading-tight md:text-5xl ${palette.heading}`}>
               What you get.
             </h1>
