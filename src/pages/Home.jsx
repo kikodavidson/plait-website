@@ -6,7 +6,7 @@ import ProcessSteps from "../components/plait/ProcessSteps";
 import TestimonialsSection from "../components/plait/TestimonialsSection";
 import OrbitSection from "../components/plait/OrbitSection";
 import CaseStudySection from "../components/plait/CaseStudySection";
-import PlaitSystem from "../components/plait/PlaitSystem";
+import StrandToggle from "../components/plait/StrandToggle";
 import BrandMarquee from "../components/plait/BrandMarquee";
 import RolesCarousel from "../components/plait/RolesCarousel";
 import PackagesSection from "../components/plait/PackagesSection";
@@ -17,7 +17,7 @@ export default function Home() {
     <>
       <HeroSection />
       <PlatformMarquee />
-      <PlaitSystem />
+      <StrandToggle />
       <BrandMarquee />
       <RolesCarousel />
       <WhatYouGet />
