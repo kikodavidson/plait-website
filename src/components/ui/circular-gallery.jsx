@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { ShaderBackground } from "@/components/ui/shader-background";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const cn = (...classes) => classes.filter(Boolean).join(" ");
 
@@ -22,6 +23,10 @@ const CircularGallery = React.forwardRef(
     const [rotation, setRotation] = useState(0);
     const [isScrolling, setIsScrolling] = useState(false);
     const [isDragging, setIsDragging] = useState(false);
+    const isMobile = useIsMobile();
+
+    const cardW = isMobile ? 200 : 300;
+    const cardH = isMobile ? 266 : 400;
 
     const scrollTimeoutRef = useRef(null);
     const autoFrameRef = useRef(null);
@@ -201,13 +206,15 @@ const CircularGallery = React.forwardRef(
                 key={i}
                 role="group"
                 aria-label={item.common}
-                className="absolute w-[300px] h-[400px]"
+                className="absolute"
                 style={{
+                  width: cardW,
+                  height: cardH,
                   transform: `rotateY(${itemAngle}deg) translateZ(${radius}px)`,
                   left: "50%",
                   top: "50%",
-                  marginLeft: "-150px",
-                  marginTop: "-200px",
+                  marginLeft: -cardW / 2,
+                  marginTop: -cardH / 2,
                   opacity,
                   transition: "opacity 0.3s linear",
                 }}
@@ -239,13 +246,13 @@ const CircularGallery = React.forwardRef(
                     <>
                       <ShaderBackground className="absolute inset-0 w-full h-full" cursorEnabled={false} colors={BURNT_ORANGE_COLORS} />
                       <h2
-                        className="relative z-10 text-2xl sm:text-3xl font-bold text-white leading-tight"
+                        className="relative z-10 text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-white leading-tight"
                         style={{ fontFamily: "Inter, sans-serif", letterSpacing: "0.02em" }}
                       >
                         {item.common}
                       </h2>
                       {item.binomial && (
-                        <p className="relative z-10 text-base text-white/80 mt-3">{item.binomial}</p>
+                        <p className="relative z-10 text-sm sm:text-base text-white/80 mt-3">{item.binomial}</p>
                       )}
                     </>
                   )}

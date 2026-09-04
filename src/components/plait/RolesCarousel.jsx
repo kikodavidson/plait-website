@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Users } from "lucide-react";
 import { CircularGallery } from "@/components/ui/circular-gallery";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const ROLES = [
   { common: "Paid Media Manager", binomial: "Paid ads & scaling" },
@@ -21,6 +22,8 @@ const GALLERY_ITEMS = ROLES.map((r) => ({
 }));
 
 export default function RolesCarousel() {
+  const isMobile = useIsMobile();
+
   return (
     <section className="py-28 px-6 overflow-hidden">
       <div className="max-w-6xl mx-auto">
@@ -45,8 +48,8 @@ export default function RolesCarousel() {
         </motion.div>
 
         {/* Circular 3D gallery — auto-rotates and responds to page scroll */}
-        <div className="relative h-[560px]">
-          <CircularGallery items={GALLERY_ITEMS} radius={480} autoRotateSpeed={0.015} />
+        <div className="relative h-[380px] sm:h-[560px]">
+          <CircularGallery items={GALLERY_ITEMS} radius={isMobile ? 300 : 480} autoRotateSpeed={0.015} />
         </div>
       </div>
     </section>
