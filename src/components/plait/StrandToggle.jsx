@@ -3,9 +3,9 @@ import { motion } from "framer-motion";
 import StrandSwitch from "@/components/ui/strand-switch";
 
 const STRANDS = [
-  { key: "ads", label: "Ads", color: "#7F77DD" },
-  { key: "site", label: "Website", color: "#D4537E" },
-  { key: "attr", label: "Attribution", color: "#D85A30" },
+  { key: "ads", label: "Ads", color: "#22c55e" },
+  { key: "site", label: "Website", color: "#3b82f6" },
+  { key: "attr", label: "Attribution", color: "#ef4444" },
 ];
 
 const COPY = {
@@ -71,17 +71,16 @@ export default function StrandToggle() {
               onClick={() => toggle(i)}
               className="flex items-center gap-2.5 rounded-none border px-4 py-1.5 text-sm transition-colors"
               style={{
-                background: on[i] ? s.color : "transparent",
+                background: "transparent",
                 borderColor: on[i] ? s.color : "#d4d4d4",
-                color: on[i] ? "#fff" : "#a3a3a3",
+                color: on[i] ? "#000000" : "#a3a3a3",
               }}
             >
               {s.label}
               <StrandSwitch
                 checked={on[i]}
                 style={{
-                  "--track-bg": on[i] ? "#ffffff" : "#e5e5e5",
-                  "--knob": "#000000",
+                  "--track": on[i] ? s.color : "#aaaaaa",
                 }}
               />
             </button>
