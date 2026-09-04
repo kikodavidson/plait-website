@@ -10,8 +10,9 @@ export default function WhyPlait() {
           Why Choose PLAIT
         </h1>
         <p className="mt-5 text-base text-neutral-600 sm:text-lg">
-          Agency firepower, freelancer proximity, and in-house depth — woven
-          into one system. Compare the tradeoffs and see where PLAIT fits.
+          Agency firepower, freelancer proximity, and in-house depth woven
+          into one system. Compare the tradeoffs and see if PLAIT is a fit for
+          your business.
         </p>
       </section>
       <ComparisonTable />
