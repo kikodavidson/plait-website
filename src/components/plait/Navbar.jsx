@@ -38,8 +38,8 @@ export default function Navbar() {
       <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-2.5">
           <img
-            src="https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/ca0a72108_image.png"
-            alt="extern"
+            src="https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/56e6c8a0d_logos5.png"
+            alt="PLAIT Marketing"
             className="h-40 w-auto mix-blend-multiply"
           />
         </Link>
