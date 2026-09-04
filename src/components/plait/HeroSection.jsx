@@ -26,6 +26,8 @@ export default function HeroSection() {
         <div className="absolute inset-0 pointer-events-none">
           <HalftoneFlow className="h-full w-full" />
         </div>
+        {/* Bottom fade into the white page */}
+        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-white via-white/70 to-transparent pointer-events-none z-[5]" />
         <motion.h1
           className="hero-headline relative z-10 text-[clamp(2rem,5.5vw,4.5rem)] leading-[0.95] tracking-[-0.03em] uppercase font-bold"
           style={{ fontFamily: "Benzin, sans-serif", letterSpacing: "-0.03em", color: "#ffffff", WebkitTextFillColor: "#ffffff" }}
@@ -38,11 +40,21 @@ export default function HeroSection() {
           <span className="block">your customer.</span>
         </motion.h1>
 
+        <motion.p
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="relative z-10 mt-6 text-base sm:text-lg uppercase tracking-[0.12em] text-white"
+          style={{ fontFamily: "Benzin, sans-serif" }}
+        >
+          Proven Marketing Strategy. Accelerated by AI.
+        </motion.p>
+
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.25 }}
-          className="relative z-10 mt-20 flex flex-wrap items-center justify-center gap-4"
+          className="relative z-10 mt-10 flex flex-wrap items-center justify-center gap-4"
         >
           <button
             onClick={() => navigate("/services")}
