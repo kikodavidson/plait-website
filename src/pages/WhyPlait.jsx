@@ -7,7 +7,7 @@ export default function WhyPlait() {
       <div className="h-[200px]" aria-hidden="true" />
       <section className="mx-auto max-w-3xl px-6 pb-8 text-center">
         <h1 className="text-4xl font-bold uppercase tracking-tight sm:text-5xl">
-          Why PLAIT
+          Why Choose PLAIT
         </h1>
         <p className="mt-5 text-base text-neutral-600 sm:text-lg">
           Agency firepower, freelancer proximity, and in-house depth — woven
