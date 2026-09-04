@@ -65,7 +65,7 @@ export default function StrandToggle() {
               type="button"
               aria-pressed={on[i]}
               onClick={() => toggle(i)}
-              className="rounded-full border px-4 py-1.5 text-sm transition-colors"
+              className="rounded-none border px-4 py-1.5 text-sm transition-colors"
               style={{
                 background: on[i] ? s.color : "transparent",
                 borderColor: on[i] ? s.color : "#d4d4d4",
