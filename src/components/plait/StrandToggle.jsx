@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
+import StrandSwitch from "@/components/ui/strand-switch";
 
 const STRANDS = [
   { key: "ads", label: "Ads", color: "#7F77DD" },
@@ -68,7 +69,7 @@ export default function StrandToggle() {
               type="button"
               aria-pressed={on[i]}
               onClick={() => toggle(i)}
-              className="rounded-none border px-4 py-1.5 text-sm transition-colors"
+              className="flex items-center gap-2.5 rounded-none border px-4 py-1.5 text-sm transition-colors"
               style={{
                 background: on[i] ? s.color : "transparent",
                 borderColor: on[i] ? s.color : "#d4d4d4",
@@ -76,6 +77,13 @@ export default function StrandToggle() {
               }}
             >
               {s.label}
+              <StrandSwitch
+                checked={on[i]}
+                style={{
+                  "--track-bg": on[i] ? "#ffffff" : "#e5e5e5",
+                  "--knob": on[i] ? s.color : "#a3a3a3",
+                }}
+              />
             </button>
           ))}
         </div>
