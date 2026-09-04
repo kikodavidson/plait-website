@@ -245,6 +245,7 @@ const CircularGallery = React.forwardRef(
                   ) : (
                     <>
                       <ShaderBackground className="absolute inset-0 w-full h-full" cursorEnabled={false} colors={BURNT_ORANGE_COLORS} />
+                      <div className="absolute inset-0 bg-black/45 pointer-events-none" />
                       <h2
                         className="relative z-10 text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-white leading-tight"
                         style={{ fontFamily: "Inter, sans-serif", letterSpacing: "0.02em" }}
