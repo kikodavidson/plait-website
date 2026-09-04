@@ -4,16 +4,17 @@ import { ShaderBackground } from "@/components/ui/shader-background";
 
 const cn = (...classes) => classes.filter(Boolean).join(" ");
 
-// Burnt orange shader palette — deep brown base, burnt orange, sienna, rust
+// Burnt orange shader palette — matches the hero halftone reference:
+// near-black base, vibrant orange-red, bright yellow-orange, deep burnt red
 const BURNT_ORANGE_COLORS = [
-  [0.08, 0.04, 0.015],
-  [0.55, 0.18, 0.02],
-  [0.43, 0.19, 0.09],
-  [0.33, 0.16, 0.05],
-  [0.33, 0.16, 0.05],
-  [0.33, 0.16, 0.05],
-  [0.33, 0.16, 0.05],
-  [0.33, 0.16, 0.05],
+  [0.05, 0.015, 0.008],
+  [0.75, 0.18, 0.0],
+  [1.0, 0.66, 0.27],
+  [0.32, 0.06, 0.05],
+  [0.32, 0.06, 0.05],
+  [0.32, 0.06, 0.05],
+  [0.32, 0.06, 0.05],
+  [0.32, 0.06, 0.05],
 ];
 
 const CircularGallery = React.forwardRef(
