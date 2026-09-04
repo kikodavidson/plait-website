@@ -71,12 +71,14 @@ export default function HeroSection() {
         </motion.div>
       </div>
 
-      {/* Scroll-scaling media */}
-      <div ref={mediaRef} className="flex justify-center px-6 pb-24">
-        <motion.div style={{ scale }} className="w-full max-w-7xl origin-center">
-          <HeroMediaCard className="max-w-none" />
-        </motion.div>
-      </div>
+      {/* Scroll-scaling media — hidden until a hero video replaces it */}
+      {false && (
+        <div ref={mediaRef} className="flex justify-center px-6 pb-24">
+          <motion.div style={{ scale }} className="w-full max-w-7xl origin-center">
+            <HeroMediaCard className="max-w-none" />
+          </motion.div>
+        </div>
+      )}
     </section>
   );
 }
