@@ -3,7 +3,8 @@ import ComparisonTable from "@/components/plait/ComparisonTable";
 
 export default function WhyPlait() {
   return (
-    <div className="pt-40">
+    <div>
+      <div className="h-[200px]" aria-hidden="true" />
       <section className="mx-auto max-w-3xl px-6 pb-8 text-center">
         <h1 className="text-4xl font-bold uppercase tracking-tight sm:text-5xl">
           Why PLAIT
