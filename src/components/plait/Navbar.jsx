@@ -32,7 +32,7 @@ export default function Navbar() {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
           ? "bg-white/90 backdrop-blur-md border-b border-gray-100/80 py-3 shadow-sm"
-          : "bg-transparent py-5"
+          : "bg-white py-5"
       }`}
       style={{ fontFamily: 'Inter, sans-serif' }}
     >
