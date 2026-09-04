@@ -142,13 +142,17 @@ export default function RadialOrbitalTimeline({ timelineData }) {
             transform: `translate(${centerOffset.x}px, ${centerOffset.y}px)`,
           }}
         >
-          <div className="absolute w-16 h-16 rounded-full bg-gradient-to-br from-purple-500 via-blue-500 to-teal-500 animate-pulse flex items-center justify-center z-10">
-            <div className="absolute w-20 h-20 rounded-full border border-white/20 animate-ping opacity-70"></div>
+          <div className="absolute w-28 h-28 rounded-full bg-gradient-to-br from-purple-500 via-blue-500 to-teal-500 animate-pulse flex items-center justify-center z-10">
+            <div className="absolute w-32 h-32 rounded-full border border-white/20 animate-ping opacity-70"></div>
             <div
-              className="absolute w-24 h-24 rounded-full border border-white/10 animate-ping opacity-50"
+              className="absolute w-40 h-40 rounded-full border border-white/10 animate-ping opacity-50"
               style={{ animationDelay: "0.5s" }}
             ></div>
-            <div className="w-8 h-8 rounded-full bg-white/80 backdrop-blur-md"></div>
+            <div className="relative w-24 h-24 rounded-full bg-black/25 backdrop-blur-md flex items-center justify-center">
+              <span className="text-[10px] font-bold uppercase tracking-[0.12em] text-white text-center leading-tight px-2">
+                Growth<br />Roadmap
+              </span>
+            </div>
           </div>
 
           <div className="absolute w-96 h-96 rounded-full border border-white/10"></div>
@@ -192,7 +196,7 @@ export default function RadialOrbitalTimeline({ timelineData }) {
 
                 <div
                   className={`
-                  w-10 h-10 rounded-full flex items-center justify-center
+                  relative w-10 h-10 rounded-full flex items-center justify-center
                   ${
                     isExpanded
                       ? "bg-white text-black"
@@ -209,21 +213,24 @@ export default function RadialOrbitalTimeline({ timelineData }) {
                       : "border-white/40"
                   }
                   transition-all duration-300 transform
-                  ${isExpanded ? "scale-150" : ""}
+                  ${isExpanded ? "scale-150" : "hover:scale-125 hover:border-white hover:shadow-[0_0_18px_rgba(255,255,255,0.5)]"}
                 `}
                 >
                   <Icon size={16} />
+                  <span className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-white text-black text-[10px] font-bold flex items-center justify-center pointer-events-none">
+                    {index + 1}
+                  </span>
                 </div>
 
                 <div
                   className={`
                   absolute top-12  whitespace-nowrap
-                  text-xs font-semibold tracking-wider
+                  text-xs font-semibold uppercase tracking-wider
                   transition-all duration-300
                   ${isExpanded ? "text-white scale-125" : "text-white/70"}
                 `}
                 >
-                  {item.title}
+                  {`0${index + 1} · ${item.title}`}
                 </div>
 
                 {isExpanded && (
