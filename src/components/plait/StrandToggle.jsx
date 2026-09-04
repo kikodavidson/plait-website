@@ -1,11 +1,10 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
 import StrandSwitch from "@/components/ui/strand-switch";
 
 const STRANDS = [
-  { key: "ads", label: "Ads", color: "#7F77DD" },
-  { key: "site", label: "Website", color: "#D4537E" },
-  { key: "attr", label: "Attribution", color: "#D85A30" },
+  { key: "ads", label: "Ads", color: "#7F77DD", hi: "#B9B4F2" },
+  { key: "site", label: "Website", color: "#D4537E", hi: "#F08FAF" },
+  { key: "attr", label: "Attribution", color: "#D85A30", hi: "#F59663" },
 ];
 
 const COPY = {
@@ -19,14 +18,27 @@ const COPY = {
   "000": ["Nothing running", "Start with a strand.", "This is what zero looks like."],
 };
 
-function strandPath(index, amp) {
+const GRID = 8; // pixel pitch of the halftone grid
+const BAND = 26; // how far each strand's dot halo spreads from its centerline
+const MAX_SIZE = 7; // largest square, slightly smaller than the pitch so gaps remain
+
+// Builds the halftone squares for one strand: an aligned grid of squares that
+// grow and brighten as they approach the strand's sinusoidal centerline.
+function strandDots(index, amp) {
   const phase = index * 2.094;
-  let d = "";
-  for (let y = 6; y <= 294; y += 3) {
-    const x = 60 + amp * Math.sin(y / 26 + phase);
-    d += `${y === 6 ? "M" : "L"}${x.toFixed(1)} ${y} `;
+  const dots = [];
+  for (let gy = 8; gy <= 292; gy += GRID) {
+    const cx = 60 + amp * Math.sin(gy / 26 + phase);
+    for (let gx = 12; gx <= 108; gx += GRID) {
+      const dx = Math.abs(gx - cx);
+      if (dx > BAND) continue;
+      const t = 1 - dx / BAND;
+      const scale = Math.pow(t, 1.5) * (MAX_SIZE / GRID);
+      if (scale < 0.12) continue;
+      dots.push({ key: `${gx}-${gy}`, gx, gy, scale, t });
+    }
   }
-  return d;
+  return dots;
 }
 
 export default function StrandToggle() {
@@ -39,20 +51,39 @@ export default function StrandToggle() {
 
   return (
     <section className="mx-auto grid max-w-4xl grid-cols-1 items-center gap-10 px-6 py-20 md:grid-cols-[200px_1fr]">
-      <svg viewBox="0 0 120 300" className="mx-auto w-40 md:w-full" aria-hidden="true">
-        {STRANDS.map((s, i) => (
-          <motion.path
-            key={s.key}
-            fill="none"
-            stroke={s.color}
-            strokeWidth="3.5"
-            strokeLinecap="round"
-            initial={false}
-            animate={{ d: strandPath(i, amp), opacity: on[i] ? 1 : 0 }}
-            transition={{ duration: 0.5, ease: "easeInOut" }}
-          />
-        ))}
-      </svg>
+      {/* Halftone weave on black — matches the hero's dot-matrix style */}
+      <div className="rounded-none bg-black">
+        <svg viewBox="0 0 120 300" className="mx-auto block w-40 md:w-full" aria-hidden="true">
+          <rect width="120" height="300" fill="#000000" />
+          {STRANDS.map((s, i) => (
+            <g
+              key={s.key}
+              style={{
+                opacity: on[i] ? 1 : 0,
+                transition: "opacity 0.5s ease-in-out",
+              }}
+            >
+              {strandDots(i, amp).map((d) => (
+                <rect
+                  key={d.key}
+                  x={d.gx - GRID / 2}
+                  y={d.gy - GRID / 2}
+                  width={GRID}
+                  height={GRID}
+                  fill={d.t > 0.85 ? s.hi : s.color}
+                  fillOpacity={0.35 + 0.65 * d.t}
+                  style={{
+                    transform: `scale(${d.scale})`,
+                    transformBox: "fill-box",
+                    transformOrigin: "center",
+                    transition: "transform 0.5s ease-in-out",
+                  }}
+                />
+              ))}
+            </g>
+          ))}
+        </svg>
+      </div>
 
       <div>
         <p className="mb-5 text-sm text-neutral-500">
