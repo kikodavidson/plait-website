@@ -13,7 +13,7 @@ export default function HeroSection() {
     target: mediaRef,
     offset: ["start end", "center center"],
   });
-  const scale = useTransform(scrollYProgress, [0, 1], [0.65, 1]);
+  const scale = useTransform(scrollYProgress, [0, 1], [0.45, 1]);
 
   return (
     <section className="bg-white w-full overflow-hidden">
@@ -21,7 +21,7 @@ export default function HeroSection() {
       <div className="h-[200px]" aria-hidden="true" />
 
       {/* Headline + buttons */}
-      <div className="relative min-h-[72vh] flex flex-col items-center justify-center px-6 pt-8 pb-20 text-center">
+      <div className="relative min-h-[72vh] flex flex-col items-center justify-center px-6 pt-8 pb-10 text-center">
         {/* Halftone flow background */}
         <div className="absolute inset-0 pointer-events-none">
           <HalftoneFlow className="h-full w-full" />
@@ -73,7 +73,7 @@ export default function HeroSection() {
 
       {/* Scroll-scaling media */}
       <div ref={mediaRef} className="flex justify-center px-6 pb-24">
-        <motion.div style={{ scale }} className="w-full max-w-5xl origin-center">
+        <motion.div style={{ scale }} className="w-full max-w-7xl origin-center">
           <HeroMediaCard className="max-w-none" />
         </motion.div>
       </div>
