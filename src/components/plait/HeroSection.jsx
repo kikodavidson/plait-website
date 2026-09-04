@@ -17,8 +17,11 @@ export default function HeroSection() {
 
   return (
     <section className="bg-white w-full overflow-hidden">
+      {/* Spacer clears the fixed navbar so the background starts below the logo/menu */}
+      <div className="h-[200px]" aria-hidden="true" />
+
       {/* Headline + buttons */}
-      <div className="relative min-h-[72vh] flex flex-col items-center justify-center px-6 pt-44 pb-20 text-center">
+      <div className="relative min-h-[72vh] flex flex-col items-center justify-center px-6 pt-8 pb-20 text-center">
         {/* Halftone flow background */}
         <div className="absolute inset-0 pointer-events-none">
           <HalftoneFlow className="h-full w-full" />
