@@ -6,6 +6,7 @@ import GrowthTimeline from "../components/plait/GrowthTimeline";
 import TestimonialsSection from "../components/plait/TestimonialsSection";
 import OrbitSection from "../components/plait/OrbitSection";
 import CaseStudySection from "../components/plait/CaseStudySection";
+import ComparisonTable from "../components/plait/ComparisonTable";
 import StrandToggle from "../components/plait/StrandToggle";
 import BrandMarquee from "../components/plait/BrandMarquee";
 import RolesCarousel from "../components/plait/RolesCarousel";
@@ -24,6 +25,7 @@ export default function Home() {
       <GrowthTimeline />
       <TestimonialsSection />
       <CaseStudySection />
+      <ComparisonTable />
       <OrbitSection />
       <PackagesSection />
       <ContactCTA />

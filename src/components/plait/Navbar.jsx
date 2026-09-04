@@ -7,6 +7,7 @@ const navLinks = [
   { label: "Services", path: "/services" },
   { label: "Our Process", path: "/our-process" },
   { label: "Industries", path: "/industries" },
+  { label: "Why PLAIT", path: "/why-plait" },
   { label: "Case Studies", path: "/case-studies" },
   { label: "About", path: "/about" },
   { label: "Blog", path: "/blog" },

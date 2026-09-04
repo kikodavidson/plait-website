@@ -14,6 +14,7 @@ import Contact from './pages/Contact';
 import CaseStudies from './pages/CaseStudies';
 import OurProcess from './pages/OurProcess';
 import Industries from './pages/Industries';
+import WhyPlait from './pages/WhyPlait';
 import MetaOnboarding from './pages/MetaOnboarding';
 import TikTokOnboarding from './pages/TikTokOnboarding';
 import GoogleAdsOnboarding from './pages/GoogleAdsOnboarding';
@@ -102,6 +103,7 @@ const AuthenticatedApp = () => {
         <Route path="/case-studies" element={<CaseStudies />} />
         <Route path="/our-process" element={<OurProcess />} />
         <Route path="/industries" element={<Industries />} />
+        <Route path="/why-plait" element={<WhyPlait />} />
         <Route path="/meta-onboarding" element={<MetaOnboarding />} />
         <Route path="/tiktok-onboarding" element={<TikTokOnboarding />} />
         <Route path="/google-ads-onboarding" element={<GoogleAdsOnboarding />} />
