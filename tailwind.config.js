@@ -5,9 +5,9 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
-        body: ['Inter', 'sans-serif'],
-        display: ['Inter', 'sans-serif'],
+        sans: ['Benzin', 'sans-serif'],
+        body: ['Benzin', 'sans-serif'],
+        display: ['Benzin', 'sans-serif'],
       },
       letterSpacing: {
         'wide': '0.04em',

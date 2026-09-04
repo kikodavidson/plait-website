@@ -20,7 +20,7 @@ export default function HeroSection() {
       <div className="min-h-[72vh] flex flex-col items-center justify-center px-6 pt-44 pb-20 text-center">
         <motion.h1
           className="hero-headline text-[clamp(2rem,5.5vw,4.5rem)] leading-[0.95] tracking-[-0.03em] uppercase font-bold"
-          style={{ fontFamily: "Inter, sans-serif", letterSpacing: "-0.03em" }}
+          style={{ fontFamily: "Benzin, sans-serif", letterSpacing: "-0.03em" }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}

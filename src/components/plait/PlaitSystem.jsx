@@ -131,7 +131,7 @@ export default function PlaitSystem() {
             <p className="text-xs font-bold uppercase tracking-[0.14em] mb-3" style={{ color: state.color }}>
               {state.label}
             </p>
-            <p className="text-black font-bold text-3xl sm:text-4xl mb-5 leading-tight" style={{ fontFamily: "Inter, sans-serif" }}>
+            <p className="text-black font-bold text-3xl sm:text-4xl mb-5 leading-tight" style={{ fontFamily: "Benzin, sans-serif" }}>
               {state.title}
             </p>
             <p className="text-black text-lg leading-relaxed">{state.body}</p>
