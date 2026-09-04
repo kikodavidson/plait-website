@@ -54,6 +54,9 @@ export default function StrandToggle() {
       </svg>
 
       <div>
+        <p className="mb-5 text-sm text-neutral-500">
+          <em className="font-semibold text-neutral-700">Plait</em>: a single structure formed by interweaving separate strands; stronger than the sum of its parts.
+        </p>
         <p className="mb-2 text-sm text-neutral-500">{eyebrow}</p>
         <h2 className="mb-3 text-4xl font-bold leading-tight tracking-tight">{headline}</h2>
         <p className="mb-7 min-h-[3.25rem] max-w-md text-neutral-600">{body}</p>
