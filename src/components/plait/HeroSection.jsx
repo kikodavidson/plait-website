@@ -27,7 +27,7 @@ export default function HeroSection() {
           <HalftoneFlow className="h-full w-full" />
         </div>
         {/* Bottom fade into the white page */}
-        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-white via-white/70 to-transparent pointer-events-none z-[5]" />
+        <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-white to-transparent pointer-events-none z-[5]" />
         <motion.h1
           className="hero-headline relative z-10 text-[clamp(2rem,5.5vw,4.5rem)] leading-[0.95] tracking-[-0.03em] uppercase font-bold"
           style={{ fontFamily: "Benzin, sans-serif", letterSpacing: "-0.03em", color: "#ffffff", WebkitTextFillColor: "#ffffff" }}
