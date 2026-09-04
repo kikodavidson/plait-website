@@ -4,6 +4,18 @@ import { ShaderBackground } from "@/components/ui/shader-background";
 
 const cn = (...classes) => classes.filter(Boolean).join(" ");
 
+// Burnt orange shader palette — deep brown base, burnt orange, sienna, rust
+const BURNT_ORANGE_COLORS = [
+  [0.08, 0.04, 0.015],
+  [0.55, 0.18, 0.02],
+  [0.43, 0.19, 0.09],
+  [0.33, 0.16, 0.05],
+  [0.33, 0.16, 0.05],
+  [0.33, 0.16, 0.05],
+  [0.33, 0.16, 0.05],
+  [0.33, 0.16, 0.05],
+];
+
 const CircularGallery = React.forwardRef(
   ({ items, className, radius = 600, autoRotateSpeed = 0.02, ...props }, ref) => {
     const [rotation, setRotation] = useState(0);
@@ -224,7 +236,7 @@ const CircularGallery = React.forwardRef(
                     </>
                   ) : (
                     <>
-                      <ShaderBackground className="absolute inset-0 w-full h-full" cursorEnabled={false} />
+                      <ShaderBackground className="absolute inset-0 w-full h-full" cursorEnabled={false} colors={BURNT_ORANGE_COLORS} />
                       <h2
                         className="relative z-10 text-2xl sm:text-3xl font-bold text-white leading-tight"
                         style={{ fontFamily: "Inter, sans-serif", letterSpacing: "0.02em" }}

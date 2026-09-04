@@ -293,7 +293,7 @@ const UNIFORMS = {
 
 const pendingContextReleases = new WeakMap();
 
-export function ShaderBackground({ className, cursorEnabled = UNIFORMS.cursorEnabled }) {
+export function ShaderBackground({ className, cursorEnabled = UNIFORMS.cursorEnabled, colors = UNIFORMS.colors }) {
   const canvasRef = useRef(null);
 
   useEffect(() => {
@@ -342,7 +342,7 @@ export function ShaderBackground({ className, cursorEnabled = UNIFORMS.cursorEna
       space: gl.getUniformLocation(program, "u_space"),
       cursor: gl.getUniformLocation(program, "u_cursor"),
     };
-    gl.uniform3fv(uni.colors, new Float32Array(UNIFORMS.colors.flat()));
+    gl.uniform3fv(uni.colors, new Float32Array(colors.flat()));
     gl.uniform4f(uni.shape, UNIFORMS.scale, UNIFORMS.intensity, UNIFORMS.paramA, UNIFORMS.warp);
     gl.uniform4f(uni.surface, UNIFORMS.detail, UNIFORMS.contrast, UNIFORMS.brightness, UNIFORMS.saturation);
     gl.uniform4f(uni.finish, UNIFORMS.hue, UNIFORMS.vignette, UNIFORMS.blur, UNIFORMS.grain);
@@ -517,7 +517,7 @@ export function ShaderBackground({ className, cursorEnabled = UNIFORMS.cursorEna
       }, 0);
       pendingContextReleases.set(canvas, releaseTimer);
     };
-  }, [cursorEnabled]);
+  }, [cursorEnabled, colors]);
 
   return (
     <canvas
