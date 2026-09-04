@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
 import HeroMediaCard from "@/components/plait/HeroMediaCard";
+import HalftoneFlow from "@/components/ui/halftone-flow";
 
 export default function HeroSection() {
   const navigate = useNavigate();
@@ -17,10 +18,14 @@ export default function HeroSection() {
   return (
     <section className="bg-white w-full overflow-hidden">
       {/* Headline + buttons */}
-      <div className="min-h-[72vh] flex flex-col items-center justify-center px-6 pt-44 pb-20 text-center">
+      <div className="relative min-h-[72vh] flex flex-col items-center justify-center px-6 pt-44 pb-20 text-center">
+        {/* Halftone flow background */}
+        <div className="absolute inset-0 pointer-events-none">
+          <HalftoneFlow className="h-full w-full" />
+        </div>
         <motion.h1
-          className="hero-headline text-[clamp(2rem,5.5vw,4.5rem)] leading-[0.95] tracking-[-0.03em] uppercase font-bold"
-          style={{ fontFamily: "Benzin, sans-serif", letterSpacing: "-0.03em" }}
+          className="hero-headline relative z-10 text-[clamp(2rem,5.5vw,4.5rem)] leading-[0.95] tracking-[-0.03em] uppercase font-bold"
+          style={{ fontFamily: "Benzin, sans-serif", letterSpacing: "-0.03em", color: "#ffffff", WebkitTextFillColor: "#ffffff" }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
@@ -34,17 +39,17 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.25 }}
-          className="mt-20 flex flex-wrap items-center justify-center gap-4"
+          className="relative z-10 mt-20 flex flex-wrap items-center justify-center gap-4"
         >
           <button
             onClick={() => navigate("/services")}
-            className="rounded-full border border-black bg-transparent px-7 py-3 text-xs font-bold uppercase tracking-[0.15em] text-black transition-colors hover:bg-black hover:text-white"
+            className="rounded-full border border-white bg-transparent px-7 py-3 text-xs font-bold uppercase tracking-[0.15em] text-white transition-colors hover:bg-white hover:text-black"
           >
             What We Do
           </button>
           <button
             onClick={() => navigate("/book")}
-            className="rounded-full border border-black bg-black px-7 py-3 text-xs font-bold uppercase tracking-[0.15em] text-white transition-colors hover:bg-white hover:text-black"
+            className="rounded-full border border-white bg-white px-7 py-3 text-xs font-bold uppercase tracking-[0.15em] text-black transition-colors hover:bg-black hover:text-white"
           >
             Book a Free Audit
           </button>
