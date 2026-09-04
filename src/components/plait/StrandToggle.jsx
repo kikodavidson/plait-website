@@ -81,7 +81,7 @@ export default function StrandToggle() {
                 checked={on[i]}
                 style={{
                   "--track-bg": on[i] ? "#ffffff" : "#e5e5e5",
-                  "--knob": on[i] ? s.color : "#a3a3a3",
+                  "--knob": "#000000",
                 }}
               />
             </button>
