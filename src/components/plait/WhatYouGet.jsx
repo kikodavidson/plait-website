@@ -1,6 +1,6 @@
 import React from "react";
-import JobSlider from "@/components/ui/job-slider";
+import FUIBentoGridDark from "@/components/ui/bento";
 
 export default function WhatYouGet() {
-  return <JobSlider />;
+  return <FUIBentoGridDark />;
 }
