@@ -1,10 +1,14 @@
 import { useState } from "react";
 import { clsx } from "clsx";
 import { motion, AnimatePresence } from "framer-motion";
-import BuyerPersonaCard from "@/components/plait/BuyerPersonaCard";
 
 const BAND_ONE = [
-  { persona: true },
+  {
+    eyebrow: "Insight",
+    title: "Verified Buyer Motives",
+    description: "We map the real reasons your customers buy so every message hits the nerve that converts.",
+    img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
+  },
   {
     eyebrow: "Efficiency",
     title: "Higher Ad Efficiency",
@@ -67,9 +71,7 @@ const BAND_TWO = [
 function Band({ cards }) {
   return (
     <div className="grid grid-cols-1 gap-4 lg:grid-cols-6 lg:grid-rows-2">
-      {cards[0].persona
-        ? <BuyerPersonaCard className="lg:col-span-3" />
-        : <BentoCard {...cards[0]} className="lg:col-span-3" />}
+      <BentoCard {...cards[0]} className="lg:col-span-3" />
       <BentoCard {...cards[1]} className="lg:col-span-3" />
       <BentoCard {...cards[2]} className="lg:col-span-2" />
       <BentoCard {...cards[3]} className="lg:col-span-2" />
