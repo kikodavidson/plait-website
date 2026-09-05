@@ -4,13 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import BuyerPersonaCard from "@/components/plait/BuyerPersonaCard";
 
 const BAND_ONE = [
-  {
-    persona: true,
-    eyebrow: "Insight",
-    title: "Verified Buyer Motives",
-    description: "We map the real reasons your customers buy so every message hits the nerve that converts.",
-    img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
-  },
+  { persona: true },
   {
     eyebrow: "Efficiency",
     title: "Higher Ad Efficiency",
