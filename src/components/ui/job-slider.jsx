@@ -82,7 +82,7 @@ export default function JobSlider() {
 
         {/* Right Section — all 10 cards */}
         <div className="w-full md:w-1/2">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 p-4 rounded-xl bg-gray-100">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {cards.map((item, idx) => {
               const isOpen = expandedCard === idx;
               return (
