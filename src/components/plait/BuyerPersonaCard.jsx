@@ -15,7 +15,7 @@ import {
 } from "lucide-react";
 
 const PERSONA_IMG =
-  "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/cc56824da_6bdce045-c23d-4aae-ba23-08267ca65db0.png";
+  "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/a02611c62_Screenshot2026-09-04at111803PM.png";
 
 function Ring({ percent, color, label }) {
   const r = 15.5;
