@@ -7,7 +7,7 @@ const BAND_ONE = [
     eyebrow: "Insight",
     title: "Verified Buyer Motives",
     description: "We map the real reasons your customers buy so every message hits the nerve that converts.",
-    img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
+    img: "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/cd110776e_image.png",
   },
   {
     eyebrow: "Efficiency",
