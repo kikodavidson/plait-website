@@ -8,6 +8,7 @@ const BAND_ONE = [
     title: "Verified Buyer Motives",
     description: "We map the real reasons your customers buy so every message hits the nerve that converts.",
     img: "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/cd110776e_image.png",
+    imgPosition: "top",
   },
   {
     eyebrow: "Efficiency",
@@ -149,7 +150,7 @@ export default function FUIBentoGridDark() {
   );
 }
 
-export function BentoCard({ className = "", eyebrow, title, description, img }) {
+export function BentoCard({ className = "", eyebrow, title, description, img, imgPosition = "center" }) {
   return (
     <motion.div
       initial="idle"
@@ -166,6 +167,7 @@ export function BentoCard({ className = "", eyebrow, title, description, img }) 
           src={img}
           alt={title}
           className="absolute inset-0 h-full w-full object-cover"
+          style={{ objectPosition: imgPosition }}
         />
       </div>
       <div className="relative p-10 z-20 isolate mt-[-110px] h-[14rem] backdrop-blur-xl text-white">
