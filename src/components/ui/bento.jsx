@@ -20,7 +20,7 @@ const BAND_ONE = [
     eyebrow: "Library",
     title: "Swipe File Warehouse",
     description: "A living library of proven ads and angles that fuels nonstop content ideation.",
-    img: "https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?auto=format&fit=crop&w=1200&q=80",
+    img: "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/b10be3b79_ChatGPTImageSep4202611_42_07PM.png",
   },
   {
     eyebrow: "Structure",
