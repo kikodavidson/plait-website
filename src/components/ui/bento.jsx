@@ -99,7 +99,12 @@ export default function FUIBentoGridDark() {
         <Band cards={BAND_ONE} />
       </div>
 
-      <div className="relative mt-4">
+      <div
+        className={clsx(
+          "relative mt-4 overflow-hidden transition-[max-height] duration-700 ease-in-out",
+          expanded ? "max-h-none" : "max-h-[380px]"
+        )}
+      >
         <Band cards={BAND_TWO} />
 
         <AnimatePresence>
@@ -113,7 +118,7 @@ export default function FUIBentoGridDark() {
               className="absolute inset-0 pointer-events-none"
               style={{
                 background:
-                  "linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.7) 8%, rgba(255,255,255,0.95) 16%, #ffffff 22%)",
+                  "linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 55%, rgba(255,255,255,0.75) 75%, #ffffff 92%)",
               }}
             />
           )}
@@ -122,7 +127,7 @@ export default function FUIBentoGridDark() {
         {!expanded && (
           <button
             onClick={() => setExpanded(true)}
-            className="absolute inset-x-0 top-[24%] z-10 mx-auto w-64 bg-black text-white uppercase tracking-[0.35em] font-bold text-xs py-2 hover:bg-gray-900 transition-colors"
+            className="absolute inset-x-0 bottom-8 z-10 mx-auto w-64 bg-black text-white uppercase tracking-[0.35em] font-bold text-xs py-2 hover:bg-gray-900 transition-colors"
           >
             Show more
           </button>
