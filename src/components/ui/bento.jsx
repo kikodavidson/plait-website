@@ -113,7 +113,7 @@ export default function FUIBentoGridDark() {
               className="absolute inset-0 pointer-events-none"
               style={{
                 background:
-                  "linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.5) 18%, rgba(255,255,255,0.9) 32%, #ffffff 42%)",
+                  "linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.7) 8%, rgba(255,255,255,0.95) 16%, #ffffff 22%)",
               }}
             />
           )}
@@ -122,7 +122,7 @@ export default function FUIBentoGridDark() {
         {!expanded && (
           <button
             onClick={() => setExpanded(true)}
-            className="absolute inset-x-0 top-[44%] z-10 mx-auto w-64 bg-black text-white uppercase tracking-[0.35em] font-bold text-xs py-2 hover:bg-gray-900 transition-colors"
+            className="absolute inset-x-0 top-[24%] z-10 mx-auto w-64 bg-black text-white uppercase tracking-[0.35em] font-bold text-xs py-2 hover:bg-gray-900 transition-colors"
           >
             Show more
           </button>
