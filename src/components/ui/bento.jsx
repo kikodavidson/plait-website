@@ -2,7 +2,7 @@ import { useState } from "react";
 import { clsx } from "clsx";
 import { motion, AnimatePresence } from "framer-motion";
 
-const CARDS = [
+const BAND_ONE = [
   {
     eyebrow: "Insight",
     title: "Verified Buyer Motives",
@@ -33,6 +33,9 @@ const CARDS = [
     description: "Email and lifecycle sequences that turn one-time buyers into repeat revenue.",
     img: "https://images.unsplash.com/photo-1553877522-43269d4ea14c?auto=format&fit=crop&w=1200&q=80",
   },
+];
+
+const BAND_TWO = [
   {
     eyebrow: "Data",
     title: "Clean Data Tracking",
@@ -65,6 +68,18 @@ const CARDS = [
   },
 ];
 
+function Band({ cards }) {
+  return (
+    <div className="grid grid-cols-1 gap-4 lg:grid-cols-6 lg:grid-rows-2">
+      <BentoCard {...cards[0]} className="lg:col-span-3" />
+      <BentoCard {...cards[1]} className="lg:col-span-3" />
+      <BentoCard {...cards[2]} className="lg:col-span-2" />
+      <BentoCard {...cards[3]} className="lg:col-span-2" />
+      <BentoCard {...cards[4]} className="lg:col-span-2" />
+    </div>
+  );
+}
+
 export default function FUIBentoGridDark() {
   const [expanded, setExpanded] = useState(false);
 
@@ -80,12 +95,12 @@ export default function FUIBentoGridDark() {
         Everything included when you partner with our team.
       </p>
 
-      <div className="relative mt-10 sm:mt-16">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-          {CARDS.map((card) => (
-            <BentoCard key={card.title} {...card} />
-          ))}
-        </div>
+      <div className="mt-10 sm:mt-16">
+        <Band cards={BAND_ONE} />
+      </div>
+
+      <div className="relative mt-4">
+        <Band cards={BAND_TWO} />
 
         <AnimatePresence>
           {!expanded && (
@@ -95,7 +110,11 @@ export default function FUIBentoGridDark() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.5, ease: "easeInOut" }}
-              className="absolute inset-x-0 top-1/2 bottom-0 bg-gradient-to-b from-white/0 via-white/70 to-white pointer-events-none"
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                background:
+                  "linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.55) 30%, rgba(255,255,255,0.92) 48%, #ffffff 62%)",
+              }}
             />
           )}
         </AnimatePresence>
@@ -103,7 +122,7 @@ export default function FUIBentoGridDark() {
         {!expanded && (
           <button
             onClick={() => setExpanded(true)}
-            className="absolute inset-x-0 top-[58%] z-10 bg-black text-white uppercase tracking-[0.35em] font-bold text-sm py-4 hover:bg-gray-900 transition-colors"
+            className="absolute inset-x-0 top-[55%] z-10 mx-auto w-64 bg-black text-white uppercase tracking-[0.35em] font-bold text-xs py-2 hover:bg-gray-900 transition-colors"
           >
             Show more
           </button>
@@ -116,7 +135,7 @@ export default function FUIBentoGridDark() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.4 }}
           onClick={() => setExpanded(false)}
-          className="mt-4 bg-black text-white uppercase tracking-[0.35em] font-bold text-sm py-4 hover:bg-gray-900 transition-colors"
+          className="mt-4 mx-auto block bg-black text-white uppercase tracking-[0.35em] font-bold text-xs py-2 w-64 hover:bg-gray-900 transition-colors"
         >
           Show less
         </motion.button>
@@ -137,21 +156,23 @@ export function BentoCard({ className = "", eyebrow, title, description, img }) 
         "bg-black shadow-sm ring-1 ring-white/10 transform-gpu"
       )}
     >
-      <div className="relative h-[22rem] shrink-0">
+      <div className="relative h-[29rem] shrink-0">
         <img
           src={img}
           alt={title}
           className="absolute inset-0 h-full w-full object-cover"
         />
       </div>
-      <div className="relative p-8 z-20 isolate mt-[-90px] h-[13rem] backdrop-blur-xl text-white">
+      <div className="relative p-10 z-20 isolate mt-[-110px] h-[14rem] backdrop-blur-xl text-white">
         <span className="text-xs uppercase tracking-[0.35em] text-white/60">
           {eyebrow}
         </span>
-        <p className="mt-1 text-xl font-medium tracking-tight text-white">
+        <p className="mt-1 text-2xl/8 font-medium tracking-tight text-white">
           {title}
         </p>
-        <p className="mt-2 text-sm/6 text-gray-300">{description}</p>
+        <p className="mt-2 max-w-[600px] text-sm/6 text-gray-300">
+          {description}
+        </p>
       </div>
     </motion.div>
   );
