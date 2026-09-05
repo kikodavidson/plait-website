@@ -238,9 +238,9 @@ export default function RadialOrbitalTimeline({ timelineData }) {
                   <Card className="absolute top-20 left-1/2 -translate-x-1/2 w-64 bg-black/90 backdrop-blur-lg border-white/30 shadow-xl shadow-white/10 overflow-visible">
                     <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-px h-3 bg-white/50"></div>
                     <CardHeader className="pb-2">
-                      <div className="flex justify-between items-center">
+                      <div className="flex justify-between items-center gap-2">
                         <Badge
-                          className={`px-2 text-xs rounded-none ${getStatusStyles(item.status)}`}
+                          className={`px-2 text-xs rounded-none shrink-0 ${getStatusStyles(item.status)}`}
                         >
                           {item.status === "completed"
                             ? "COMPLETE"
@@ -248,7 +248,7 @@ export default function RadialOrbitalTimeline({ timelineData }) {
                             ? "IN PROGRESS"
                             : "PENDING"}
                         </Badge>
-                        <span className="text-xs font-mono text-white/50">
+                        <span className="text-xs font-mono text-white/50 text-right leading-tight whitespace-nowrap">
                           {item.date}
                         </span>
                       </div>
