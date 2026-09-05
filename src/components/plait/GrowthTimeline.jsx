@@ -11,7 +11,8 @@ const timelineData = [
     category: "Audit",
     icon: Search,
     relatedIds: [2],
-    status: "completed",
+    status: "pending",
+    statusLabel: "START NOW",
     energy: 100,
   },
   {
@@ -23,7 +24,7 @@ const timelineData = [
     category: "Strategy",
     icon: Map,
     relatedIds: [1, 3],
-    status: "completed",
+    status: "pending",
     energy: 85,
   },
   {
@@ -35,7 +36,7 @@ const timelineData = [
     category: "Launch",
     icon: Rocket,
     relatedIds: [2, 4],
-    status: "in-progress",
+    status: "pending",
     energy: 65,
   },
   {

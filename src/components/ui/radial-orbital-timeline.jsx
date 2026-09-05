@@ -242,11 +242,7 @@ export default function RadialOrbitalTimeline({ timelineData }) {
                         <Badge
                           className={`px-2 text-xs rounded-none shrink-0 ${getStatusStyles(item.status)}`}
                         >
-                          {item.status === "completed"
-                            ? "COMPLETE"
-                            : item.status === "in-progress"
-                            ? "IN PROGRESS"
-                            : "PENDING"}
+                          {item.statusLabel || "PENDING"}
                         </Badge>
                         <span className="text-xs font-mono text-white/50 text-right leading-tight whitespace-nowrap">
                           {item.date}
