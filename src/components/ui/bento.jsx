@@ -13,7 +13,7 @@ const BAND_ONE = [
     eyebrow: "Efficiency",
     title: "Higher Ad Efficiency",
     description: "More revenue from the same spend through tighter targeting, creative, and bidding.",
-    img: "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/ae6292b70_ChatGPTImageSep4202611_26_53PM.png",
+    img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
   },
   {
     eyebrow: "Library",
