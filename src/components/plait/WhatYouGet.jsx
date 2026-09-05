@@ -1,6 +1,6 @@
 import React from "react";
-import FAQ1 from "@/components/ui/faq-monochrome";
+import JobSlider from "@/components/ui/job-slider";
 
 export default function WhatYouGet() {
-  return <FAQ1 />;
+  return <JobSlider />;
 }
