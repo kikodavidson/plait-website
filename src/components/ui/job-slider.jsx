@@ -57,6 +57,12 @@ const slides = [
 
 export default function JobSlider() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [expandedCard, setExpandedCard] = useState(null);
+
+  const toggleCard = (slideIndex, cardIndex) =>
+    setExpandedCard((prev) =>
+      prev === `${slideIndex}-${cardIndex}` ? null : `${slideIndex}-${cardIndex}`
+    );
 
   const handlePrev = () =>
     setCurrentSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
@@ -121,24 +127,34 @@ export default function JobSlider() {
                   bg-gray-100
                 "
               >
-                {slide.map((item, idx) => (
-                  <Card
-                    key={idx}
-                    className="
-                      text-center shadow-md p-4
-                      bg-white
-                      border border-gray-200
-                      transition-colors
-                    "
-                  >
-                    <CardHeader className="text-base sm:text-lg font-semibold p-0 text-gray-800">
-                      {item.title}
-                    </CardHeader>
-                    <CardContent className="text-sm text-gray-500 p-0 mt-1">
-                      {item.description}
-                    </CardContent>
-                  </Card>
-                ))}
+                {slide.map((item, idx) => {
+                  const isOpen = expandedCard === `${i}-${idx}`;
+                  return (
+                    <Card
+                      key={idx}
+                      className="
+                        text-center shadow-md p-4 cursor-pointer
+                        bg-white
+                        border border-gray-200
+                        transition-colors hover:border-gray-400
+                      "
+                      onClick={() => toggleCard(i, idx)}
+                    >
+                      <CardHeader className="text-base sm:text-lg font-semibold p-0 text-gray-800">
+                        {item.title}
+                      </CardHeader>
+                      <div
+                        className={`overflow-hidden transition-all duration-300 ${
+                          isOpen ? "max-h-40 opacity-100 mt-1" : "max-h-0 opacity-0"
+                        }`}
+                      >
+                        <CardContent className="text-sm text-gray-500 p-0">
+                          {item.description}
+                        </CardContent>
+                      </div>
+                    </Card>
+                  );
+                })}
               </div>
             ))}
           </div>
