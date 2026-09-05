@@ -1,7 +1,73 @@
+import { useState } from "react";
 import { clsx } from "clsx";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+
+const CARDS = [
+  {
+    eyebrow: "Insight",
+    title: "Verified Buyer Motives",
+    description: "We map the real reasons your customers buy so every message hits the nerve that converts.",
+    img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
+  },
+  {
+    eyebrow: "Efficiency",
+    title: "Higher Ad Efficiency",
+    description: "More revenue from the same spend through tighter targeting, creative, and bidding.",
+    img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
+  },
+  {
+    eyebrow: "Library",
+    title: "Swipe File Warehouse",
+    description: "A living library of proven ads and angles that fuels nonstop content ideation.",
+    img: "https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?auto=format&fit=crop&w=1200&q=80",
+  },
+  {
+    eyebrow: "Structure",
+    title: "Optimal Account Architecture",
+    description: "Campaign, ad set, and audience structures built to scale without waste.",
+    img: "https://images.unsplash.com/photo-1543286386-713bdd548da4?auto=format&fit=crop&w=1200&q=80",
+  },
+  {
+    eyebrow: "Lifecycle",
+    title: "Automated Nurture & Retention",
+    description: "Email and lifecycle sequences that turn one-time buyers into repeat revenue.",
+    img: "https://images.unsplash.com/photo-1553877522-43269d4ea14c?auto=format&fit=crop&w=1200&q=80",
+  },
+  {
+    eyebrow: "Data",
+    title: "Clean Data Tracking",
+    description: "Server-side tracking and naming conventions so every number is one you can trust.",
+    img: "https://images.unsplash.com/photo-1556155092-490a1ba16284?auto=format&fit=crop&w=1200&q=80",
+  },
+  {
+    eyebrow: "Visibility",
+    title: "Custom KPI Dashboard",
+    description: "One live view of spend, revenue, and margin — no more tab-hopping between platforms.",
+    img: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=80",
+  },
+  {
+    eyebrow: "Positioning",
+    title: "Defined Market Advantages",
+    description: "Sharp positioning that makes you the obvious choice in a crowded category.",
+    img: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80",
+  },
+  {
+    eyebrow: "Conversion",
+    title: "Optimized Checkout Flows",
+    description: "Checkout, upsell, and post-purchase flows tuned to squeeze out lost revenue.",
+    img: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80",
+  },
+  {
+    eyebrow: "Content",
+    title: "Managed Content Pipelines",
+    description: "A steady production line of creative so campaigns never go hungry.",
+    img: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80",
+  },
+];
 
 export default function FUIBentoGridDark() {
+  const [expanded, setExpanded] = useState(false);
+
   return (
     <div className="w-full bg-white py-16 px-6 md:px-10 container mx-auto flex flex-col">
       <h1
@@ -13,78 +79,53 @@ export default function FUIBentoGridDark() {
       <p className="max-w-3xl text-xl md:text-2xl font-medium tracking-tight mt-2 text-gray-500">
         Everything included when you partner with our team.
       </p>
-      <div className="mt-10 grid grid-cols-1 gap-4 sm:mt-16 lg:grid-cols-6 lg:grid-rows-2">
-        <BentoCard
-          eyebrow="Insight"
-          title="Verified Buyer Motives"
-          description="We map the real reasons your customers buy so every message hits the nerve that converts."
-          graphic={
-            <img
-              src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80"
-              alt="Marketing analytics"
-              className="absolute inset-0 h-full w-full object-cover"
+
+      <div className="relative mt-10 sm:mt-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+          {CARDS.map((card) => (
+            <BentoCard key={card.title} {...card} />
+          ))}
+        </div>
+
+        <AnimatePresence>
+          {!expanded && (
+            <motion.div
+              key="reveal-overlay"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.5, ease: "easeInOut" }}
+              className="absolute inset-x-0 top-1/2 bottom-0 bg-gradient-to-b from-white/0 via-white/70 to-white pointer-events-none"
             />
-          }
-          className="lg:col-span-3"
-        />
-        <BentoCard
-          eyebrow="Efficiency"
-          title="Higher Ad Efficiency"
-          description="More revenue from the same spend through tighter targeting, creative, and bidding."
-          graphic={
-            <img
-              src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80"
-              alt="Growth dashboard"
-              className="absolute inset-0 h-full w-full object-cover"
-            />
-          }
-          className="lg:col-span-3"
-        />
-        <BentoCard
-          eyebrow="Library"
-          title="Swipe File Warehouse"
-          description="A living library of proven ads and angles that fuels nonstop content ideation."
-          graphic={
-            <img
-              src="https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?auto=format&fit=crop&w=1200&q=80"
-              alt="Data and code"
-              className="absolute inset-0 h-full w-full object-cover"
-            />
-          }
-          className="lg:col-span-2"
-        />
-        <BentoCard
-          eyebrow="Structure"
-          title="Optimal Account Architecture"
-          description="Campaign, ad set, and audience structures built to scale without waste."
-          graphic={
-            <img
-              src="https://images.unsplash.com/photo-1543286386-713bdd548da4?auto=format&fit=crop&w=1200&q=80"
-              alt="Charts and graphs"
-              className="absolute inset-0 h-full w-full object-cover"
-            />
-          }
-          className="lg:col-span-2"
-        />
-        <BentoCard
-          eyebrow="Lifecycle"
-          title="Automated Nurture & Retention"
-          description="Email and lifecycle sequences that turn one-time buyers into repeat revenue."
-          graphic={
-            <img
-              src="https://images.unsplash.com/photo-1553877522-43269d4ea14c?auto=format&fit=crop&w=1200&q=80"
-              alt="Team reviewing performance"
-              className="absolute inset-0 h-full w-full object-cover"
-            />
-          }
-          className="lg:col-span-2"
-        />
+          )}
+        </AnimatePresence>
+
+        {!expanded && (
+          <button
+            onClick={() => setExpanded(true)}
+            className="absolute inset-x-0 top-[58%] z-10 bg-black text-white uppercase tracking-[0.35em] font-bold text-sm py-4 hover:bg-gray-900 transition-colors"
+          >
+            Show more
+          </button>
+        )}
       </div>
+
+      {expanded && (
+        <motion.button
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.4 }}
+          onClick={() => setExpanded(false)}
+          className="mt-4 bg-black text-white uppercase tracking-[0.35em] font-bold text-sm py-4 hover:bg-gray-900 transition-colors"
+        >
+          Show less
+        </motion.button>
+      )}
     </div>
   );
 }
 
-export function BentoCard({ className = "", eyebrow, title, description, graphic }) {
+export function BentoCard({ className = "", eyebrow, title, description, img }) {
   return (
     <motion.div
       initial="idle"
@@ -96,17 +137,21 @@ export function BentoCard({ className = "", eyebrow, title, description, graphic
         "bg-black shadow-sm ring-1 ring-white/10 transform-gpu"
       )}
     >
-      <div className="relative h-[29rem] shrink-0">{graphic}</div>
-      <div className="relative p-10 z-20 isolate mt-[-110px] h-[14rem] backdrop-blur-xl text-white">
+      <div className="relative h-[22rem] shrink-0">
+        <img
+          src={img}
+          alt={title}
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+      </div>
+      <div className="relative p-8 z-20 isolate mt-[-90px] h-[13rem] backdrop-blur-xl text-white">
         <span className="text-xs uppercase tracking-[0.35em] text-white/60">
           {eyebrow}
         </span>
-        <p className="mt-1 text-2xl font-medium tracking-tight text-white">
+        <p className="mt-1 text-xl font-medium tracking-tight text-white">
           {title}
         </p>
-        <p className="mt-2 max-w-[600px] text-sm/6 text-gray-300">
-          {description}
-        </p>
+        <p className="mt-2 text-sm/6 text-gray-300">{description}</p>
       </div>
     </motion.div>
   );
