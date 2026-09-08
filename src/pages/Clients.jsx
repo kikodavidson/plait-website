@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { base44 } from "@/api/base44Client";
-import { Plus, Pencil, Trash2, ShieldAlert, LogOut, Loader2, FolderDown, Eye } from "lucide-react";
-import moment from "moment";
-import CourseCard from "@/components/ui/course-design-cards";
+import { Plus, ShieldAlert, LogOut, Loader2, FolderDown, Eye } from "lucide-react";
+import ClientLogoCard from "@/components/admin/ClientLogoCard";
 import ClientDialog from "@/components/admin/ClientDialog";
 import { WavesShaderBackground } from "@/components/ui/waves-shader-background";
 
@@ -111,27 +110,16 @@ export default function Clients() {
               const total = plans.filter((p) => p.client_slug === c.slug).length;
               const published = publishedCount(c.slug);
               return (
-                <CourseCard
+                <ClientLogoCard
                   key={c.id}
-                  data={{
-                    colorClass: c.status === "paused" ? "orange" : c.status === "archived" ? "red" : "green",
-                    date: c.created_date ? moment(c.created_date).format("MMM D, YYYY") : "",
-                    status: c.status || "active",
-                    title: c.name,
-                    description: `/${c.slug}`,
-                    progressLabel: "Published",
-                    progressPercent: total ? `${Math.round((published / total) * 100)}%` : "0%",
-                    progressValue: `${published}/${total} plans`,
-                    imgSrc1: c.logo,
-                    imgAlt1: c.name,
-                    initial: (c.name || "?").slice(0, 1),
-                    countdownText: "Open builder",
-                  }}
-                  menuItems={[
-                    { label: "Edit client", icon: Pencil, onClick: () => { setEditing(c); setDialogOpen(true); } },
-                    { label: "Delete client", icon: Trash2, danger: true, onClick: () => deleteClient(c) },
-                  ]}
-                  onCountdown={() => navigate(`/admin/clients/${c.id}`)}
+                  name={c.name}
+                  slug={c.slug}
+                  logo={c.logo}
+                  published={published}
+                  total={total}
+                  onEdit={() => { setEditing(c); setDialogOpen(true); }}
+                  onDelete={() => deleteClient(c)}
+                  onOpen={() => navigate(`/admin/clients/${c.id}`)}
                 />
               );
             })}
