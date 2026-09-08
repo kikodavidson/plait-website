@@ -177,11 +177,6 @@ export default function Contact() {
               </ul>
             </div>
 
-            <div className="bg-[#2d2d2d] text-white rounded-3xl p-8">
-              <p className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-3">Current availability</p>
-              <p className="font-body text-3xl font-bold mb-2">Taking on 2 new clients.</p>
-              <p className="text-sm text-gray-400">Retainer spots go fast. Audit spots are always open.</p>
-            </div>
           </motion.div>
         </div>
       </div>
