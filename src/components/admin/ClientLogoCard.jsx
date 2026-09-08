@@ -5,6 +5,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
+import { LiquidButton } from "@/components/ui/liquid-glass-button";
 
 export default function ClientLogoCard({
   name,
@@ -15,10 +16,7 @@ export default function ClientLogoCard({
   onOpen,
 }) {
   return (
-    <div
-      onClick={onOpen}
-      className="group relative cursor-pointer rounded-xl bg-[#141416] border border-white/10 overflow-hidden hover:border-white/30 transition-colors"
-    >
+    <div className="group relative rounded-xl bg-[#141416] border border-white/10 overflow-hidden hover:border-white/30 transition-colors">
       <div className="absolute top-3 right-3 z-10" onClick={(e) => e.stopPropagation()}>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -56,6 +54,13 @@ export default function ClientLogoCard({
         <p className="mt-1 text-xs text-white/40">
           {total} {total === 1 ? "campaign" : "campaigns"}
         </p>
+        <LiquidButton
+          size="sm"
+          className="mt-3 w-full text-white/80 hover:text-white"
+          onClick={onOpen}
+        >
+          Open builder
+        </LiquidButton>
       </div>
     </div>
   );
