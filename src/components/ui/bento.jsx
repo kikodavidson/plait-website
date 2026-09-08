@@ -14,7 +14,7 @@ const BAND_ONE = [
     eyebrow: "Efficiency",
     title: "Higher Ad Efficiency",
     description: "More revenue from the same spend through tighter targeting, creative, and bidding.",
-    img: "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/43c2e1d6d_ChatGPTImageSep4202611_33_42PM.png",
+    img: "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/40bf970ea_image.png",
   },
   {
     eyebrow: "Library",
@@ -26,7 +26,7 @@ const BAND_ONE = [
     eyebrow: "Structure",
     title: "Optimal Account Architecture",
     description: "Campaign, ad set, and audience structures built to scale without waste.",
-    img: "https://images.unsplash.com/photo-1543286386-713bdd548da4?auto=format&fit=crop&w=1200&q=80",
+    img: "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/43c2e1d6d_ChatGPTImageSep4202611_33_42PM.png",
   },
   {
     eyebrow: "Lifecycle",
