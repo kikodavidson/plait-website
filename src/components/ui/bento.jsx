@@ -59,7 +59,7 @@ const BAND_TWO = [
     eyebrow: "Conversion",
     title: "Optimized Checkout Flows",
     description: "Checkout, upsell, and post-purchase flows tuned to squeeze out lost revenue.",
-    img: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80",
+    img: "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/9e08895ca_ChatGPTImageSep7202611_26_15PM.png",
   },
   {
     eyebrow: "Content",
