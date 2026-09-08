@@ -258,7 +258,7 @@ export default function RadialOrbitalTimeline({ timelineData }) {
                       <div className="mt-4 pt-3 border-t border-white/10">
                         <div className="flex justify-between items-center text-xs mb-1">
                           <span className="uppercase tracking-wider text-white/70">
-                            Steps Completed
+                            Growth Phase
                           </span>
                           <span className="font-mono">{stepsDonePercent}%</span>
                         </div>
