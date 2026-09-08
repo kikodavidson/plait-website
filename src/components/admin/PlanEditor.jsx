@@ -18,7 +18,6 @@ export default function PlanEditor({ plan, onDuplicate, onMetaChange }) {
   const [angles, setAngles] = useState([]);
   const [blocks, setBlocks] = useState([]);
   const [examples, setExamples] = useState([]);
-  const [swipeById, setSwipeById] = useState({});
   const [loading, setLoading] = useState(true);
 
   useEffect(() => { setP(plan); }, [plan]);
@@ -35,13 +34,6 @@ export default function PlanEditor({ plan, onDuplicate, onMetaChange }) {
       let exs = [];
       if (blkIds.length) exs = await base44.entities.Example.filter({ block_id: { $in: blkIds } }, "order");
       setAngles(angs); setBlocks(blks); setExamples(exs);
-      const swipeIds = [...new Set(exs.map((e) => e.swipe_id).filter(Boolean))];
-      if (swipeIds.length) {
-        try {
-          const sws = await base44.entities.Swipe.filter({ id: { $in: swipeIds } });
-          setSwipeById(Object.fromEntries(sws.map((s) => [s.id, s])));
-        } catch (e) { console.error(e); }
-      }
     } catch (e) {
       console.error(e);
     }
@@ -153,20 +145,6 @@ export default function PlanEditor({ plan, onDuplicate, onMetaChange }) {
     setExamples((prev) => prev.filter((e) => e.id !== id));
   };
 
-  const replaceExample = async (example, swipe) => {
-    const block = blocks.find((b) => b.id === example.block_id);
-    const angle = angles.find((a) => a.id === block.angle_id);
-    const created = await base44.entities.Example.create({
-      client_slug: example.client_slug, block_id: example.block_id, swipe_id: swipe.id,
-      file_url: swipe.file, thumbnail_url: swipe.thumbnail,
-      label: exampleLabel({ month: p.month, angleType: angle.type, angleOrder: angle.order, contentType: block.content_type, seq: example.order }),
-      note: example.note, order: example.order, plan_status: p.status,
-    });
-    await base44.entities.Example.delete(example.id);
-    setSwipeById((prev) => ({ ...prev, [swipe.id]: swipe }));
-    setExamples((prev) => prev.filter((e) => e.id !== example.id).concat(created));
-  };
-
   const onAngleDragEnd = (result) => {
     if (!result.destination) return;
     const moved = arrayMove(angles, result.source.index, result.destination.index).map((a, i) => ({ ...a, order: i + 1 }));
@@ -174,7 +152,7 @@ export default function PlanEditor({ plan, onDuplicate, onMetaChange }) {
     setAngles(moved);
   };
 
-  const api = { set: setEntity, commit: commitEntity, deleteAngle, addBlock, deleteBlock, reorderBlocks, reorderExamples, addExamples, deleteExample, replaceExample, swipeFor: (ex) => swipeById[ex.swipe_id] };
+  const api = { set: setEntity, commit: commitEntity, deleteAngle, addBlock, deleteBlock, reorderBlocks, reorderExamples, addExamples, deleteExample };
 
   const blocksForAngle = (angleId) => blocks.filter((b) => b.angle_id === angleId).sort((a, b) => (a.order || 0) - (b.order || 0));
   const examplesForBlock = (blockId) => examples.filter((e) => e.block_id === blockId).sort((a, b) => (a.order || 0) - (b.order || 0));
