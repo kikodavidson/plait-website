@@ -17,27 +17,6 @@ const BAND_ONE = [
     img: "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/40bf970ea_image.png",
   },
   {
-    eyebrow: "Library",
-    title: "Swipe File Warehouse",
-    description: "A living library of proven ads and angles that fuels nonstop content ideation.",
-    img: "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/b10be3b79_ChatGPTImageSep4202611_42_07PM.png",
-  },
-  {
-    eyebrow: "Structure",
-    title: "Optimal Account Architecture",
-    description: "Campaign, ad set, and audience structures built to scale without waste.",
-    img: "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/43c2e1d6d_ChatGPTImageSep4202611_33_42PM.png",
-  },
-  {
-    eyebrow: "Lifecycle",
-    title: "Automated Nurture & Retention",
-    description: "Email and lifecycle sequences that turn one-time buyers into repeat revenue.",
-    img: "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/9de44f353_ChatGPTImageSep7202611_03_43PM.png",
-  },
-];
-
-const BAND_TWO = [
-  {
     eyebrow: "Data",
     title: "Clean Data Tracking",
     description: "Server-side tracking and naming conventions so every number is one you can trust.",
@@ -54,6 +33,27 @@ const BAND_TWO = [
     title: "Defined Market Advantages",
     description: "Sharp positioning that makes you the obvious choice in a crowded category.",
     img: "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/bf6677e90_ChatGPTImageSep7202611_42_09PM.png",
+  },
+];
+
+const BAND_TWO = [
+  {
+    eyebrow: "Library",
+    title: "Swipe File Warehouse",
+    description: "A living library of proven ads and angles that fuels nonstop content ideation.",
+    img: "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/b10be3b79_ChatGPTImageSep4202611_42_07PM.png",
+  },
+  {
+    eyebrow: "Structure",
+    title: "Optimal Account Architecture",
+    description: "Campaign, ad set, and audience structures built to scale without waste.",
+    img: "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/43c2e1d6d_ChatGPTImageSep4202611_33_42PM.png",
+  },
+  {
+    eyebrow: "Lifecycle",
+    title: "Automated Nurture & Retention",
+    description: "Email and lifecycle sequences that turn one-time buyers into repeat revenue.",
+    img: "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/9de44f353_ChatGPTImageSep7202611_03_43PM.png",
   },
   {
     eyebrow: "Conversion",
