@@ -125,9 +125,20 @@ export default function ClientBuilder() {
         <div className="absolute inset-0 bg-black/40" />
       </div>
       <header className="relative z-30 bg-black text-white px-6 py-4 flex items-center justify-between sticky top-0 border-b border-white/10">
-        <div>
-          <p className="text-[10px] uppercase tracking-[0.3em] text-white/40">Gameplan Builder</p>
-          <h1 className="text-xl font-bold">Plait</h1>
+        <div className="flex items-center gap-4">
+          <div>
+            <p className="text-[10px] uppercase tracking-[0.3em] text-white/40">Gameplan Builder</p>
+            <h1 className="text-xl font-bold">Plait</h1>
+          </div>
+          <div className="w-px h-9 bg-white/15" />
+          <div className="flex items-center gap-2.5 min-w-0">
+            {client.logo ? (
+              <img src={client.logo} alt={client.name} className="h-8 w-auto max-w-[140px] object-contain" />
+            ) : (
+              <span className="text-sm font-bold text-white/70 truncate">{client.name}</span>
+            )}
+            {client.logo && <span className="text-sm text-white/60 truncate">{client.name}</span>}
+          </div>
         </div>
         <div className="flex items-center gap-2">
           <button onClick={() => setInviteOpen(true)} className="inline-flex items-center gap-2 text-sm font-medium text-white/70 hover:text-white px-3.5 py-1.5 rounded-full border border-white/15 hover:border-white/30">
