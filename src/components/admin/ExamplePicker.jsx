@@ -3,7 +3,7 @@ import { base44 } from "@/api/base44Client";
 import { X, Loader2, Check } from "lucide-react";
 import LibraryFilters from "@/components/library/LibraryFilters";
 
-export default function ExamplePicker({ open, onClose, onAdd }) {
+export default function ExamplePicker({ open, onClose, onAdd, multiple = true, title = "Add examples from swipe library" }) {
   const [swipes, setSwipes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
@@ -37,11 +37,14 @@ export default function ExamplePicker({ open, onClose, onAdd }) {
     return true;
   });
 
-  const toggle = (id) => setSelected((prev) => {
-    const n = new Set(prev);
-    n.has(id) ? n.delete(id) : n.add(id);
-    return n;
-  });
+  const toggle = (id) => {
+    if (!multiple) { setSelected(new Set([id])); return; }
+    setSelected((prev) => {
+      const n = new Set(prev);
+      n.has(id) ? n.delete(id) : n.add(id);
+      return n;
+    });
+  };
 
   const clearFilters = () => {
     setSearch("");
@@ -53,7 +56,7 @@ export default function ExamplePicker({ open, onClose, onAdd }) {
       <div className="absolute inset-0 bg-black/40" onClick={onClose} />
       <div className="relative w-full max-w-4xl max-h-[85vh] bg-white rounded-2xl shadow-xl flex flex-col">
         <div className="flex items-center justify-between p-4 border-b border-gray-100">
-          <p className="font-bold text-[#2d2d2d]">Add examples from swipe library</p>
+          <p className="font-bold text-[#2d2d2d]">{title}</p>
           <button onClick={onClose} className="p-1 rounded hover:bg-gray-100"><X className="w-5 h-5" /></button>
         </div>
         <div className="p-4 border-b border-gray-100">
@@ -101,7 +104,7 @@ export default function ExamplePicker({ open, onClose, onAdd }) {
               onClick={() => onAdd(swipes.filter((s) => selected.has(s.id)))}
               className="btn-gradient text-sm px-5 py-2 rounded-full disabled:opacity-50"
             >
-              Add {selected.size || ""}
+              {multiple ? `Add ${selected.size || ""}` : "Replace"}
             </button>
           </div>
         </div>
