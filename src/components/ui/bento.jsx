@@ -33,6 +33,7 @@ const BAND_ONE = [
     title: "Defined Market Advantages",
     description: "Sharp positioning that makes you the obvious choice in a crowded category.",
     img: "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/bf6677e90_ChatGPTImageSep7202611_42_09PM.png",
+    imgPosition: "top",
   },
 ];
 
@@ -41,7 +42,7 @@ const BAND_TWO = [
     eyebrow: "Library",
     title: "Swipe File Warehouse",
     description: "A living library of proven ads and angles that fuels nonstop content ideation.",
-    img: "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/b10be3b79_ChatGPTImageSep4202611_42_07PM.png",
+    img: "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/3dbc06723_Screenshot2026-09-08at12840AM.png",
   },
   {
     eyebrow: "Structure",
