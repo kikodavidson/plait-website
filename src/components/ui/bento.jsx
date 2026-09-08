@@ -32,7 +32,7 @@ const BAND_ONE = [
     eyebrow: "Lifecycle",
     title: "Automated Nurture & Retention",
     description: "Email and lifecycle sequences that turn one-time buyers into repeat revenue.",
-    img: "https://images.unsplash.com/photo-1553877522-43269d4ea14c?auto=format&fit=crop&w=1200&q=80",
+    img: "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/9de44f353_ChatGPTImageSep7202611_03_43PM.png",
   },
 ];
 
