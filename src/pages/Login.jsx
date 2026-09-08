@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Mail, Lock, Loader2 } from "lucide-react";
 import AuthLayout from "@/components/AuthLayout";
+import { PlasmaShaderBackground } from "@/components/ui/plasma-shader-background";
 import GoogleIcon from "@/components/GoogleIcon";
 
 export default function Login() {
@@ -38,14 +39,20 @@ export default function Login() {
   };
 
   return (
+    <div className="relative min-h-screen">
+      <div className="absolute inset-0" aria-hidden="true">
+        <PlasmaShaderBackground className="absolute inset-0" />
+      </div>
+      <div className="relative z-10">
     <AuthLayout
+      onDark
       logo="https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/56e6c8a0d_logos5.png"
       title="Creative Gameplan Portal"
       subtitle="Log in to your account"
       footer={
         <>
           Don't have an account?{" "}
-          <Link to="/register" className="text-[#2d2d2d] font-medium hover:underline">
+          <Link to="/register" className="text-white font-medium hover:underline">
             Create one
           </Link>
         </>
@@ -125,5 +132,7 @@ export default function Login() {
         </Button>
       </form>
     </AuthLayout>
+      </div>
+    </div>
   );
 }
