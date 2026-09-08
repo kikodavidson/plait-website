@@ -47,7 +47,8 @@ const BAND_TWO = [
     eyebrow: "Visibility",
     title: "Custom KPI Dashboard",
     description: "One live view of spend, revenue, and margin — no more tab-hopping between platforms.",
-    img: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=80",
+    img: "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/3259c106d_Screenshot2026-09-07at112904PM.png",
+    imgPosition: "top",
   },
   {
     eyebrow: "Positioning",
