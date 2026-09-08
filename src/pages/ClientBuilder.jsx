@@ -112,13 +112,10 @@ export default function ClientBuilder() {
     return <div className="min-h-screen flex items-center justify-center bg-gray-50"><Loader2 className="w-6 h-6 animate-spin text-gray-300" /></div>;
   }
 
-  const changeStrategyStatus = async (planId, val) => {
-    await base44.entities.Plan.update(planId, { strategy_status: val });
-    setPlans((prev) => prev.map((p) => (p.id === planId ? { ...p, strategy_status: val } : p)));
-    if (selectedPlan?.id === planId) setSelectedPlan((s) => (s ? { ...s, strategy_status: val } : s));
+  const applyPlanMeta = (planId, patch) => {
+    setPlans((prev) => prev.map((p) => (p.id === planId ? { ...p, ...patch } : p)));
+    setSelectedPlan((s) => (s?.id === planId ? { ...s, ...patch } : s));
   };
-
-  const statusBadge = (s) => (s === "published" ? "bg-green-100 text-green-700" : "bg-[#EEEEEE] text-gray-600");
 
   return (
     <div className="min-h-screen bg-[#F9F9F9]">
@@ -135,59 +132,64 @@ export default function ClientBuilder() {
         </div>
       </header>
 
-      <main className="max-w-5xl mx-auto px-6 py-8">
+      <main className="max-w-6xl mx-auto px-6 py-8">
         <button
           onClick={() => navigate("/admin/clients")}
-          className="inline-flex items-center gap-1 text-sm text-gray-500 hover:text-[#2d2d2d] mb-4"
+          className="inline-flex items-center gap-1 text-sm text-gray-500 hover:text-[#2d2d2d] mb-6"
         >
           <ArrowLeft className="w-4 h-4" /> Back to client overview
         </button>
-        {selectedPlan ? (
-          <div className="space-y-4">
-            <button onClick={() => setSelectedPlan(null)} className="inline-flex items-center gap-1 text-sm text-gray-500 hover:text-[#2d2d2d]">
-              <ArrowLeft className="w-4 h-4" /> Back to plans
-            </button>
-            <PlanEditor plan={selectedPlan} onDuplicate={(p) => setMonthDialog({ mode: "duplicate", source: p })} />
-          </div>
-        ) : (
-          <div className="space-y-4">
-            <div className="flex items-center justify-between">
+        <div className="flex flex-col lg:flex-row gap-6 items-start">
+          <aside className="w-full lg:w-72 shrink-0 lg:sticky lg:top-20">
+            <div className="flex items-center justify-between mb-3">
               <h2 className="text-lg font-bold text-[#2d2d2d]">Plans</h2>
-              <button onClick={() => setMonthDialog({ mode: "new" })} className="inline-flex items-center gap-2 btn-gradient text-sm px-4 py-2 rounded-full">
-                <Plus className="w-4 h-4" /> New plan
+              <button onClick={() => setMonthDialog({ mode: "new" })} className="inline-flex items-center gap-1.5 btn-gradient text-xs px-3 py-1.5 rounded-full">
+                <Plus className="w-3.5 h-3.5" /> New plan
               </button>
             </div>
             {plans.length === 0 ? (
-              <p className="text-gray-400 text-sm text-center py-10">No plans yet.</p>
+              <p className="text-gray-400 text-sm">No plans yet. Create one to start building.</p>
             ) : (
-              <div className="space-y-2">
-                {plans.map((p) => (
-                  <div key={p.id} className="bg-white rounded-xl border border-gray-200 p-4 flex items-center justify-between">
-                    <button onClick={() => setSelectedPlan(p)} className="text-left flex-1 min-w-0">
-                      <p className="font-bold text-[#2d2d2d]">{p.month} {p.year}</p>
-                      {p.headline && <p className="text-sm text-gray-500 truncate">{p.headline}</p>}
-                    </button>
-                    <div className="flex items-center gap-2 ml-3">
-                      <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${statusBadge(p.status)}`}>{p.status}</span>
-                      <select
-                        value={p.strategy_status || "Proposed"}
-                        onChange={(e) => changeStrategyStatus(p.id, e.target.value)}
-                        className="h-8 rounded-md border border-gray-200 bg-white px-1 text-xs focus:outline-none focus:ring-1 focus:ring-[#2d2d2d]"
-                        title="Strategy status"
-                      >
-                        <option value="Proposed">Proposed</option>
-                        <option value="In Progress">In Progress</option>
-                        <option value="Completed">Completed</option>
-                      </select>
-                      <button onClick={() => setMonthDialog({ mode: "duplicate", source: p })} className="text-gray-400 hover:text-[#2d2d2d]" title="Duplicate plan"><Copy className="w-4 h-4" /></button>
-                      <button onClick={() => deletePlan(p.id)} className="text-gray-400 hover:text-red-500"><Trash2 className="w-4 h-4" /></button>
+              <nav className="space-y-2">
+                {plans.map((p) => {
+                  const active = selectedPlan?.id === p.id;
+                  return (
+                    <div
+                      key={p.id}
+                      className={`rounded-xl border p-3 flex items-center justify-between gap-2 transition-colors ${active ? "bg-[#2d2d2d] border-[#2d2d2d] text-white" : "bg-white border-gray-200 hover:border-gray-400"}`}
+                    >
+                      <button onClick={() => setSelectedPlan(p)} className="text-left min-w-0 flex-1">
+                        <p className={`font-bold truncate ${active ? "text-white" : "text-[#2d2d2d]"}`}>
+                          {p.month} {p.year}
+                        </p>
+                        <p className={`text-xs mt-0.5 ${active ? "text-white/60" : "text-gray-500"}`}>
+                          <span className="capitalize">{p.status}</span> · {p.strategy_status || "Proposed"}
+                        </p>
+                      </button>
+                      <div className="flex items-center gap-1 shrink-0">
+                        <button onClick={() => setMonthDialog({ mode: "duplicate", source: p })} className={active ? "text-white/50 hover:text-white" : "text-gray-400 hover:text-[#2d2d2d]"} title="Duplicate plan"><Copy className="w-4 h-4" /></button>
+                        <button onClick={() => deletePlan(p.id)} className={active ? "text-white/50 hover:text-red-400" : "text-gray-400 hover:text-red-500"} title="Delete plan"><Trash2 className="w-4 h-4" /></button>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
+              </nav>
+            )}
+          </aside>
+          <div className="flex-1 min-w-0 w-full">
+            {selectedPlan ? (
+              <PlanEditor
+                plan={selectedPlan}
+                onDuplicate={(p) => setMonthDialog({ mode: "duplicate", source: p })}
+                onMetaChange={(patch) => applyPlanMeta(selectedPlan.id, patch)}
+              />
+            ) : (
+              <div className="rounded-xl border border-gray-200 bg-white p-10 text-center text-gray-400 text-sm">
+                Select a plan to start building.
               </div>
             )}
           </div>
-        )}
+        </div>
       </main>
 
       <InviteClientDialog open={inviteOpen} client={client} onClose={() => setInviteOpen(false)} />

@@ -13,7 +13,7 @@ const arrayMove = (arr, from, to) => {
   return a;
 };
 
-export default function PlanEditor({ plan, onDuplicate }) {
+export default function PlanEditor({ plan, onDuplicate, onMetaChange }) {
   const [p, setP] = useState(plan);
   const [angles, setAngles] = useState([]);
   const [blocks, setBlocks] = useState([]);
@@ -50,11 +50,13 @@ export default function PlanEditor({ plan, onDuplicate }) {
   const commitPlan = (patch) => {
     setP((prev) => ({ ...prev, ...patch }));
     base44.entities.Plan.update(plan.id, patch).catch(console.error);
+    onMetaChange?.(patch);
   };
 
   const changeStatus = async (newStatus) => {
     setP((prev) => ({ ...prev, status: newStatus }));
     await base44.entities.Plan.update(plan.id, { status: newStatus });
+    onMetaChange?.({ status: newStatus });
     try { await base44.functions.invoke("syncPlanStatus", { planId: plan.id, status: newStatus }); } catch (e) { console.error(e); }
     setAngles((prev) => prev.map((a) => ({ ...a, plan_status: newStatus })));
     setBlocks((prev) => prev.map((b) => ({ ...b, plan_status: newStatus })));
