@@ -5,6 +5,7 @@ import { Plus, Pencil, Trash2, ShieldAlert, LogOut, Loader2, FolderDown, Eye } f
 import moment from "moment";
 import CourseCard from "@/components/ui/course-design-cards";
 import ClientDialog from "@/components/admin/ClientDialog";
+import { WavesShaderBackground } from "@/components/ui/waves-shader-background";
 
 export default function Clients() {
   const [user, setUser] = useState(null);
@@ -75,8 +76,12 @@ export default function Clients() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <header className="bg-[#2d2d2d] text-white px-6 py-5 flex items-center justify-between sticky top-0 z-30">
+    <div className="relative min-h-screen bg-black">
+      <div className="fixed inset-0 pointer-events-none" aria-hidden="true">
+        <WavesShaderBackground className="absolute inset-0" />
+        <div className="absolute inset-0 bg-black/40" />
+      </div>
+      <header className="relative z-30 bg-[#2d2d2d]/90 backdrop-blur text-white px-6 py-5 flex items-center justify-between sticky top-0">
         <div>
           <p className="text-xs uppercase tracking-widest opacity-50">Admin</p>
           <h1 className="text-xl font-bold">Clients</h1>
@@ -94,7 +99,7 @@ export default function Clients() {
           <button onClick={() => base44.auth.logout()} className="text-sm bg-white/10 hover:bg-white/20 px-4 py-2 rounded-full">Log out</button>
         </div>
       </header>
-      <main className="max-w-5xl mx-auto px-6 py-8">
+      <main className="relative z-10 max-w-5xl mx-auto px-6 py-8">
         {loading ? (
           <div className="flex justify-center py-10"><Loader2 className="w-6 h-6 animate-spin text-gray-300" /></div>
         ) : (
