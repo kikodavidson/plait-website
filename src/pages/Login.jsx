@@ -46,7 +46,7 @@ export default function Login() {
       <div className="relative z-10">
     <AuthLayout
       onDark
-      logo="https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/56e6c8a0d_logos5.png"
+      logo="https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/c0ec0dcdb_plaitlogo-white.png"
       title="Creative Gameplan Portal"
       subtitle="Log in to your account"
       footer={

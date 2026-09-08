@@ -9,9 +9,9 @@ export default function AuthLayout({ icon: Icon, logo, title, subtitle, footer, 
         <div className="text-center mb-10">
           {logo ? (
             onDark ? (
-              <div className="inline-block rounded-[2rem] bg-[#F5F3ED] px-10 py-4 mb-4">
-                <img src={logo} alt="PLAIT" className="h-32 w-auto max-w-[260px] mx-auto object-contain mix-blend-multiply" />
-              </div>
+              // White wordmark on a black plate — screen blend drops the black
+              // box so only the type shows over the shader background.
+              <img src={logo} alt="PLAIT" className="h-28 w-auto max-w-[240px] mx-auto mb-4 object-contain mix-blend-screen" />
             ) : (
               <img src={logo} alt="PLAIT" className="h-56 w-auto max-w-[340px] mx-auto mb-2 object-contain mix-blend-multiply" />
             )
