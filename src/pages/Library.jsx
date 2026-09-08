@@ -6,6 +6,7 @@ import LibraryFilters from "@/components/library/LibraryFilters";
 import SwipeGrid from "@/components/library/SwipeGrid";
 import SwipeDetailPanel from "@/components/library/SwipeDetailPanel";
 import BulkIntake from "@/components/library/BulkIntake";
+import { WavesShaderBackground } from "@/components/ui/waves-shader-background";
 
 export default function Library() {
   const navigate = useNavigate();
@@ -84,8 +85,12 @@ export default function Library() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <header className="bg-[#2d2d2d] text-white px-6 py-5 flex items-center justify-between sticky top-0 z-30">
+    <div className="relative min-h-screen bg-black">
+      <div className="fixed inset-0 pointer-events-none" aria-hidden="true">
+        <WavesShaderBackground className="absolute inset-0" />
+        <div className="absolute inset-0 bg-black/40" />
+      </div>
+      <header className="relative z-30 bg-[#2d2d2d]/90 backdrop-blur text-white px-6 py-5 flex items-center justify-between sticky top-0">
         <div>
           <p className="text-xs uppercase tracking-widest opacity-50">Admin</p>
           <h1 className="text-xl font-bold">Swipe Library</h1>
@@ -105,7 +110,7 @@ export default function Library() {
         </div>
       </header>
 
-      <main className="max-w-7xl mx-auto px-6 py-8">
+      <main className="relative z-10 max-w-7xl mx-auto px-6 py-8">
         {mode === "intake" ? (
           <BulkIntake
             existingSwipes={swipes}
