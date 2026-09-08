@@ -81,22 +81,25 @@ export default function Clients() {
         <WavesShaderBackground className="absolute inset-0" />
         <div className="absolute inset-0 bg-black/40" />
       </div>
-      <header className="relative z-30 bg-[#2d2d2d]/90 backdrop-blur text-white px-6 py-5 flex items-center justify-between sticky top-0">
+      <header className="relative z-30 bg-black text-white px-6 py-4 flex items-center justify-between sticky top-0 border-b border-white/10">
         <div>
-          <p className="text-xs uppercase tracking-widest opacity-50">Admin</p>
+          <p className="text-[10px] uppercase tracking-[0.3em] text-white/40">Admin</p>
           <h1 className="text-xl font-bold">Clients</h1>
         </div>
-        <div className="flex items-center gap-3">
-          <button onClick={() => navigate("/library")} className="inline-flex items-center gap-2 text-sm font-medium text-white/80 hover:text-white px-3 py-2 rounded-full hover:bg-white/10">
-            <FolderDown className="w-4 h-4" /> Swipe library
-          </button>
-          <button onClick={() => navigate("/client")} className="inline-flex items-center gap-2 text-sm font-medium text-white/80 hover:text-white px-3 py-2 rounded-full hover:bg-white/10">
-            <Eye className="w-4 h-4" /> View portal
-          </button>
-          <button onClick={() => { setEditing(null); setDialogOpen(true); }} className="inline-flex items-center gap-2 bg-white text-[#2d2d2d] text-sm font-bold px-4 py-2 rounded-full hover:bg-gray-100">
+        <div className="flex items-center gap-2">
+          <div className="flex items-center rounded-full border border-white/15 p-1">
+            <button onClick={() => navigate("/library")} className="inline-flex items-center gap-2 text-sm font-medium text-white/70 hover:text-white px-3.5 py-1.5 rounded-full hover:bg-white/10">
+              <FolderDown className="w-4 h-4" /> Swipe library
+            </button>
+            <div className="w-px h-5 bg-white/15" />
+            <button onClick={() => navigate("/client")} className="inline-flex items-center gap-2 text-sm font-medium text-white/70 hover:text-white px-3.5 py-1.5 rounded-full hover:bg-white/10">
+              <Eye className="w-4 h-4" /> View portal
+            </button>
+          </div>
+          <button onClick={() => { setEditing(null); setDialogOpen(true); }} className="inline-flex items-center gap-2 bg-white text-black text-sm font-bold px-4 py-2 rounded-full hover:bg-gray-200">
             <Plus className="w-4 h-4" /> New client
           </button>
-          <button onClick={() => base44.auth.logout()} className="text-sm bg-white/10 hover:bg-white/20 px-4 py-2 rounded-full">Log out</button>
+          <button onClick={() => base44.auth.logout()} className="text-sm text-white/70 hover:text-white border border-white/15 hover:border-white/30 px-4 py-2 rounded-full">Log out</button>
         </div>
       </header>
       <main className="relative z-10 max-w-5xl mx-auto px-6 py-8">
