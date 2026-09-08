@@ -118,23 +118,20 @@ export default function ClientBuilder() {
     if (selectedPlan?.id === planId) setSelectedPlan((s) => (s ? { ...s, strategy_status: val } : s));
   };
 
-  const statusBadge = (s) => (s === "published" ? "bg-green-100 text-green-700" : "bg-gray-100 text-gray-500");
+  const statusBadge = (s) => (s === "published" ? "bg-green-100 text-green-700" : "bg-[#EEEEEE] text-gray-600");
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <header className="bg-[#2d2d2d] text-white px-6 py-5 flex items-center justify-between sticky top-0 z-30">
-        <div className="flex items-center gap-3">
-          <button onClick={() => navigate("/admin/clients")} className="p-1 rounded hover:bg-white/10"><ArrowLeft className="w-5 h-5" /></button>
-          <div>
-            <p className="text-xs uppercase tracking-widest opacity-50">Gameplan Builder</p>
-            <h1 className="text-xl font-bold">{client.name}</h1>
-          </div>
+    <div className="min-h-screen bg-[#F9F9F9]">
+      <header className="bg-black text-white px-6 py-4 flex items-center justify-between sticky top-0 z-30 border-b border-white/10">
+        <div>
+          <p className="text-[10px] uppercase tracking-[0.3em] text-white/40">Gameplan Builder</p>
+          <h1 className="text-xl font-bold">Plait</h1>
         </div>
         <div className="flex items-center gap-2">
-          <button onClick={() => setInviteOpen(true)} className="inline-flex items-center gap-2 text-sm bg-white/10 hover:bg-white/20 px-4 py-2 rounded-full">
+          <button onClick={() => setInviteOpen(true)} className="inline-flex items-center gap-2 text-sm font-medium text-white/70 hover:text-white px-3.5 py-1.5 rounded-full border border-white/15 hover:border-white/30">
             <UserPlus className="w-4 h-4" /> Invite client
           </button>
-          <button onClick={() => base44.auth.logout()} className="text-sm bg-white/10 hover:bg-white/20 px-4 py-2 rounded-full">Log out</button>
+          <button onClick={() => base44.auth.logout()} className="text-sm font-medium text-white/70 hover:text-white px-3.5 py-1.5 rounded-full border border-white/15 hover:border-white/30">Log out</button>
         </div>
       </header>
 
@@ -165,7 +162,7 @@ export default function ClientBuilder() {
             ) : (
               <div className="space-y-2">
                 {plans.map((p) => (
-                  <div key={p.id} className="bg-white rounded-xl border border-gray-100 shadow-sm p-4 flex items-center justify-between">
+                  <div key={p.id} className="bg-white rounded-xl border border-gray-200 p-4 flex items-center justify-between">
                     <button onClick={() => setSelectedPlan(p)} className="text-left flex-1 min-w-0">
                       <p className="font-bold text-[#2d2d2d]">{p.month} {p.year}</p>
                       {p.headline && <p className="text-sm text-gray-500 truncate">{p.headline}</p>}
