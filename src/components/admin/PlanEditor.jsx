@@ -159,59 +159,59 @@ export default function PlanEditor({ plan, onDuplicate, onMetaChange }) {
 
   return (
     <div className="space-y-6">
-      <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 space-y-4">
+      <div className="bg-[#141416] rounded-xl border border-white/10 p-5 space-y-4">
         <div className="flex flex-wrap items-end gap-3">
           <div>
-            <label className="text-xs font-semibold text-gray-500 uppercase">Month</label>
-            <select value={p.month || ""} onChange={(e) => commitPlan({ month: e.target.value })} className="block h-10 rounded-lg border border-gray-200 px-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#2d2d2d]">
+            <label className="text-xs font-semibold text-white/40 uppercase">Month</label>
+            <select value={p.month || ""} onChange={(e) => commitPlan({ month: e.target.value })} className="block h-10 rounded-lg border border-white/10 bg-[#141416] text-white px-2 text-sm focus:outline-none focus:ring-2 focus:ring-white/30">
               <option value="">—</option>
               {MONTHS.map((m) => <option key={m} value={m}>{m}</option>)}
             </select>
           </div>
           <div>
-            <label className="text-xs font-semibold text-gray-500 uppercase">Year</label>
-            <input type="number" value={p.year || ""} onChange={(e) => setP((prev) => ({ ...prev, year: Number(e.target.value) }))} onBlur={(e) => commitPlan({ year: Number(e.target.value) })} className="block h-10 w-24 rounded-lg border border-gray-200 px-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#2d2d2d]" />
+            <label className="text-xs font-semibold text-white/40 uppercase">Year</label>
+            <input type="number" value={p.year || ""} onChange={(e) => setP((prev) => ({ ...prev, year: Number(e.target.value) }))} onBlur={(e) => commitPlan({ year: Number(e.target.value) })} className="block h-10 w-24 rounded-lg border border-white/10 bg-[#141416] text-white px-2 text-sm focus:outline-none focus:ring-2 focus:ring-white/30" />
           </div>
           <div>
-            <label className="text-xs font-semibold text-gray-500 uppercase">Status</label>
-            <select value={p.status || "draft"} onChange={(e) => changeStatus(e.target.value)} className="block h-10 rounded-lg border border-gray-200 px-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#2d2d2d]">
+            <label className="text-xs font-semibold text-white/40 uppercase">Status</label>
+            <select value={p.status || "draft"} onChange={(e) => changeStatus(e.target.value)} className="block h-10 rounded-lg border border-white/10 bg-[#141416] text-white px-2 text-sm focus:outline-none focus:ring-2 focus:ring-white/30">
               <option value="draft">Draft</option>
               <option value="published">Published</option>
             </select>
           </div>
           <div>
-            <label className="text-xs font-semibold text-gray-500 uppercase">Strategy</label>
-            <select value={p.strategy_status || "Proposed"} onChange={(e) => commitPlan({ strategy_status: e.target.value })} className="block h-10 rounded-lg border border-gray-200 px-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#2d2d2d]">
+            <label className="text-xs font-semibold text-white/40 uppercase">Strategy</label>
+            <select value={p.strategy_status || "Proposed"} onChange={(e) => commitPlan({ strategy_status: e.target.value })} className="block h-10 rounded-lg border border-white/10 bg-[#141416] text-white px-2 text-sm focus:outline-none focus:ring-2 focus:ring-white/30">
               <option value="Proposed">Proposed</option>
               <option value="In Progress">In Progress</option>
               <option value="Completed">Completed</option>
             </select>
           </div>
           {onDuplicate && (
-            <button onClick={() => onDuplicate(p)} className="ml-auto inline-flex items-center gap-2 text-sm border border-gray-200 rounded-full px-4 py-2 hover:bg-gray-50">
+            <button onClick={() => onDuplicate(p)} className="ml-auto inline-flex items-center gap-2 text-sm text-white/70 hover:text-white border border-white/15 hover:border-white/30 rounded-full px-4 py-2">
               <Copy className="w-4 h-4" /> Duplicate plan
             </button>
           )}
         </div>
         <div>
-          <label className="text-xs font-semibold text-gray-500 uppercase">Headline</label>
-          <input value={p.headline || ""} onChange={(e) => setP((prev) => ({ ...prev, headline: e.target.value }))} onBlur={(e) => commitPlan({ headline: e.target.value })} className="w-full h-10 rounded-lg border border-gray-200 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#2d2d2d]" placeholder="Plan headline" />
+          <label className="text-xs font-semibold text-white/40 uppercase">Headline</label>
+          <input value={p.headline || ""} onChange={(e) => setP((prev) => ({ ...prev, headline: e.target.value }))} onBlur={(e) => commitPlan({ headline: e.target.value })} className="w-full h-10 rounded-lg border border-white/10 bg-white/5 text-white placeholder:text-white/30 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-white/30" placeholder="Plan headline" />
         </div>
         <div>
-          <label className="text-xs font-semibold text-gray-500 uppercase">Strategy note</label>
-          <textarea value={p.strategy_note || ""} onChange={(e) => setP((prev) => ({ ...prev, strategy_note: e.target.value }))} onBlur={(e) => commitPlan({ strategy_note: e.target.value })} rows={3} className="w-full rounded-lg border border-gray-200 p-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#2d2d2d]" placeholder="High-level strategy for the month" />
+          <label className="text-xs font-semibold text-white/40 uppercase">Strategy note</label>
+          <textarea value={p.strategy_note || ""} onChange={(e) => setP((prev) => ({ ...prev, strategy_note: e.target.value }))} onBlur={(e) => commitPlan({ strategy_note: e.target.value })} rows={3} className="w-full rounded-lg border border-white/10 bg-white/5 text-white placeholder:text-white/30 p-3 text-sm focus:outline-none focus:ring-2 focus:ring-white/30" placeholder="High-level strategy for the month" />
         </div>
       </div>
 
       <div className="space-y-4">
         <div className="flex items-center justify-between">
-          <h3 className="font-bold text-[#2d2d2d]">Angles</h3>
-          <button onClick={addAngle} className="inline-flex items-center gap-2 btn-gradient text-sm px-4 py-2 rounded-full">
+          <h3 className="font-bold text-white">Angles</h3>
+          <button onClick={addAngle} className="inline-flex items-center gap-2 bg-white text-black hover:bg-gray-200 text-sm font-bold px-4 py-2 rounded-full">
             <Plus className="w-4 h-4" /> Add angle
           </button>
         </div>
         {loading ? (
-          <div className="text-center py-10 text-gray-400 text-sm">Loading…</div>
+          <div className="text-center py-10 text-white/40 text-sm">Loading…</div>
         ) : (
           <DragDropContext onDragEnd={onAngleDragEnd}>
             <Droppable droppableId="angles" type="angle">
@@ -233,7 +233,7 @@ export default function PlanEditor({ plan, onDuplicate, onMetaChange }) {
                     </Draggable>
                   ))}
                   {provided.placeholder}
-                  {angles.length === 0 && <p className="text-center text-gray-400 text-sm py-6">No angles yet. Add one to start building.</p>}
+                  {angles.length === 0 && <p className="text-center text-white/40 text-sm py-6">No angles yet. Add one to start building.</p>}
                 </div>
               )}
             </Droppable>

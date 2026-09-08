@@ -7,26 +7,26 @@ export default function AngleCard({ angle, blocks, examplesForBlock, api, innerR
   const onDragEnd = (result) => api.reorderBlocks(angle.id, result);
 
   return (
-    <div ref={innerRef} {...draggableProps} className="bg-white rounded-2xl border border-gray-100 shadow-sm">
-      <div className="flex items-start gap-2 p-4 border-b border-gray-100">
-        <span {...dragHandle} className="cursor-grab text-gray-300 mt-1.5"><GripVertical className="w-5 h-5" /></span>
+    <div ref={innerRef} {...draggableProps} className="bg-[#141416] rounded-xl border border-white/10">
+      <div className="flex items-start gap-2 p-4 border-b border-white/10">
+        <span {...dragHandle} className="cursor-grab text-white/30 mt-1.5"><GripVertical className="w-5 h-5" /></span>
         <div className="flex-1 space-y-2">
           <div className="flex items-center gap-2">
             <input
               value={angle.label || ""}
               onChange={(e) => api.set("Angle", angle.id, { label: e.target.value })}
               onBlur={(e) => api.commit("Angle", angle.id, { label: e.target.value })}
-              className="font-bold text-[#2d2d2d] bg-transparent flex-1 focus:outline-none focus:bg-gray-50 rounded px-1"
+              className="font-bold text-white bg-transparent flex-1 focus:outline-none focus:bg-white/10 rounded px-1"
             />
             <select
               value={angle.type || "audience"}
               onChange={(e) => api.commit("Angle", angle.id, { type: e.target.value })}
-              className={`text-xs font-bold uppercase tracking-wide rounded-full px-2 py-1 border-0 cursor-pointer ${angle.type === "audience" ? "bg-blue-100 text-blue-700" : "bg-purple-100 text-purple-700"}`}
+              className={`text-xs font-bold uppercase tracking-wide rounded-full px-2 py-1 border-0 cursor-pointer ${angle.type === "audience" ? "bg-blue-500/15 text-blue-300" : "bg-purple-500/15 text-purple-300"}`}
             >
               <option value="audience">Audience</option>
               <option value="concept">Concept</option>
             </select>
-            <button onClick={() => api.deleteAngle(angle.id)} className="text-gray-400 hover:text-red-500">
+            <button onClick={() => api.deleteAngle(angle.id)} className="text-white/40 hover:text-red-400">
               <Trash2 className="w-4 h-4" />
             </button>
           </div>
@@ -35,7 +35,7 @@ export default function AngleCard({ angle, blocks, examplesForBlock, api, innerR
             onChange={(e) => api.set("Angle", angle.id, { insight: e.target.value })}
             onBlur={(e) => api.commit("Angle", angle.id, { insight: e.target.value })}
             placeholder="Insight…"
-            className="w-full text-sm text-gray-600 bg-transparent focus:outline-none focus:bg-gray-50 rounded px-1"
+            className="w-full text-sm text-white/60 bg-transparent placeholder:text-white/30 focus:outline-none focus:bg-white/10 rounded px-1"
           />
         </div>
       </div>
@@ -63,7 +63,7 @@ export default function AngleCard({ angle, blocks, examplesForBlock, api, innerR
             )}
           </Droppable>
         </DragDropContext>
-        <button onClick={() => api.addBlock(angle.id)} className="inline-flex items-center gap-1 text-sm text-gray-500 hover:text-[#2d2d2d]">
+        <button onClick={() => api.addBlock(angle.id)} className="inline-flex items-center gap-1 text-sm text-white/50 hover:text-white">
           <Plus className="w-4 h-4" /> Add block
         </button>
       </div>

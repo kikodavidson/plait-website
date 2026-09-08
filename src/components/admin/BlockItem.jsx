@@ -9,13 +9,13 @@ export default function BlockItem({ block, examples, api, innerRef, draggablePro
   const [pickerOpen, setPickerOpen] = useState(false);
 
   return (
-    <div ref={innerRef} {...draggableProps} className="bg-gray-50 rounded-xl border border-gray-200 p-3">
+    <div ref={innerRef} {...draggableProps} className="bg-white/5 rounded-xl border border-white/10 p-3">
       <div className="flex items-center gap-2 mb-2">
-        <span {...dragHandle} className="cursor-grab text-gray-300"><GripVertical className="w-4 h-4" /></span>
+        <span {...dragHandle} className="cursor-grab text-white/30"><GripVertical className="w-4 h-4" /></span>
         <select
           value={block.content_type || ""}
           onChange={(e) => api.commit("Block", block.id, { content_type: e.target.value })}
-          className="text-sm font-bold bg-transparent focus:outline-none"
+          className="text-sm font-bold bg-transparent text-white focus:outline-none"
         >
           <option value="">Content type…</option>
           {CONTENT_TYPES.map((c) => <option key={c} value={c}>{c}</option>)}
@@ -26,10 +26,10 @@ export default function BlockItem({ block, examples, api, innerRef, draggablePro
           value={block.quantity ?? ""}
           onChange={(e) => api.set("Block", block.id, { quantity: e.target.value === "" ? undefined : Number(e.target.value) })}
           onBlur={(e) => api.commit("Block", block.id, { quantity: e.target.value === "" ? undefined : Number(e.target.value) })}
-          className="w-16 text-sm rounded border border-gray-200 px-1 py-0.5 focus:outline-none focus:ring-1 focus:ring-[#2d2d2d]"
+          className="w-16 text-sm rounded border border-white/10 bg-white/5 text-white px-1 py-0.5 focus:outline-none focus:ring-1 focus:ring-white/30"
           placeholder="Qty"
         />
-        <button onClick={() => api.deleteBlock(block.id)} className="ml-auto text-gray-400 hover:text-red-500">
+        <button onClick={() => api.deleteBlock(block.id)} className="ml-auto text-white/40 hover:text-red-400">
           <Trash2 className="w-4 h-4" />
         </button>
       </div>
@@ -39,7 +39,7 @@ export default function BlockItem({ block, examples, api, innerRef, draggablePro
           <select
             value={block.video_format || ""}
             onChange={(e) => api.commit("Block", block.id, { video_format: e.target.value })}
-            className="text-xs rounded border border-gray-200 bg-white px-2 py-1 focus:outline-none focus:ring-1 focus:ring-[#2d2d2d]"
+            className="text-xs rounded border border-white/10 bg-[#141416] text-white px-2 py-1 focus:outline-none focus:ring-1 focus:ring-white/30"
           >
             <option value="">Video format…</option>
             {VIDEO_FORMATS.map((c) => <option key={c} value={c}>{c}</option>)}
@@ -47,7 +47,7 @@ export default function BlockItem({ block, examples, api, innerRef, draggablePro
           <select
             value={block.on_camera || ""}
             onChange={(e) => api.commit("Block", block.id, { on_camera: e.target.value })}
-            className="text-xs rounded border border-gray-200 bg-white px-2 py-1 focus:outline-none focus:ring-1 focus:ring-[#2d2d2d]"
+            className="text-xs rounded border border-white/10 bg-[#141416] text-white px-2 py-1 focus:outline-none focus:ring-1 focus:ring-white/30"
           >
             <option value="">On camera…</option>
             {ON_CAMERA.map((c) => <option key={c} value={c}>{c}</option>)}
@@ -55,7 +55,7 @@ export default function BlockItem({ block, examples, api, innerRef, draggablePro
           <select
             value={block.video_production_tier || ""}
             onChange={(e) => api.commit("Block", block.id, { video_production_tier: e.target.value })}
-            className="text-xs rounded border border-gray-200 bg-white px-2 py-1 focus:outline-none focus:ring-1 focus:ring-[#2d2d2d]"
+            className="text-xs rounded border border-white/10 bg-[#141416] text-white px-2 py-1 focus:outline-none focus:ring-1 focus:ring-white/30"
           >
             <option value="">Production tier…</option>
             {VIDEO_PRODUCTION_TIERS.map((c) => <option key={c} value={c}>{c}</option>)}
@@ -68,7 +68,7 @@ export default function BlockItem({ block, examples, api, innerRef, draggablePro
           <select
             value={block.image_style || ""}
             onChange={(e) => api.commit("Block", block.id, { image_style: e.target.value })}
-            className="text-xs rounded border border-gray-200 bg-white px-2 py-1 focus:outline-none focus:ring-1 focus:ring-[#2d2d2d]"
+            className="text-xs rounded border border-white/10 bg-[#141416] text-white px-2 py-1 focus:outline-none focus:ring-1 focus:ring-white/30"
           >
             <option value="">Image style…</option>
             {IMAGE_STYLES.map((c) => <option key={c} value={c}>{c}</option>)}
@@ -76,7 +76,7 @@ export default function BlockItem({ block, examples, api, innerRef, draggablePro
           <select
             value={block.image_subject || ""}
             onChange={(e) => api.commit("Block", block.id, { image_subject: e.target.value })}
-            className="text-xs rounded border border-gray-200 bg-white px-2 py-1 focus:outline-none focus:ring-1 focus:ring-[#2d2d2d]"
+            className="text-xs rounded border border-white/10 bg-[#141416] text-white px-2 py-1 focus:outline-none focus:ring-1 focus:ring-white/30"
           >
             <option value="">What's in it…</option>
             {IMAGE_SUBJECTS.map((c) => <option key={c} value={c}>{c}</option>)}
@@ -84,7 +84,7 @@ export default function BlockItem({ block, examples, api, innerRef, draggablePro
           <select
             value={block.image_production_tier || ""}
             onChange={(e) => api.commit("Block", block.id, { image_production_tier: e.target.value })}
-            className="text-xs rounded border border-gray-200 bg-white px-2 py-1 focus:outline-none focus:ring-1 focus:ring-[#2d2d2d]"
+            className="text-xs rounded border border-white/10 bg-[#141416] text-white px-2 py-1 focus:outline-none focus:ring-1 focus:ring-white/30"
           >
             <option value="">Production tier…</option>
             {IMAGE_PRODUCTION_TIERS.map((c) => <option key={c} value={c}>{c}</option>)}
@@ -97,7 +97,7 @@ export default function BlockItem({ block, examples, api, innerRef, draggablePro
           <select
             value={block.carousel_style || ""}
             onChange={(e) => api.commit("Block", block.id, { carousel_style: e.target.value })}
-            className="text-xs rounded border border-gray-200 bg-white px-2 py-1 focus:outline-none focus:ring-1 focus:ring-[#2d2d2d]"
+            className="text-xs rounded border border-white/10 bg-[#141416] text-white px-2 py-1 focus:outline-none focus:ring-1 focus:ring-white/30"
           >
             <option value="">Carousel style…</option>
             {CAROUSEL_STYLES.map((c) => <option key={c} value={c}>{c}</option>)}
@@ -105,7 +105,7 @@ export default function BlockItem({ block, examples, api, innerRef, draggablePro
           <select
             value={block.slide_count || ""}
             onChange={(e) => api.commit("Block", block.id, { slide_count: e.target.value })}
-            className="text-xs rounded border border-gray-200 bg-white px-2 py-1 focus:outline-none focus:ring-1 focus:ring-[#2d2d2d]"
+            className="text-xs rounded border border-white/10 bg-[#141416] text-white px-2 py-1 focus:outline-none focus:ring-1 focus:ring-white/30"
           >
             <option value="">Slide count…</option>
             {SLIDE_COUNTS.map((c) => <option key={c} value={c}>{c}</option>)}
@@ -113,7 +113,7 @@ export default function BlockItem({ block, examples, api, innerRef, draggablePro
           <select
             value={block.carousel_production_tier || ""}
             onChange={(e) => api.commit("Block", block.id, { carousel_production_tier: e.target.value })}
-            className="text-xs rounded border border-gray-200 bg-white px-2 py-1 focus:outline-none focus:ring-1 focus:ring-[#2d2d2d]"
+            className="text-xs rounded border border-white/10 bg-[#141416] text-white px-2 py-1 focus:outline-none focus:ring-1 focus:ring-white/30"
           >
             <option value="">Production tier…</option>
             {CAROUSEL_PRODUCTION_TIERS.map((c) => <option key={c} value={c}>{c}</option>)}
@@ -127,12 +127,12 @@ export default function BlockItem({ block, examples, api, innerRef, draggablePro
         onBlur={(e) => api.commit("Block", block.id, { direction: e.target.value })}
         rows={2}
         placeholder="Creative direction…"
-        className="w-full text-sm text-gray-600 bg-white rounded border border-gray-200 px-2 py-1 focus:outline-none focus:ring-1 focus:ring-[#2d2d2d]"
+        className="w-full text-sm text-white/70 bg-white/5 rounded border border-white/10 placeholder:text-white/30 px-2 py-1 focus:outline-none focus:ring-1 focus:ring-white/30"
       />
       <DragDropContext onDragEnd={(result) => api.reorderExamples(block.id, result)}>
         <Droppable droppableId={`examples-${block.id}`} type="example">
           {(provided) => (
-            <div ref={provided.innerRef} {...provided.droppableProps} className="mt-2 divide-y divide-gray-200">
+            <div ref={provided.innerRef} {...provided.droppableProps} className="mt-2 divide-y divide-white/10">
               {examples.map((ex, i) => (
                 <Draggable key={ex.id} draggableId={ex.id} index={i}>
                   {(pp) => (
@@ -153,7 +153,7 @@ export default function BlockItem({ block, examples, api, innerRef, draggablePro
       </DragDropContext>
       <button
         onClick={() => setPickerOpen(true)}
-        className="mt-3 w-full inline-flex items-center justify-center gap-2 bg-[#2d2d2d] hover:bg-[#1a1a1a] text-white text-sm font-bold py-2.5 rounded-lg transition-colors"
+        className="mt-3 w-full inline-flex items-center justify-center gap-2 bg-black border border-white/15 hover:border-white/30 text-white text-sm font-bold py-2.5 rounded-lg transition-colors"
       >
         <Plus className="w-4 h-4" /> Add example
       </button>

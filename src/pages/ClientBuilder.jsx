@@ -6,6 +6,7 @@ import PlanEditor from "@/components/admin/PlanEditor";
 import PlanMonthDialog from "@/components/admin/PlanMonthDialog";
 import InviteClientDialog from "@/components/admin/InviteClientDialog";
 import { exampleLabel } from "@/lib/planBuilder";
+import { WavesShaderBackground } from "@/components/ui/waves-shader-background";
 // plan_status cascade runs through the shared syncPlanStatus backend function.
 
 export default function ClientBuilder() {
@@ -118,8 +119,12 @@ export default function ClientBuilder() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F9F9F9]">
-      <header className="bg-black text-white px-6 py-4 flex items-center justify-between sticky top-0 z-30 border-b border-white/10">
+    <div className="relative min-h-screen bg-black">
+      <div className="fixed inset-0 pointer-events-none" aria-hidden="true">
+        <WavesShaderBackground className="absolute inset-0" />
+        <div className="absolute inset-0 bg-black/40" />
+      </div>
+      <header className="relative z-30 bg-black text-white px-6 py-4 flex items-center justify-between sticky top-0 border-b border-white/10">
         <div>
           <p className="text-[10px] uppercase tracking-[0.3em] text-white/40">Gameplan Builder</p>
           <h1 className="text-xl font-bold">Plait</h1>
@@ -132,23 +137,23 @@ export default function ClientBuilder() {
         </div>
       </header>
 
-      <main className="max-w-6xl mx-auto px-6 py-8">
+      <main className="relative z-10 max-w-6xl mx-auto px-6 py-8">
         <button
           onClick={() => navigate("/admin/clients")}
-          className="inline-flex items-center gap-1 text-sm text-gray-500 hover:text-[#2d2d2d] mb-6"
+          className="inline-flex items-center gap-1 text-sm text-white/50 hover:text-white mb-6"
         >
           <ArrowLeft className="w-4 h-4" /> Back to client overview
         </button>
         <div className="flex flex-col lg:flex-row gap-6 items-start">
           <aside className="w-full lg:w-72 shrink-0 lg:sticky lg:top-20">
             <div className="flex items-center justify-between mb-3">
-              <h2 className="text-lg font-bold text-[#2d2d2d]">Plans</h2>
-              <button onClick={() => setMonthDialog({ mode: "new" })} className="inline-flex items-center gap-1.5 btn-gradient text-xs px-3 py-1.5 rounded-full">
+              <h2 className="text-lg font-bold text-white">Plans</h2>
+              <button onClick={() => setMonthDialog({ mode: "new" })} className="inline-flex items-center gap-1.5 bg-white text-black hover:bg-gray-200 text-xs font-bold px-3 py-1.5 rounded-full">
                 <Plus className="w-3.5 h-3.5" /> New plan
               </button>
             </div>
             {plans.length === 0 ? (
-              <p className="text-gray-400 text-sm">No plans yet. Create one to start building.</p>
+              <p className="text-white/40 text-sm">No plans yet. Create one to start building.</p>
             ) : (
               <nav className="space-y-2">
                 {plans.map((p) => {
@@ -156,19 +161,19 @@ export default function ClientBuilder() {
                   return (
                     <div
                       key={p.id}
-                      className={`rounded-xl border p-3 flex items-center justify-between gap-2 transition-colors ${active ? "bg-[#2d2d2d] border-[#2d2d2d] text-white" : "bg-white border-gray-200 hover:border-gray-400"}`}
+                      className={`rounded-xl border p-3 flex items-center justify-between gap-2 transition-colors ${active ? "bg-white border-white text-black" : "bg-[#141416] border-white/10 hover:border-white/30"}`}
                     >
                       <button onClick={() => setSelectedPlan(p)} className="text-left min-w-0 flex-1">
-                        <p className={`font-bold truncate ${active ? "text-white" : "text-[#2d2d2d]"}`}>
+                        <p className={`font-bold truncate ${active ? "text-black" : "text-white"}`}>
                           {p.month} {p.year}
                         </p>
-                        <p className={`text-xs mt-0.5 ${active ? "text-white/60" : "text-gray-500"}`}>
+                        <p className={`text-xs mt-0.5 ${active ? "text-black/60" : "text-white/40"}`}>
                           <span className="capitalize">{p.status}</span> · {p.strategy_status || "Proposed"}
                         </p>
                       </button>
                       <div className="flex items-center gap-1 shrink-0">
-                        <button onClick={() => setMonthDialog({ mode: "duplicate", source: p })} className={active ? "text-white/50 hover:text-white" : "text-gray-400 hover:text-[#2d2d2d]"} title="Duplicate plan"><Copy className="w-4 h-4" /></button>
-                        <button onClick={() => deletePlan(p.id)} className={active ? "text-white/50 hover:text-red-400" : "text-gray-400 hover:text-red-500"} title="Delete plan"><Trash2 className="w-4 h-4" /></button>
+                        <button onClick={() => setMonthDialog({ mode: "duplicate", source: p })} className={active ? "text-black/40 hover:text-black" : "text-white/40 hover:text-white"} title="Duplicate plan"><Copy className="w-4 h-4" /></button>
+                        <button onClick={() => deletePlan(p.id)} className={active ? "text-black/40 hover:text-red-600" : "text-white/40 hover:text-red-400"} title="Delete plan"><Trash2 className="w-4 h-4" /></button>
                       </div>
                     </div>
                   );
@@ -184,7 +189,7 @@ export default function ClientBuilder() {
                 onMetaChange={(patch) => applyPlanMeta(selectedPlan.id, patch)}
               />
             ) : (
-              <div className="rounded-xl border border-gray-200 bg-white p-10 text-center text-gray-400 text-sm">
+              <div className="rounded-xl border border-white/10 bg-[#141416] p-10 text-center text-white/40 text-sm">
                 Select a plan to start building.
               </div>
             )}
