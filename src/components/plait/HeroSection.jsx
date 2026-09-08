@@ -66,7 +66,7 @@ export default function HeroSection() {
             onClick={() => navigate("/book")}
             className="rounded-full border border-white bg-white px-7 py-3 text-xs font-bold uppercase tracking-[0.15em] text-black transition-colors hover:bg-black hover:text-white"
           >
-            Book a Free Audit
+            Get in Touch
           </button>
         </motion.div>
       </div>
