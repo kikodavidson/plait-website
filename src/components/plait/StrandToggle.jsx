@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import StrandSwitch from "@/components/ui/strand-switch";
+import { Switch } from "@/components/ui/material-design-3-switch";
 
 const STRANDS = [
-  { key: "ads", label: "Ads", color: "#22c55e" },
-  { key: "site", label: "Website", color: "#3b82f6" },
-  { key: "attr", label: "Attribution", color: "#ef4444" },
+  { key: "ads", label: "Ads", color: "#22c55e", activeClass: "peer-checked:bg-[#22c55e] peer-checked:border-[#22c55e]" },
+  { key: "site", label: "Website", color: "#3b82f6", activeClass: "peer-checked:bg-[#3b82f6] peer-checked:border-[#3b82f6]" },
+  { key: "attr", label: "Attribution", color: "#ef4444", activeClass: "peer-checked:bg-[#ef4444] peer-checked:border-[#ef4444]" },
 ];
 
 const COPY = {
@@ -64,26 +64,25 @@ export default function StrandToggle() {
 
         <div className="flex flex-wrap gap-2.5">
           {STRANDS.map((s, i) => (
-            <button
+            <div
               key={s.key}
-              type="button"
-              aria-pressed={on[i]}
-              onClick={() => toggle(i)}
-              className="flex items-center gap-2.5 rounded-none border px-4 py-1.5 text-sm transition-colors"
+              className="flex items-center gap-2.5 rounded-none border px-4 text-sm transition-colors"
               style={{
                 background: "transparent",
                 borderColor: on[i] ? s.color : "#d4d4d4",
                 color: on[i] ? "#000000" : "#a3a3a3",
               }}
             >
-              {s.label}
-              <StrandSwitch
+              <label htmlFor={`strand-${s.key}`} className="cursor-pointer select-none">
+                {s.label}
+              </label>
+              <Switch
+                id={`strand-${s.key}`}
                 checked={on[i]}
-                style={{
-                  "--track": on[i] ? s.color : "#aaaaaa",
-                }}
+                onCheckedChange={() => toggle(i)}
+                className={s.activeClass}
               />
-            </button>
+            </div>
           ))}
         </div>
         <p className="mt-3 text-xs text-neutral-400">Switch one off and watch what breaks.</p>
