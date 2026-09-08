@@ -20,6 +20,9 @@ export default function Login() {
     setLoading(true);
     try {
       await base44.auth.loginViaEmailPassword(email, password);
+      // Post-login flag: the app's auth context (which reliably loads the role)
+      // double-checks the landing page after reload — admins always end up on /admin/clients.
+      sessionStorage.setItem("plait_post_oauth", "1");
       const me = await base44.auth.me();
       window.location.href = me?.role === "admin" ? "/admin/clients" : "/client";
     } catch (err) {
