@@ -53,7 +53,7 @@ const BAND_TWO = [
     eyebrow: "Positioning",
     title: "Defined Market Advantages",
     description: "Sharp positioning that makes you the obvious choice in a crowded category.",
-    img: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80",
+    img: "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/bf6677e90_ChatGPTImageSep7202611_42_09PM.png",
   },
   {
     eyebrow: "Conversion",
