@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { base44 } from "@/api/base44Client";
 import { Plus, Pencil, Trash2, ShieldAlert, LogOut, Loader2, FolderDown, Eye } from "lucide-react";
+import moment from "moment";
+import CourseCard from "@/components/ui/course-design-cards";
 import ClientDialog from "@/components/admin/ClientDialog";
 
 export default function Clients() {
@@ -97,36 +99,34 @@ export default function Clients() {
           <div className="flex justify-center py-10"><Loader2 className="w-6 h-6 animate-spin text-gray-300" /></div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {clients.map((c) => (
-              <div key={c.id} className="bg-white rounded-2xl border border-gray-100 shadow-sm p-4">
-                <div className="flex items-center gap-3">
-                  {c.logo ? (
-                    <img src={c.logo} alt="" className="w-10 h-10 rounded-lg object-cover" />
-                  ) : (
-                    <div className="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center text-gray-400 text-sm font-bold">{(c.name || "?").slice(0, 1)}</div>
-                  )}
-                  <div className="flex-1 min-w-0">
-                    <p className="font-bold text-[#2d2d2d] truncate">{c.name}</p>
-                    <p className="text-xs text-gray-500 truncate">/{c.slug}</p>
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <button onClick={() => { setEditing(c); setDialogOpen(true); }} className="text-gray-400 hover:text-[#2d2d2d]">
-                      <Pencil className="w-4 h-4" />
-                    </button>
-                    <button onClick={() => deleteClient(c)} className="text-gray-400 hover:text-red-500">
-                      <Trash2 className="w-4 h-4" />
-                    </button>
-                  </div>
-                </div>
-                <div className="flex items-center justify-between mt-3">
-                  <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${c.status === "active" ? "bg-green-100 text-green-700" : c.status === "paused" ? "bg-amber-100 text-amber-700" : "bg-gray-100 text-gray-500"}`}>
-                    {c.status || "active"}
-                  </span>
-                  <button onClick={() => navigate(`/admin/clients/${c.id}`)} className="text-sm font-medium text-[#2d2d2d] hover:underline">Open builder →</button>
-                </div>
-                <p className="text-xs text-gray-400 mt-2">{publishedCount(c.slug)} published plan(s)</p>
-              </div>
-            ))}
+            {clients.map((c) => {
+              const total = plans.filter((p) => p.client_slug === c.slug).length;
+              const published = publishedCount(c.slug);
+              return (
+                <CourseCard
+                  key={c.id}
+                  data={{
+                    colorClass: c.status === "paused" ? "orange" : c.status === "archived" ? "red" : "green",
+                    date: c.created_date ? moment(c.created_date).format("MMM D, YYYY") : "",
+                    status: c.status || "active",
+                    title: c.name,
+                    description: `/${c.slug}`,
+                    progressLabel: "Published",
+                    progressPercent: total ? `${Math.round((published / total) * 100)}%` : "0%",
+                    progressValue: `${published}/${total} plans`,
+                    imgSrc1: c.logo,
+                    imgAlt1: c.name,
+                    initial: (c.name || "?").slice(0, 1),
+                    countdownText: "Open builder",
+                  }}
+                  menuItems={[
+                    { label: "Edit client", icon: Pencil, onClick: () => { setEditing(c); setDialogOpen(true); } },
+                    { label: "Delete client", icon: Trash2, danger: true, onClick: () => deleteClient(c) },
+                  ]}
+                  onCountdown={() => navigate(`/admin/clients/${c.id}`)}
+                />
+              );
+            })}
             {clients.length === 0 && <p className="text-gray-400 text-sm col-span-full text-center py-10">No clients yet.</p>}
           </div>
         )}
