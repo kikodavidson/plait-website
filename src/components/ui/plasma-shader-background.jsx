@@ -9,12 +9,8 @@ void main() {
 
 // "Plasma" — made with the 21st.dev Shader Builder
 // Packed WebGL1 uniforms (the shader exposes readable u_* aliases as macros):
-//   u_colors[8] (first 4 used)
-//     vec3(0.086, 0.043, 0.043)
-//     vec3(0.761, 0.251, 0.165)
-//     vec3(0.957, 0.616, 0.216)
-//     vec3(1.000, 0.910, 0.761)
-//   u_scene = vec4(canvas width, canvas height, seconds * 0.86, 4.0)
+//   u_colors[8] (first 5 used) — #000000, #4B1A0A, #C2402A, #F49D37, #FFE8C2
+//   u_scene = vec4(canvas width, canvas height, seconds * 0.86, 5.0)
 //   u_shape = vec4(1.50, 0.48, 0.50, 0.00)
 //   u_surface = vec4(2.40, 0.92, -0.50, 1.00)
 //   u_finish = vec4(3.04, 0.61, 0.016, 0.35)
@@ -338,15 +334,15 @@ export function PlasmaShaderBackground({ className }) {
       cursor: gl.getUniformLocation(program, "u_cursor"),
     };
 
-    // Static uniforms, exactly as listed in the shader header comment.
+    // Palette from the reference image: #000000 -> #4B1A0A -> #C2402A -> #F49D37 -> #FFE8C2
     gl.uniform3fv(
       uni.colors,
       new Float32Array([
-        0.086, 0.043, 0.043,
+        0.0, 0.0, 0.0,
+        0.294, 0.102, 0.039,
         0.761, 0.251, 0.165,
         0.957, 0.616, 0.216,
         1.0, 0.91, 0.761,
-        0, 0, 0,
         0, 0, 0,
         0, 0, 0,
         0, 0, 0,
@@ -388,7 +384,7 @@ export function PlasmaShaderBackground({ className }) {
         canvas.width,
         canvas.height,
         ((now - start) / 1000) * 0.86,
-        4.0,
+        5.0,
       );
       gl.drawArrays(gl.TRIANGLES, 0, 3);
       raf = requestAnimationFrame(render);
