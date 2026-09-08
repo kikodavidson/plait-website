@@ -50,22 +50,10 @@ export default function Book() {
 
       <div className="max-w-4xl mx-auto px-6 py-12">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.15 }}
-          className="bg-[#F8F7FF] rounded-3xl border border-indigo-100 p-6 sm:p-8 overflow-hidden"
-        >
-          <InlineWidget
-            url="https://calendly.com/luke-plaitgrowth"
-            styles={{ height: "640px", width: "100%" }}
-          />
-        </motion.div>
-
-        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="mt-10 bg-[#F8F7FF] rounded-3xl border border-indigo-100 p-6 sm:p-8 text-center"
+          transition={{ duration: 0.6, delay: 0.15 }}
+          className="bg-[#F8F7FF] rounded-3xl border border-indigo-100 p-6 sm:p-8 text-center"
         >
           <h2 className="font-body text-2xl font-bold text-[#2d2d2d] mb-2">Tight on time?</h2>
           <p className="text-[#525252] leading-relaxed max-w-md mx-auto mb-5">
@@ -89,9 +77,21 @@ export default function Book() {
           </div>
         </motion.div>
 
-        <p className="text-center text-sm text-[#525252] mt-8">
+        <p className="text-center text-sm text-[#525252] mt-4 mb-8">
           Prefer a form? <Link to="/contact" className="text-[#5E58D5] font-semibold hover:underline">Reach out here.</Link>
         </p>
+
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="bg-[#F8F7FF] rounded-3xl border border-indigo-100 p-6 sm:p-8 overflow-hidden"
+        >
+          <InlineWidget
+            url="https://calendly.com/luke-plaitgrowth"
+            styles={{ height: "640px", width: "100%" }}
+          />
+        </motion.div>
       </div>
     </div>
   );
