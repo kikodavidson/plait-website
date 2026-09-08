@@ -113,9 +113,7 @@ export default function Clients() {
                 <ClientLogoCard
                   key={c.id}
                   name={c.name}
-                  slug={c.slug}
                   logo={c.logo}
-                  published={published}
                   total={total}
                   onEdit={() => { setEditing(c); setDialogOpen(true); }}
                   onDelete={() => deleteClient(c)}

@@ -8,16 +8,12 @@ import {
 
 export default function ClientLogoCard({
   name,
-  slug,
   logo,
-  published,
   total,
   onEdit,
   onDelete,
   onOpen,
 }) {
-  const percent = total ? Math.round((published / total) * 100) : 0;
-
   return (
     <div
       onClick={onOpen}
@@ -57,15 +53,9 @@ export default function ClientLogoCard({
 
       <div className="border-t border-white/10 p-4">
         <p className="font-bold text-white">{name}</p>
-        <p className="text-xs text-white/40">/{slug}</p>
-        <div className="mt-3 flex items-center gap-2">
-          <div className="h-1 flex-1 bg-white/10 rounded-full overflow-hidden">
-            <div className="h-full bg-emerald-400" style={{ width: `${percent}%` }} />
-          </div>
-          <span className="text-[10px] text-white/40 whitespace-nowrap">
-            {published}/{total} published
-          </span>
-        </div>
+        <p className="mt-1 text-xs text-white/40">
+          {total} {total === 1 ? "campaign" : "campaigns"}
+        </p>
       </div>
     </div>
   );
