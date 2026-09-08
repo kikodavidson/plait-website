@@ -65,7 +65,7 @@ const BAND_TWO = [
     eyebrow: "Content",
     title: "Managed Content Pipelines",
     description: "A steady production line of creative so campaigns never go hungry.",
-    img: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80",
+    img: "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/7fa26e0e5_ChatGPTImageSep7202611_17_41PM.png",
   },
 ];
 
