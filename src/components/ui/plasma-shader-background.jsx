@@ -349,8 +349,10 @@ export function PlasmaShaderBackground({ className }) {
       ]),
     );
     gl.uniform4f(uni.shape, 1.5, 0.48, 0.5, 0.0);
-    gl.uniform4f(uni.surface, 2.4, 0.92, -0.5, 1.0);
-    gl.uniform4f(uni.finish, 3.04, 0.61, 0.016, 0.35);
+    // Hue rotation zeroed: the preset's 174° spin turned the fiery palette
+    // blue. With hue 0 and brightness 0 the raw palette renders as-is.
+    gl.uniform4f(uni.surface, 2.4, 0.92, 0.0, 1.0);
+    gl.uniform4f(uni.finish, 0.0, 0.61, 0.016, 0.35);
     gl.uniform4f(uni.transform, 7.0, 0.0, 0.16, 1.0);
     gl.uniform4f(uni.space, 0.0, 0.0, 0.0, 0.0); // cursor off — no pointer
     gl.uniform4f(uni.cursor, 0.0, 4.0, 0.65, 0.3);
