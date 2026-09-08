@@ -42,7 +42,7 @@ const BAND_TWO = [
     eyebrow: "Library",
     title: "Swipe File Warehouse",
     description: "A living library of proven ads and angles that fuels nonstop content ideation.",
-    img: "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/3dbc06723_Screenshot2026-09-08at12840AM.png",
+    img: "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/87d90841f_ChatGPTImageSep8202601_27_59AM.png",
   },
   {
     eyebrow: "Structure",
