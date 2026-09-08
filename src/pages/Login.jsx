@@ -59,7 +59,7 @@ export default function Login() {
       }
     >
       <Button
-        className="w-full h-12 text-sm font-medium mb-6 bg-[#D9480F] text-white border-none hover:bg-[#BF3F0E] hover:text-white"
+        className="w-full h-12 text-sm font-medium mb-6 bg-[#1a1a1a] text-white border-none hover:bg-black hover:text-white"
         onClick={handleGoogle}
       >
         <GoogleIcon className="w-5 h-5 mr-2" />
