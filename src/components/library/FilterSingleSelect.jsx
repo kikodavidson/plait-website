@@ -1,9 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Check, ChevronDown, Search } from "lucide-react";
 
-// Multi-select filter dropdown with checkboxes, optional in-dropdown search,
-// and a "Label · N" count display when multiple values are selected.
-export default function FilterMultiSelect({ label, options, values, onChange, className = "" }) {
+// Single-select filter dropdown — dark panel to match FilterMultiSelect.
+export default function FilterSingleSelect({ label, options, value, onChange, className = "" }) {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
   const ref = useRef(null);
@@ -22,20 +21,22 @@ export default function FilterMultiSelect({ label, options, values, onChange, cl
     ? options.filter((o) => o.toLowerCase().includes(query.toLowerCase()))
     : options;
 
-  const toggle = (opt) => {
-    onChange(values.includes(opt) ? values.filter((v) => v !== opt) : [...values, opt]);
+  const select = (opt) => {
+    onChange(opt === value ? "" : opt);
+    setOpen(false);
+    setQuery("");
   };
-
-  const btnCls = `flex items-center justify-between gap-1.5 h-9 rounded-lg border bg-white px-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#2d2d2d] ${
-    values.length ? "border-[#2d2d2d] text-[#2d2d2d] font-medium" : "border-gray-200 text-gray-500"
-  }`;
 
   return (
     <div ref={ref} className={`relative ${className}`}>
-      <button type="button" onClick={() => setOpen((o) => !o)} className={`${btnCls} w-full`}>
-        <span className="truncate">
-          {values.length ? `${label} · ${values.length}` : label}
-        </span>
+      <button
+        type="button"
+        onClick={() => setOpen((o) => !o)}
+        className={`flex items-center justify-between gap-1.5 h-9 rounded-lg border bg-white px-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#2d2d2d] w-full ${
+          value ? "border-[#2d2d2d] text-[#2d2d2d] font-medium" : "border-gray-200 text-gray-500"
+        }`}
+      >
+        <span className="truncate">{value || label}</span>
         <ChevronDown className={`w-3.5 h-3.5 shrink-0 text-gray-400 transition-transform ${open ? "rotate-180" : ""}`} />
       </button>
       {open && (
@@ -57,20 +58,16 @@ export default function FilterMultiSelect({ label, options, values, onChange, cl
               <p className="px-2 py-2 text-xs text-white/50">No matches</p>
             )}
             {filtered.map((opt) => {
-              const active = values.includes(opt);
+              const active = value === opt;
               return (
                 <button
                   type="button"
                   key={opt}
-                  onClick={() => toggle(opt)}
+                  onClick={() => select(opt)}
                   className="flex items-center gap-2 w-full text-left px-2 py-1.5 rounded-md text-sm text-white hover:bg-white/10"
                 >
-                  <span
-                    className={`w-4 h-4 shrink-0 rounded border flex items-center justify-center ${
-                      active ? "bg-white border-white" : "border-white/30 bg-transparent"
-                    }`}
-                  >
-                    {active && <Check className="w-3 h-3 text-[#211c19]" />}
+                  <span className="w-3.5 h-3.5 shrink-0 flex items-center justify-center">
+                    {active && <Check className="w-3.5 h-3.5 text-white" />}
                   </span>
                   <span className="truncate">{opt}</span>
                 </button>

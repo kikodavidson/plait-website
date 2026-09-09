@@ -8,6 +8,7 @@ import {
   MULTI_SELECT_FIELDS,
 } from "@/lib/swipeOptions";
 import FilterMultiSelect from "./FilterMultiSelect";
+import FilterSingleSelect from "./FilterSingleSelect";
 
 const PRIMARY_WIDTHS = {
   platform: "w-[130px]",
@@ -42,20 +43,13 @@ function FilterControl({ field, filters, setFilters, className }) {
     );
   }
   return (
-    <select
+    <FilterSingleSelect
+      label={FIELD_LABELS[field]}
+      options={SWIPE_OPTIONS[field]}
       value={value || ""}
-      onChange={(e) => setFilters({ ...filters, [field]: e.target.value })}
-      className={`h-9 rounded-lg border border-gray-200 bg-white px-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#2d2d2d] ${
-        value ? "border-[#2d2d2d] font-medium" : ""
-      } ${className || ""}`}
-    >
-      <option value="">{FIELD_LABELS[field]}</option>
-      {SWIPE_OPTIONS[field].map((opt) => (
-        <option key={opt} value={opt}>
-          {opt}
-        </option>
-      ))}
-    </select>
+      onChange={(v) => setFilters({ ...filters, [field]: v })}
+      className={className}
+    />
   );
 }
 
