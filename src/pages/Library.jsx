@@ -6,6 +6,7 @@ import LibraryFilters from "@/components/library/LibraryFilters";
 import SwipeGrid from "@/components/library/SwipeGrid";
 import SwipeDetailPanel from "@/components/library/SwipeDetailPanel";
 import BulkIntake from "@/components/library/BulkIntake";
+import { REQUIRED_FIELDS, OPTIONAL_FIELDS, needsRequiredTags } from "@/lib/swipeOptions";
 import { WavesShaderBackground } from "@/components/ui/waves-shader-background";
 
 export default function Library() {
@@ -14,7 +15,8 @@ export default function Library() {
   const [swipes, setSwipes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
-  const [filters, setFilters] = useState({ platform: "", format: "", hook_type: "", structure: "", talent: "", vertical: "", angle_type: "" });
+  const [filters, setFilters] = useState(() => Object.fromEntries([...REQUIRED_FIELDS, ...OPTIONAL_FIELDS].map((k) => [k, ""])));
+  const [untaggedOnly, setUntaggedOnly] = useState(false);
   const [selected, setSelected] = useState(null);
   const [mode, setMode] = useState("library");
 
@@ -43,9 +45,19 @@ export default function Library() {
   };
 
   const filtered = swipes.filter((s) => {
+    if (untaggedOnly && !needsRequiredTags(s)) return false;
     if (search) {
-      const hay = [s.source_brand, s.why_it_works, ...(s.tags || [])].join(" ").toLowerCase();
-      if (!hay.includes(search.toLowerCase())) return false;
+      const tokens = search.toLowerCase().split(/\s+/).filter(Boolean);
+      const hay = [
+        s.source_brand,
+        s.why_it_works,
+        ...(s.tags || []),
+        ...[...REQUIRED_FIELDS, ...OPTIONAL_FIELDS].flatMap((f) => (Array.isArray(s[f]) ? s[f] : [s[f]])),
+      ]
+        .filter(Boolean)
+        .join(" ")
+        .toLowerCase();
+      if (!tokens.every((t) => hay.includes(t))) return false;
     }
     for (const k of Object.keys(filters)) {
       if (!filters[k]) continue;
@@ -57,7 +69,8 @@ export default function Library() {
 
   const clearFilters = () => {
     setSearch("");
-    setFilters({ platform: "", format: "", hook_type: "", structure: "", talent: "", vertical: "", angle_type: "" });
+    setUntaggedOnly(false);
+    setFilters(Object.fromEntries([...REQUIRED_FIELDS, ...OPTIONAL_FIELDS].map((k) => [k, ""])));
   };
 
   const handleUpdate = async (id, payload) => {
@@ -119,8 +132,32 @@ export default function Library() {
           />
         ) : (
           <div className="space-y-6">
-            <LibraryFilters search={search} setSearch={setSearch} filters={filters} setFilters={setFilters} onClear={clearFilters} />
-            <SwipeGrid swipes={filtered} loading={loading} onSelect={setSelected} />
+            <LibraryFilters
+              search={search}
+              setSearch={setSearch}
+              filters={filters}
+              setFilters={setFilters}
+              onClear={clearFilters}
+              resultCount={filtered.length}
+              untaggedOnly={untaggedOnly}
+              setUntaggedOnly={setUntaggedOnly}
+            />
+            {filtered.length === 0 && !loading ? (
+              <div className="text-center py-20">
+                {swipes.length === 0 ? (
+                  <p className="text-sm text-gray-400">No swipes yet. Use Upload to add creative to your library.</p>
+                ) : (
+                  <>
+                    <p className="text-sm text-gray-400">No swipes match your filters.</p>
+                    <button onClick={clearFilters} className="mt-4 btn-gradient text-sm px-5 py-2 rounded-full">
+                      Clear filters
+                    </button>
+                  </>
+                )}
+              </div>
+            ) : (
+              <SwipeGrid swipes={filtered} loading={loading} onSelect={setSelected} />
+            )}
           </div>
         )}
       </main>

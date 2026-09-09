@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { X, Trash2, Loader2, Save } from "lucide-react";
-import { SWIPE_OPTIONS, FIELD_LABELS, MULTI_COLS } from "@/lib/swipeOptions";
+import { SWIPE_OPTIONS, FIELD_LABELS, MULTI_COLS, REQUIRED_FIELDS, OPTIONAL_FIELDS } from "@/lib/swipeOptions";
 import MultiSelect from "./MultiSelect";
 import { isImageUrl } from "@/lib/thumbnail";
 
@@ -56,13 +56,23 @@ export default function SwipeDetailPanel({ swipe, onClose, onUpdate, onDelete })
               <video key={form.file} src={form.file} poster={form.thumbnail} controls autoPlay className="w-full h-full object-contain" />
             )}
           </div>
+          <p className="text-xs font-bold uppercase tracking-widest text-gray-400 pt-1">Required</p>
           <Field label="Source brand">
             <input className={inputCls} value={form.source_brand || ""} onChange={(e) => set("source_brand", e.target.value)} />
           </Field>
+          {REQUIRED_FIELDS.map((key) => (
+            <Field key={key} label={FIELD_LABELS[key]}>
+              <select className={inputCls} value={form[key] || ""} onChange={(e) => set(key, e.target.value)}>
+                <option value="">—</option>
+                {SWIPE_OPTIONS[key].map((o) => <option key={o} value={o}>{o}</option>)}
+              </select>
+            </Field>
+          ))}
+          <p className="text-xs font-bold uppercase tracking-widest text-gray-400 pt-2">Deeper tagging (optional)</p>
           <Field label="Source URL">
             <input className={inputCls} value={form.source_url || ""} onChange={(e) => set("source_url", e.target.value)} />
           </Field>
-          {Object.keys(SWIPE_OPTIONS).map((key) => (
+          {OPTIONAL_FIELDS.map((key) => (
             <Field key={key} label={FIELD_LABELS[key]}>
               {MULTI_COLS.includes(key) ? (
                 <MultiSelect

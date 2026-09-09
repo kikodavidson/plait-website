@@ -27,6 +27,28 @@ export const SWIPE_OPTIONS = {
     "cinematic brand film",
     "whiteboard",
   ],
+  shot_type: [
+    "Selfie Handheld",
+    "Tripod Static",
+    "Screen Recording",
+    "Voiceover With B Roll",
+    "Mixed",
+  ],
+  production_level: ["Phone Raw", "Phone Polished", "Semi Pro", "Studio"],
+  setting: [
+    "Car",
+    "Bedroom",
+    "Mirror Or Bathroom",
+    "Kitchen",
+    "Living Space",
+    "Office Or Desk",
+    "Studio",
+    "Street Or Outdoors",
+    "Event Or Venue",
+    "Gym",
+    "Screen Only",
+    "Mixed",
+  ],
   hook_type: [
     "problem callout",
     "bold claim",
@@ -100,21 +122,74 @@ export const SWIPE_OPTIONS = {
     "humor",
     "community",
   ],
+  energy: [
+    "Calm Conversational",
+    "Warm And Friendly",
+    "Fast And Punchy",
+    "High Energy",
+    "Deadpan",
+    "Sincere Or Emotional",
+    "Urgent",
+  ],
+  edit_style: [
+    "Raw Single Take",
+    "Jump Cuts",
+    "Retention Edit",
+    "Captions Only",
+    "Kinetic Captions",
+    "B Roll Layered",
+    "Text Overlay Heavy",
+    "Motion Graphics",
+    "Split Screen",
+    "Green Screen Reaction",
+  ],
 };
+
+export const REQUIRED_FIELDS = ["platform", "format", "shot_type", "production_level"];
+
+export const OPTIONAL_FIELDS = [
+  "setting",
+  "hook_type",
+  "structure",
+  "angle_type",
+  "talent",
+  "vertical",
+  "energy",
+  "edit_style",
+];
 
 export const FIELD_LABELS = {
   source_brand: "Source brand",
   source_url: "Source URL",
   platform: "Platform",
   format: "Format",
+  shot_type: "Shot Type",
+  production_level: "Production Level",
+  setting: "Setting",
   hook_type: "Hook type",
   structure: "Structure",
   talent: "Talent",
   vertical: "Vertical",
   angle_type: "Message Angle",
+  energy: "Energy",
+  edit_style: "Edit Style",
   why_it_works: "Why it works",
 };
 
-export const ENUM_COLS = ["platform", "format", "hook_type", "talent", "vertical", "angle_type"];
+export const ENUM_COLS = [
+  "platform",
+  "format",
+  "shot_type",
+  "production_level",
+  "setting",
+  "hook_type",
+  "talent",
+  "vertical",
+  "angle_type",
+  "energy",
+  "edit_style",
+];
 export const MULTI_COLS = ["structure"];
 export const TEXT_COLS = ["source_brand", "source_url", "why_it_works"];
+
+export const needsRequiredTags = (s) => REQUIRED_FIELDS.some((f) => !s[f]);

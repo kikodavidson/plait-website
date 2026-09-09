@@ -1,5 +1,6 @@
 import React from "react";
 import { Loader2, Film } from "lucide-react";
+import { needsRequiredTags } from "@/lib/swipeOptions";
 
 export default function SwipeGrid({ swipes, loading, onSelect }) {
   if (loading) {
@@ -31,6 +32,11 @@ export default function SwipeGrid({ swipes, loading, onSelect }) {
               <div className="w-full h-full flex items-center justify-center">
                 <Film className="w-8 h-8 text-gray-300" />
               </div>
+            )}
+            {needsRequiredTags(s) && (
+              <span className="absolute top-2 left-2 bg-amber-100 text-amber-800 text-[10px] font-bold px-1.5 py-0.5 rounded">
+                Needs tags
+              </span>
             )}
           </div>
           <div className="mt-2 px-1">

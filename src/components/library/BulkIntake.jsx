@@ -1,14 +1,22 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Upload, Loader2, Save, X, AlertCircle, Copy } from "lucide-react";
+import { Upload, Loader2, Save, X, AlertCircle, Copy, ChevronDown } from "lucide-react";
 import { base44 } from "@/api/base44Client";
-import { SWIPE_OPTIONS, FIELD_LABELS, ENUM_COLS, MULTI_COLS, TEXT_COLS } from "@/lib/swipeOptions";
+import { SWIPE_OPTIONS, FIELD_LABELS, REQUIRED_FIELDS, OPTIONAL_FIELDS } from "@/lib/swipeOptions";
 import MultiSelect from "./MultiSelect";
 import { validateMediaFile, generateThumbnail } from "@/lib/thumbnail";
 
 let rowSeq = 0;
 const nextId = () => `row-${++rowSeq}`;
 const dupKey = (name, size) => `${name}|${size}`;
-const COLS = ["source_brand", "source_url", ...ENUM_COLS, ...MULTI_COLS, "why_it_works"];
+const ALL_TAG_FIELDS = [...REQUIRED_FIELDS, ...OPTIONAL_FIELDS];
+
+const emptyRow = () => ({
+  source_brand: "",
+  source_url: "",
+  ...Object.fromEntries(ALL_TAG_FIELDS.map((f) => [f, ""])),
+  structure: [],
+  why_it_works: "",
+});
 
 export default function BulkIntake({ onSaved, onCancel, existingSwipes = [] }) {
   const [rows, setRows] = useState([]);
@@ -16,6 +24,9 @@ export default function BulkIntake({ onSaved, onCancel, existingSwipes = [] }) {
   const [processing, setProcessing] = useState(0);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
+  const [touched, setTouched] = useState({});
+  const [openDeep, setOpenDeep] = useState({});
+  const [quickBrand, setQuickBrand] = useState("");
   const inputRef = useRef(null);
 
   useEffect(() => {
@@ -57,16 +68,7 @@ export default function BulkIntake({ onSaved, onCancel, existingSwipes = [] }) {
         batchKeys.add(key);
         setRows((prev) => [
           ...prev,
-          {
-            id: nextId(),
-            fileName: file.name,
-            fileSize: file.size,
-            fileUrl: file_url,
-            thumbUrl,
-            previewUrl,
-            duplicate: isDup,
-            source_brand: "", source_url: "", platform: "", format: "", hook_type: "", talent: "", structure: [], vertical: "", angle_type: "", why_it_works: "",
-          },
+          { id: nextId(), fileName: file.name, fileSize: file.size, fileUrl: file_url, thumbUrl, previewUrl, duplicate: isDup, ...emptyRow() },
         ]);
       } catch (e) {
         setRejected((prev) => [...prev, { name: file.name, reason: e.message || "Upload failed" }]);
@@ -80,6 +82,9 @@ export default function BulkIntake({ onSaved, onCancel, existingSwipes = [] }) {
   const setCell = (id, field, value) =>
     setRows((prev) => prev.map((r) => (r.id === id ? { ...r, [field]: value } : r)));
 
+  const markTouched = (id, field) =>
+    setTouched((t) => ({ ...t, [`${id}:${field}`]: true }));
+
   const applyToAll = (field, value) => {
     if (!value || (Array.isArray(value) && value.length === 0)) return;
     setRows((prev) => prev.map((r) => ({ ...r, [field]: value })));
@@ -92,10 +97,12 @@ export default function BulkIntake({ onSaved, onCancel, existingSwipes = [] }) {
       return prev.filter((x) => x.id !== id);
     });
 
+  const isRowIncomplete = (r) => !r.source_brand.trim() || REQUIRED_FIELDS.some((f) => !r[f]);
+  const incompleteCount = rows.filter(isRowIncomplete).length;
   const dupCount = rows.filter((r) => r.duplicate).length;
 
   const saveAll = async () => {
-    if (!rows.length) return;
+    if (!rows.length || incompleteCount) return;
     if (dupCount > 0) {
       if (!window.confirm(`${dupCount} file(s) may already exist in your library. Save anyway?`)) return;
     }
@@ -114,13 +121,10 @@ export default function BulkIntake({ onSaved, onCancel, existingSwipes = [] }) {
         };
         if (r.source_brand) rec.source_brand = r.source_brand;
         if (r.source_url) rec.source_url = r.source_url;
-        if (r.platform) rec.platform = r.platform;
-        if (r.format) rec.format = r.format;
-        if (r.hook_type) rec.hook_type = r.hook_type;
-        if (r.vertical) rec.vertical = r.vertical;
-        if (r.angle_type) rec.angle_type = r.angle_type;
-        if (r.talent) rec.talent = r.talent;
-        if (Array.isArray(r.structure) && r.structure.length) rec.structure = r.structure;
+        ALL_TAG_FIELDS.forEach((f) => {
+          const v = r[f];
+          if (Array.isArray(v) ? v.length : v) rec[f] = v;
+        });
         if (r.why_it_works) rec.why_it_works = r.why_it_works;
         return rec;
       });
@@ -134,7 +138,41 @@ export default function BulkIntake({ onSaved, onCancel, existingSwipes = [] }) {
     }
   };
 
-  const cellInput = "h-9 w-full rounded-md border border-gray-200 bg-white px-2 text-xs focus:outline-none focus:ring-1 focus:ring-[#2d2d2d]";
+  const reqCellCls = (r, field) => {
+    const empty = field === "source_brand" ? !r.source_brand.trim() : !r[field];
+    return empty && touched[`${r.id}:${field}`]
+      ? "border-red-300 focus:ring-red-300 bg-red-50/40"
+      : "border-gray-200 focus:ring-[#2d2d2d]";
+  };
+
+  const inputBase = "h-9 w-full rounded-md border bg-white px-2 text-xs focus:outline-none focus:ring-1";
+
+  const renderTagField = (r, field) => {
+    if (field === "structure") {
+      return (
+        <MultiSelect
+          options={SWIPE_OPTIONS[field]}
+          value={Array.isArray(r[field]) ? r[field] : []}
+          onChange={(v) => setCell(r.id, field, v)}
+          placeholder="Select…"
+        />
+      );
+    }
+    return (
+      <select
+        value={r[field]}
+        onChange={(e) => setCell(r.id, field, e.target.value)}
+        className={`${inputBase} ${reqCellCls(r, field)}`}
+      >
+        <option value="">—</option>
+        {SWIPE_OPTIONS[field].map((o) => (
+          <option key={o} value={o}>
+            {o}
+          </option>
+        ))}
+      </select>
+    );
+  };
 
   return (
     <div className="space-y-4">
@@ -146,20 +184,32 @@ export default function BulkIntake({ onSaved, onCancel, existingSwipes = [] }) {
           </button>
           <span className="text-xs text-gray-500">Video & image · up to 50MB each</span>
           {processing > 0 && (
-            <span className="inline-flex items-center gap-2 text-xs text-gray-500"><Loader2 className="w-4 h-4 animate-spin" /> Processing {processing}…</span>
+            <span className="inline-flex items-center gap-2 text-xs text-gray-500">
+              <Loader2 className="w-4 h-4 animate-spin" /> Processing {processing}…
+            </span>
           )}
         </div>
         <div className="flex items-center gap-2">
-          <button onClick={onCancel} className="text-sm text-gray-500 hover:text-[#2d2d2d] px-3 py-2">Cancel</button>
-          <button onClick={saveAll} disabled={saving || !rows.length || processing > 0} className="inline-flex items-center gap-2 btn-gradient text-sm px-5 py-2 rounded-full disabled:opacity-50">
-            {saving ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />} Save all ({rows.length})
+          <button onClick={onCancel} className="text-sm text-gray-500 hover:text-[#2d2d2d] px-3 py-2">
+            Cancel
+          </button>
+          <button
+            onClick={saveAll}
+            disabled={saving || !rows.length || processing > 0 || incompleteCount > 0}
+            className="inline-flex items-center gap-2 btn-gradient text-sm px-5 py-2 rounded-full disabled:opacity-50"
+          >
+            {saving ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
+            {incompleteCount > 0
+              ? `Save all — ${incompleteCount} need tags`
+              : `Save all (${rows.length})`}
           </button>
         </div>
       </div>
 
       {error && (
         <div className="flex items-center gap-2 p-3 rounded-lg bg-red-50 text-red-700 text-sm">
-          <AlertCircle className="w-4 h-4 shrink-0" />{error}
+          <AlertCircle className="w-4 h-4 shrink-0" />
+          {error}
         </div>
       )}
       {dupCount > 0 && (
@@ -175,7 +225,9 @@ export default function BulkIntake({ onSaved, onCancel, existingSwipes = [] }) {
         <div className="rounded-lg bg-amber-50 border border-amber-200 p-3">
           <p className="text-xs font-semibold text-amber-800 mb-1">{rejected.length} file(s) rejected:</p>
           <ul className="text-xs text-amber-700 space-y-0.5">
-            {rejected.map((r, i) => <li key={i}>• {r.name} — {r.reason}</li>)}
+            {rejected.map((r, i) => (
+              <li key={i}>• {r.name} — {r.reason}</li>
+            ))}
           </ul>
           <button onClick={() => setRejected([])} className="text-xs text-amber-800 underline mt-1">Dismiss</button>
         </div>
@@ -187,99 +239,125 @@ export default function BulkIntake({ onSaved, onCancel, existingSwipes = [] }) {
           <p className="text-sm text-gray-500">Select video or image files to begin tagging your batch.</p>
         </div>
       ) : (
-        <div className="overflow-x-auto rounded-xl border border-gray-100">
-          <table className="w-full text-sm">
-            <thead className="bg-gray-50 text-gray-500">
-              <tr>
-                <th className="px-3 py-2 w-16"></th>
-                {COLS.map((col) => (
-                  <th key={col} className="text-left px-3 py-2 min-w-[150px] align-top">
-                    <div className="font-semibold text-xs mb-1">{FIELD_LABELS[col]}</div>
-                    {MULTI_COLS.includes(col) ? (
-                      <MultiSelect
-                        options={SWIPE_OPTIONS[col]}
-                        value={[]}
-                        onChange={(v) => { if (v.length) applyToAll(col, v); }}
-                        placeholder="Set all…"
-                      />
-                    ) : ENUM_COLS.includes(col) ? (
-                      <select
-                        value=""
-                        onChange={(e) => applyToAll(col, e.target.value)}
-                        className="h-8 w-full rounded-md border border-gray-200 bg-white px-1 text-xs focus:outline-none focus:ring-1 focus:ring-[#2d2d2d]"
-                      >
-                        <option value="">Set all…</option>
-                        {SWIPE_OPTIONS[col].map((o) => <option key={o} value={o}>{o}</option>)}
-                      </select>
-                    ) : (
-                      <ColumnTextApply onApply={(v) => applyToAll(col, v)} />
-                    )}
-                  </th>
-                ))}
-                <th className="px-2 py-2 w-8"></th>
-              </tr>
-            </thead>
-            <tbody>
-              {rows.map((r) => (
-                <tr key={r.id} className="border-t border-gray-100">
-                  <td className="px-3 py-2">
-                    <div className="relative w-12 h-12 rounded-md overflow-hidden bg-gray-100 flex items-center justify-center">
-                      {r.previewUrl ? (
-                        <img src={r.previewUrl} alt="" className="w-full h-full object-cover" />
-                      ) : (
-                        <Loader2 className="w-4 h-4 animate-spin text-gray-300" />
-                      )}
-                      {r.duplicate && (
-                        <span className="absolute top-0 left-0 bg-amber-500 text-white text-[8px] font-bold px-1 rounded-br">DUP</span>
-                      )}
-                    </div>
-                  </td>
-                  {COLS.map((col) => (
-                    <td key={col} className="px-3 py-2">
-                      {MULTI_COLS.includes(col) ? (
-                        <MultiSelect
-                          options={SWIPE_OPTIONS[col]}
-                          value={Array.isArray(r[col]) ? r[col] : []}
-                          onChange={(v) => setCell(r.id, col, v)}
-                          placeholder="Select…"
-                        />
-                      ) : ENUM_COLS.includes(col) ? (
-                        <select className={cellInput} value={r[col]} onChange={(e) => setCell(r.id, col, e.target.value)}>
-                          <option value="">—</option>
-                          {SWIPE_OPTIONS[col].map((o) => <option key={o} value={o}>{o}</option>)}
-                        </select>
-                      ) : (
-                        <input className={cellInput} value={r[col]} onChange={(e) => setCell(r.id, col, e.target.value)} placeholder={FIELD_LABELS[col]} />
-                      )}
-                    </td>
+        <>
+          {rows.length > 1 && (
+            <div className="flex flex-wrap items-center gap-2 rounded-xl border border-gray-100 bg-gray-50 px-3 py-2">
+              <span className="text-xs font-semibold text-gray-500">Quick fill all rows:</span>
+              <div className="flex items-center gap-1">
+                <input
+                  value={quickBrand}
+                  onChange={(e) => setQuickBrand(e.target.value)}
+                  placeholder="Brand name"
+                  className="h-8 rounded-md border border-gray-200 bg-white px-2 text-xs focus:outline-none focus:ring-1 focus:ring-[#2d2d2d]"
+                />
+                <button
+                  onClick={() => { applyToAll("source_brand", quickBrand); setQuickBrand(""); }}
+                  className="h-8 px-2 rounded-md bg-[#2d2d2d] text-white text-xs font-medium"
+                >
+                  Apply
+                </button>
+              </div>
+              {REQUIRED_FIELDS.map((f) => (
+                <select
+                  key={f}
+                  value=""
+                  onChange={(e) => applyToAll(f, e.target.value)}
+                  className="h-8 rounded-md border border-gray-200 bg-white px-1 text-xs focus:outline-none focus:ring-1 focus:ring-[#2d2d2d]"
+                >
+                  <option value="">{FIELD_LABELS[f]}…</option>
+                  {SWIPE_OPTIONS[f].map((o) => (
+                    <option key={o} value={o}>{o}</option>
                   ))}
-                  <td className="px-2 py-2"><button onClick={() => removeRow(r.id)} className="text-gray-400 hover:text-red-500"><X className="w-4 h-4" /></button></td>
-                </tr>
+                </select>
               ))}
-            </tbody>
-          </table>
-        </div>
-      )}
-    </div>
-  );
-}
+            </div>
+          )}
 
-function ColumnTextApply({ onApply }) {
-  const [val, setVal] = useState("");
-  return (
-    <div className="flex items-center gap-1">
-      <input
-        value={val}
-        onChange={(e) => setVal(e.target.value)}
-        placeholder="Set all…"
-        className="h-8 flex-1 min-w-0 rounded-md border border-gray-200 bg-white px-2 text-xs focus:outline-none focus:ring-1 focus:ring-[#2d2d2d]"
-      />
-      <button
-        onClick={() => { onApply(val); setVal(""); }}
-        className="h-8 px-2 rounded-md bg-[#2d2d2d] text-white text-xs font-medium shrink-0"
-      >
-        Apply
-      </button>
+          <div className="space-y-4">
+            {rows.map((r) => (
+              <div key={r.id} className="rounded-xl border border-gray-100 bg-white shadow-sm p-4 space-y-3">
+                <div className="flex flex-col lg:flex-row lg:items-start gap-4">
+                  <div className="relative w-24 h-24 shrink-0 rounded-lg overflow-hidden bg-gray-100 flex items-center justify-center">
+                    {r.previewUrl ? (
+                      <img src={r.previewUrl} alt="" className="w-full h-full object-cover" />
+                    ) : (
+                      <Loader2 className="w-5 h-5 animate-spin text-gray-300" />
+                    )}
+                    {r.duplicate && (
+                      <span className="absolute top-0 left-0 bg-amber-500 text-white text-[8px] font-bold px-1 rounded-br">DUP</span>
+                    )}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-2">
+                      Required
+                      {isRowIncomplete(r) && <span className="ml-2 text-red-500 normal-case font-medium">· missing tags</span>}
+                    </p>
+                    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                      <div className="space-y-1">
+                        <label className="text-xs font-medium text-gray-500">Brand name</label>
+                        <input
+                          value={r.source_brand}
+                          onChange={(e) => setCell(r.id, "source_brand", e.target.value)}
+                          onBlur={() => markTouched(r.id, "source_brand")}
+                          placeholder="Brand"
+                          className={`${inputBase} ${reqCellCls(r, "source_brand")}`}
+                        />
+                      </div>
+                      {REQUIRED_FIELDS.map((f) => (
+                        <div key={f} className="space-y-1">
+                          <label className="text-xs font-medium text-gray-500">{FIELD_LABELS[f]}</label>
+                          {renderTagField(r, f)}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  <button onClick={() => removeRow(r.id)} className="text-gray-400 hover:text-red-500 self-start lg:ml-2" aria-label="Remove file">
+                    <X className="w-4 h-4" />
+                  </button>
+                </div>
+
+                <button
+                  onClick={() => setOpenDeep((o) => ({ ...o, [r.id]: !o[r.id] }))}
+                  className="inline-flex items-center gap-1.5 text-sm font-medium text-gray-500 hover:text-[#2d2d2d]"
+                >
+                  <ChevronDown className={`w-4 h-4 transition-transform ${openDeep[r.id] ? "rotate-180" : ""}`} />
+                  Deeper tagging (optional)
+                </button>
+
+                {openDeep[r.id] && (
+                  <div className="border-t border-gray-100 pt-3 grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+                    {OPTIONAL_FIELDS.map((f) => (
+                      <div key={f} className="space-y-1">
+                        <label className="text-xs font-medium text-gray-500">{FIELD_LABELS[f]}</label>
+                        {renderTagField(r, f)}
+                      </div>
+                    ))}
+                    <div className="space-y-1 sm:col-span-2 lg:col-span-2">
+                      <label className="text-xs font-medium text-gray-500">Source URL</label>
+                      <input
+                        value={r.source_url}
+                        onChange={(e) => setCell(r.id, "source_url", e.target.value)}
+                        placeholder="https://"
+                        className={`${inputBase} border-gray-200 focus:ring-[#2d2d2d]`}
+                      />
+                    </div>
+                    <div className="space-y-1 sm:col-span-2 lg:col-span-4">
+                      <label className="text-xs font-medium text-gray-500">Why it works</label>
+                      <textarea
+                        value={r.why_it_works}
+                        onChange={(e) => setCell(r.id, "why_it_works", e.target.value)}
+                        rows={2}
+                        placeholder="Internal analysis of why this ad works…"
+                        className="w-full rounded-md border border-gray-200 bg-white p-2 text-xs focus:outline-none focus:ring-1 focus:ring-[#2d2d2d]"
+                      />
+                    </div>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </>
+      )}
     </div>
   );
 }

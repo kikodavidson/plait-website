@@ -67,6 +67,45 @@
         "whiteboard"
       ]
     },
+    "shot_type": {
+      "type": "string",
+      "enum": [
+        "Selfie Handheld",
+        "Tripod Static",
+        "Screen Recording",
+        "Voiceover With B Roll",
+        "Mixed"
+      ],
+      "description": "How the ad is shot (required tag)"
+    },
+    "production_level": {
+      "type": "string",
+      "enum": [
+        "Phone Raw",
+        "Phone Polished",
+        "Semi Pro",
+        "Studio"
+      ],
+      "description": "Production level of the ad (required tag)"
+    },
+    "setting": {
+      "type": "string",
+      "enum": [
+        "Car",
+        "Bedroom",
+        "Mirror Or Bathroom",
+        "Kitchen",
+        "Living Space",
+        "Office Or Desk",
+        "Studio",
+        "Street Or Outdoors",
+        "Event Or Venue",
+        "Gym",
+        "Screen Only",
+        "Mixed"
+      ],
+      "description": "Where the ad takes place"
+    },
     "hook_type": {
       "type": "string",
       "enum": [
@@ -164,6 +203,35 @@
         "humor",
         "community"
       ]
+    },
+    "energy": {
+      "type": "string",
+      "enum": [
+        "Calm Conversational",
+        "Warm And Friendly",
+        "Fast And Punchy",
+        "High Energy",
+        "Deadpan",
+        "Sincere Or Emotional",
+        "Urgent"
+      ],
+      "description": "The energy or vibe of the ad"
+    },
+    "edit_style": {
+      "type": "string",
+      "enum": [
+        "Raw Single Take",
+        "Jump Cuts",
+        "Retention Edit",
+        "Captions Only",
+        "Kinetic Captions",
+        "B Roll Layered",
+        "Text Overlay Heavy",
+        "Motion Graphics",
+        "Split Screen",
+        "Green Screen Reaction"
+      ],
+      "description": "Editing style used in the ad"
     },
     "why_it_works": {
       "type": "string",
