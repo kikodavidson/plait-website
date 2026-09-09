@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { X, Trash2, Loader2, Save } from "lucide-react";
-import { SWIPE_OPTIONS, FIELD_LABELS, MULTI_COLS, REQUIRED_FIELDS, OPTIONAL_FIELDS } from "@/lib/swipeOptions";
+import { SWIPE_OPTIONS, FIELD_LABELS, MULTI_SELECT_FIELDS, REQUIRED_FIELDS, OPTIONAL_FIELDS } from "@/lib/swipeOptions";
 import MultiSelect from "./MultiSelect";
 import { isImageUrl } from "@/lib/thumbnail";
 
@@ -56,39 +56,34 @@ export default function SwipeDetailPanel({ swipe, onClose, onUpdate, onDelete })
               <video key={form.file} src={form.file} poster={form.thumbnail} controls autoPlay className="w-full h-full object-contain" />
             )}
           </div>
-          <p className="text-xs font-bold uppercase tracking-widest text-gray-400 pt-1">Required</p>
-          <Field label="Source brand">
-            <input className={inputCls} value={form.source_brand || ""} onChange={(e) => set("source_brand", e.target.value)} />
-          </Field>
-          {REQUIRED_FIELDS.map((key) => (
-            <Field key={key} label={FIELD_LABELS[key]}>
-              <select className={inputCls} value={form[key] || ""} onChange={(e) => set(key, e.target.value)}>
-                <option value="">—</option>
-                {SWIPE_OPTIONS[key].map((o) => <option key={o} value={o}>{o}</option>)}
-              </select>
-            </Field>
-          ))}
-          <p className="text-xs font-bold uppercase tracking-widest text-gray-400 pt-2">Deeper tagging (optional)</p>
-          <Field label="Source URL">
-            <input className={inputCls} value={form.source_url || ""} onChange={(e) => set("source_url", e.target.value)} />
-          </Field>
-          {OPTIONAL_FIELDS.map((key) => (
-            <Field key={key} label={FIELD_LABELS[key]}>
-              {MULTI_COLS.includes(key) ? (
-                <MultiSelect
-                  options={SWIPE_OPTIONS[key]}
-                  value={Array.isArray(form[key]) ? form[key] : []}
-                  onChange={(v) => set(key, v)}
-                  placeholder="Select…"
-                />
-              ) : (
-                <select className={inputCls} value={form[key] || ""} onChange={(e) => set(key, e.target.value)}>
-                  <option value="">—</option>
-                  {SWIPE_OPTIONS[key].map((o) => <option key={o} value={o}>{o}</option>)}
-                </select>
-              )}
-            </Field>
-          ))}
+          <div>
+            <p className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-3 pt-1">Creative Breakdown</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <Field label="Brand">
+                <input className={inputCls} value={form.source_brand || ""} onChange={(e) => set("source_brand", e.target.value)} />
+              </Field>
+              {[...REQUIRED_FIELDS, ...OPTIONAL_FIELDS].map((key) => (
+                <Field key={key} label={FIELD_LABELS[key]}>
+                  {MULTI_SELECT_FIELDS.includes(key) ? (
+                    <MultiSelect
+                      options={SWIPE_OPTIONS[key]}
+                      value={Array.isArray(form[key]) ? form[key] : []}
+                      onChange={(v) => set(key, v)}
+                      placeholder="Select…"
+                    />
+                  ) : (
+                    <select className={inputCls} value={form[key] || ""} onChange={(e) => set(key, e.target.value)}>
+                      <option value="">—</option>
+                      {SWIPE_OPTIONS[key].map((o) => <option key={o} value={o}>{o}</option>)}
+                    </select>
+                  )}
+                </Field>
+              ))}
+              <Field label="Source URL">
+                <input className={inputCls} value={form.source_url || ""} onChange={(e) => set("source_url", e.target.value)} />
+              </Field>
+            </div>
+          </div>
           <Field label="Why it works">
             <textarea
               className="w-full rounded-lg border border-gray-200 bg-white p-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#2d2d2d]"

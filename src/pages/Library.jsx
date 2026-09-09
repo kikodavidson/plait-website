@@ -6,7 +6,7 @@ import LibraryFilters from "@/components/library/LibraryFilters";
 import SwipeGrid from "@/components/library/SwipeGrid";
 import SwipeDetailPanel from "@/components/library/SwipeDetailPanel";
 import BulkIntake from "@/components/library/BulkIntake";
-import { REQUIRED_FIELDS, OPTIONAL_FIELDS, needsRequiredTags } from "@/lib/swipeOptions";
+import { REQUIRED_FIELDS, OPTIONAL_FIELDS, needsRequiredTags, emptyFilters, fieldValues, isEmptyValue } from "@/lib/swipeOptions";
 import { WavesShaderBackground } from "@/components/ui/waves-shader-background";
 
 export default function Library() {
@@ -15,7 +15,7 @@ export default function Library() {
   const [swipes, setSwipes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
-  const [filters, setFilters] = useState(() => Object.fromEntries([...REQUIRED_FIELDS, ...OPTIONAL_FIELDS].map((k) => [k, ""])));
+  const [filters, setFilters] = useState(emptyFilters);
   const [untaggedOnly, setUntaggedOnly] = useState(false);
   const [selected, setSelected] = useState(null);
   const [mode, setMode] = useState("library");
@@ -60,9 +60,10 @@ export default function Library() {
       if (!tokens.every((t) => hay.includes(t))) return false;
     }
     for (const k of Object.keys(filters)) {
-      if (!filters[k]) continue;
-      if (Array.isArray(s[k])) { if (!s[k].includes(filters[k])) return false; }
-      else if (s[k] !== filters[k]) return false;
+      if (isEmptyValue(filters[k])) continue;
+      const want = Array.isArray(filters[k]) ? filters[k] : [filters[k]];
+      const have = fieldValues(s, k);
+      if (!want.some((v) => have.includes(v))) return false;
     }
     return true;
   });
@@ -70,7 +71,7 @@ export default function Library() {
   const clearFilters = () => {
     setSearch("");
     setUntaggedOnly(false);
-    setFilters(Object.fromEntries([...REQUIRED_FIELDS, ...OPTIONAL_FIELDS].map((k) => [k, ""])));
+    setFilters(emptyFilters());
   };
 
   const handleUpdate = async (id, payload) => {

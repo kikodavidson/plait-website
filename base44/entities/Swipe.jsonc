@@ -4,7 +4,7 @@
   "properties": {
     "file": {
       "type": "string",
-      "description": "URL of the saved ad video file"
+      "description": "URL of the saved ad file"
     },
     "thumbnail": {
       "type": "string",
@@ -27,211 +27,221 @@
       "description": "Original URL where the ad was found"
     },
     "platform": {
-      "type": "string",
-      "enum": [
-        "Meta",
-        "TikTok",
-        "YouTube",
-        "LinkedIn",
-        "organic",
-        "other"
-      ]
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "Meta",
+          "TikTok",
+          "YouTube",
+          "LinkedIn",
+          "Pinterest",
+          "Snapchat",
+          "X",
+          "Other"
+        ]
+      },
+      "description": "Essential. Where the creative ran (multi-select)"
     },
-    "format": {
+    "creative_format": {
       "type": "string",
       "enum": [
-        "UGC talking head",
-        "UGC voiceover with b roll",
-        "founder direct to camera",
-        "customer testimonial",
-        "creator review",
-        "product demo",
-        "screen recording or app demo",
-        "street interview",
-        "text over video",
-        "green screen reaction",
-        "split screen comparison",
-        "unboxing",
-        "podcast clip",
-        "tutorial",
-        "image carousel",
-        "static image",
-        "motion graphic",
-        "day in the life",
-        "mashup or compilation",
-        "animated explainer",
-        "meme",
-        "ASMR",
-        "AI generated",
-        "cinematic brand film",
-        "whiteboard"
-      ]
-    },
-    "shot_type": {
-      "type": "string",
-      "enum": [
-        "Selfie Handheld",
-        "Tripod Static",
+        "Raw UGC",
+        "Polished UGC",
+        "Production Video",
+        "Static",
+        "Carousel",
+        "Motion / Animated",
         "Screen Recording",
-        "Voiceover With B Roll",
-        "Mixed"
+        "Mixed Media"
       ],
-      "description": "How the ad is shot (required tag)"
+      "description": "Essential. What type of asset this is"
     },
-    "production_level": {
+    "concept": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "Talking Head",
+          "Voiceover + B-Roll",
+          "Testimonial",
+          "Creator Review",
+          "Founder Story",
+          "Product Demo",
+          "App / Software Demo",
+          "Unboxing",
+          "Tutorial / How-To",
+          "Street Interview",
+          "Podcast Clip",
+          "Day in the Life",
+          "Before & After",
+          "Comparison",
+          "Reaction",
+          "Meme / Trend",
+          "Product Showcase",
+          "Brand Film",
+          "Text-Led Video",
+          "Other"
+        ]
+      },
+      "description": "Essential. What is actually happening in the ad (multi-select; first value is the primary concept)"
+    },
+    "hook": {
       "type": "string",
       "enum": [
-        "Phone Raw",
-        "Phone Polished",
-        "Semi Pro",
-        "Studio"
+        "Problem Callout",
+        "Bold Claim",
+        "Question",
+        "Audience Callout",
+        "Stat / Number",
+        "Warning",
+        "Curiosity",
+        "Before & After",
+        "Social Proof",
+        "POV",
+        "Pattern Interrupt",
+        "List",
+        "Confession",
+        "Authority",
+        "Trend / Cultural Hook",
+        "Competitor Callout",
+        "Price / Offer",
+        "Visual Hook",
+        "No Clear Hook"
       ],
-      "description": "Production level of the ad (required tag)"
+      "description": "Essential. How the creative earns attention at the beginning"
+    },
+    "angle_type": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "Pain Point",
+          "Benefit / Outcome",
+          "Social Proof",
+          "Offer / Discount",
+          "Objection Handling",
+          "Education",
+          "Differentiation",
+          "Authority",
+          "Urgency / Scarcity",
+          "Cost of Inaction",
+          "Ease / Convenience",
+          "Speed",
+          "Identity / Belonging",
+          "Aspiration",
+          "Risk Reversal",
+          "Curiosity",
+          "Humor",
+          "Community"
+        ]
+      },
+      "description": "Essential. Message Angle \u2014 the core reason the ad gives the viewer to care or act (multi-select; first value is the primary angle)"
+    },
+    "structure": {
+      "type": "string",
+      "enum": [
+        "Problem \u2192 Solution",
+        "Problem \u2192 Agitate \u2192 Solution",
+        "Claim \u2192 Proof",
+        "Hook \u2192 Benefits \u2192 CTA",
+        "Story \u2192 Lesson \u2192 Offer",
+        "Before \u2192 After \u2192 How",
+        "Objection \u2192 Reframe",
+        "Comparison \u2192 Winner",
+        "Demo \u2192 Benefit",
+        "Testimonial \u2192 Result",
+        "Listicle",
+        "FAQ / Q&A",
+        "Story Arc",
+        "Reveal",
+        "Other"
+      ],
+      "description": "Additional. How the ad's argument or story progresses"
+    },
+    "business_type": {
+      "type": "string",
+      "enum": [
+        "Ecommerce",
+        "SaaS / App",
+        "B2B",
+        "Local Service",
+        "Marketplace",
+        "Info / Education",
+        "Media / Content",
+        "Other"
+      ],
+      "description": "Additional. Business type of the advertiser (separate from industry)"
+    },
+    "talent": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "Customer",
+          "Creator",
+          "Founder",
+          "Employee",
+          "Actor / Model",
+          "Expert",
+          "No Talent / Product Only",
+          "Animated / AI"
+        ]
+      },
+      "description": "Additional. Who is delivering or appearing in the creative (multi-select)"
     },
     "setting": {
       "type": "string",
       "enum": [
         "Car",
         "Bedroom",
-        "Mirror Or Bathroom",
+        "Bathroom / Mirror",
         "Kitchen",
         "Living Space",
-        "Office Or Desk",
+        "Office / Desk",
         "Studio",
-        "Street Or Outdoors",
-        "Event Or Venue",
+        "Outdoors",
+        "Street",
+        "Event / Venue",
         "Gym",
+        "Retail / Store",
+        "Restaurant / Cafe",
         "Screen Only",
-        "Mixed"
+        "Mixed",
+        "Other"
       ],
-      "description": "Where the ad takes place"
+      "description": "Additional. Where the creative is visually taking place"
     },
-    "hook_type": {
-      "type": "string",
-      "enum": [
-        "problem callout",
-        "bold claim",
-        "question",
-        "callout to audience",
-        "stat or number",
-        "negative warning",
-        "curiosity gap",
-        "before and after reveal",
-        "social proof drop",
-        "us versus them",
-        "personal story open",
-        "price reveal",
-        "POV",
-        "pattern interrupt visual",
-        "list open",
-        "mistake confession",
-        "authority intro",
-        "trend or audio hook",
-        "competitor callout",
-        "unboxing reveal"
-      ]
-    },
-    "structure": {
+    "edit_style": {
       "type": "array",
       "items": {
         "type": "string",
         "enum": [
-          "problem solution",
-          "listicle",
-          "testimonial arc",
-          "before and after",
-          "demonstration",
-          "story arc",
-          "tutorial",
-          "comparison",
-          "objection handling",
-          "myth bust",
-          "transformation",
-          "founder story",
-          "data reveal",
-          "FAQ",
-          "reaction",
-          "day in the life",
-          "review roundup",
-          "unboxing"
+          "Raw / Minimal Edit",
+          "Jump Cuts",
+          "Captions",
+          "Kinetic Captions",
+          "B-Roll Heavy",
+          "Text Overlay Heavy",
+          "Motion Graphics",
+          "Split Screen",
+          "Green Screen",
+          "Fast Cut / Retention Edit",
+          "Cinematic Edit",
+          "Montage"
         ]
       },
-      "description": "Multi-select: the narrative structure(s) used in the ad"
-    },
-    "talent": {
-      "type": "string",
-      "enum": [
-        "creator",
-        "customer",
-        "founder",
-        "none or product only",
-        "employee",
-        "actor",
-        "influencer",
-        "animated or AI"
-      ]
-    },
-    "vertical": {
-      "type": "string",
-      "enum": [
-        "ecom",
-        "app",
-        "B2B",
-        "local service",
-        "other"
-      ]
-    },
-    "angle_type": {
-      "type": "string",
-      "enum": [
-        "pain point",
-        "benefit or value",
-        "social proof",
-        "offer or discount",
-        "objection handling",
-        "education",
-        "differentiation",
-        "authority",
-        "urgency or scarcity",
-        "cost of inaction",
-        "ease and convenience",
-        "speed of result",
-        "identity and belonging",
-        "aspiration",
-        "risk reversal",
-        "curiosity",
-        "humor",
-        "community"
-      ]
+      "description": "Additional. How the creative is edited (multi-select)"
     },
     "energy": {
       "type": "string",
       "enum": [
-        "Calm Conversational",
-        "Warm And Friendly",
-        "Fast And Punchy",
-        "High Energy",
-        "Deadpan",
-        "Sincere Or Emotional",
-        "Urgent"
+        "Calm",
+        "Conversational",
+        "Energetic",
+        "High Energy"
       ],
-      "description": "The energy or vibe of the ad"
-    },
-    "edit_style": {
-      "type": "string",
-      "enum": [
-        "Raw Single Take",
-        "Jump Cuts",
-        "Retention Edit",
-        "Captions Only",
-        "Kinetic Captions",
-        "B Roll Layered",
-        "Text Overlay Heavy",
-        "Motion Graphics",
-        "Split Screen",
-        "Green Screen Reaction"
-      ],
-      "description": "Editing style used in the ad"
+      "description": "Additional. The overall delivery pace / feeling"
     },
     "why_it_works": {
       "type": "string",
@@ -246,6 +256,26 @@
       "items": {
         "type": "string"
       }
+    },
+    "format": {
+      "type": "string",
+      "description": "Legacy \u2014 superseded by creative_format + concept"
+    },
+    "shot_type": {
+      "type": "string",
+      "description": "Legacy \u2014 superseded by concept"
+    },
+    "production_level": {
+      "type": "string",
+      "description": "Legacy \u2014 superseded by creative_format"
+    },
+    "hook_type": {
+      "type": "string",
+      "description": "Legacy \u2014 superseded by hook"
+    },
+    "vertical": {
+      "type": "string",
+      "description": "Legacy \u2014 superseded by business_type"
     }
   },
   "required": [

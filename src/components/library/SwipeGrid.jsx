@@ -41,7 +41,14 @@ export default function SwipeGrid({ swipes, loading, onSelect }) {
           </div>
           <div className="mt-2 px-1">
             <p className="font-semibold text-sm text-[#2d2d2d] truncate">{s.source_brand || "Untitled"}</p>
-            <p className="text-xs text-gray-500 truncate">{s.format || "—"}</p>
+            <p className="text-xs text-gray-500 truncate">
+              {[s.creative_format, Array.isArray(s.concept) ? s.concept[0] : s.concept].filter(Boolean).join(" · ") || "—"}
+            </p>
+            {Array.isArray(s.platform) && s.platform.length > 0 && (
+              <span className="inline-block mt-1 text-[9px] font-bold uppercase tracking-wide text-gray-500 bg-gray-100 rounded px-1 py-0.5">
+                {s.platform.join(" / ")}
+              </span>
+            )}
           </div>
         </button>
       ))}

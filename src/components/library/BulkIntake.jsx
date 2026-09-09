@@ -1,7 +1,14 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Upload, Loader2, Save, X, AlertCircle, Copy, ChevronDown } from "lucide-react";
 import { base44 } from "@/api/base44Client";
-import { SWIPE_OPTIONS, FIELD_LABELS, REQUIRED_FIELDS, OPTIONAL_FIELDS } from "@/lib/swipeOptions";
+import {
+  SWIPE_OPTIONS,
+  FIELD_LABELS,
+  REQUIRED_FIELDS,
+  OPTIONAL_FIELDS,
+  MULTI_SELECT_FIELDS,
+  isEmptyValue,
+} from "@/lib/swipeOptions";
 import MultiSelect from "./MultiSelect";
 import { validateMediaFile, generateThumbnail } from "@/lib/thumbnail";
 
@@ -9,12 +16,12 @@ let rowSeq = 0;
 const nextId = () => `row-${++rowSeq}`;
 const dupKey = (name, size) => `${name}|${size}`;
 const ALL_TAG_FIELDS = [...REQUIRED_FIELDS, ...OPTIONAL_FIELDS];
+const QUICK_FILL_FIELDS = ["creative_format", "hook"];
 
 const emptyRow = () => ({
   source_brand: "",
   source_url: "",
-  ...Object.fromEntries(ALL_TAG_FIELDS.map((f) => [f, ""])),
-  structure: [],
+  ...Object.fromEntries(ALL_TAG_FIELDS.map((f) => [f, MULTI_SELECT_FIELDS.includes(f) ? [] : ""])),
   why_it_works: "",
 });
 
@@ -25,7 +32,7 @@ export default function BulkIntake({ onSaved, onCancel, existingSwipes = [] }) {
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
   const [touched, setTouched] = useState({});
-  const [openDeep, setOpenDeep] = useState({});
+  const [openDetails, setOpenDetails] = useState({});
   const [quickBrand, setQuickBrand] = useState("");
   const inputRef = useRef(null);
 
@@ -86,7 +93,7 @@ export default function BulkIntake({ onSaved, onCancel, existingSwipes = [] }) {
     setTouched((t) => ({ ...t, [`${id}:${field}`]: true }));
 
   const applyToAll = (field, value) => {
-    if (!value || (Array.isArray(value) && value.length === 0)) return;
+    if (isEmptyValue(value)) return;
     setRows((prev) => prev.map((r) => ({ ...r, [field]: value })));
   };
 
@@ -97,7 +104,7 @@ export default function BulkIntake({ onSaved, onCancel, existingSwipes = [] }) {
       return prev.filter((x) => x.id !== id);
     });
 
-  const isRowIncomplete = (r) => !r.source_brand.trim() || REQUIRED_FIELDS.some((f) => !r[f]);
+  const isRowIncomplete = (r) => !r.source_brand.trim() || REQUIRED_FIELDS.some((f) => isEmptyValue(r[f]));
   const incompleteCount = rows.filter(isRowIncomplete).length;
   const dupCount = rows.filter((r) => r.duplicate).length;
 
@@ -122,8 +129,7 @@ export default function BulkIntake({ onSaved, onCancel, existingSwipes = [] }) {
         if (r.source_brand) rec.source_brand = r.source_brand;
         if (r.source_url) rec.source_url = r.source_url;
         ALL_TAG_FIELDS.forEach((f) => {
-          const v = r[f];
-          if (Array.isArray(v) ? v.length : v) rec[f] = v;
+          if (!isEmptyValue(r[f])) rec[f] = r[f];
         });
         if (r.why_it_works) rec.why_it_works = r.why_it_works;
         return rec;
@@ -138,31 +144,30 @@ export default function BulkIntake({ onSaved, onCancel, existingSwipes = [] }) {
     }
   };
 
-  const reqCellCls = (r, field) => {
-    const empty = field === "source_brand" ? !r.source_brand.trim() : !r[field];
-    return empty && touched[`${r.id}:${field}`]
+  const reqCellCls = (r, field) =>
+    isEmptyValue(r[field]) && touched[`${r.id}:${field}`]
       ? "border-red-300 focus:ring-red-300 bg-red-50/40"
       : "border-gray-200 focus:ring-[#2d2d2d]";
-  };
 
   const inputBase = "h-9 w-full rounded-md border bg-white px-2 text-xs focus:outline-none focus:ring-1";
 
   const renderTagField = (r, field) => {
-    if (field === "structure") {
+    if (MULTI_SELECT_FIELDS.includes(field)) {
       return (
         <MultiSelect
           options={SWIPE_OPTIONS[field]}
           value={Array.isArray(r[field]) ? r[field] : []}
           onChange={(v) => setCell(r.id, field, v)}
-          placeholder="Select…"
+          placeholder={`${FIELD_LABELS[field]}…`}
         />
       );
     }
     return (
       <select
-        value={r[field]}
+        value={r[field] || ""}
         onChange={(e) => setCell(r.id, field, e.target.value)}
-        className={`${inputBase} ${reqCellCls(r, field)}`}
+        onBlur={() => markTouched(r.id, field)}
+        className={`${inputBase} ${REQUIRED_FIELDS.includes(field) ? reqCellCls(r, field) : "border-gray-200 focus:ring-[#2d2d2d]"}`}
       >
         <option value="">—</option>
         {SWIPE_OPTIONS[field].map((o) => (
@@ -257,7 +262,7 @@ export default function BulkIntake({ onSaved, onCancel, existingSwipes = [] }) {
                   Apply
                 </button>
               </div>
-              {REQUIRED_FIELDS.map((f) => (
+              {QUICK_FILL_FIELDS.map((f) => (
                 <select
                   key={f}
                   value=""
@@ -289,23 +294,29 @@ export default function BulkIntake({ onSaved, onCancel, existingSwipes = [] }) {
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-2">
-                      Required
+                      Essential Tags <span className="text-red-500">*</span>
                       {isRowIncomplete(r) && <span className="ml-2 text-red-500 normal-case font-medium">· missing tags</span>}
                     </p>
                     <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
                       <div className="space-y-1">
-                        <label className="text-xs font-medium text-gray-500">Brand name</label>
+                        <label className="text-xs font-medium text-gray-500">Brand name <span className="text-red-500">*</span></label>
                         <input
                           value={r.source_brand}
                           onChange={(e) => setCell(r.id, "source_brand", e.target.value)}
                           onBlur={() => markTouched(r.id, "source_brand")}
                           placeholder="Brand"
-                          className={`${inputBase} ${reqCellCls(r, "source_brand")}`}
+                          className={`${inputBase} ${
+                            !r.source_brand.trim() && touched[`${r.id}:source_brand`]
+                              ? "border-red-300 focus:ring-red-300 bg-red-50/40"
+                              : "border-gray-200 focus:ring-[#2d2d2d]"
+                          }`}
                         />
                       </div>
                       {REQUIRED_FIELDS.map((f) => (
                         <div key={f} className="space-y-1">
-                          <label className="text-xs font-medium text-gray-500">{FIELD_LABELS[f]}</label>
+                          <label className="text-xs font-medium text-gray-500">
+                            {FIELD_LABELS[f]} <span className="text-red-500">*</span>
+                          </label>
                           {renderTagField(r, f)}
                         </div>
                       ))}
@@ -317,22 +328,22 @@ export default function BulkIntake({ onSaved, onCancel, existingSwipes = [] }) {
                 </div>
 
                 <button
-                  onClick={() => setOpenDeep((o) => ({ ...o, [r.id]: !o[r.id] }))}
+                  onClick={() => setOpenDetails((o) => ({ ...o, [r.id]: !o[r.id] }))}
                   className="inline-flex items-center gap-1.5 text-sm font-medium text-gray-500 hover:text-[#2d2d2d]"
                 >
-                  <ChevronDown className={`w-4 h-4 transition-transform ${openDeep[r.id] ? "rotate-180" : ""}`} />
-                  Deeper tagging (optional)
+                  <ChevronDown className={`w-4 h-4 transition-transform ${openDetails[r.id] ? "rotate-180" : ""}`} />
+                  Additional Creative Details (optional)
                 </button>
 
-                {openDeep[r.id] && (
-                  <div className="border-t border-gray-100 pt-3 grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+                {openDetails[r.id] && (
+                  <div className="border-t border-gray-100 pt-3 grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
                     {OPTIONAL_FIELDS.map((f) => (
                       <div key={f} className="space-y-1">
                         <label className="text-xs font-medium text-gray-500">{FIELD_LABELS[f]}</label>
                         {renderTagField(r, f)}
                       </div>
                     ))}
-                    <div className="space-y-1 sm:col-span-2 lg:col-span-2">
+                    <div className="space-y-1">
                       <label className="text-xs font-medium text-gray-500">Source URL</label>
                       <input
                         value={r.source_url}
@@ -341,7 +352,7 @@ export default function BulkIntake({ onSaved, onCancel, existingSwipes = [] }) {
                         className={`${inputBase} border-gray-200 focus:ring-[#2d2d2d]`}
                       />
                     </div>
-                    <div className="space-y-1 sm:col-span-2 lg:col-span-4">
+                    <div className="space-y-1 sm:col-span-2 lg:col-span-3">
                       <label className="text-xs font-medium text-gray-500">Why it works</label>
                       <textarea
                         value={r.why_it_works}
