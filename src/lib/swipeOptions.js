@@ -16,6 +16,7 @@ export const SWIPE_OPTIONS = {
     "Testimonial",
     "Creator Review",
     "Founder Story",
+    "Founder Explainer",
     "Product Demo",
     "App / Software Demo",
     "Unboxing",
