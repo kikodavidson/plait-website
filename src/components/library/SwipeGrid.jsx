@@ -46,11 +46,22 @@ export default function SwipeGrid({ swipes, loading, onSelect }) {
                 .filter(Boolean)
                 .join(" · ") || "—"}
             </p>
-            {Array.isArray(s.platform) && s.platform.length > 0 && (
-              <span className="inline-block mt-2 text-[10px] font-bold uppercase tracking-wide text-[#737373] bg-[#EBEBEB] rounded px-1.5 py-0.5">
-                {s.platform.join(" / ")}
-              </span>
-            )}
+            <div className="flex flex-wrap gap-1 mt-2">
+              {Array.isArray(s.platform) &&
+                s.platform.map((p) => (
+                  <span key={p} className="text-[10px] font-bold uppercase tracking-wide text-[#737373] bg-[#EBEBEB] rounded px-1.5 py-0.5">
+                    {p}
+                  </span>
+                ))}
+              {s.hook && (
+                <span className="text-[10px] font-semibold text-[#737373] bg-[#EBEBEB] rounded px-1.5 py-0.5">{s.hook}</span>
+              )}
+              {(Array.isArray(s.angle_type) ? s.angle_type : s.angle_type ? [s.angle_type] : []).map((a) => (
+                <span key={a} className="text-[10px] font-semibold text-[#737373] bg-[#EBEBEB] rounded px-1.5 py-0.5">
+                  {a}
+                </span>
+              ))}
+            </div>
           </div>
         </button>
       ))}
