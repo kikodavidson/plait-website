@@ -1,11 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Check, ChevronDown, Search } from "lucide-react";
+import { Check, ChevronDown } from "lucide-react";
 
-// Multi-select filter dropdown with checkboxes, optional in-dropdown search,
-// and a "Label · N" count display when multiple values are selected.
+// Multi-select filter dropdown with a solid dark panel and checkbox items.
 export default function FilterMultiSelect({ label, options, values, onChange, className = "" }) {
   const [open, setOpen] = useState(false);
-  const [query, setQuery] = useState("");
   const ref = useRef(null);
 
   useEffect(() => {
@@ -16,11 +14,6 @@ export default function FilterMultiSelect({ label, options, values, onChange, cl
     document.addEventListener("mousedown", onDocClick);
     return () => document.removeEventListener("mousedown", onDocClick);
   }, [open]);
-
-  const showSearch = options.length > 10;
-  const filtered = query
-    ? options.filter((o) => o.toLowerCase().includes(query.toLowerCase()))
-    : options;
 
   const toggle = (opt) => {
     onChange(values.includes(opt) ? values.filter((v) => v !== opt) : [...values, opt]);
@@ -39,38 +32,23 @@ export default function FilterMultiSelect({ label, options, values, onChange, cl
         <ChevronDown className={`w-3.5 h-3.5 shrink-0 text-gray-400 transition-transform ${open ? "rotate-180" : ""}`} />
       </button>
       {open && (
-        <div className="absolute top-full left-0 mt-1 z-40 w-max min-w-full max-w-xs rounded-lg border border-white/10 bg-[#211c19]/95 backdrop-blur-md p-1.5 shadow-xl">
-          {showSearch && (
-            <div className="relative mb-1.5">
-              <Search className="absolute left-2 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-white/40" />
-              <input
-                autoFocus
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                placeholder={`Search ${label.toLowerCase()}…`}
-                className="w-full h-8 pl-7 pr-2 rounded-md border border-white/15 bg-white/5 text-xs text-white placeholder:text-white/40 focus:outline-none focus:ring-1 focus:ring-white/30"
-              />
-            </div>
-          )}
-          <div className="max-h-56 overflow-y-auto">
-            {filtered.length === 0 && (
-              <p className="px-2 py-2 text-xs text-white/50">No matches</p>
-            )}
-            {filtered.map((opt) => {
+        <div className="absolute top-full left-0 mt-1 z-40 w-max min-w-full max-w-xs rounded-md border border-[#4a4542] bg-[#2c2826] p-1.5 shadow-xl">
+          <div className="max-h-64 overflow-y-auto">
+            {options.map((opt) => {
               const active = values.includes(opt);
               return (
                 <button
                   type="button"
                   key={opt}
                   onClick={() => toggle(opt)}
-                  className="flex items-center gap-2 w-full text-left px-2 py-1.5 rounded-md text-sm text-white hover:bg-white/10"
+                  className="flex items-center gap-2.5 w-full text-left px-2.5 py-2 rounded-md text-sm text-white hover:bg-white/10"
                 >
                   <span
                     className={`w-4 h-4 shrink-0 rounded border flex items-center justify-center ${
-                      active ? "bg-white border-white" : "border-white/30 bg-transparent"
+                      active ? "bg-white border-white" : "border-[#6b625d] bg-transparent"
                     }`}
                   >
-                    {active && <Check className="w-3 h-3 text-[#211c19]" />}
+                    {active && <Check className="w-3 h-3 text-[#2c2826]" />}
                   </span>
                   <span className="truncate">{opt}</span>
                 </button>
