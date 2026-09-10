@@ -6,13 +6,12 @@ import HorizontalScrollText from "@/components/library/HorizontalScrollText";
 const tagsFor = (swipe) => {
   if (!swipe) return [];
   const tags = [];
-  const fmt = (swipe.format || "").toLowerCase();
-  if (swipe.hook_type) tags.push("Hook");
-  if (fmt.includes("ugc") || swipe.talent === "creator" || swipe.talent === "customer") tags.push("UGC");
-  if (swipe.angle_type === "offer or discount") tags.push("Offer");
-  if (swipe.angle_type === "competitor callout") tags.push("Competitor");
-  if (fmt.includes("testimonial")) tags.push("Testimonial");
-  if ((swipe.tags || [])[0]) tags.push(String(swipe.tags[0]));
+  const platforms = Array.isArray(swipe.platform) ? swipe.platform : [];
+  platforms.slice(0, 2).forEach((p) => tags.push(p));
+  if (swipe.hook) tags.push(swipe.hook);
+  const angles = Array.isArray(swipe.angle_type) ? swipe.angle_type : swipe.angle_type ? [swipe.angle_type] : [];
+  if (angles[0]) tags.push(angles[0]);
+  if (!tags.length && swipe.creative_format) tags.push(swipe.creative_format);
   return tags.slice(0, 3);
 };
 
@@ -93,7 +92,7 @@ export default function ExampleItem({ example, api, swipe, selected, onSelect, i
                 </HorizontalScrollText>
               )}
               {tags.length > 0 && (
-                <div className="flex flex-wrap gap-1 mt-2 h-[42px] overflow-hidden">
+                <div className="flex flex-wrap items-start gap-1 mt-2 min-h-[21px] overflow-hidden">
                   {tags.map((t) => (
                     <span
                       key={t}
