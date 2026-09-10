@@ -104,7 +104,7 @@ export default function Library() {
         <WavesShaderBackground className="absolute inset-0" />
         <div className="absolute inset-0 bg-black/40" />
       </div>
-      <header className="relative z-30 bg-[#2d2d2d]/90 backdrop-blur text-white px-6 py-5 flex items-center justify-between sticky top-0">
+      <header className="relative z-30 bg-black/90 backdrop-blur text-white px-6 py-5 flex items-center justify-between sticky top-0">
         <div>
           <p className="text-xs uppercase tracking-widest opacity-50">Admin</p>
           <h1 className="text-xl font-bold">Swipe Library</h1>
