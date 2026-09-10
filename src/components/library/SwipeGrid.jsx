@@ -1,6 +1,7 @@
 import React from "react";
 import { Loader2, Film } from "lucide-react";
 import { needsRequiredTags } from "@/lib/swipeOptions";
+import GlowingShadow from "@/components/ui/glowing-shadow";
 
 export default function SwipeGrid({ swipes, loading, onSelect }) {
   if (loading) {
@@ -20,49 +21,49 @@ export default function SwipeGrid({ swipes, loading, onSelect }) {
   return (
     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
       {swipes.map((s) => (
-        <button
-          key={s.id}
-          onClick={() => onSelect(s)}
-          className="group text-left rounded-xl border border-gray-100 bg-white p-2 shadow-sm hover:shadow-md transition-shadow"
-        >
-          <div className="aspect-square rounded-lg overflow-hidden bg-gray-100 relative">
-            {s.thumbnail ? (
-              <img src={s.thumbnail} alt={s.source_brand || ""} className="w-full h-full object-cover" />
-            ) : (
-              <div className="w-full h-full flex items-center justify-center">
-                <Film className="w-8 h-8 text-gray-300" />
-              </div>
-            )}
-            {needsRequiredTags(s) && (
-              <span className="absolute top-2 left-2 bg-amber-100 text-amber-800 text-[10px] font-bold px-1.5 py-0.5 rounded">
-                Needs tags
-              </span>
-            )}
-          </div>
-          <div className="mt-2 px-1 pb-1">
-            <p className="font-bold text-sm text-[#1a1a1a] truncate">{s.source_brand || "Untitled"}</p>
-            <p className="text-xs text-[#808080] truncate mt-0.5">
-              {[s.creative_format, Array.isArray(s.concept) ? s.concept.join(" · ") : s.concept]
-                .filter(Boolean)
-                .join(" · ") || "—"}
-            </p>
-            <div className="flex flex-wrap gap-1 mt-2">
-              {Array.isArray(s.platform) &&
-                s.platform.map((p) => (
-                  <span key={p} className="text-[10px] font-bold uppercase tracking-wide text-[#737373] bg-[#EBEBEB] rounded px-1.5 py-0.5">
-                    {p}
+        <button key={s.id} onClick={() => onSelect(s)} className="group text-left rounded-xl">
+          <GlowingShadow>
+            <div className="p-2 rounded-xl overflow-hidden">
+              <div className="aspect-square rounded-lg overflow-hidden bg-black relative">
+                {s.thumbnail ? (
+                  <img src={s.thumbnail} alt={s.source_brand || ""} className="w-full h-full object-cover" />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center">
+                    <Film className="w-8 h-8 text-white/20" />
+                  </div>
+                )}
+                {needsRequiredTags(s) && (
+                  <span className="absolute top-2 left-2 bg-amber-400 text-black text-[10px] font-bold px-1.5 py-0.5 rounded">
+                    Needs tags
                   </span>
-                ))}
-              {s.hook && (
-                <span className="text-[10px] font-semibold text-[#737373] bg-[#EBEBEB] rounded px-1.5 py-0.5">{s.hook}</span>
-              )}
-              {(Array.isArray(s.angle_type) ? s.angle_type : s.angle_type ? [s.angle_type] : []).map((a) => (
-                <span key={a} className="text-[10px] font-semibold text-[#737373] bg-[#EBEBEB] rounded px-1.5 py-0.5">
-                  {a}
-                </span>
-              ))}
+                )}
+              </div>
+              <div className="mt-2 px-1 pb-1">
+                <p className="font-bold text-sm text-white truncate">{s.source_brand || "Untitled"}</p>
+                <p className="text-xs text-white/50 truncate mt-0.5">
+                  {[s.creative_format, Array.isArray(s.concept) ? s.concept.join(" · ") : s.concept]
+                    .filter(Boolean)
+                    .join(" · ") || "—"}
+                </p>
+                <div className="flex flex-wrap gap-1 mt-2">
+                  {Array.isArray(s.platform) &&
+                    s.platform.map((p) => (
+                      <span key={p} className="text-[10px] font-bold uppercase tracking-wide text-white/70 bg-white/10 rounded px-1.5 py-0.5">
+                        {p}
+                      </span>
+                    ))}
+                  {s.hook && (
+                    <span className="text-[10px] font-semibold text-white/70 bg-white/10 rounded px-1.5 py-0.5">{s.hook}</span>
+                  )}
+                  {(Array.isArray(s.angle_type) ? s.angle_type : s.angle_type ? [s.angle_type] : []).map((a) => (
+                    <span key={a} className="text-[10px] font-semibold text-white/70 bg-white/10 rounded px-1.5 py-0.5">
+                      {a}
+                    </span>
+                  ))}
+                </div>
+              </div>
             </div>
-          </div>
+          </GlowingShadow>
         </button>
       ))}
     </div>
