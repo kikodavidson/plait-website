@@ -137,7 +137,6 @@ export default function ClientBuilder() {
             ) : (
               <span className="text-sm font-bold text-white/70 truncate">{client.name}</span>
             )}
-            {client.logo && <span className="text-sm text-white/60 truncate">{client.name}</span>}
           </div>
         </div>
         <div className="flex items-center gap-2">
