@@ -40,7 +40,7 @@ export default function SwipeGrid({ swipes, loading, onSelect }) {
               </div>
               <div className="mt-2 px-1 pb-1">
                 <p className="font-bold text-sm text-white truncate">{s.source_brand || "Untitled"}</p>
-                <p className="text-xs text-white/50 truncate mt-0.5">
+                <p className="text-xs text-white/50 mt-0.5 whitespace-nowrap overflow-x-auto overflow-y-hidden no-scrollbar">
                   {[s.creative_format, Array.isArray(s.concept) ? s.concept.join(" · ") : s.concept]
                     .filter(Boolean)
                     .join(" · ") || "—"}
