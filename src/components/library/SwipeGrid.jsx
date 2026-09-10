@@ -2,6 +2,7 @@ import React from "react";
 import { Loader2, Film } from "lucide-react";
 import { needsRequiredTags } from "@/lib/swipeOptions";
 import GlowingShadow from "@/components/ui/glowing-shadow";
+import HorizontalScrollText from "./HorizontalScrollText";
 
 export default function SwipeGrid({ swipes, loading, onSelect }) {
   if (loading) {
@@ -40,11 +41,11 @@ export default function SwipeGrid({ swipes, loading, onSelect }) {
               </div>
               <div className="mt-2 px-1 pb-1">
                 <p className="font-bold text-sm text-white truncate">{s.source_brand || "Untitled"}</p>
-                <p className="text-xs text-white/50 mt-0.5 whitespace-nowrap overflow-x-auto overflow-y-hidden no-scrollbar">
+                <HorizontalScrollText className="text-xs text-white/50 mt-0.5">
                   {[s.creative_format, Array.isArray(s.concept) ? s.concept.join(" · ") : s.concept]
                     .filter(Boolean)
                     .join(" · ") || "—"}
-                </p>
+                </HorizontalScrollText>
                 <div className="flex flex-wrap gap-1 mt-2 h-[42px] overflow-hidden">
                   {Array.isArray(s.platform) &&
                     s.platform.map((p) => (
