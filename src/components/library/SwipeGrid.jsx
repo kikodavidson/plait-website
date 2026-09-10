@@ -45,7 +45,7 @@ export default function SwipeGrid({ swipes, loading, onSelect }) {
                     .filter(Boolean)
                     .join(" · ") || "—"}
                 </p>
-                <div className="flex flex-wrap gap-1 mt-2">
+                <div className="flex flex-wrap gap-1 mt-2 h-[42px] overflow-hidden">
                   {Array.isArray(s.platform) &&
                     s.platform.map((p) => (
                       <span key={p} className="text-[10px] font-bold uppercase tracking-wide text-white/70 bg-white/10 rounded px-1.5 py-0.5">
