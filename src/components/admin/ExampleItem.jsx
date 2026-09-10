@@ -28,7 +28,7 @@ export default function ExampleItem({ example, api, swipe, selected, onSelect, i
     <div ref={innerRef} {...draggableProps} className="shrink-0">
       <div
         onClick={() => onSelect(example.id)}
-        className={`group/card cursor-pointer ${selected ? "ring-2 ring-purple-400/60 rounded-xl" : ""}`}
+        className={`group/card cursor-pointer w-[190px] ${selected ? "ring-2 ring-purple-400/60 rounded-xl" : ""}`}
       >
         <GlowingShadow>
           <div className="rounded-xl overflow-hidden">
