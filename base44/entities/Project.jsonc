@@ -1,0 +1,55 @@
+{
+  "name": "Project",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Project name"
+    },
+    "client_name": {
+      "type": "string",
+      "description": "Client name"
+    },
+    "business_type": {
+      "type": "string",
+      "enum": [
+        "shopify",
+        "custom",
+        "leadgen",
+        "app"
+      ],
+      "description": "Business type; decides which tasks from the master list apply"
+    },
+    "url": {
+      "type": "string",
+      "description": "Website or app URL"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "archived"
+      ],
+      "default": "active"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Free-form project notes"
+    }
+  },
+  "required": [
+    "name",
+    "business_type"
+  ],
+  "rls": {
+    "read": {
+      "created_by_id": "{{user.id}}"
+    },
+    "update": {
+      "created_by_id": "{{user.id}}"
+    },
+    "delete": {
+      "created_by_id": "{{user.id}}"
+    }
+  }
+}
