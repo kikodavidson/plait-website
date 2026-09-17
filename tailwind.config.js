@@ -5,9 +5,9 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Benzin', 'sans-serif'],
-        body: ['Benzin', 'sans-serif'],
-        display: ['Benzin', 'sans-serif'],
+        sans: ['Gruppo', 'sans-serif'],
+        body: ['Gruppo', 'sans-serif'],
+        display: ['Gruppo', 'sans-serif'],
       },
       letterSpacing: {
         'wide': '0.04em',
