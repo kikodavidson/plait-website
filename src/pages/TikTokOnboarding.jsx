@@ -266,7 +266,7 @@ export default function TikTokOnboarding() {
       {/* Header */}
       <div className="max-w-3xl mx-auto mb-12">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-          <h1 className="font-body text-5xl sm:text-6xl font-bold text-[#2d2d2d] tracking-tight leading-tight mb-4">
+          <h1 className="font-body text-5xl sm:text-6xl font-extrabold text-[#2d2d2d] tracking-tight leading-tight mb-4">
             TikTok Business Center Onboarding Checklist
           </h1>
           <p className="text-[#525252] text-lg leading-relaxed max-w-xl">

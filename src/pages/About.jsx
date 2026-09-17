@@ -17,7 +17,7 @@ export default function About() {
             className="max-w-3xl"
           >
             <p className="text-xs font-semibold text-[#2d2d2d] uppercase tracking-widest mb-4">About</p>
-            <h1 className="font-body text-6xl sm:text-7xl font-bold text-[#2d2d2d] tracking-tight leading-tight mb-6">
+            <h1 className="font-body text-6xl sm:text-7xl font-extrabold text-[#2d2d2d] tracking-tight leading-tight mb-6">
               Who and Why.
             </h1>
 
@@ -138,7 +138,7 @@ export default function About() {
             transition={{ duration: 0.6 }}
           >
             <p className="text-[#f4f2ee]/60 text-sm italic mb-6">"Whatever your hand finds to do, do it with all your might" Ecclesiastes 9:10</p>
-            <h2 className="font-body text-6xl sm:text-7xl font-bold text-[#f4f2ee] mb-8">My Mission</h2>
+            <h2 className="font-body text-6xl sm:text-7xl font-extrabold text-[#f4f2ee] mb-8">My Mission</h2>
             <p className="text-[#f4f2ee]/80 text-xl leading-relaxed mb-10">
               I am on a mission to be a light in a crowded industry by helping people bring their ideas to life and scale them into making a real impact on people's lives. I believe winning is found in the margins, and I'm committed to turning ideas into reality through a process that values honesty, creativity, and always looking for the next tactical edge.
             </p>

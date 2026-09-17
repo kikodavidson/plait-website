@@ -135,7 +135,7 @@ export function PerspectiveMarquee({
               ) : (
                 <span
                   style={{
-                    fontFamily: "Inter, sans-serif",
+                    fontFamily: "Mavora Sans, sans-serif",
                     fontSize,
                     fontWeight,
                     color,

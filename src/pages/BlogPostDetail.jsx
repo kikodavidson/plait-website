@@ -67,7 +67,7 @@ export default function BlogPostDetail() {
             <ArrowLeft className="w-4 h-4" /> Back to Blog
           </Link>
 
-          <h1 className="font-body text-3xl sm:text-5xl font-bold text-[#2d2d2d] leading-tight tracking-tight mb-4">
+          <h1 className="font-body text-3xl sm:text-5xl font-extrabold text-[#2d2d2d] leading-tight tracking-tight mb-4">
             {post.title}
           </h1>
 

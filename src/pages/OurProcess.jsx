@@ -42,7 +42,7 @@ export default function OurProcess() {
         <div className="max-w-6xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <p className="text-xs font-semibold text-[#5E58D5] uppercase tracking-widest mb-4">Our Process</p>
-            <h1 className="font-body text-6xl sm:text-7xl font-bold text-[#2d2d2d] tracking-tight leading-tight mb-6 max-w-3xl">
+            <h1 className="font-body text-6xl sm:text-7xl font-extrabold text-[#2d2d2d] tracking-tight leading-tight mb-6 max-w-3xl">
               How we actually work.
             </h1>
             <p className="text-[#525252] text-lg max-w-xl leading-relaxed">

@@ -41,7 +41,7 @@ export default function RolesCarousel() {
           </div>
           <h2
             className="font-body text-3xl sm:text-4xl lg:text-5xl font-bold text-[#2d2d2d] tracking-tight leading-tight mb-4"
-            style={{ fontFamily: "Inter, sans-serif", letterSpacing: "0.02em" }}
+            style={{ fontFamily: "Mavora Sans, sans-serif", letterSpacing: "0.02em" }}
           >
             The roles you're adding<br />to your team.
           </h2>

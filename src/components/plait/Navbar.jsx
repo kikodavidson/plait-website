@@ -34,7 +34,7 @@ export default function Navbar() {
           ? "bg-white/90 backdrop-blur-md border-b border-gray-100/80 py-3 shadow-sm"
           : "bg-white py-5"
       }`}
-      style={{ fontFamily: "Inter, sans-serif" }}
+      style={{ fontFamily: "Mavora Sans, sans-serif" }}
     >
       <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-2.5">
