@@ -5,9 +5,9 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Gruppo', 'sans-serif'],
-        body: ['Gruppo', 'sans-serif'],
-        display: ['Gruppo', 'sans-serif'],
+        sans: ['Mavora Sans', 'sans-serif'],
+        body: ['Mavora Sans', 'sans-serif'],
+        display: ['Mavora Sans', 'sans-serif'],
       },
       letterSpacing: {
         'wide': '0.04em',

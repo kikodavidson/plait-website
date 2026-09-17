@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,500&display=swap");
+/* Mavora Sans is loaded globally in index.css */
 
 @property --gradient-angle {
   syntax: "<angle>";
@@ -41,7 +41,7 @@
   cursor: pointer;
   outline-offset: 4px;
   padding: 0.7rem 1.6rem;
-  font-family: "Inter", sans-serif;
+  font-family: "Mavora Sans", sans-serif;
   font-size: 0.95rem;
   line-height: 1.2;
   font-weight: 500;

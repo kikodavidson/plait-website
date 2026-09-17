@@ -30,7 +30,7 @@ export default function HeroSection() {
         <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-white to-transparent pointer-events-none z-[5]" />
         <motion.h1
           className="hero-headline relative z-10 text-[clamp(2rem,5.5vw,4.5rem)] leading-[0.95] tracking-[-0.03em] uppercase font-bold"
-          style={{ fontFamily: "Benzin, sans-serif", letterSpacing: "-0.03em", color: "#ffffff", WebkitTextFillColor: "#ffffff" }}
+          style={{ fontFamily: "Mavora Sans, sans-serif", letterSpacing: "-0.03em", color: "#ffffff", WebkitTextFillColor: "#ffffff" }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
@@ -45,7 +45,7 @@ export default function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
           className="relative z-10 mt-6 text-base sm:text-lg uppercase tracking-[0.12em] text-white"
-          style={{ fontFamily: "Benzin, sans-serif" }}
+          style={{ fontFamily: "Mavora Sans, sans-serif" }}
         >
           Proven Marketing Strategy. Accelerated by AI.
         </motion.p>
