@@ -7,6 +7,7 @@ import AngleSection from "@/components/portal/AngleSection";
 import ClientSwitcher from "@/components/portal/ClientSwitcher";
 import PlanStatusCallout from "@/components/portal/PlanStatusCallout";
 import AccessNotSetUp from "@/pages/AccessNotSetUp";
+import { WavesShaderBackground } from "@/components/ui/waves-shader-background";
 
 const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 const PLAIT_LOGO = "https://media.base44.com/images/public/6a1928801eca8e11c3594ddb/9f9827363_Untitleddesign-2026-08-14T032711954.png";
@@ -122,7 +123,7 @@ export default function ClientPortal() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+      <div className="min-h-screen flex items-center justify-center bg-black">
         <Loader2 className="w-6 h-6 animate-spin text-gray-400" />
       </div>
     );
@@ -133,16 +134,16 @@ export default function ClientPortal() {
   const showSidebar = !showAdminPick && !showEmptyClient;
 
   const headerEl = (
-    <header className="bg-[#222222] text-white px-6 py-3 flex items-center justify-between shrink-0 z-30">
+    <header className="bg-black/90 backdrop-blur text-white px-6 py-3 flex items-center justify-between shrink-0 z-30 border-b border-white/10">
       <div className="flex items-center gap-3 min-w-0 flex-1">
         {showSidebar && (
           <button onClick={() => setMobileOpen(true)} className="md:hidden p-2 -ml-2 rounded hover:bg-white/10 shrink-0" aria-label="Open menu">
             <Menu className="w-5 h-5" />
           </button>
         )}
-        {client?.logo && <img src={client.logo} alt="" className="h-8 w-8 rounded object-contain bg-white/10 shrink-0" />}
+        {client?.logo && <img src={client.logo} alt="" className="h-10 w-auto max-w-[160px] object-contain shrink-0" />}
       </div>
-      <div className="hidden md:flex items-center gap-2 justify-center px-4">
+      <div className="hidden md:flex items-center gap-3 justify-center px-6 shrink-0">
         <img src={PLAIT_LOGO} alt="Plait" className="h-8 object-contain" />
         <span className="text-white/40 text-base leading-none">|</span>
         <span className="text-sm font-semibold tracking-wide whitespace-nowrap">Creative Gameplan Studio</span>
@@ -172,23 +173,23 @@ export default function ClientPortal() {
     <>
       {!selectedPlanId ? (
         <div className="py-10 max-w-2xl">
-          <p className="text-[#777777] leading-relaxed">{INTRO}</p>
+          <p className="text-white/60 leading-relaxed">{INTRO}</p>
         </div>
       ) : (
         <div>
           <div className="flex items-center gap-3 mb-2">
-            {selectedPlan.headline && <h2 className="text-2xl font-bold text-[#222222]">{selectedPlan.headline}</h2>}
+            {selectedPlan.headline && <h2 className="text-2xl font-bold text-white">{selectedPlan.headline}</h2>}
             <PlanStatusCallout plan={selectedPlan} isAdmin={isAdmin} onChange={handleStatusChange} />
           </div>
           {selectedPlan.strategy_note && (
-            <p className="text-[#777777] leading-relaxed mb-6">{selectedPlan.strategy_note}</p>
+            <p className="text-white/60 leading-relaxed mb-6">{selectedPlan.strategy_note}</p>
           )}
           {loadingChildren ? (
             <div className="flex justify-center py-10">
               <Loader2 className="w-5 h-5 animate-spin text-gray-400" />
             </div>
           ) : selectedPlanAngles.length === 0 ? (
-            <p className="text-gray-400">No published angles yet.</p>
+            <p className="text-white/40">No published angles yet.</p>
           ) : (
             <div className="space-y-4">
               {selectedPlanAngles.map((angle) => (
@@ -202,12 +203,16 @@ export default function ClientPortal() {
   );
 
   return (
-    <div className="h-screen flex flex-col bg-[#F5F5F5]">
+    <div className="relative h-screen flex flex-col bg-black">
+      <div className="fixed inset-0 pointer-events-none" aria-hidden="true">
+        <WavesShaderBackground className="absolute inset-0" />
+        <div className="absolute inset-0 bg-black/40" />
+      </div>
       {headerEl}
-      <div className="flex-1 flex min-h-0">
+      <div className="relative flex-1 flex min-h-0">
         {showSidebar && (
           <>
-            <aside className="hidden md:block w-[260px] shrink-0 bg-black overflow-y-auto">
+            <aside className="hidden md:block w-[260px] shrink-0 overflow-y-auto">
               <PlanSidebar plans={plans} anglesByPlan={anglesByPlan} selectedPlanId={selectedPlanId} onSelect={setSelectedPlanId} clientName={client?.name} />
             </aside>
             {mobileOpen && (
@@ -230,13 +235,13 @@ export default function ClientPortal() {
             {showAdminPick ? (
               <div className="text-center py-20 flex flex-col items-center gap-6">
                 {isAdmin && <ClientSwitcher clients={adminClients} value={adminSlug} onChange={setAdminSlug} />}
-                <p className="text-gray-500">Use the switcher above to preview any client's portal exactly as they see it.</p>
+                <p className="text-white/50">Use the switcher above to preview any client's portal exactly as they see it.</p>
               </div>
             ) : showEmptyClient ? (
               <AccessNotSetUp />
             ) : plans.length === 0 ? (
               <div className="text-center py-10">
-                <p className="text-[#777777] mb-4">No published plans yet. Published content will appear here.</p>
+                <p className="text-white/50 mb-4">No published plans yet. Published content will appear here.</p>
                 {isAdmin && client && (
                   <Link to={`/admin/clients/${client.id}`} className="inline-flex items-center gap-2 text-sm btn-gradient px-4 py-2 rounded-full">
                     <Pencil className="w-4 h-4" /> Create a plan in the builder

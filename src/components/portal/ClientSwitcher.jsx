@@ -8,14 +8,14 @@ export default function ClientSwitcher({ clients, value, onChange }) {
       <select
         value={value || ""}
         onChange={(e) => onChange(e.target.value)}
-        className="appearance-none text-sm font-medium text-[#2d2d2d] bg-white pl-9 pr-8 py-2 rounded-full border-0 focus:outline-none cursor-pointer max-w-[220px]"
+        className="appearance-none text-sm font-medium text-white bg-white/10 pl-9 pr-8 py-2 rounded-full border border-white/15 focus:outline-none cursor-pointer max-w-[220px]"
       >
         <option value="" disabled>Choose client portal…</option>
         {clients.map((c) => (
-          <option key={c.id} value={c.slug}>{c.name}</option>
+          <option key={c.id} value={c.slug} className="text-white bg-[#141416]">{c.name}</option>
         ))}
       </select>
-      <ExternalLink className="w-3 h-3 text-[#2d2d2d]/50 absolute right-3 pointer-events-none" />
+      <ExternalLink className="w-3 h-3 text-white/40 absolute right-3 pointer-events-none" />
     </div>
   );
 }

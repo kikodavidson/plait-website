@@ -7,9 +7,9 @@ const STATUS_OPTIONS = [
 ];
 
 const STYLES = {
-  "Proposed": "bg-amber-100 text-amber-800 border-amber-200",
-  "In Progress": "bg-blue-100 text-blue-800 border-blue-200",
-  "Completed": "bg-emerald-100 text-emerald-800 border-emerald-200",
+  "Proposed": "bg-amber-500/15 text-amber-300 border-amber-500/30",
+  "In Progress": "bg-blue-500/15 text-blue-300 border-blue-500/30",
+  "Completed": "bg-emerald-500/15 text-emerald-300 border-emerald-500/30",
 };
 
 export default function PlanStatusCallout({ plan, isAdmin, onChange }) {
