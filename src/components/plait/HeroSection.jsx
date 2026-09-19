@@ -11,7 +11,7 @@ export default function HeroSection() {
   // Media scales up as it scrolls into view (DEPT-style)
   const { scrollYProgress } = useScroll({
     target: mediaRef,
-    offset: ["start end", "center center"],
+    offset: ["start end", "center center"]
   });
   const scale = useTransform(scrollYProgress, [0, 1], [0.45, 1]);
 
@@ -33,10 +33,10 @@ export default function HeroSection() {
           style={{ fontFamily: "Mavora Sans, sans-serif", letterSpacing: "-0.03em", color: "#ffffff", WebkitTextFillColor: "#ffffff" }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-        >
+          transition={{ duration: 0.6, delay: 0.1 }}>
+          
           <span className="block">Growth</span>
-          <span className="block">built around</span>
+          <span className="block [font-family:'Mavora_Sans',_sans-serif]">built around</span>
           <span className="block">your customer.</span>
         </motion.h1>
 
@@ -45,8 +45,8 @@ export default function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
           className="relative z-10 mt-6 text-base sm:text-lg uppercase tracking-[0.12em] text-white"
-          style={{ fontFamily: "Mavora Sans, sans-serif" }}
-        >
+          style={{ fontFamily: "Mavora Sans, sans-serif" }}>
+          
           Proven Marketing Strategy. Accelerated by AI.
         </motion.p>
 
@@ -54,31 +54,31 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.25 }}
-          className="relative z-10 mt-10 flex flex-wrap items-center justify-center gap-4"
-        >
+          className="relative z-10 mt-10 flex flex-wrap items-center justify-center gap-4">
+          
           <button
             onClick={() => navigate("/services")}
-            className="rounded-full border border-white bg-transparent px-7 py-3 text-xs font-bold uppercase tracking-[0.15em] text-white transition-colors hover:bg-white hover:text-black"
-          >
+            className="rounded-full border border-white bg-transparent px-7 py-3 text-xs font-bold uppercase tracking-[0.15em] text-white transition-colors hover:bg-white hover:text-black">
+            
             What We Do
           </button>
           <button
             onClick={() => navigate("/book")}
-            className="rounded-full border border-white bg-white px-7 py-3 text-xs font-bold uppercase tracking-[0.15em] text-black transition-colors hover:bg-black hover:text-white"
-          >
+            className="rounded-full border border-white bg-white px-7 py-3 text-xs font-bold uppercase tracking-[0.15em] text-black transition-colors hover:bg-black hover:text-white">
+            
             Get in Touch
           </button>
         </motion.div>
       </div>
 
       {/* Scroll-scaling media — hidden until a hero video replaces it */}
-      {false && (
-        <div ref={mediaRef} className="flex justify-center px-6 pb-24">
+      {false &&
+      <div ref={mediaRef} className="flex justify-center px-6 pb-24">
           <motion.div style={{ scale }} className="w-full max-w-7xl origin-center">
             <HeroMediaCard className="max-w-none" />
           </motion.div>
         </div>
-      )}
-    </section>
-  );
+      }
+    </section>);
+
 }
