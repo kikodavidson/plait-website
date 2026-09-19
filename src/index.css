@@ -28,6 +28,27 @@
   font-display: swap;
   src: url('https://media.base44.com/files/public/builder-assets/wix-fonts/benzin-700-normal.woff2') format('woff2');
 }
+@font-face {
+  font-family: 'Mavora Sans';
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+  src: url('./assets/fonts/mavora-sans-04c02a8d-800-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Mavora Sans';
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  src: url('./assets/fonts/mavora-sans-04c02a8d-700-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Mavora Sans';
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+  src: url('./assets/fonts/mavora-sans-04c02a8d-900-normal.woff2') format('woff2');
+}
 /* base44-workspace-fonts:end */
 
 
