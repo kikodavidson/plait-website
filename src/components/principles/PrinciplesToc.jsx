@@ -1,16 +1,16 @@
 import React from "react";
 
 const SECTIONS = [
-  { id: "who-i-am", label: "Who I Am" },
-  { id: "what-i-do", label: "What I Do" },
-  { id: "how-clients-benefit", label: "How Clients Benefit" },
-  { id: "who-fits", label: "Who Fits" },
-  { id: "pricing", label: "Pricing & My Value" },
-  { id: "straight-line", label: "Growth Isn't a Straight Line" },
-  { id: "when-i-drift", label: "When I Drift" },
-  { id: "how-i-judge", label: "How I Judge Myself" },
-  { id: "sales-call", label: "Before a Sales Call" },
-  { id: "decision-log", label: "Decision Log" },
+  { id: "who-i-am", label: "Who I am" },
+  { id: "what-i-do", label: "What I do" },
+  { id: "how-clients-benefit", label: "How clients benefit" },
+  { id: "who-fits", label: "Who fits" },
+  { id: "pricing", label: "Pricing & my value" },
+  { id: "straight-line", label: "Growth isn't a straight line" },
+  { id: "when-i-drift", label: "When I drift" },
+  { id: "how-i-judge", label: "How I judge myself" },
+  { id: "sales-call", label: "Before a sales call" },
+  { id: "decision-log", label: "Decision log" },
 ];
 
 export default function PrinciplesToc() {

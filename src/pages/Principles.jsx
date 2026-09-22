@@ -13,6 +13,7 @@ const H2 = "mt-16 mb-6 scroll-mt-24 text-[22px] sm:text-[26px]";
 const P = "leading-[1.85] text-[16px] text-[#1a1a1a]";
 const SPACE = "space-y-5";
 const OL = "list-decimal space-y-4 pl-6 text-[16px] leading-[1.8] text-[#1a1a1a] marker:font-bold";
+const UL = "list-disc space-y-4 pl-6 text-[16px] leading-[1.8] text-[#1a1a1a]";
 
 function Section({ id, heading, children }) {
   return (
@@ -81,11 +82,14 @@ export default function Principles() {
       <div className="relative z-10">
         <PrinciplesToc />
         <main className="mx-auto max-w-[720px] px-5 pb-24 pt-12 sm:px-6 sm:pt-16">
-          <h1 className="mb-10 text-4xl leading-tight sm:text-5xl">
-            Who I Am and How I Work
+          <h1 className="mb-3 text-4xl leading-tight sm:text-5xl">
+            Plait: Who I Am and How I Work
           </h1>
+          <p className="mb-10 text-[13px] text-[#6b6b6b]">
+            Sep 22, 2026 · @Luke
+          </p>
 
-          <Section id="who-i-am" heading="WHO I AM">
+          <Section id="who-i-am" heading="Who I am">
             <div className={SPACE}>
               <p className="text-lg font-bold leading-[1.7]">
                 I'm a growth operator, not an ads guy.
@@ -110,7 +114,7 @@ export default function Principles() {
             </div>
           </Section>
 
-          <Section id="what-i-do" heading="WHAT I DO">
+          <Section id="what-i-do" heading="What I do">
             <div className={SPACE}>
               <p className="text-lg font-bold leading-[1.7]">
                 I own the growth system, not a channel.
@@ -156,13 +160,14 @@ export default function Principles() {
             </div>
           </Section>
 
-          <Section id="how-clients-benefit" heading="HOW CLIENTS BENEFIT">
+          <Section id="how-clients-benefit" heading="How clients benefit">
             <div className={SPACE}>
               <p className={P}>
                 Clients don't pay me for ad management. They pay me to stop
                 losing money on growth that isn't working.
               </p>
-              <ol className={OL}>
+              <p className={P}>Here's what that looks like:</p>
+              <ul className={UL}>
                 <li>
                   <strong>One person who owns it.</strong> No handoffs between
                   a strategist, a media buyer, and a designer who've never met.
@@ -183,7 +188,7 @@ export default function Principles() {
                   <strong>The truth.</strong> If the math doesn't work, I say
                   it. Even if it costs me the retainer.
                 </li>
-              </ol>
+              </ul>
               <p className={P}>
                 The proof: a dating app came to me with messaging built around
                 the brand. We listened to customers, rebuilt everything around
@@ -193,7 +198,7 @@ export default function Principles() {
             </div>
           </Section>
 
-          <Section id="who-fits" heading="WHO FITS AND WHO DOESN'T">
+          <Section id="who-fits" heading="Who fits and who doesn't">
             <div className={SPACE}>
               <p className={P}>
                 Most of my Murphy's law moments came from clients who were
@@ -207,8 +212,8 @@ export default function Principles() {
                 both of us up to lose.
               </p>
               <div>
-                <p className="mb-3 text-[16px] font-bold">Good fit:</p>
-                <ol className={OL}>
+                <h3 className="mb-3 text-[18px]">Good fit</h3>
+                <ul className={UL}>
                   <li>
                     Consumer apps and ecommerce brands. That's where my
                     results are.
@@ -225,11 +230,11 @@ export default function Principles() {
                     A founder who wants a partner, not someone to push
                     buttons.
                   </li>
-                </ol>
+                </ul>
               </div>
               <div>
-                <p className="mb-3 text-[16px] font-bold">Not a fit:</p>
-                <ol className={OL}>
+                <h3 className="mb-3 text-[18px]">Not a fit</h3>
+                <ul className={UL}>
                   <li>
                     Shopping on price. If they're comparing me to $10/hour,
                     we're not having the same conversation.
@@ -242,7 +247,7 @@ export default function Principles() {
                   <li>
                     Expects big results in two weeks with no room to test.
                   </li>
-                </ol>
+                </ul>
               </div>
               <p className={P}>
                 Not a fit doesn't always mean no. Sometimes it means the
@@ -266,7 +271,7 @@ export default function Principles() {
             </div>
           </Section>
 
-          <Section id="pricing" heading="PRICING AND MY VALUE">
+          <Section id="pricing" heading="Pricing and my value">
             <div className={SPACE}>
               <p className={P}>
                 My retainer floor is $3,500 a month. Below that, I'm a part
@@ -316,7 +321,7 @@ export default function Principles() {
                 </div>
               </div>
               <div>
-                <p className="mb-3 text-[16px] font-bold">Why I'm not $10/hour:</p>
+                <h3 className="mb-3 text-[18px]">Why I'm not $10/hour</h3>
                 <p className={P}>
                   Someone at $10/hour runs ads. I find out why the business
                   isn't growing and fix it. Different jobs, different buyers.
@@ -357,7 +362,7 @@ export default function Principles() {
 
           <Section
             id="straight-line"
-            heading="GROWTH ISN'T A STRAIGHT LINE"
+            heading="Growth isn't a straight line"
           >
             <div className={SPACE}>
               <p className={P}>
@@ -401,7 +406,7 @@ export default function Principles() {
             </div>
           </Section>
 
-          <Section id="when-i-drift" heading="WHEN I DRIFT">
+          <Section id="when-i-drift" heading="When I drift">
             <div className={SPACE}>
               <p className={P}>
                 I know my patterns. When something feels off, it's usually one
@@ -437,7 +442,7 @@ export default function Principles() {
             </div>
           </Section>
 
-          <Section id="how-i-judge" heading="HOW I JUDGE MYSELF">
+          <Section id="how-i-judge" heading="How I judge myself">
             <div className={SPACE}>
               <blockquote className="border-l-4 border-[#2d2d2d] pl-5 text-xl font-bold leading-snug sm:text-2xl">
                 A bad month isn't a verdict on me. It's information, and I'm
@@ -474,7 +479,7 @@ export default function Principles() {
             </div>
           </Section>
 
-          <Section id="sales-call" heading="BEFORE A SALES CALL">
+          <Section id="sales-call" heading="Before a sales call">
             <div className={SPACE}>
               <p className={P}>
                 The goal isn't to win the client. It's to find out if I can
@@ -502,7 +507,7 @@ export default function Principles() {
             </div>
           </Section>
 
-          <Section id="decision-log" heading="DECISION LOG">
+          <Section id="decision-log" heading="Decision log">
             <div className={SPACE}>
               <p className={P}>
                 Add a row whenever I decide something about the business.
