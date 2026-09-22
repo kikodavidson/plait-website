@@ -32,6 +32,7 @@ import Clients from './pages/Clients';
 import ClientBuilder from './pages/ClientBuilder';
 import ShopifyChecklist from './pages/ShopifyChecklist';
 import AccessNotSetUp from './pages/AccessNotSetUp';
+import Principles from './pages/Principles';
 import AttributionDashboard from './pages/attribution/Dashboard';
 import AttributionProjectPage from './pages/attribution/ProjectPage';
 import { useEffect } from 'react';
@@ -122,6 +123,7 @@ const AuthenticatedApp = () => {
         <Route path="/access-not-setup" element={<AccessNotSetUp />} />
         <Route path="/attribution" element={<AttributionDashboard />} />
         <Route path="/attribution/:projectId" element={<AttributionProjectPage />} />
+        <Route path="/principles" element={<Principles />} />
       </Route>
       <Route path="*" element={<PageNotFound />} />
     </Routes>

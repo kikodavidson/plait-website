@@ -1,0 +1,48 @@
+{
+  "name": "DecisionLog",
+  "type": "object",
+  "properties": {
+    "date": {
+      "type": "string",
+      "description": "Display date of the decision, e.g. 'Sep 22, 2026'"
+    },
+    "decision": {
+      "type": "string",
+      "description": "The decision made about the business"
+    },
+    "why": {
+      "type": "string",
+      "description": "Reasoning behind the decision"
+    },
+    "seq": {
+      "type": "number",
+      "description": "Sort order \u2014 higher numbers are newer; keeps the log newest-first"
+    }
+  },
+  "required": [
+    "date",
+    "decision"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}
