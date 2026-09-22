@@ -98,7 +98,7 @@ export default function Principles() {
           <ul className="space-y-3.5">
             {[
               "Growth starts with understanding the customer.",
-              "Every month either grows the business or teaches us what's next. Both count.",
+              "Every month either grows the business or teaches us what's next. Both are relevant and valuable.",
               "The best work comes from owning the problem start to finish.",
               "Honest numbers lead to better decisions.",
               "Anything I build once makes every client after it better.",
