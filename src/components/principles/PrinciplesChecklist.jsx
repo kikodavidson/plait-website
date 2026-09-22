@@ -1,10 +1,25 @@
 import React, { useState } from "react";
 
-export default function PrinciplesChecklist({ items }) {
-  const [checked, setChecked] = useState(() => items.map(() => false));
+export default function PrinciplesChecklist({ items, storageKey }) {
+  const [checked, setChecked] = useState(() => {
+    try {
+      const saved = JSON.parse(localStorage.getItem(storageKey) || "[]");
+      return items.map((_, i) => saved.includes(i));
+    } catch {
+      return items.map(() => false);
+    }
+  });
 
-  const toggle = (i) =>
-    setChecked((prev) => prev.map((v, idx) => (idx === i ? !v : v)));
+  const toggle = (i) => {
+    setChecked((prev) => {
+      const next = prev.map((v, idx) => (idx === i ? !v : v));
+      try {
+        const on = next.flatMap((v, idx) => (v ? [idx] : []));
+        localStorage.setItem(storageKey, JSON.stringify(on));
+      } catch {}
+      return next;
+    });
+  };
 
   return (
     <ul className="space-y-2.5">
