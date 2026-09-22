@@ -130,25 +130,6 @@ export default function Principles() {
           </div>
         </Section>
 
-        <Section heading="WHERE I'M STUCK RIGHT NOW">
-          <div className={SPACE}>
-            <p className={P}>
-              <strong>Structure:</strong> Building systems so good work repeats.
-            </p>
-            <p className={P}>
-              <strong>Belief:</strong> Trusting the value of what I sell.
-            </p>
-            <p className={P}>
-              <strong>Positioning:</strong> Talking about what I help companies
-              become, not the tools I use.
-            </p>
-            <p className={P}>
-              <strong>Outcomes and process:</strong> Selling the outcome
-              clients want, while judging myself on the process I control.
-            </p>
-          </div>
-        </Section>
-
         <Section heading="DECISION LOG">
           <p className={`${P} mb-6`}>
             Add a row whenever I decide something about the business. Newest
