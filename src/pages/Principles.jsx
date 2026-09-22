@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Lock } from "lucide-react";
 import { useAuth } from "@/lib/AuthContext";
-import PrinciplesChecklist from "@/components/principles/PrinciplesChecklist";
 import DecisionLog from "@/components/principles/DecisionLog";
 
 const GRAIN =
@@ -148,53 +147,6 @@ export default function Principles() {
               clients want, while judging myself on the process I control.
             </p>
           </div>
-        </Section>
-
-        <Section heading="NEXT STEPS">
-          <div className="space-y-8">
-            <div>
-              <p className="mb-3 text-[16px] font-bold">This week:</p>
-              <PrinciplesChecklist
-                storageKey="principles-next-steps-week"
-                items={[
-                  "Set up Fathom for every call",
-                  "Start the playbook doc",
-                  "Send 20 cold emails",
-                ]}
-              />
-            </div>
-            <div>
-              <p className="mb-3 text-[16px] font-bold">This month:</p>
-              <PrinciplesChecklist
-                storageKey="principles-next-steps-month"
-                items={[
-                  "Write the growth diagnostic offer",
-                  "Add a roadmap and retainer proposal to every project",
-                  "Reach out to 5 fractional CMOs",
-                ]}
-              />
-            </div>
-            <div>
-              <p className="mb-3 text-[16px] font-bold">This quarter:</p>
-              <PrinciplesChecklist
-                storageKey="principles-next-steps-quarter"
-                items={["Sign 2 retainers at $3,500 or more"]}
-              />
-            </div>
-          </div>
-        </Section>
-
-        <Section heading="BEFORE A SALES CALL">
-          <PrinciplesChecklist
-            storageKey="principles-sales-call"
-            items={[
-              "Get curious about their customer before the call",
-              "Bring one idea about what's holding them back",
-              "Have the dating app story ready",
-              "Know the floor: $3,500 or the diagnostic",
-              "End with a clear next step",
-            ]}
-          />
         </Section>
 
         <Section heading="DECISION LOG">
