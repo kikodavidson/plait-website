@@ -117,6 +117,8 @@ export default function HalftoneWordmarkFooter({
   dotGap = 6,
   radius = 80,
   crop = 0.2,
+  bottomInset = 0,
+  wordWidth = 1.02,
   grain = 0.5,
   interactive = true,
   fontFamily = SANS_STACK,
@@ -128,9 +130,9 @@ export default function HalftoneWordmarkFooter({
   const colors = { ...(PRESETS[preset] || PRESETS.night), ...(palette || {}) }
   const rootRef = React.useRef(null)
   const canvasRef = React.useRef(null)
-  const opts = React.useRef({ colors, dotGap, radius, crop, grain, interactive, fontFamily, fontWeight, wordmark })
-  opts.current = { colors, dotGap, radius, crop, grain, interactive, fontFamily, fontWeight, wordmark }
-  const key = [wordmark, dotGap, crop, grain, fontFamily, fontWeight, colors.background, colors.ink, colors.warm].join("|")
+  const opts = React.useRef({ colors, dotGap, radius, crop, bottomInset, wordWidth, grain, interactive, fontFamily, fontWeight, wordmark })
+  opts.current = { colors, dotGap, radius, crop, bottomInset, wordWidth, grain, interactive, fontFamily, fontWeight, wordmark }
+  const key = [wordmark, dotGap, crop, bottomInset, wordWidth, grain, fontFamily, fontWeight, colors.background, colors.ink, colors.warm].join("|")
 
   React.useEffect(() => {
     const root = rootRef.current
@@ -174,14 +176,14 @@ export default function HalftoneWordmarkFooter({
       const face = o.fontWeight + " 100px " + o.fontFamily
       m.font = face
       const word = o.wordmark || " "
-      const fit = hwfFitSize(m.measureText(word).width, w * 1.02)
+      const fit = hwfFitSize(m.measureText(word).width, w * o.wordWidth)
       m.font = o.fontWeight + " " + fit + "px " + o.fontFamily
       const box = m.measureText(word)
       const cap = box.actualBoundingBoxAscent || fit * 0.72
       const c = Math.max(0, Math.min(0.6, o.crop))
       m.fillStyle = "#000"
       m.textBaseline = "alphabetic"
-      m.fillText(word, (w - box.width) / 2, h + cap * c)
+      m.fillText(word, (w - box.width) / 2, h - Math.max(0, o.bottomInset) + cap * c)
       const img = m.getImageData(0, 0, w, h).data
 
       const gap = Math.max(3, o.dotGap)
