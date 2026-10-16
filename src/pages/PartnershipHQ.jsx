@@ -6,6 +6,7 @@ import TabBar from "@/components/partnership/TabBar";
 import OverviewTab from "@/components/partnership/OverviewTab";
 import AgendaTab from "@/components/partnership/AgendaTab";
 import FilesTab from "@/components/partnership/FilesTab";
+import TimelineTab from "@/components/partnership/TimelineTab";
 import WorkspaceTab from "@/components/partnership/WorkspaceTab";
 import NoAccess from "@/components/partnership/NoAccess";
 import SignInWall from "@/components/partnership/SignInWall";
@@ -45,12 +46,15 @@ export default function PartnershipHQ() {
     ...data.tabs,
     { id: "agenda", name: "Open Questions", fixed: true },
     { id: "files", name: "Files", fixed: true },
+    { id: "timeline", name: "Timeline", fixed: true },
   ];
   const activeTab = data.tabs.find((t) => t.id === activeId);
   const showOverview =
-    activeId === "overview" || (!activeTab && activeId !== "agenda" && activeId !== "files");
+    activeId === "overview" ||
+    (!activeTab && activeId !== "agenda" && activeId !== "files" && activeId !== "timeline");
   const showAgenda = activeId === "agenda";
   const showFiles = activeId === "files";
+  const showTimeline = activeId === "timeline";
 
   return (
     <div className="min-h-screen bg-white text-[#1a1a1a]">
@@ -84,6 +88,7 @@ export default function PartnershipHQ() {
           </>
         )}
       </div>
+      {showTimeline && data.loaded && <TimelineTab />}
       <InvitePartnerDialog open={inviteOpen} onClose={() => setInviteOpen(false)} />
     </div>
   );
