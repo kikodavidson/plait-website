@@ -8,7 +8,7 @@ export default function TopBar({ user, saving, onInvite }) {
       <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <h1 className="text-3xl leading-tight sm:text-4xl">Partnership HQ</h1>
-          <p className="mt-1.5 text-[15px] text-[#6b6b6b]">Building our brand, together.</p>
+          <p className="mt-1.5 text-[15px] text-[#6b6b6b]">Ideation and Execution to Launch Our Brand</p>
         </div>
         <div className="flex items-center gap-3 sm:flex-col sm:items-end sm:gap-1">
           {user?.role === "admin" && onInvite && (
