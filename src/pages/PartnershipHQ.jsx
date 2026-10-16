@@ -5,6 +5,7 @@ import TopBar from "@/components/partnership/TopBar";
 import TabBar from "@/components/partnership/TabBar";
 import OverviewTab from "@/components/partnership/OverviewTab";
 import AgendaTab from "@/components/partnership/AgendaTab";
+import FilesTab from "@/components/partnership/FilesTab";
 import WorkspaceTab from "@/components/partnership/WorkspaceTab";
 import NoAccess from "@/components/partnership/NoAccess";
 import SignInWall from "@/components/partnership/SignInWall";
@@ -43,10 +44,13 @@ export default function PartnershipHQ() {
     { id: "overview", name: "Overview", fixed: true },
     ...data.tabs,
     { id: "agenda", name: "Open Questions", fixed: true },
+    { id: "files", name: "Files", fixed: true },
   ];
   const activeTab = data.tabs.find((t) => t.id === activeId);
-  const showOverview = activeId === "overview" || (!activeTab && activeId !== "agenda");
+  const showOverview =
+    activeId === "overview" || (!activeTab && activeId !== "agenda" && activeId !== "files");
   const showAgenda = activeId === "agenda";
+  const showFiles = activeId === "files";
 
   return (
     <div className="min-h-screen bg-white text-[#1a1a1a]">
@@ -72,6 +76,7 @@ export default function PartnershipHQ() {
             <div className="mt-10">
               {showOverview && <OverviewTab data={data} userName={userName} onSelectTab={setActiveId} />}
               {showAgenda && <AgendaTab data={data} userName={userName} />}
+              {showFiles && <FilesTab />}
               {activeTab && !showOverview && !showAgenda && (
                 <WorkspaceTab tab={activeTab} data={data} userName={userName} />
               )}
