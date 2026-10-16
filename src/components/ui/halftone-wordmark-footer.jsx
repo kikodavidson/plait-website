@@ -238,7 +238,7 @@ export default function HalftoneWordmarkFooter({
             m2.textBaseline = "alphabetic"
             m2.fillText(o.topWord, x0, y0 + leading + asc)
             const img2 = m2.getImageData(0, 0, w, h).data
-            const tgap = Math.max(2, Math.round(gap * 0.55))
+            const tgap = Math.max(2, Math.round(gap * 0.4))
             const tcols = Math.ceil(w / tgap)
             const trows = Math.ceil(h / tgap)
             const wx1 = x0 + met.width + tgap * 2
