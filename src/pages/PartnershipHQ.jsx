@@ -45,7 +45,7 @@ export default function PartnershipHQ() {
   return (
     <div className="min-h-screen bg-white text-[#1a1a1a]">
       <div className="mx-auto max-w-5xl px-5 pb-24 pt-10 sm:px-8">
-        <TopBar user={user} tasks={data.tasks} saving={data.saving} />
+        <TopBar user={user} saving={data.saving} />
         {!data.loaded ? (
           <div className="mt-16 flex justify-center">
             <div className="h-7 w-7 animate-spin rounded-full border-4 border-[#e5e2dc] border-t-[#619e80]" />
