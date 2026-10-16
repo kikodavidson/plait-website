@@ -6,8 +6,8 @@ export default function HalftoneHeader() {
   return (
     <div className="w-full">
       <style>{`
-        .phh .hwf-top { padding: 34px 48px 0; }
-        .phh .hwf-rule { margin: 22px 48px 0; }
+        .phh .hwf-top { padding: 34px 9% 0; }
+        .phh .hwf-rule { margin: 22px 9% 0; }
         .phh .hwf-brand::before {
           content: "Partnership HQ";
           display: block;
@@ -21,14 +21,14 @@ export default function HalftoneHeader() {
           user-select: none;
         }
         @media (max-width: 720px) {
-          .phh .hwf-top { padding: 26px 24px 0; }
-          .phh .hwf-rule { margin: 16px 24px 0; }
+          .phh .hwf-top { padding: 26px 9% 0; }
+          .phh .hwf-rule { margin: 16px 9% 0; }
           .phh .hwf-brand span { font-size: 30px; }
         }
       `}</style>
       <HalftoneWordmarkFooter
         wordmark="brand buildout"
-        topWord="Max + Luke's"
+        topWord=""
         label="Partnership HQ"
         meta="Max + Luke's"
         columns={[]}
