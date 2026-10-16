@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { ChevronDown } from "lucide-react";
-import { STAGES, STAGE_ORDER } from "./stageMeta";
+import SheenPill from "./SheenPill";
+import { STAGES, STAGE_ORDER, STAGE_DOTS } from "./stageMeta";
 
 export default function StagePill({ section, onSet }) {
   const [open, setOpen] = useState(false);
@@ -9,20 +10,19 @@ export default function StagePill({ section, onSet }) {
 
   if (locked) {
     return (
-      <span className={`inline-flex items-center gap-1 rounded-full px-3 py-1 text-[12px] font-semibold ${meta.pill}`}>
+      <SheenPill tint={meta.tint} text={meta.text}>
         {meta.label}
-      </span>
+      </SheenPill>
     );
   }
 
   return (
     <div className="relative">
-      <button
-        onClick={() => setOpen((o) => !o)}
-        className={`inline-flex items-center gap-1 rounded-full px-3 py-1 text-[12px] font-semibold ${meta.pill} hover:opacity-80`}
-      >
-        {meta.label}
-        <ChevronDown className="h-3 w-3" />
+      <button onClick={() => setOpen((o) => !o)} className="inline-flex">
+        <SheenPill tint={meta.tint} text={meta.text} className="transition-transform duration-150 hover:scale-[1.03]">
+          {meta.label}
+          <ChevronDown className="h-3 w-3" />
+        </SheenPill>
       </button>
       {open && (
         <>
@@ -39,13 +39,9 @@ export default function StagePill({ section, onSet }) {
                     st === section.stage ? "bg-[#f4f2ef] font-semibold" : "hover:bg-[#faf9f7]"
                   } ${isLocked ? "cursor-not-allowed opacity-40" : ""}`}
                 >
-                  <span className={`h-2 w-2 shrink-0 rounded-full ${STAGES[st].pill.includes("#e8f2ec") ? "bg-[#619e80]" : ""}`}
-                    style={{
-                      backgroundColor: {
-                        not_started: "#9a9a9a", exploring: "#2c5aa8", in_discussion: "#d9a400",
-                        draft: "#6a4bab", locked: "#619e80",
-                      }[st],
-                    }}
+                  <span
+                    className="h-2 w-2 shrink-0 rounded-full"
+                    style={{ backgroundColor: STAGE_DOTS[st] }}
                   />
                   {STAGES[st].label}
                 </button>

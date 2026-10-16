@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import moment from "moment";
 import { Pencil, Trash2 } from "lucide-react";
 import { TASK_STATUS } from "./stageMeta";
+import SheenPill from "./SheenPill";
 
 const OWNERS = ["Luke", "Max", "Both"];
 const inputClass =
@@ -86,18 +87,16 @@ export default function TaskRow({ task, data }) {
         <p className={`text-[15px] ${done ? "text-[#9a9a9a] line-through" : ""}`}>{task.title}</p>
         {task.note && <p className="mt-0.5 text-[13px] text-[#6b6b6b]">{task.note}</p>}
         <div className="mt-2 flex flex-wrap items-center gap-2 text-[12px]">
-          <span className="rounded-full bg-[#f4f2ef] px-2.5 py-1 font-semibold text-[#6b6b6b]">{task.owner}</span>
-          <span
-            className={`rounded-full px-2.5 py-1 font-semibold ${
-              done
-                ? "bg-[#e8f2ec] text-[#3d6b52]"
-                : task.status === "in_progress"
-                  ? "bg-amber-50 text-[#92600a]"
-                  : "bg-[#f4f2ef] text-[#6b6b6b]"
-            }`}
+          <SheenPill tint="rgba(107,107,107,0.10)" text="#6b6b6b" className="px-2.5 py-1">
+            {task.owner}
+          </SheenPill>
+          <SheenPill
+            tint={done ? "rgba(97,158,128,0.18)" : task.status === "in_progress" ? "rgba(217,164,0,0.15)" : "rgba(107,107,107,0.10)"}
+            text={done ? "#3d6b52" : task.status === "in_progress" ? "#92600a" : "#6b6b6b"}
+            className="px-2.5 py-1"
           >
             {TASK_STATUS[task.status]}
-          </span>
+          </SheenPill>
           {task.due_date && <span className="text-[#6b6b6b]">Due {moment(task.due_date).format("MMM D")}</span>}
         </div>
       </div>

@@ -1,6 +1,7 @@
 import React from "react";
 import moment from "moment";
 import { STAGES } from "./stageMeta";
+import SheenPill from "./SheenPill";
 
 const Card = ({ title, children, className }) => (
   <div className={`rounded-2xl border border-[#e5e2dc] p-5 sm:p-6 ${className || ""}`}>
@@ -44,10 +45,9 @@ export default function OverviewTab({ data, userName, onSelectTab }) {
                     key={s.id}
                     onClick={() => onSelectTab(tab.id)}
                     title={`${s.name}: ${STAGES[s.stage]?.label}`}
-                    className={`rounded-full px-2.5 py-1 text-[12px] font-semibold ${STAGES[s.stage]?.pill}`}
-                  >
-                    {s.name}
-                  </button>
+                    >
+                    <SheenPill tint={STAGES[s.stage]?.tint} text={STAGES[s.stage]?.text}>{s.name}</SheenPill>
+                    </button>
                 ))}
               </div>
             </div>
@@ -140,13 +140,13 @@ export default function OverviewTab({ data, userName, onSelectTab }) {
               <li key={tab.id}>
                 <button onClick={() => onSelectTab(tab.id)} className="flex w-full items-center justify-between">
                   <span className="text-[14px]">{tab.name}</span>
-                  <span
-                    className={`rounded-full px-2.5 py-0.5 text-[13px] font-semibold ${
-                      open > 0 ? "bg-[#e8f2ec] text-[#3d6b52]" : "bg-[#f4f2ef] text-[#9a9a9a]"
-                    }`}
+                  <SheenPill
+                    tint={open > 0 ? "rgba(97,158,128,0.18)" : "rgba(107,107,107,0.10)"}
+                    text={open > 0 ? "#3d6b52" : "#9a9a9a"}
+                    className="px-2.5 py-0.5 text-[13px]"
                   >
                     {open}
-                  </span>
+                  </SheenPill>
                 </button>
               </li>
             );

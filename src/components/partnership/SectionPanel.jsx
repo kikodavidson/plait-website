@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import DiscussionLog from "./DiscussionLog";
 import SectionTasks from "./SectionTasks";
 import SectionQuestions from "./SectionQuestions";
+import SheenPill from "./SheenPill";
 
 /**
  * Right-hand panel for the open section: Log, Tasks and Questions tabs with
@@ -35,13 +36,13 @@ export default function SectionPanel({ section, data, userName }) {
             }`}
           >
             {t.label}
-            <span
-              className={`rounded-full px-1.5 py-0.5 text-[11px] font-semibold ${
-                tab === t.id ? "bg-[#e8f2ec] text-[#3d6b52]" : "bg-[#f0efec] text-[#9a9a9a]"
-              }`}
+            <SheenPill
+              tint={tab === t.id ? "rgba(97,158,128,0.18)" : "rgba(107,107,107,0.10)"}
+              text={tab === t.id ? "#3d6b52" : "#9a9a9a"}
+              className="px-1.5 py-0.5 text-[11px]"
             >
               {t.count}
-            </span>
+            </SheenPill>
           </button>
         ))}
       </div>
