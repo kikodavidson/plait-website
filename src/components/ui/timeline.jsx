@@ -315,16 +315,16 @@ export default function Timeline({
           ref={wholeSliderRef}
           className="mr-[2vw] flex h-[30vw] w-[340vw] items-center gap-[5vw] px-[5vw] max-[600px]:h-[80vh] max-[600px]:w-[3000vw] max-[600px]:px-[7vw]">
           
-          <div className="h-full w-[30vw] shrink-0 overflow-hidden rounded-[1vw] max-[600px]:h-[65vw] max-[600px]:w-[85vw] max-[600px]:rounded-[5vw] hidden">
-            {imageUrl &&
-            <img
-              src={imageUrl}
-              alt={imageAlt}
-              draggable={false}
-              className="h-full w-full object-cover hidden" />
+          
 
-            }
-          </div>
+
+
+
+
+
+
+
+          
 
           <div className="relative h-full w-full">
             <div className="absolute left-0 top-[49%] flex h-fit w-full -translate-y-1/2 items-center">
