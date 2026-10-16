@@ -453,7 +453,7 @@ export default function HalftoneWordmarkFooter({
       <span className="hwf-sr">{wordmark}</span>
       <div className="hwf-top">
         <div className="hwf-brand">
-          <strong className="hidden">{label}</strong>
+          
           <span ref={topWordRef} style={topWord ? { color: "transparent" } : undefined}>
             {meta}
           </span>
