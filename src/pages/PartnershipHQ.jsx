@@ -6,6 +6,7 @@ import TopBar from "@/components/partnership/TopBar";
 import DocsSidebar from "@/components/partnership/DocsSidebar";
 import OverviewTab from "@/components/partnership/OverviewTab";
 import AgendaTab from "@/components/partnership/AgendaTab";
+import OutstandingTasksTab from "@/components/partnership/OutstandingTasksTab";
 import FilesTab from "@/components/partnership/FilesTab";
 import TimelineTab from "@/components/partnership/TimelineTab";
 import SectionView from "@/components/partnership/SectionView";
@@ -102,6 +103,7 @@ export default function PartnershipHQ() {
                 <OverviewTab data={data} userName={userName} onSelectTab={openTabFirstSection} />
               )}
               {view === "agenda" && <AgendaTab data={data} userName={userName} />}
+              {view === "tasks" && <OutstandingTasksTab data={data} />}
               {view === "files" && <FilesTab />}
               {view === "section" && activeSection && (
                 <SectionView

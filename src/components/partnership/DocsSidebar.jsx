@@ -8,6 +8,7 @@ import {
   Folder,
   HelpCircle,
   Home,
+  ListTodo,
   Pencil,
   Plus,
   Trash2,
@@ -148,6 +149,7 @@ export default function DocsSidebar({
   const openQuestions = (sectionId) =>
     data.questions.filter((q) => q.section_id === sectionId && !q.resolved).length;
   const totalOpen = data.questions.filter((q) => !q.resolved).length;
+  const openTasks = data.tasks.filter((t) => t.status !== "done").length;
 
   const pickView = (v) => {
     onSelectView(v);
@@ -241,6 +243,13 @@ export default function DocsSidebar({
           onClick={() => pickView("agenda")}
         />
         <NavItem icon={Folder} label="Files" active={view === "files"} onClick={() => pickView("files")} />
+        <NavItem
+          icon={ListTodo}
+          label="Outstanding tasks"
+          count={openTasks}
+          active={view === "tasks"}
+          onClick={() => pickView("tasks")}
+        />
         <button
           onClick={() => setManageOpen(true)}
           className="flex w-full items-center gap-2.5 rounded-lg px-2.5 py-1.5 text-[13px] text-[#9a9a9a] transition-colors hover:bg-[#f5f3f0] hover:text-[#6b6b6b]"
