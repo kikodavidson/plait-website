@@ -43,7 +43,7 @@ export default async function(req) {
           <span style="color:#ffffff;font-size:18px;font-weight:700;letter-spacing:0.04em;">Plait <span style="color:#666;">|</span> Creative Gameplan Studio</span>
         </td></tr>
         <tr><td style="padding:32px;">
-          <h1 style="margin:0 0 12px;font-size:22px;color:#222222;font-weight:700;">${headline}</h1>
+          <h1 style="margin:0 0 12px;font-size:22px;color:#222222;font-weight:700;">You're invited</h1>
           <p style="margin:0 0 16px;font-size:15px;line-height:1.6;color:#555555;">
             ${intro}
           </p>
