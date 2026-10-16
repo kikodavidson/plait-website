@@ -7,7 +7,7 @@ export default function HalftoneHeader() {
     <div className="w-full">
       <style>{`
         .phh .hwf-top { padding: 34px 9% 0; }
-        .phh .hwf-rule { margin: 22px 9% 0; }
+        .phh .hwf-rule { display: none; }
         .phh .hwf-brand span {
           display: block; margin-top: 10px;
           font-family: 'Mavora Sans', sans-serif;
@@ -17,7 +17,7 @@ export default function HalftoneHeader() {
         }
         @media (max-width: 720px) {
           .phh .hwf-top { padding: 26px 9% 0; }
-          .phh .hwf-rule { margin: 16px 9% 0; }
+
           .phh .hwf-brand span { font-size: 30px; }
         }
       `}</style>
