@@ -1,0 +1,90 @@
+{
+  "name": "PartnershipQuestion",
+  "type": "object",
+  "properties": {
+    "tab_id": {
+      "type": "string",
+      "description": "ID of the parent PartnershipTab"
+    },
+    "question": {
+      "type": "string",
+      "description": "The question to talk through"
+    },
+    "raised_by": {
+      "type": "string",
+      "description": "Display name of the partner who raised it"
+    },
+    "resolved": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the question has been resolved"
+    },
+    "answer": {
+      "type": "string",
+      "description": "The answer, filled in once resolved"
+    },
+    "order": {
+      "type": "number",
+      "description": "Sort order within the tab"
+    },
+    "workspace": {
+      "type": "string",
+      "default": "partnership",
+      "description": "Workspace scope marker used by RLS"
+    }
+  },
+  "required": [
+    "tab_id",
+    "question"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "data.workspace": "{{user.data.client_slug}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "create": {
+      "$or": [
+        {
+          "data.workspace": "{{user.data.client_slug}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "data.workspace": "{{user.data.client_slug}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "data.workspace": "{{user.data.client_slug}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}

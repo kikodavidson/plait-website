@@ -1,0 +1,106 @@
+{
+  "name": "PartnershipTask",
+  "type": "object",
+  "properties": {
+    "tab_id": {
+      "type": "string",
+      "description": "ID of the parent PartnershipTab"
+    },
+    "title": {
+      "type": "string",
+      "description": "Task title"
+    },
+    "owner": {
+      "type": "string",
+      "enum": [
+        "Luke",
+        "Max",
+        "Both"
+      ],
+      "default": "Both",
+      "description": "Who owns the task"
+    },
+    "due_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Due date"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "todo",
+        "in_progress",
+        "done"
+      ],
+      "default": "todo",
+      "description": "To Do, In Progress, or Done"
+    },
+    "note": {
+      "type": "string",
+      "description": "Optional task note"
+    },
+    "order": {
+      "type": "number",
+      "description": "Sort order within the tab"
+    },
+    "workspace": {
+      "type": "string",
+      "default": "partnership",
+      "description": "Workspace scope marker used by RLS"
+    }
+  },
+  "required": [
+    "tab_id",
+    "title"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "data.workspace": "{{user.data.client_slug}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "create": {
+      "$or": [
+        {
+          "data.workspace": "{{user.data.client_slug}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "data.workspace": "{{user.data.client_slug}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "data.workspace": "{{user.data.client_slug}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}

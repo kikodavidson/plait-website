@@ -1,0 +1,95 @@
+{
+  "name": "PartnershipNote",
+  "type": "object",
+  "properties": {
+    "tab_id": {
+      "type": "string",
+      "description": "ID of the parent PartnershipTab"
+    },
+    "title": {
+      "type": "string",
+      "description": "Note title"
+    },
+    "body": {
+      "type": "string",
+      "description": "Note body text"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "decided",
+        "needs_discussion"
+      ],
+      "default": "draft",
+      "description": "Draft, Decided, or Needs Discussion"
+    },
+    "author": {
+      "type": "string",
+      "description": "Display name of the partner who wrote the note"
+    },
+    "order": {
+      "type": "number",
+      "description": "Sort order within the tab"
+    },
+    "workspace": {
+      "type": "string",
+      "default": "partnership",
+      "description": "Workspace scope marker used by RLS"
+    }
+  },
+  "required": [
+    "tab_id",
+    "title"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "data.workspace": "{{user.data.client_slug}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "create": {
+      "$or": [
+        {
+          "data.workspace": "{{user.data.client_slug}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "data.workspace": "{{user.data.client_slug}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "data.workspace": "{{user.data.client_slug}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}
