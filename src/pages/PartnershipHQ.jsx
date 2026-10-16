@@ -9,6 +9,7 @@ import WorkspaceTab from "@/components/partnership/WorkspaceTab";
 import NoAccess from "@/components/partnership/NoAccess";
 import SignInWall from "@/components/partnership/SignInWall";
 import InvitePartnerDialog from "@/components/partnership/InvitePartnerDialog";
+import HalftoneHeader from "@/components/partnership/HalftoneHeader";
 
 export default function PartnershipHQ() {
   const { user, isLoadingAuth } = useAuth();
@@ -49,6 +50,7 @@ export default function PartnershipHQ() {
 
   return (
     <div className="min-h-screen bg-white text-[#1a1a1a]">
+      <HalftoneHeader />
       <div className="mx-auto max-w-5xl px-5 pb-24 pt-10 sm:px-8">
         <TopBar user={user} saving={data.saving} onInvite={() => setInviteOpen(true)} />
         {!data.loaded ? (
