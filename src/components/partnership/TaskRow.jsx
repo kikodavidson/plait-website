@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import moment from "moment";
 import { Pencil, Trash2 } from "lucide-react";
-import { TASK_STATUS } from "./TasksSection";
+import { TASK_STATUS } from "./stageMeta";
 
 const OWNERS = ["Luke", "Max", "Both"];
 const inputClass =

@@ -93,11 +93,11 @@ export default function QuestionItem({ question, data, userName }) {
             className="w-full rounded-lg border border-[#dcd5c9] bg-white px-3 py-2 text-[14px] leading-[1.6] outline-none focus:border-[#619e80]"
           />
           <button
-            onClick={() => answer.trim() && data.questionToNote({ ...question, answer }, userName)}
+            onClick={() => answer.trim() && data.questionToLog({ ...question, answer }, userName)}
             disabled={!answer.trim()}
             className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-[#619e80] px-4 py-2 text-[13px] text-white hover:opacity-90 disabled:opacity-40"
           >
-            Turn into a Decided note <ArrowRight className="h-3.5 w-3.5" />
+            Add to discussion log <ArrowRight className="h-3.5 w-3.5" />
           </button>
         </div>
       )}

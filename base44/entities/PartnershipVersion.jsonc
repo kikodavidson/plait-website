@@ -1,0 +1,97 @@
+{
+  "name": "PartnershipVersion",
+  "type": "object",
+  "properties": {
+    "section_id": {
+      "type": "string",
+      "description": "ID of the parent PartnershipSection"
+    },
+    "tab_id": {
+      "type": "string",
+      "description": "ID of the parent PartnershipTab (kept for cascade deletes)"
+    },
+    "kind": {
+      "type": "string",
+      "enum": [
+        "locked",
+        "reopen"
+      ],
+      "description": "A locked-version snapshot or a reopen event"
+    },
+    "content": {
+      "type": "string",
+      "description": "Section content captured when it was locked"
+    },
+    "reason": {
+      "type": "string",
+      "description": "Reason given when the section was reopened"
+    },
+    "approved_by": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Partner names who approved at lock time"
+    },
+    "workspace": {
+      "type": "string",
+      "default": "partnership",
+      "description": "Workspace scope marker used by RLS"
+    }
+  },
+  "required": [
+    "section_id",
+    "tab_id",
+    "kind"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "data.workspace": "{{user.data.client_slug}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "create": {
+      "$or": [
+        {
+          "data.workspace": "{{user.data.client_slug}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "data.workspace": "{{user.data.client_slug}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "data.workspace": "{{user.data.client_slug}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}

@@ -4,7 +4,11 @@
   "properties": {
     "tab_id": {
       "type": "string",
-      "description": "ID of the parent PartnershipTab"
+      "description": "ID of the parent PartnershipTab (kept for cascade deletes)"
+    },
+    "section_id": {
+      "type": "string",
+      "description": "ID of the parent PartnershipSection the question belongs to"
     },
     "question": {
       "type": "string",
@@ -25,7 +29,7 @@
     },
     "order": {
       "type": "number",
-      "description": "Sort order within the tab"
+      "description": "Sort order within the section"
     },
     "workspace": {
       "type": "string",
@@ -35,6 +39,7 @@
   },
   "required": [
     "tab_id",
+    "section_id",
     "question"
   ],
   "rls": {

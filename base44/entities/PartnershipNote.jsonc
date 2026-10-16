@@ -2,35 +2,21 @@
   "name": "PartnershipNote",
   "type": "object",
   "properties": {
+    "section_id": {
+      "type": "string",
+      "description": "ID of the parent PartnershipSection"
+    },
     "tab_id": {
       "type": "string",
-      "description": "ID of the parent PartnershipTab"
-    },
-    "title": {
-      "type": "string",
-      "description": "Note title"
+      "description": "ID of the parent PartnershipTab (kept for cascade deletes)"
     },
     "body": {
       "type": "string",
-      "description": "Note body text"
-    },
-    "status": {
-      "type": "string",
-      "enum": [
-        "draft",
-        "decided",
-        "needs_discussion"
-      ],
-      "default": "draft",
-      "description": "Draft, Decided, or Needs Discussion"
+      "description": "Discussion log entry text"
     },
     "author": {
       "type": "string",
-      "description": "Display name of the partner who wrote the note"
-    },
-    "order": {
-      "type": "number",
-      "description": "Sort order within the tab"
+      "description": "Display name of the partner who wrote the entry"
     },
     "workspace": {
       "type": "string",
@@ -39,8 +25,9 @@
     }
   },
   "required": [
+    "section_id",
     "tab_id",
-    "title"
+    "body"
   ],
   "rls": {
     "read": {

@@ -36,7 +36,8 @@ export default function PartnershipHQ() {
   if (!user) return <SignInWall />;
   if (user.role !== "admin" && slug !== "partnership") return <NoAccess />;
 
-  const userName = (user.full_name || user.email || "").split(" ")[0];
+  const first = (user.full_name || user.email || "").split(" ")[0];
+  const userName = ["Luke", "Max"].includes(first) ? first : user.role === "admin" ? "Luke" : "Max";
   const tabs = [
     { id: "overview", name: "Overview", fixed: true },
     ...data.tabs,
@@ -67,7 +68,7 @@ export default function PartnershipHQ() {
               onDelete={data.deleteTab}
             />
             <div className="mt-10">
-              {showOverview && <OverviewTab data={data} onSelectTab={setActiveId} />}
+              {showOverview && <OverviewTab data={data} userName={userName} onSelectTab={setActiveId} />}
               {showAgenda && <AgendaTab data={data} userName={userName} />}
               {activeTab && !showOverview && !showAgenda && (
                 <WorkspaceTab tab={activeTab} data={data} userName={userName} />

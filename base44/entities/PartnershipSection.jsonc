@@ -1,0 +1,103 @@
+{
+  "name": "PartnershipSection",
+  "type": "object",
+  "properties": {
+    "tab_id": {
+      "type": "string",
+      "description": "ID of the parent PartnershipTab"
+    },
+    "name": {
+      "type": "string",
+      "description": "Section name - the piece being decided"
+    },
+    "order": {
+      "type": "number",
+      "description": "Sort order within the tab"
+    },
+    "stage": {
+      "type": "string",
+      "enum": [
+        "not_started",
+        "exploring",
+        "in_discussion",
+        "draft",
+        "locked"
+      ],
+      "default": "not_started",
+      "description": "Decision stage: Not Started, Exploring, In Discussion, Draft, or Locked"
+    },
+    "content": {
+      "type": "string",
+      "description": "The current working content for this section"
+    },
+    "approved_luke": {
+      "type": "boolean",
+      "default": false,
+      "description": "Luke's sign-off"
+    },
+    "approved_max": {
+      "type": "boolean",
+      "default": false,
+      "description": "Max's sign-off"
+    },
+    "workspace": {
+      "type": "string",
+      "default": "partnership",
+      "description": "Workspace scope marker used by RLS"
+    }
+  },
+  "required": [
+    "tab_id",
+    "name"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "data.workspace": "{{user.data.client_slug}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "create": {
+      "$or": [
+        {
+          "data.workspace": "{{user.data.client_slug}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "data.workspace": "{{user.data.client_slug}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "data.workspace": "{{user.data.client_slug}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}
