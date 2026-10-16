@@ -8,11 +8,6 @@ export default function HalftoneHeader() {
       <style>{`
         .phh .hwf-top { padding: 34px 9% 0; }
         .phh .hwf-rule { margin: 22px 9% 0; }
-        .phh .hwf-brand::before {
-          content: "Partnership HQ";
-          display: block;
-          font-size: 11px; font-weight: 800; opacity: .55;
-        }
         .phh .hwf-brand span {
           display: block; margin-top: 10px;
           font-family: 'Mavora Sans', sans-serif;
