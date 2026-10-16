@@ -108,6 +108,7 @@ const HWF_CSS = `
 
 export default function HalftoneWordmarkFooter({
   wordmark = "halden",
+  topWord = "",
   label = "Halden Studio",
   meta = "©2026 · Oslo / Lisbon",
   columns = [],
@@ -130,9 +131,10 @@ export default function HalftoneWordmarkFooter({
   const colors = { ...(PRESETS[preset] || PRESETS.night), ...(palette || {}) }
   const rootRef = React.useRef(null)
   const canvasRef = React.useRef(null)
-  const opts = React.useRef({ colors, dotGap, radius, crop, bottomInset, wordWidth, grain, interactive, fontFamily, fontWeight, wordmark })
-  opts.current = { colors, dotGap, radius, crop, bottomInset, wordWidth, grain, interactive, fontFamily, fontWeight, wordmark }
-  const key = [wordmark, dotGap, crop, bottomInset, wordWidth, grain, fontFamily, fontWeight, colors.background, colors.ink, colors.warm].join("|")
+  const topWordRef = React.useRef(null)
+  const opts = React.useRef({ colors, dotGap, radius, crop, bottomInset, wordWidth, grain, interactive, fontFamily, fontWeight, wordmark, topWord })
+  opts.current = { colors, dotGap, radius, crop, bottomInset, wordWidth, grain, interactive, fontFamily, fontWeight, wordmark, topWord }
+  const key = [wordmark, topWord, dotGap, crop, bottomInset, wordWidth, grain, fontFamily, fontWeight, colors.background, colors.ink, colors.warm].join("|")
 
   React.useEffect(() => {
     const root = rootRef.current
@@ -206,6 +208,61 @@ export default function HalftoneWordmarkFooter({
           const hx = gx * gap + gap / 2
           const hy = gy * gap + gap / 2
           tmp.push(hx, hy, 0, 0, hx, hy, hwfRadius(cov, gap))
+        }
+      }
+
+      // A second wordmark (topWord) printed in a finer halftone grid over its
+      // own text box: the box stays in flow for layout and screen readers, but
+      // its ink is transparent and the canvas carries the letters as dots.
+      if (o.topWord && topWordRef.current) {
+        const host = topWordRef.current
+        const rootBox = root.getBoundingClientRect()
+        const hb = host.getBoundingClientRect()
+        if (hb.width > 1 && hb.height > 1) {
+          const mask2 = document.createElement("canvas")
+          mask2.width = w
+          mask2.height = h
+          const m2 = mask2.getContext("2d", { willReadFrequently: true })
+          if (m2) {
+            // The host box is sized with line-height: 1, so its height is the
+            // font size, and font-box metrics place the baseline as text would.
+            const fs2 = hb.height
+            m2.font = o.fontWeight + " " + fs2 + "px " + o.fontFamily
+            const met = m2.measureText(o.topWord)
+            const asc = met.fontBoundingBoxAscent || fs2 * 0.8
+            const desc = met.fontBoundingBoxDescent || fs2 * 0.2
+            const leading = (fs2 - asc - desc) / 2
+            const x0 = hb.left - rootBox.left
+            const y0 = hb.top - rootBox.top
+            m2.fillStyle = "#000"
+            m2.textBaseline = "alphabetic"
+            m2.fillText(o.topWord, x0, y0 + leading + asc)
+            const img2 = m2.getImageData(0, 0, w, h).data
+            const tgap = Math.max(2, Math.round(gap * 0.55))
+            const tcols = Math.ceil(w / tgap)
+            const trows = Math.ceil(h / tgap)
+            const wx1 = x0 + met.width + tgap * 2
+            const wy1 = y0 + hb.height + tgap * 2
+            for (let gy = 0; gy < trows; gy++) {
+              const cy = gy * tgap + tgap / 2
+              if (cy < y0 - tgap * 2 || cy > wy1) continue
+              for (let gx = 0; gx < tcols; gx++) {
+                const cx = gx * tgap + tgap / 2
+                if (cx < x0 - tgap * 2 || cx > wx1) continue
+                let sum2 = 0
+                for (let sy = 0; sy < 3; sy++) {
+                  for (let sx = 0; sx < 3; sx++) {
+                    const x = Math.min(w - 1, Math.floor(gx * tgap + ((sx + 0.5) * tgap) / 3))
+                    const y = Math.min(h - 1, Math.floor(gy * tgap + ((sy + 0.5) * tgap) / 3))
+                    sum2 += img2[(y * w + x) * 4 + 3]
+                  }
+                }
+                const cov2 = sum2 / (9 * 255)
+                if (cov2 < 0.06) continue
+                tmp.push(cx, cy, 0, 0, cx, cy, hwfRadius(cov2, tgap))
+              }
+            }
+          }
         }
       }
       dots = new Float32Array(tmp)
@@ -397,7 +454,9 @@ export default function HalftoneWordmarkFooter({
       <div className="hwf-top">
         <div className="hwf-brand">
           <strong>{label}</strong>
-          <span>{meta}</span>
+          <span ref={topWordRef} style={topWord ? { color: "transparent" } : undefined}>
+            {meta}
+          </span>
         </div>
         {columns.map((col) => (
           <nav className="hwf-col" key={col.title} aria-label={col.title}>

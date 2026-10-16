@@ -10,24 +10,26 @@ export default function HalftoneHeader() {
         .phh .hwf-rule { margin: 22px 48px 0; }
         .phh .hwf-brand strong { font-size: 11px; opacity: .55; }
         .phh .hwf-brand span {
-          display: block; margin-top: 8px;
+          display: block; margin-top: 10px;
           font-family: 'Mavora Sans', sans-serif;
-          font-size: 28px; font-weight: 800; line-height: 1;
+          font-size: 40px; font-weight: 800; line-height: 1;
           letter-spacing: normal; text-transform: none; opacity: 1;
+          user-select: none;
         }
         @media (max-width: 720px) {
           .phh .hwf-top { padding: 26px 24px 0; }
           .phh .hwf-rule { margin: 16px 24px 0; }
-          .phh .hwf-brand span { font-size: 22px; }
+          .phh .hwf-brand span { font-size: 28px; }
         }
       `}</style>
       <HalftoneWordmarkFooter
         wordmark="brand buildout"
+        topWord="Max + Luke"
         label="Partnership HQ"
         meta="Max + Luke"
         columns={[]}
         backToTop={false}
-        height="230px"
+        height="240px"
         crop={0.1}
         bottomInset={40}
         wordWidth={0.82}
