@@ -18,14 +18,22 @@ export default async function(req) {
     if (user.role !== "admin") return Response.json({ error: "Forbidden" }, { status: 403 });
 
     const body = await req.json();
-    const { toEmail, clientName, portalUrl } = body;
+    const { toEmail, clientName, portalUrl, kind } = body;
     if (!toEmail || !clientName || !portalUrl) {
       return Response.json({ error: "Missing toEmail, clientName, or portalUrl" }, { status: 400 });
     }
 
     const { accessToken } = await base44.asServiceRole.connectors.getConnection("gmail");
 
-    const subject = `You're invited to ${clientName}'s Creative Gameplan Studio`;
+    // kind: "partnership" sends a Partnership HQ invite instead of a client portal invite.
+    const partnership = kind === "partnership";
+    const subject = partnership
+      ? `You're invited to ${clientName}`
+      : `You're invited to ${clientName}'s Creative Gameplan Studio`;
+    const intro = partnership
+      ? `Luke has added you to <strong style="color:#222222;">${clientName}</strong>, a private workspace where the two of you build the brand together: strategy, notes, tasks, and open questions. Use the same email you received this invite at to create your account and sign in.`
+      : `You've been added to <strong style="color:#222222;">${clientName}</strong>'s content gameplan portal. This is where strategy turns into reality — each plan lays out the audiences and concepts being tested, the content needed, and examples of what's already winning.`;
+    const cta = partnership ? "Open Partnership HQ" : "Open your portal";
     const html = `<!doctype html>
 <html><body style="margin:0;padding:0;background:#F5F5F5;font-family:Inter,Arial,sans-serif;">
   <table width="100%" cellpadding="0" cellspacing="0" style="background:#F5F5F5;padding:32px 0;">
@@ -35,14 +43,14 @@ export default async function(req) {
           <span style="color:#ffffff;font-size:18px;font-weight:700;letter-spacing:0.04em;">Plait <span style="color:#666;">|</span> Creative Gameplan Studio</span>
         </td></tr>
         <tr><td style="padding:32px;">
-          <h1 style="margin:0 0 12px;font-size:22px;color:#222222;font-weight:700;">You're invited</h1>
+          <h1 style="margin:0 0 12px;font-size:22px;color:#222222;font-weight:700;">${headline}</h1>
           <p style="margin:0 0 16px;font-size:15px;line-height:1.6;color:#555555;">
-            You've been added to <strong style="color:#222222;">${clientName}</strong>'s content gameplan portal. This is where strategy turns into reality — each plan lays out the audiences and concepts being tested, the content needed, and examples of what's already winning.
+            ${intro}
           </p>
           <p style="margin:0 0 24px;font-size:15px;line-height:1.6;color:#555555;">
             Use the same email you received this invite at to sign in and view your gameplans.
           </p>
-          <a href="${portalUrl}" style="display:inline-block;background:#2d2d2d;color:#ffffff;font-size:15px;font-weight:700;text-decoration:none;padding:12px 28px;border-radius:999px;">Open your portal</a>
+          <a href="${portalUrl}" style="display:inline-block;background:#2d2d2d;color:#ffffff;font-size:15px;font-weight:700;text-decoration:none;padding:12px 28px;border-radius:999px;">${cta}</a>
         </td></tr>
         <tr><td style="padding:0 32px 32px;">
           <p style="margin:0;font-size:13px;color:#999999;line-height:1.5;">

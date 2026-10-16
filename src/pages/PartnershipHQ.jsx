@@ -7,11 +7,14 @@ import OverviewTab from "@/components/partnership/OverviewTab";
 import AgendaTab from "@/components/partnership/AgendaTab";
 import WorkspaceTab from "@/components/partnership/WorkspaceTab";
 import NoAccess from "@/components/partnership/NoAccess";
+import SignInWall from "@/components/partnership/SignInWall";
+import InvitePartnerDialog from "@/components/partnership/InvitePartnerDialog";
 
 export default function PartnershipHQ() {
   const { user, isLoadingAuth } = useAuth();
   const data = usePartnership();
   const [activeId, setActiveId] = useState("overview");
+  const [inviteOpen, setInviteOpen] = useState(false);
 
   useEffect(() => {
     const meta = document.createElement("meta");
@@ -30,7 +33,8 @@ export default function PartnershipHQ() {
   }
 
   const slug = user?.client_slug || user?.data?.client_slug;
-  if (!user || (user.role !== "admin" && slug !== "partnership")) return <NoAccess />;
+  if (!user) return <SignInWall />;
+  if (user.role !== "admin" && slug !== "partnership") return <NoAccess />;
 
   const userName = (user.full_name || user.email || "").split(" ")[0];
   const tabs = [
@@ -45,7 +49,7 @@ export default function PartnershipHQ() {
   return (
     <div className="min-h-screen bg-white text-[#1a1a1a]">
       <div className="mx-auto max-w-5xl px-5 pb-24 pt-10 sm:px-8">
-        <TopBar user={user} saving={data.saving} />
+        <TopBar user={user} saving={data.saving} onInvite={() => setInviteOpen(true)} />
         {!data.loaded ? (
           <div className="mt-16 flex justify-center">
             <div className="h-7 w-7 animate-spin rounded-full border-4 border-[#e5e2dc] border-t-[#619e80]" />
@@ -72,6 +76,7 @@ export default function PartnershipHQ() {
           </>
         )}
       </div>
+      <InvitePartnerDialog open={inviteOpen} onClose={() => setInviteOpen(false)} />
     </div>
   );
 }

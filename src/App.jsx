@@ -99,6 +99,7 @@ const AuthenticatedApp = () => {
       <Route path="/register" element={<Register />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/reset-password" element={<ResetPassword />} />
+      <Route path="/partnership" element={<PartnershipHQ />} />
       <Route element={<Layout />}>
         <Route path="/" element={<Home />} />
         <Route path="/services" element={<Services />} />
@@ -125,7 +126,6 @@ const AuthenticatedApp = () => {
         <Route path="/attribution" element={<AttributionDashboard />} />
         <Route path="/attribution/:projectId" element={<AttributionProjectPage />} />
         <Route path="/principles" element={<Principles />} />
-        <Route path="/partnership" element={<PartnershipHQ />} />
       </Route>
       <Route path="*" element={<PageNotFound />} />
     </Routes>
