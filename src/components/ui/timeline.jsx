@@ -14,16 +14,16 @@ if (typeof window !== "undefined") {
    context is reverted only on unmount. A callback may return its own
    cleanup, which runs before the next re-add and on unmount. */
 function useGSAP(callback, options) {
-  const deps = (options && options.dependencies) || [];
+  const deps = options && options.dependencies || [];
   const scope = options && options.scope;
   const ctxRef = useRef(null);
   const cleanupRef = useRef(undefined);
 
   useLayoutEffect(() => {
     const el =
-      scope && typeof scope === "object" && "current" in scope
-        ? scope.current
-        : scope;
+    scope && typeof scope === "object" && "current" in scope ?
+    scope.current :
+    scope;
     ctxRef.current = gsap.context(() => {}, el || undefined);
     return () => {
       if (cleanupRef.current) cleanupRef.current();
@@ -61,48 +61,48 @@ function usePrefersReducedMotion() {
   return useSyncExternalStore(
     subscribeToReducedMotion,
     getReducedMotionSnapshot,
-    () => false,
+    () => false
   );
 }
 
 function ItemContent({ item, activeColor, mutedTextStyle }) {
   return (
     <>
-      {item.tag && (
-        <span
-          className="inline-block w-fit rounded-full px-[0.6vw] py-[0.15vw] text-[0.7vw] font-bold text-white max-[600px]:px-[2.5vw] max-[600px]:py-[0.8vw] max-[600px]:text-[3vw]"
-          style={{ backgroundColor: activeColor }}
-        >
+      {item.tag &&
+      <span
+        className="inline-block w-fit rounded-full px-[0.6vw] py-[0.15vw] text-[0.7vw] font-bold text-white max-[600px]:px-[2.5vw] max-[600px]:py-[0.8vw] max-[600px]:text-[3vw]"
+        style={{ backgroundColor: activeColor }}>
+        
           {item.tag}
         </span>
-      )}
+      }
       <h4
-        className={`ti-name-${item.id} text-[1.25vw] leading-[1.1] max-[600px]:text-[5.4vw]`}
-      >
+        className={`ti-name-${item.id} text-[1.25vw] leading-[1.1] max-[600px]:text-[5.4vw]`}>
+        
         {item.name}
       </h4>
-      {item.detail && (
-        <p
-          className={`ti-desc-${item.id} w-[90%] text-[0.85vw] leading-[1.25] max-[600px]:text-[3.4vw]`}
-          style={mutedTextStyle}
-        >
+      {item.detail &&
+      <p
+        className={`ti-desc-${item.id} w-[90%] text-[0.85vw] leading-[1.25] max-[600px]:text-[3.4vw]`}
+        style={mutedTextStyle}>
+        
           {item.detail}
         </p>
-      )}
+      }
       <p className="text-[0.7vw] leading-[1.35] max-[600px]:text-[3vw]" style={mutedTextStyle}>
         {item.meta}
       </p>
-      {item.waitOn && (
-        <p
-          className="flex items-center gap-[0.35vw] text-[0.7vw] leading-[1.35] max-[600px]:gap-[1.5vw] max-[600px]:text-[3vw]"
-          style={mutedTextStyle}
-        >
+      {item.waitOn &&
+      <p
+        className="flex items-center gap-[0.35vw] text-[0.7vw] leading-[1.35] max-[600px]:gap-[1.5vw] max-[600px]:text-[3vw]"
+        style={mutedTextStyle}>
+        
           <Lock className="size-[0.75vw] shrink-0 max-[600px]:size-[3vw]" strokeWidth={2.4} />
           <span>Waiting on: {item.waitOn}</span>
         </p>
-      )}
-    </>
-  );
+      }
+    </>);
+
 }
 
 /**
@@ -122,7 +122,7 @@ export default function Timeline({
   imageAlt = "",
   duration,
   scrollDuration = 1.2,
-  items = [],
+  items = []
 }) {
   const sectionRef = useRef(null);
   const wholeSliderRef = useRef(null);
@@ -136,8 +136,8 @@ export default function Timeline({
   const bottomItems = [];
   items.forEach((item, i) => {
     const entry = { ...item, index: i };
-    if (i % 2 === 0) topItems.push(entry);
-    else bottomItems.push(entry);
+    if (i % 2 === 0) topItems.push(entry);else
+    bottomItems.push(entry);
   });
 
   useGSAP(() => {
@@ -164,9 +164,9 @@ export default function Timeline({
         trigger: section,
         start: "top top",
         end: slideEnd,
-        scrub: true,
+        scrub: true
       },
-      defaults: { ease: "none" },
+      defaults: { ease: "none" }
     });
     tl.fromTo(track, { x: 0 }, { x: -overflow });
 
@@ -182,8 +182,8 @@ export default function Timeline({
         trigger: section,
         start: lineStart,
         end: lineEnd,
-        scrub: true,
-      },
+        scrub: true
+      }
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, { dependencies: [reducedMotion, items.length], scope: sectionRef });
@@ -214,12 +214,12 @@ export default function Timeline({
     items.forEach((item) => {
       nameSplits[item.id] = new SplitText(`.ti-name-${item.id}`, {
         type: "chars, words, lines",
-        mask: "lines",
+        mask: "lines"
       });
       if (document.querySelector(`.ti-desc-${item.id}`)) {
         descSplits[item.id] = new SplitText(`.ti-desc-${item.id}`, {
           type: "chars, words, lines",
-          mask: "lines",
+          mask: "lines"
         });
       }
     });
@@ -230,25 +230,25 @@ export default function Timeline({
           trigger: section,
           start: `${startPos}% 30%`,
           end: `${endPos}% 50%`,
-          scrub: true,
-        },
+          scrub: true
+        }
       });
 
-      timeline
-        .to(`.jl-${item.id}`, {
-          scaleY: 1,
-          duration: normalizedDuration * 0.4,
-        })
-        .to(
-          `.jd-${item.id}`,
-          {
-            scale: 1,
-            duration: normalizedDuration * 0.4,
-          },
-          "<",
-        );
+      timeline.
+      to(`.jl-${item.id}`, {
+        scaleY: 1,
+        duration: normalizedDuration * 0.4
+      }).
+      to(
+        `.jd-${item.id}`,
+        {
+          scale: 1,
+          duration: normalizedDuration * 0.4
+        },
+        "<"
+      );
 
-      const nameLines = (nameSplits[item.id] && nameSplits[item.id].lines) || [];
+      const nameLines = nameSplits[item.id] && nameSplits[item.id].lines || [];
       if (nameLines.length) {
         timeline.fromTo(
           nameLines,
@@ -258,11 +258,11 @@ export default function Timeline({
             delay: -0.8 * normalizedDuration,
             duration: normalizedDuration,
             stagger: 0.02,
-            ease: "power2.out",
-          },
+            ease: "power2.out"
+          }
         );
       }
-      const descLines = (descSplits[item.id] && descSplits[item.id].lines) || [];
+      const descLines = descSplits[item.id] && descSplits[item.id].lines || [];
       if (descLines.length) {
         timeline.fromTo(
           descLines,
@@ -271,9 +271,9 @@ export default function Timeline({
             y: 0,
             duration: normalizedDuration,
             stagger: 0.02,
-            ease: "power2.out",
+            ease: "power2.out"
           },
-          "<",
+          "<"
         );
       }
 
@@ -286,7 +286,7 @@ export default function Timeline({
     const startMax = (isMobile ? 76 : 96) - span;
     const n = items.length;
     items.forEach((item, i) => {
-      const s = n <= 1 ? startMin : startMin + (i * (startMax - startMin)) / (n - 1);
+      const s = n <= 1 ? startMin : startMin + i * (startMax - startMin) / (n - 1);
       createItemTimeline(item, s, s + span);
     });
 
@@ -308,22 +308,22 @@ export default function Timeline({
     <section
       ref={sectionRef}
       className="relative h-[200vw] w-full max-[600px]:h-[400vh]"
-      style={{ color: textColor, backgroundColor }}
-    >
+      style={{ color: textColor, backgroundColor }}>
+      
       <div className="sticky top-0 h-screen w-full overflow-hidden pt-[8vh] max-[600px]:pt-[6vh]">
         <div
           ref={wholeSliderRef}
-          className="mr-[2vw] flex h-[30vw] w-[340vw] items-center gap-[5vw] px-[5vw] max-[600px]:h-[80vh] max-[600px]:w-[3000vw] max-[600px]:px-[7vw]"
-        >
-          <div className="h-full w-[30vw] shrink-0 overflow-hidden rounded-[1vw] max-[600px]:h-[65vw] max-[600px]:w-[85vw] max-[600px]:rounded-[5vw]">
-            {imageUrl && (
-              <img
-                src={imageUrl}
-                alt={imageAlt}
-                draggable={false}
-                className="h-full w-full object-cover"
-              />
-            )}
+          className="mr-[2vw] flex h-[30vw] w-[340vw] items-center gap-[5vw] px-[5vw] max-[600px]:h-[80vh] max-[600px]:w-[3000vw] max-[600px]:px-[7vw]">
+          
+          <div className="h-full w-[30vw] shrink-0 overflow-hidden rounded-[1vw] max-[600px]:h-[65vw] max-[600px]:w-[85vw] max-[600px]:rounded-[5vw] hidden">
+            {imageUrl &&
+            <img
+              src={imageUrl}
+              alt={imageAlt}
+              draggable={false}
+              className="h-full w-full object-cover hidden" />
+
+            }
           </div>
 
           <div className="relative h-full w-full">
@@ -340,68 +340,68 @@ export default function Timeline({
                 </h2>
               </div>
 
-              {topItems.map((item) => (
-                <div
-                  key={item.id}
-                  data-edge
-                  className="relative h-full w-[17vw] px-[2vw] max-[600px]:flex max-[600px]:w-[70vw] max-[600px]:flex-col max-[600px]:px-[7vw]"
-                >
+              {topItems.map((item) =>
+              <div
+                key={item.id}
+                data-edge
+                className="relative h-full w-[17vw] px-[2vw] max-[600px]:flex max-[600px]:w-[70vw] max-[600px]:flex-col max-[600px]:px-[7vw]">
+                
                   <div className="absolute bottom-0 left-0 top-0 h-full w-full">
                     <div
-                      className={`relative aspect-square size-[0.9vw] -translate-x-1/2 rounded-full jd-${item.id} max-[600px]:size-[2.5vw]`}
-                      style={activeStyle}
-                    />
+                    className={`relative aspect-square size-[0.9vw] -translate-x-1/2 rounded-full jd-${item.id} max-[600px]:size-[2.5vw]`}
+                    style={activeStyle} />
+                  
                     <div
-                      className={`origin-bottom h-[94%] w-px rounded-full jl-${item.id} max-[600px]:h-full`}
-                      style={activeStyle}
-                    />
+                    className={`origin-bottom h-[94%] w-px rounded-full jl-${item.id} max-[600px]:h-full`}
+                    style={activeStyle} />
+                  
                   </div>
 
                   <div className="mt-[-1vw] space-y-[0.5vw] max-[600px]:mt-[-2vw]">
                     <ItemContent item={item} activeColor={activeColor} mutedTextStyle={mutedTextStyle} />
                   </div>
                 </div>
-              ))}
+              )}
             </div>
 
             <div className="flex h-1/2 w-full items-center justify-start">
               <div className="h-full w-[16%] shrink-0 pt-[2vw] max-[600px]:w-[30%]">
                 <p
                   className="text-[1.65vw] leading-none max-[600px]:text-[4.2vw]"
-                  style={mutedTextStyle}
-                >
+                  style={mutedTextStyle}>
+                  
                   {periodLabel}
                 </p>
               </div>
 
               <div className="ml-[7vw] flex h-full w-full gap-[7vw] max-[600px]:ml-[7vw] max-[600px]:gap-[30vw]">
-                {bottomItems.map((item) => (
-                  <div
-                    key={item.id}
-                    data-edge
-                    className="relative h-full w-[17vw] px-[2vw] max-[600px]:w-[70vw] max-[600px]:px-[7vw]"
-                  >
+                {bottomItems.map((item) =>
+                <div
+                  key={item.id}
+                  data-edge
+                  className="relative h-full w-[17vw] px-[2vw] max-[600px]:w-[70vw] max-[600px]:px-[7vw]">
+                  
                     <div className="absolute bottom-[-1%] left-0 h-full w-full">
                       <div
-                        className={`origin-top h-[94%] w-px rounded-full jl-${item.id} max-[600px]:h-full`}
-                        style={activeStyle}
-                      />
+                      className={`origin-top h-[94%] w-px rounded-full jl-${item.id} max-[600px]:h-full`}
+                      style={activeStyle} />
+                    
                       <div
-                        className={`relative aspect-square size-[0.9vw] -translate-x-1/2 rounded-full jd-${item.id} max-[600px]:size-[2.5vw]`}
-                        style={activeStyle}
-                      />
+                      className={`relative aspect-square size-[0.9vw] -translate-x-1/2 rounded-full jd-${item.id} max-[600px]:size-[2.5vw]`}
+                      style={activeStyle} />
+                    
                     </div>
 
                     <div className="flex h-full w-full flex-col justify-end space-y-[0.5vw]">
                       <ItemContent item={item} activeColor={activeColor} mutedTextStyle={mutedTextStyle} />
                     </div>
                   </div>
-                ))}
+                )}
               </div>
             </div>
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>);
+
 }
