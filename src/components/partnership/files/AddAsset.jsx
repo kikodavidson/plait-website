@@ -8,8 +8,13 @@ import { base44 } from "@/api/base44Client";
 const ACCEPT = "image/*,.pdf,.doc,.docx,.rtf,.txt,.md,.ttf,.otf,.woff,.woff2";
 
 /** The + Add control for a folder: upload files or save a link with an auto-pulled preview. */
-export default function AddAsset({ folder, author, data }) {
+export default function AddAsset({ folder, author, data, autoAddKey = 0 }) {
   const [mode, setMode] = useState(null);
+
+  React.useEffect(() => {
+    if (autoAddKey) setMode("upload");
+  }, [autoAddKey]);
+
   const [url, setUrl] = useState("");
   const [dragOver, setDragOver] = useState(false);
   const [busy, setBusy] = useState(false);

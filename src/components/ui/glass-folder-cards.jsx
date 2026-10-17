@@ -430,6 +430,7 @@ export default function GlassFolder({
   image,
   files: initialFiles = SAMPLE_FILES,
   action = "add",
+  closeOnOutside = true,
   onAdd,
   onFilesChange,
   menu = [],
@@ -560,7 +561,7 @@ export default function GlassFolder({
     const onDown = (e) => {
       const t = e.target
       if (menuOpen && !menuRef.current?.contains(t) && !keyRef.current?.contains(t)) setMenuOpen(false)
-      if (open && !menuOpen && !rootRef.current?.contains(t)) setOpen(false)
+      if (closeOnOutside && open && !menuOpen && !rootRef.current?.contains(t)) setOpen(false)
     }
     document.addEventListener("keydown", onKey)
     document.addEventListener("pointerdown", onDown)
