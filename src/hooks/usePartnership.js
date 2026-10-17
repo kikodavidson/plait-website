@@ -2,6 +2,13 @@ import { useCallback, useEffect, useState } from "react";
 import { base44 } from "@/api/base44Client";
 
 const WORKSPACE = "partnership";
+const DEFAULT_FOLDERS = [
+  { name: "Brand Assets", icon: "palette" },
+  { name: "Inspiration", icon: "sparkles" },
+  { name: "Contracts", icon: "signature" },
+  { name: "Legal & Tax", icon: "scale" },
+  { name: "Reference Files", icon: "library" },
+];
 const byOrder = (list) => [...(list || [])].sort((a, b) => (a.order || 0) - (b.order || 0));
 const byNewest = (list) =>
   [...(list || [])].sort((a, b) => new Date(b.created_date) - new Date(a.created_date));
@@ -15,9 +22,21 @@ export default function usePartnership() {
   const [versions, setVersions] = useState(null);
   const [ideas, setIdeas] = useState(null);
   const [assets, setAssets] = useState(null);
+  const [folders, setFolders] = useState(null);
   const [pending, setPending] = useState(0);
 
   const loadTabs = useCallback(async () => setTabs(byOrder(await base44.entities.PartnershipTab.list())), []);
+  const loadFolders = useCallback(async () => {
+    let list = byOrder(await base44.entities.PartnershipFolder.list());
+    if (list.length === 0) {
+      const res = await base44.entities.PartnershipFolder.bulkCreate(
+        DEFAULT_FOLDERS.map((f, i) => ({ ...f, order: i + 1, workspace: WORKSPACE }))
+      );
+      const created = Array.isArray(res) ? res : res?.records || [];
+      list = byOrder(created);
+    }
+    setFolders(list);
+  }, []);
   const loadSections = useCallback(async () => setSections(byOrder(await base44.entities.PartnershipSection.list())), []);
   const loadNotes = useCallback(async () => setNotes(await base44.entities.PartnershipNote.list()), []);
   const loadTasks = useCallback(async () => setTasks(byOrder(await base44.entities.PartnershipTask.list())), []);
@@ -28,6 +47,7 @@ export default function usePartnership() {
 
   useEffect(() => {
     loadTabs().catch(() => setTabs([]));
+    loadFolders().catch(() => setFolders([]));
     loadSections().catch(() => setSections([]));
     loadNotes().catch(() => setNotes([]));
     loadTasks().catch(() => setTasks([]));
@@ -37,6 +57,7 @@ export default function usePartnership() {
     loadAssets().catch(() => setAssets([]));
     const subs = [
       base44.entities.PartnershipTab.subscribe(() => { loadTabs().catch(() => {}); }),
+      base44.entities.PartnershipFolder.subscribe(() => { loadFolders().catch(() => {}); }),
       base44.entities.PartnershipSection.subscribe(() => { loadSections().catch(() => {}); }),
       base44.entities.PartnershipNote.subscribe(() => { loadNotes().catch(() => {}); }),
       base44.entities.PartnershipTask.subscribe(() => { loadTasks().catch(() => {}); }),
@@ -46,7 +67,7 @@ export default function usePartnership() {
       base44.entities.PartnershipAsset.subscribe(() => { loadAssets().catch(() => {}); }),
     ];
     return () => subs.forEach((unsub) => unsub && unsub());
-  }, [loadTabs, loadSections, loadNotes, loadTasks, loadQuestions, loadVersions, loadIdeas, loadAssets]);
+  }, [loadTabs, loadSections, loadNotes, loadTasks, loadQuestions, loadVersions, loadIdeas, loadAssets, loadFolders]);
 
   const run = useCallback(async (fn) => {
     setPending((n) => n + 1);
@@ -304,6 +325,46 @@ export default function usePartnership() {
     addEntry(question.section_id, question.tab_id,
       `${question.question}\nAnswer: ${question.answer || ""}`, author), [addEntry]);
 
+  // ----- folders (asset library) -----
+  const addFolder = useCallback((name) => run(async () => {
+    const order = (folders || []).reduce((max, f) => Math.max(max, f.order || 0), 0) + 1;
+    const created = await base44.entities.PartnershipFolder.create({
+      name, icon: "library", order, workspace: WORKSPACE,
+    });
+    setFolders((prev) => byOrder([...(prev || []), created]));
+    return created;
+  }), [folders, run]);
+
+  const renameFolder = useCallback((id, name) => run(async () => {
+    replaceIn(setFolders, id, { name });
+    await base44.entities.PartnershipFolder.update(id, { name });
+  }), [run]);
+
+  const moveFolder = useCallback((id, dir) => run(async () => {
+    const sorted = byOrder(folders);
+    const i = sorted.findIndex((f) => f.id === id);
+    const j = i + dir;
+    if (i < 0 || j < 0 || j >= sorted.length) return;
+    const a = sorted[i];
+    const b = sorted[j];
+    setFolders((prev) =>
+      byOrder((prev || []).map((f) =>
+        f.id === a.id ? { ...f, order: b.order } : f.id === b.id ? { ...f, order: a.order } : f
+      ))
+    );
+    await base44.entities.PartnershipFolder.bulkUpdate([
+      { id: a.id, order: b.order },
+      { id: b.id, order: a.order },
+    ]);
+  }), [folders, run]);
+
+  const deleteFolder = useCallback((id) => run(async () => {
+    await base44.entities.PartnershipAsset.deleteMany({ folder_id: id });
+    await base44.entities.PartnershipFolder.delete(id);
+    setFolders((prev) => (prev || []).filter((f) => f.id !== id));
+    setAssets((prev) => (prev || []).filter((a) => a.folder_id !== id));
+  }), [run]);
+
   // ----- assets (folder library) -----
   const addAsset = useCallback((values) => run(async () => {
     const created = await base44.entities.PartnershipAsset.create({ workspace: WORKSPACE, ...values });
@@ -316,6 +377,11 @@ export default function usePartnership() {
     setAssets((prev) => (prev || []).filter((a) => a.id !== id));
   }), [run]);
 
+  const updateAsset = useCallback((id, patch) => run(async () => {
+    replaceIn(setAssets, id, patch);
+    await base44.entities.PartnershipAsset.update(id, patch);
+  }), [run]);
+
   return {
     tabs: tabs || [],
     sections: sections || [],
@@ -324,7 +390,7 @@ export default function usePartnership() {
     questions: questions || [],
     versions: versions || [],
     ideas: ideas || [],
-    loaded: tabs !== null && sections !== null && notes !== null && tasks !== null && questions !== null && versions !== null && ideas !== null && assets !== null,
+    loaded: tabs !== null && sections !== null && notes !== null && tasks !== null && questions !== null && versions !== null && ideas !== null && assets !== null && folders !== null,
     saving: pending > 0,
     addTab, renameTab, moveTab, deleteTab,
     addSection, renameSection, moveSection, deleteSection,
@@ -333,7 +399,9 @@ export default function usePartnership() {
     addEntry, updateEntry, deleteEntry,
     addTask, updateTask, deleteTask,
     addQuestion, updateQuestion, deleteQuestion, questionToLog,
+    folders: folders || [],
     assets: assets || [],
-    addAsset, deleteAsset,
+    addFolder, renameFolder, moveFolder, deleteFolder,
+    addAsset, deleteAsset, updateAsset,
   };
 }

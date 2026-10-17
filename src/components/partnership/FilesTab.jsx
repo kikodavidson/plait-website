@@ -1,76 +1,50 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
+import { Plus } from "lucide-react";
 import { base44 } from "@/api/base44Client";
-import GlassFolder from "@/components/ui/glass-folder-cards";
-import AssetPanel, { assetMeta } from "./AssetPanel";
 import { useAuth } from "@/lib/AuthContext";
+import PanelEditor from "./PanelEditor";
+import FolderRow from "./files/FolderRow";
 
-const FOLDERS = [
-  { id: "brand", label: "Brand assets", art: "aurora", seed: 3, appearDelay: 0 },
-  { id: "contracts", label: "Contracts", art: "none", labelPlacement: "top-left", appearDelay: 140 },
-  { id: "reference", label: "Reference files", tone: "dark", art: "ember", seed: 11, labelPlacement: "top-right", appearDelay: 280 },
-];
+const LEGACY_FOLDER_NAMES = { brand: "Brand Assets", contracts: "Contracts", reference: "Reference Files" };
 
-/** Branding assets, contracts, and reference files for the partnership. */
+/** Shared asset library: folders that expand in place, holding links and files. */
 export default function FilesTab({ data }) {
   const { user } = useAuth();
   const [openId, setOpenId] = useState(null);
-  const [busy, setBusy] = useState(false);
+  const [signed, setSigned] = useState({});
+  const [adding, setAdding] = useState(false);
+  const [draft, setDraft] = useState("");
 
   const first = (user?.full_name || user?.email || "").split(" ")[0];
   const author = ["Luke", "Max"].includes(first) ? first : user?.role === "admin" ? "Luke" : "Max";
 
-  const cards = useMemo(() => {
-    const map = {};
-    FOLDERS.forEach((f) => {
-      map[f.id] = (data.assets || [])
-        .filter((a) => a.folder === f.id)
-        .map((a) => ({ name: a.title, meta: assetMeta(a), asset: a }));
+  // move records saved under the old fixed folders onto the matching folder
+  useEffect(() => {
+    if (!data.loaded) return;
+    data.assets.forEach((a) => {
+      if (a.folder_id || !LEGACY_FOLDER_NAMES[a.folder]) return;
+      const folder = data.folders.find((f) => f.name === LEGACY_FOLDER_NAMES[a.folder]);
+      if (folder) data.updateAsset(a.id, { folder_id: folder.id });
     });
-    return map;
-  }, [data.assets]);
+  }, [data.loaded, data.assets, data.folders, data.updateAsset]);
 
-  const openAsset = async (a) => {
-    if (a.kind === "link") {
-      window.open(a.url, "_blank", "noopener,noreferrer");
-      return;
-    }
-    setBusy(true);
-    try {
-      const res = await base44.integrations.Core.CreateFileSignedUrl({ file_uri: a.file_uri });
-      if (res?.signed_url) window.open(res.signed_url, "_blank", "noopener,noreferrer");
-    } finally {
-      setBusy(false);
-    }
+  const ensureSigned = async (asset) => {
+    if (!asset.file_uri) return null;
+    if (signed[asset.id]) return signed[asset.id];
+    const res = await base44.integrations.Core.CreateFileSignedUrl({ file_uri: asset.file_uri, expires_in: 3600 });
+    setSigned((s) => ({ ...s, [asset.id]: res.signed_url }));
+    return res.signed_url;
   };
 
-  const addLink = async (folderId, title, url) => {
-    await data.addAsset({ folder: folderId, title, kind: "link", url, added_by: author });
+  const createFolder = () => {
+    const name = draft.trim();
+    if (name) data.addFolder(name);
+    setDraft("");
+    setAdding(false);
   };
-
-  const addUpload = async (folderId, title, file) => {
-    setBusy(true);
-    try {
-      const up = await base44.integrations.Core.UploadPrivateFile({ file });
-      await data.addAsset({
-        folder: folderId,
-        title,
-        kind: "file",
-        file_uri: up.file_uri,
-        file_name: file.name,
-        file_size: file.size,
-        added_by: author,
-      });
-    } finally {
-      setBusy(false);
-    }
-  };
-
-  const active = FOLDERS.find((f) => f.id === openId) || null;
 
   return (
-    <div
-      className="relative flex w-full flex-col items-center overflow-hidden rounded-2xl px-4 py-10 sm:px-6"
-    >
+    <div className="relative w-full overflow-hidden rounded-2xl px-4 py-8 sm:px-6">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 text-foreground opacity-[0.10]"
@@ -79,47 +53,49 @@ export default function FilesTab({ data }) {
           backgroundSize: "22px 22px",
         }}
       />
-      <div className="relative grid w-full max-w-[1180px] grid-cols-1 items-end justify-items-center gap-x-10 gap-y-10 sm:grid-cols-2 xl:grid-cols-3">
-        {FOLDERS.map((f) => (
-          <GlassFolder
-            key={f.id}
-            label={f.label}
-            art={f.art}
-            seed={f.seed}
-            tone={f.tone}
-            labelPlacement={f.labelPlacement}
-            appearDelay={f.appearDelay}
-            files={cards[f.id]}
-            onAdd={() => {
-              setOpenId(f.id);
-              return false;
-            }}
-            onOpenChange={(o) => {
-              if (o) setOpenId(f.id);
-            }}
-            onFileSelect={(card) => card.asset && openAsset(card.asset)}
-          />
-        ))}
-      </div>
-
-      {active && (
-        <div className="relative mt-10 flex w-full justify-center">
-          <AssetPanel
-            folder={active}
-            assets={(data.assets || []).filter((a) => a.folder === active.id)}
-            busy={busy}
-            onAddLink={addLink}
-            onAddFile={addUpload}
-            onOpenAsset={openAsset}
-            onDelete={(id) => data.deleteAsset(id)}
-            onClose={() => setOpenId(null)}
-          />
+      <div className="relative mx-auto w-full max-w-[860px]">
+        <div className="mb-4 flex items-center justify-between">
+          <h3 className="text-[18px] font-semibold text-[#1a1a1a]">Files</h3>
+          <button
+            onClick={() => setAdding((v) => !v)}
+            className="inline-flex h-8 items-center gap-1 rounded-lg bg-[#00E676] px-2.5 text-[12px] font-semibold text-[#0c130e] transition-opacity hover:opacity-90"
+          >
+            <Plus className="h-3.5 w-3.5" /> New folder
+          </button>
         </div>
-      )}
 
-      <p className="relative mt-12 text-center text-[12px] text-[#6b6b6b]">
-        Hover to lean · Click to open · + to add
-      </p>
+        {adding && (
+          <div className="mb-4">
+            <PanelEditor
+              value={draft}
+              onChange={setDraft}
+              onSave={createFolder}
+              onCancel={() => setAdding(false)}
+              placeholder="Folder name"
+            />
+          </div>
+        )}
+
+        <div className="space-y-2">
+          {data.folders.map((f) => (
+            <FolderRow
+              key={f.id}
+              folder={f}
+              folders={data.folders}
+              assets={data.assets.filter((a) => a.folder_id === f.id)}
+              open={openId === f.id}
+              onToggle={() => setOpenId(openId === f.id ? null : f.id)}
+              data={data}
+              author={author}
+              signed={signed}
+              ensureSigned={ensureSigned}
+            />
+          ))}
+          {data.folders.length === 0 && !adding && (
+            <p className="py-6 text-center text-[13px] text-[#9a9a9a]">No folders yet — create your first one.</p>
+          )}
+        </div>
+      </div>
     </div>
   );
 }
