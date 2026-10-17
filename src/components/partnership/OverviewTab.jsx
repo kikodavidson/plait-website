@@ -3,9 +3,18 @@ import moment from "moment";
 import { STAGES } from "./stageMeta";
 import SheenPill from "./SheenPill";
 
-const Card = ({ title, children, className }) => (
+const GLOWS = {
+  green: "hover:border-[#619e80]/40 hover:shadow-[0_0_0_1px_rgba(97,158,128,0.12),0_10px_36px_-8px_rgba(97,158,128,0.28)]",
+  blush: "hover:border-[#EE9CB4]/50 hover:shadow-[0_0_0_1px_rgba(238,156,180,0.12),0_10px_36px_-8px_rgba(238,156,180,0.30)]",
+  amber: "hover:border-[#d9a400]/45 hover:shadow-[0_0_0_1px_rgba(217,164,0,0.12),0_10px_36px_-8px_rgba(217,164,0,0.24)]",
+  blue: "hover:border-[#6E99AE]/45 hover:shadow-[0_0_0_1px_rgba(110,153,174,0.12),0_10px_36px_-8px_rgba(110,153,174,0.30)]",
+  sky: "hover:border-[#AEB8EE]/60 hover:shadow-[0_0_0_1px_rgba(174,184,238,0.14),0_10px_36px_-8px_rgba(174,184,238,0.38)]",
+  seafoam: "hover:border-[#B8EBA0]/60 hover:shadow-[0_0_0_1px_rgba(184,235,160,0.14),0_10px_36px_-8px_rgba(184,235,160,0.38)]",
+};
+
+const Card = ({ title, children, className, glow = "green" }) => (
   <div
-    className={`rounded-2xl border border-[#e5e2dc] p-5 sm:p-6 transition-[border-color,box-shadow] duration-300 ease-out hover:border-[#619e80]/40 hover:shadow-[0_0_0_1px_rgba(97,158,128,0.12),0_10px_36px_-8px_rgba(97,158,128,0.28)] ${className || ""}`}
+    className={`rounded-2xl border border-[#e5e2dc] p-5 sm:p-6 transition-[border-color,box-shadow] duration-300 ease-out ${GLOWS[glow]} ${className || ""}`}
   >
     <h3 className="mb-4 text-[17px]">{title}</h3>
     {children}
@@ -57,7 +66,7 @@ export default function OverviewTab({ data, userName, onSelectTab }) {
         })}
       </Card>
 
-      <Card title="Needs your approval">
+      <Card title="Needs your approval" glow="blush">
         {needsMe.length === 0 ? (
           <p className="text-[15px] text-[#6b6b6b]">Nothing waiting on you right now.</p>
         ) : (
@@ -74,7 +83,7 @@ export default function OverviewTab({ data, userName, onSelectTab }) {
         )}
       </Card>
 
-      <Card title="Recently reopened">
+      <Card title="Recently reopened" glow="amber">
         {reopens.length === 0 ? (
           <p className="text-[15px] text-[#6b6b6b]">Nothing reopened recently.</p>
         ) : (
@@ -95,7 +104,7 @@ export default function OverviewTab({ data, userName, onSelectTab }) {
         )}
       </Card>
 
-      <Card title="Locked">
+      <Card title="Locked" glow="blue">
         {locked.length === 0 ? (
           <p className="text-[15px] text-[#6b6b6b]">Nothing locked yet.</p>
         ) : (
@@ -112,7 +121,7 @@ export default function OverviewTab({ data, userName, onSelectTab }) {
         )}
       </Card>
 
-      <Card title="Due this week">
+      <Card title="Due this week" glow="sky">
         {dueThisWeek.length === 0 ? (
           <p className="text-[15px] text-[#6b6b6b]">Nothing due this week.</p>
         ) : (
@@ -134,7 +143,7 @@ export default function OverviewTab({ data, userName, onSelectTab }) {
         )}
       </Card>
 
-      <Card title="Open questions" className="md:col-span-2">
+      <Card title="Open questions" className="md:col-span-2" glow="seafoam">
         <ul className="grid gap-2.5 sm:grid-cols-2">
           {tabs.map((tab) => {
             const open = questions.filter((q) => q.tab_id === tab.id && !q.resolved).length;
