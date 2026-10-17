@@ -1,0 +1,107 @@
+{
+  "name": "PartnershipAsset",
+  "type": "object",
+  "properties": {
+    "folder": {
+      "type": "string",
+      "enum": [
+        "brand",
+        "contracts",
+        "reference"
+      ],
+      "description": "Folder the asset lives in: brand assets, contracts, or reference files"
+    },
+    "title": {
+      "type": "string",
+      "description": "Display title of the asset"
+    },
+    "kind": {
+      "type": "string",
+      "enum": [
+        "link",
+        "file"
+      ],
+      "description": "Whether this asset is a website link or an uploaded file"
+    },
+    "url": {
+      "type": "string",
+      "description": "External website URL for link assets"
+    },
+    "file_uri": {
+      "type": "string",
+      "description": "Private storage URI of the uploaded file"
+    },
+    "file_name": {
+      "type": "string",
+      "description": "Original uploaded file name"
+    },
+    "file_size": {
+      "type": "number",
+      "description": "Uploaded file size in bytes"
+    },
+    "added_by": {
+      "type": "string",
+      "description": "Display name of the partner who added the asset"
+    },
+    "workspace": {
+      "type": "string",
+      "default": "partnership",
+      "description": "Workspace scope marker used by RLS"
+    }
+  },
+  "required": [
+    "folder",
+    "title",
+    "kind"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "data.workspace": "{{user.data.client_slug}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "create": {
+      "$or": [
+        {
+          "data.workspace": "{{user.data.client_slug}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "data.workspace": "{{user.data.client_slug}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "data.workspace": "{{user.data.client_slug}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}

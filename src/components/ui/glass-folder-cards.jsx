@@ -458,6 +458,15 @@ export default function GlassFolder({
   const [dropped, setDropped] = React.useState(null)
   const [bump, setBump] = React.useState(0)
 
+  // stay in step with a `files` prop that changes (real data arriving asynchronously)
+  React.useEffect(() => {
+    if (files.length === initialFiles.length && files.every((f, i) => f === initialFiles[i])) return
+    setFiles(initialFiles)
+    ids.current = initialFiles.map((_, i) => i)
+    nextId.current = initialFiles.length
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [initialFiles])
+
   const [openState, setOpenState] = React.useState(defaultOpen)
   const open = openProp ?? openState
   const setOpen = React.useCallback(
@@ -568,6 +577,7 @@ export default function GlassFolder({
 
   const addFile = () => {
     const made = onAdd?.(files)
+    if (made === false) return // the caller opened its own add flow
     const file = made || { name: "Untitled " + (files.length + 1), meta: "Just now" }
     const next = [...files, file]
     const id = nextId.current++

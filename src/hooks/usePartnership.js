@@ -14,6 +14,7 @@ export default function usePartnership() {
   const [questions, setQuestions] = useState(null);
   const [versions, setVersions] = useState(null);
   const [ideas, setIdeas] = useState(null);
+  const [assets, setAssets] = useState(null);
   const [pending, setPending] = useState(0);
 
   const loadTabs = useCallback(async () => setTabs(byOrder(await base44.entities.PartnershipTab.list())), []);
@@ -23,6 +24,7 @@ export default function usePartnership() {
   const loadQuestions = useCallback(async () => setQuestions(byOrder(await base44.entities.PartnershipQuestion.list())), []);
   const loadVersions = useCallback(async () => setVersions(byNewest(await base44.entities.PartnershipVersion.list())), []);
   const loadIdeas = useCallback(async () => setIdeas(await base44.entities.PartnershipIdea.list()), []);
+  const loadAssets = useCallback(async () => setAssets(await base44.entities.PartnershipAsset.list()), []);
 
   useEffect(() => {
     loadTabs().catch(() => setTabs([]));
@@ -32,6 +34,7 @@ export default function usePartnership() {
     loadQuestions().catch(() => setQuestions([]));
     loadVersions().catch(() => setVersions([]));
     loadIdeas().catch(() => setIdeas([]));
+    loadAssets().catch(() => setAssets([]));
     const subs = [
       base44.entities.PartnershipTab.subscribe(() => { loadTabs().catch(() => {}); }),
       base44.entities.PartnershipSection.subscribe(() => { loadSections().catch(() => {}); }),
@@ -40,9 +43,10 @@ export default function usePartnership() {
       base44.entities.PartnershipQuestion.subscribe(() => { loadQuestions().catch(() => {}); }),
       base44.entities.PartnershipVersion.subscribe(() => { loadVersions().catch(() => {}); }),
       base44.entities.PartnershipIdea.subscribe(() => { loadIdeas().catch(() => {}); }),
+      base44.entities.PartnershipAsset.subscribe(() => { loadAssets().catch(() => {}); }),
     ];
     return () => subs.forEach((unsub) => unsub && unsub());
-  }, [loadTabs, loadSections, loadNotes, loadTasks, loadQuestions, loadVersions, loadIdeas]);
+  }, [loadTabs, loadSections, loadNotes, loadTasks, loadQuestions, loadVersions, loadIdeas, loadAssets]);
 
   const run = useCallback(async (fn) => {
     setPending((n) => n + 1);
@@ -300,6 +304,18 @@ export default function usePartnership() {
     addEntry(question.section_id, question.tab_id,
       `${question.question}\nAnswer: ${question.answer || ""}`, author), [addEntry]);
 
+  // ----- assets (folder library) -----
+  const addAsset = useCallback((values) => run(async () => {
+    const created = await base44.entities.PartnershipAsset.create({ workspace: WORKSPACE, ...values });
+    setAssets((prev) => [created, ...(prev || [])]);
+    return created;
+  }), [run]);
+
+  const deleteAsset = useCallback((id) => run(async () => {
+    await base44.entities.PartnershipAsset.delete(id);
+    setAssets((prev) => (prev || []).filter((a) => a.id !== id));
+  }), [run]);
+
   return {
     tabs: tabs || [],
     sections: sections || [],
@@ -308,7 +324,7 @@ export default function usePartnership() {
     questions: questions || [],
     versions: versions || [],
     ideas: ideas || [],
-    loaded: tabs !== null && sections !== null && notes !== null && tasks !== null && questions !== null && versions !== null && ideas !== null,
+    loaded: tabs !== null && sections !== null && notes !== null && tasks !== null && questions !== null && versions !== null && ideas !== null && assets !== null,
     saving: pending > 0,
     addTab, renameTab, moveTab, deleteTab,
     addSection, renameSection, moveSection, deleteSection,
@@ -317,5 +333,7 @@ export default function usePartnership() {
     addEntry, updateEntry, deleteEntry,
     addTask, updateTask, deleteTask,
     addQuestion, updateQuestion, deleteQuestion, questionToLog,
+    assets: assets || [],
+    addAsset, deleteAsset,
   };
 }

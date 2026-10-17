@@ -104,7 +104,7 @@ export default function PartnershipHQ() {
               )}
               {view === "agenda" && <AgendaTab data={data} userName={userName} />}
               {view === "tasks" && <OutstandingTasksTab data={data} />}
-              {view === "files" && <FilesTab />}
+              {view === "files" && <FilesTab data={data} />}
               {view === "section" && activeSection && (
                 <SectionView
                   section={activeSection}
