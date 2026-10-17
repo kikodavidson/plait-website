@@ -60,9 +60,9 @@ export default function IdeaCard({ idea, data, userName }) {
         <button
           onClick={() => data.makeFinal(idea)}
           className="inline-flex items-center gap-1.5 text-[13px] font-semibold transition-opacity hover:opacity-75"
-          style={{ color: ACCENT }}
+          style={{ color: ACCENT_TEXT === "#0c130e" ? "#0c5c34" : ACCENT }}
         >
-          <ArrowUpToLine className="h-3.5 w-3.5" /> Make final
+          <ArrowUpToLine className="h-3.5 w-3.5" /> Make this the final version
         </button>
         <button
           onClick={() => data.deleteIdea(idea.id)}

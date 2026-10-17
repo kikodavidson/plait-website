@@ -1,35 +1,28 @@
 import React, { useEffect, useState } from "react";
-import {
-  Clock,
-  Folder,
-  HelpCircle,
-  Home,
-  ListTodo,
-  Pencil,
-} from "lucide-react";
+import { Menu } from "lucide-react";
 import { useAuth } from "@/lib/AuthContext";
 import usePartnership from "@/hooks/usePartnership";
-import usePartnerPhotos from "@/hooks/usePartnerPhotos";
-import { SidebarWithTabs } from "@/components/ui/sidebar-with-chrome-like-tabs";
-import PartnershipContent from "@/components/partnership/PartnershipContent";
-import { STAGE_DOTS } from "@/components/partnership/stageMeta";
-import { ACCENT } from "@/components/partnership/accent";
+import TopBar from "@/components/partnership/TopBar";
+import DocsSidebar from "@/components/partnership/DocsSidebar";
+import OverviewTab from "@/components/partnership/OverviewTab";
+import AgendaTab from "@/components/partnership/AgendaTab";
+import OutstandingTasksTab from "@/components/partnership/OutstandingTasksTab";
+import FilesTab from "@/components/partnership/FilesTab";
+import TimelineTab from "@/components/partnership/TimelineTab";
+import SectionView from "@/components/partnership/SectionView";
+import SectionPanel from "@/components/partnership/SectionPanel";
 import NoAccess from "@/components/partnership/NoAccess";
 import SignInWall from "@/components/partnership/SignInWall";
 import InvitePartnerDialog from "@/components/partnership/InvitePartnerDialog";
+import HalftoneHeader from "@/components/partnership/HalftoneHeader";
 
 export default function PartnershipHQ() {
   const { user, isLoadingAuth } = useAuth();
   const data = usePartnership();
+  const [view, setView] = useState("overview");
+  const [sectionId, setSectionId] = useState(null);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const [inviteOpen, setInviteOpen] = useState(false);
-
-  const first = (user?.full_name || user?.email || "").split(" ")[0];
-  const userName = ["Luke", "Max"].includes(first)
-    ? first
-    : user?.role === "admin"
-      ? "Luke"
-      : "Max";
-  const [photos] = usePartnerPhotos(user, userName);
 
   useEffect(() => {
     const meta = document.createElement("meta");
@@ -51,107 +44,117 @@ export default function PartnershipHQ() {
   if (!user) return <SignInWall />;
   if (user.role !== "admin" && slug !== "partnership") return <NoAccess />;
 
-  if (!data.loaded) {
-    return (
-      <div className="flex min-h-screen items-center justify-center bg-sidebar">
-        <div className="h-7 w-7 animate-spin rounded-full border-4 border-[#e5e2dc] border-t-[#2d6a4f]" />
-      </div>
-    );
-  }
+  const first = (user.full_name || user.email || "").split(" ")[0];
+  const userName = ["Luke", "Max"].includes(first) ? first : user.role === "admin" ? "Luke" : "Max";
 
-  const openQuestions = (sectionId) =>
-    data.questions.filter((q) => q.section_id === sectionId && !q.resolved).length;
-  const totalOpen = data.questions.filter((q) => !q.resolved).length;
-  const openTasks = data.tasks.filter((t) => t.status !== "done").length;
+  const activeSection = sectionId ? data.sections.find((s) => s.id === sectionId) : null;
+  const tabName = (data.tabs.find((t) => t.id === activeSection?.tab_id) || {}).name || "";
 
-  const navItems = [
-    { id: "overview", label: "Overview", icon: Home },
-    { id: "timeline", label: "Timeline", icon: Clock },
-    { id: "d1", label: "", kind: "divider" },
-    ...data.tabs.map((tab) => ({
-      id: `group:${tab.id}`,
-      label: tab.name,
-      kind: "group",
-      children: data.sections
-        .filter((s) => s.tab_id === tab.id)
-        .map((s) => ({
-          id: `section:${s.id}`,
-          label: s.name,
-          dot: STAGE_DOTS[s.stage] || "#9a9a9a",
-          badge: openQuestions(s.id) || undefined,
-        })),
-    })),
-    { id: "d2", label: "", kind: "divider" },
-    { id: "questions", label: "Open questions", icon: HelpCircle, badge: totalOpen || undefined },
-    { id: "tasks", label: "Outstanding tasks", icon: ListTodo, badge: openTasks || undefined },
-    { id: "files", label: "Files", icon: Folder },
-    { id: "edittabs", label: "Edit tabs", icon: Pencil },
-  ];
-
-  const addChild = async (groupId) => {
-    const tabId = groupId.replace("group:", "");
-    const created = await data.addSection(tabId, "New section");
-    return created ? `section:${created.id}` : undefined;
+  const selectSection = (id) => {
+    setSectionId(id);
+    setView("section");
+  };
+  const selectView = (v) => {
+    setView(v);
+    if (v !== "section") setSectionId(null);
+  };
+  const openTabFirstSection = (tabId) => {
+    const firstSection = data.sections.find((s) => s.tab_id === tabId);
+    if (firstSection) selectSection(firstSection.id);
   };
 
-  const logo = (
-    <div
-      className="flex h-8 w-8 items-center justify-center rounded-lg text-sm font-bold"
-      style={{ backgroundColor: ACCENT, color: "#ffffff" }}
-    >
-      P
-    </div>
-  );
-
-  const footer = (
-    <div className="flex w-full items-center gap-2">
-      <div className="flex shrink-0 -space-x-1.5">
-        {["Luke", "Max"].map((name) => (
-          <span key={name} className="relative h-7 w-7 rounded-full ring-2 ring-sidebar">
-            {photos[name] ? (
-              <img src={photos[name]} alt={name} className="h-full w-full rounded-full object-cover" />
-            ) : (
-              <span
-                className="flex h-full w-full items-center justify-center rounded-full bg-[#e8f0eb] text-[11px] font-bold text-[#2d6a4f]"
-              >
-                {name[0]}
-              </span>
-            )}
-          </span>
-        ))}
-      </div>
-      <div className="min-w-0 flex-1 overflow-hidden">
-        <p className="truncate text-[12px] font-semibold text-sidebar-foreground">
-          Signed in as {userName}
-        </p>
-        {data.saving && <p className="text-[10px] text-muted-foreground">Saving…</p>}
-      </div>
-      <button
-        onClick={() => setInviteOpen(true)}
-        className="shrink-0 rounded-full px-2.5 py-1 text-[11px] font-semibold text-white hover:opacity-90"
-        style={{ backgroundColor: ACCENT }}
-      >
-        Invite
-      </button>
-    </div>
-  );
-
   return (
-    <div
-      className="min-h-screen bg-sidebar"
-      style={{ "--sidebar-primary": "153 40% 30%", "--sidebar-ring": "153 40% 30%" }}
-    >
-      <SidebarWithTabs
-        logo={logo}
-        companyName="Partnership HQ"
-        navItems={navItems}
-        renderContent={(navId) => (
-          <PartnershipContent navId={navId} data={data} userName={userName} user={user} />
+    <div className="min-h-screen bg-white text-[#1a1a1a]">
+      <HalftoneHeader />
+      <div className="mx-auto max-w-[1440px] px-5 pb-24 pt-10 sm:px-8">
+        <div className="flex items-start gap-3">
+          <button
+            onClick={() => setSidebarOpen(true)}
+            className="mt-2 rounded-lg p-1.5 text-[#6b6b6b] transition-colors hover:bg-[#f4f2ef] hover:text-[#1a1a1a] xl:hidden"
+            aria-label="Open menu"
+          >
+            <Menu className="h-5 w-5" />
+          </button>
+          <div className="min-w-0 flex-1">
+            <TopBar user={user} saving={data.saving} onInvite={() => setInviteOpen(true)} />
+          </div>
+        </div>
+
+        {!data.loaded ? (
+          <div className="mt-16 flex justify-center">
+            <div className="h-7 w-7 animate-spin rounded-full border-4 border-[#e5e2dc] border-t-[#619e80]" />
+          </div>
+        ) : (
+          <div className="mt-8 flex flex-col gap-12 xl:flex-row xl:gap-10">
+            <aside className="hidden shrink-0 xl:block xl:w-[260px]">
+              <div className="sticky top-6 max-h-[calc(100vh-3rem)] overflow-y-auto pb-8">
+                <DocsSidebar
+                  data={data}
+                  view={view}
+                  activeSectionId={sectionId}
+                  onSelectView={selectView}
+                  onSelectSection={selectSection}
+                />
+              </div>
+            </aside>
+
+            <main className="min-w-0 flex-1">
+              {view === "overview" && (
+                <OverviewTab data={data} userName={userName} onSelectTab={openTabFirstSection} />
+              )}
+              {view === "agenda" && <AgendaTab data={data} userName={userName} />}
+              {view === "tasks" && <OutstandingTasksTab data={data} />}
+              {view === "files" && <FilesTab />}
+              {view === "section" && activeSection && (
+                <SectionView
+                  section={activeSection}
+                  tabName={tabName}
+                  data={data}
+                  userName={userName}
+                  user={user}
+                  onDeleted={() => {
+                    setSectionId(null);
+                    setView("overview");
+                  }}
+                />
+              )}
+              {view === "section" && !activeSection && (
+                <p className="py-10 text-[15px] text-[#6b6b6b]">This section no longer exists.</p>
+              )}
+              {view === "timeline" && (
+                <p className="py-6 text-[15px] text-[#6b6b6b]">Scroll down for the launch timeline.</p>
+              )}
+            </main>
+
+            {view === "section" && activeSection && (
+              <aside className="w-full shrink-0 xl:w-[320px]">
+                <div className="xl:sticky xl:top-6">
+                  <SectionPanel section={activeSection} data={data} userName={userName} />
+                </div>
+              </aside>
+            )}
+          </div>
         )}
-        defaultNavId="overview"
-        onAddChild={addChild}
-        footer={footer}
-      />
+      </div>
+
+      {view === "timeline" && data.loaded && <TimelineTab />}
+
+      {sidebarOpen && (
+        <div className="fixed inset-0 z-50 xl:hidden">
+          <div className="absolute inset-0 bg-black/20" onClick={() => setSidebarOpen(false)} />
+          <div className="absolute inset-y-0 left-0 w-[290px] overflow-y-auto bg-white p-5 shadow-xl">
+            <DocsSidebar
+              data={data}
+              view={view}
+              activeSectionId={sectionId}
+              onSelectView={selectView}
+              onSelectSection={selectSection}
+              onClose={() => setSidebarOpen(false)}
+            />
+          </div>
+        </div>
+      )}
+
       <InvitePartnerDialog open={inviteOpen} onClose={() => setInviteOpen(false)} />
     </div>
   );
