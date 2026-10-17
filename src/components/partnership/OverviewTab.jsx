@@ -4,12 +4,12 @@ import { STAGES } from "./stageMeta";
 import SheenPill from "./SheenPill";
 
 const GLOWS = {
-  green: "hover:border-[#619e80]/40 hover:shadow-[0_0_0_1px_rgba(97,158,128,0.12),0_10px_36px_-8px_rgba(97,158,128,0.28)]",
-  blush: "hover:border-[#EE9CB4]/50 hover:shadow-[0_0_0_1px_rgba(238,156,180,0.12),0_10px_36px_-8px_rgba(238,156,180,0.30)]",
-  amber: "hover:border-[#d9a400]/45 hover:shadow-[0_0_0_1px_rgba(217,164,0,0.12),0_10px_36px_-8px_rgba(217,164,0,0.24)]",
-  blue: "hover:border-[#6E99AE]/45 hover:shadow-[0_0_0_1px_rgba(110,153,174,0.12),0_10px_36px_-8px_rgba(110,153,174,0.30)]",
-  sky: "hover:border-[#AEB8EE]/60 hover:shadow-[0_0_0_1px_rgba(174,184,238,0.14),0_10px_36px_-8px_rgba(174,184,238,0.38)]",
-  seafoam: "hover:border-[#B8EBA0]/60 hover:shadow-[0_0_0_1px_rgba(184,235,160,0.14),0_10px_36px_-8px_rgba(184,235,160,0.38)]",
+  green: "hover:border-[#619e80]/50 hover:shadow-[0_0_0_1px_rgba(97,158,128,0.18),0_14px_44px_-10px_rgba(97,158,128,0.45),0_0_24px_-2px_rgba(97,158,128,0.20)]",
+  blush: "hover:border-[#EE9CB4]/60 hover:shadow-[0_0_0_1px_rgba(238,156,180,0.18),0_14px_44px_-10px_rgba(238,156,180,0.48),0_0_24px_-2px_rgba(238,156,180,0.22)]",
+  amber: "hover:border-[#d9a400]/55 hover:shadow-[0_0_0_1px_rgba(217,164,0,0.16),0_14px_44px_-10px_rgba(217,164,0,0.38),0_0_24px_-2px_rgba(217,164,0,0.16)]",
+  blue: "hover:border-[#6E99AE]/55 hover:shadow-[0_0_0_1px_rgba(110,153,174,0.18),0_14px_44px_-10px_rgba(110,153,174,0.48),0_0_24px_-2px_rgba(110,153,174,0.22)]",
+  sky: "hover:border-[#AEB8EE]/70 hover:shadow-[0_0_0_1px_rgba(174,184,238,0.20),0_14px_44px_-10px_rgba(174,184,238,0.55),0_0_24px_-2px_rgba(174,184,238,0.28)]",
+  seafoam: "hover:border-[#B8EBA0]/70 hover:shadow-[0_0_0_1px_rgba(184,235,160,0.20),0_14px_44px_-10px_rgba(184,235,160,0.55),0_0_24px_-2px_rgba(184,235,160,0.28)]",
 };
 
 const Card = ({ title, children, className, glow = "green" }) => (
