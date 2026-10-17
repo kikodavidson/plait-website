@@ -4,7 +4,9 @@ import { STAGES } from "./stageMeta";
 import SheenPill from "./SheenPill";
 
 const Card = ({ title, children, className }) => (
-  <div className={`rounded-2xl border border-[#e5e2dc] p-5 sm:p-6 ${className || ""}`}>
+  <div
+    className={`rounded-2xl border border-[#e5e2dc] p-5 sm:p-6 transition-[border-color,box-shadow] duration-300 ease-out hover:border-[#619e80]/40 hover:shadow-[0_0_0_1px_rgba(97,158,128,0.12),0_10px_36px_-8px_rgba(97,158,128,0.28)] ${className || ""}`}
+  >
     <h3 className="mb-4 text-[17px]">{title}</h3>
     {children}
   </div>
