@@ -3,7 +3,7 @@ import { Pencil, Plus } from "lucide-react";
 import { ACCENT, ACCENT_TEXT } from "./accent";
 
 const DEFAULT_QUESTIONS = {
-  "North Star": "What would we turn down a deal over?",
+  "North Star": "what type of people in business do we want to be",
   Values: "What do we always do, even when it costs us?",
   "Origin Story": "Why did we start this?",
   Name: "What should people feel when they hear it?",
