@@ -54,6 +54,11 @@
           "data.workspace": "{{user.data.client_slug}}"
         },
         {
+          "data.workspace": {
+            "$in": "{{user.data.workspaces}}"
+          }
+        },
+        {
           "user_condition": {
             "role": "admin"
           }
@@ -64,6 +69,11 @@
       "$or": [
         {
           "data.workspace": "{{user.data.client_slug}}"
+        },
+        {
+          "data.workspace": {
+            "$in": "{{user.data.workspaces}}"
+          }
         },
         {
           "user_condition": {
@@ -78,6 +88,11 @@
           "data.workspace": "{{user.data.client_slug}}"
         },
         {
+          "data.workspace": {
+            "$in": "{{user.data.workspaces}}"
+          }
+        },
+        {
           "user_condition": {
             "role": "admin"
           }
@@ -88,6 +103,11 @@
       "$or": [
         {
           "data.workspace": "{{user.data.client_slug}}"
+        },
+        {
+          "data.workspace": {
+            "$in": "{{user.data.workspaces}}"
+          }
         },
         {
           "user_condition": {
