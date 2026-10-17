@@ -248,6 +248,11 @@ export default function usePartnership() {
     setNotes((prev) => [created, ...(prev || [])]);
   }), [run]);
 
+  const updateEntry = useCallback((id, patch) => run(async () => {
+    replaceIn(setNotes, id, patch);
+    await base44.entities.PartnershipNote.update(id, patch);
+  }), [run]);
+
   const deleteEntry = useCallback((id) => run(async () => {
     await base44.entities.PartnershipNote.delete(id);
     setNotes((prev) => (prev || []).filter((n) => n.id !== id));
@@ -309,7 +314,7 @@ export default function usePartnership() {
     addSection, renameSection, moveSection, deleteSection,
     setStage, saveContent, approve, unapprove, reopen,
     addIdea, deleteIdea, voteIdea, makeFinal, setGuidingQuestion,
-    addEntry, deleteEntry,
+    addEntry, updateEntry, deleteEntry,
     addTask, updateTask, deleteTask,
     addQuestion, updateQuestion, deleteQuestion, questionToLog,
   };
