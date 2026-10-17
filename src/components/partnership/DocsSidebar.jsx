@@ -12,9 +12,11 @@ import {
   Pencil,
   Plus,
   Trash2,
+  Users,
   X,
 } from "lucide-react";
 import { STAGES } from "./stageMeta";
+import { notContacted } from "./leads/leadMeta";
 
 const DOT = {
   not_started: "#9a9a9a",
@@ -169,6 +171,13 @@ export default function DocsSidebar({
       <nav className="space-y-0.5">
         <NavItem icon={Home} label="Overview" active={view === "overview"} onClick={() => pickView("overview")} />
         <NavItem icon={Clock} label="Timeline" active={view === "timeline"} onClick={() => pickView("timeline")} />
+        <NavItem
+          icon={Users}
+          label="Leads"
+          count={data.leads.filter(notContacted).length}
+          active={view === "leads"}
+          onClick={() => pickView("leads")}
+        />
       </nav>
 
       <div className="my-3 border-t border-[#efece8]" />

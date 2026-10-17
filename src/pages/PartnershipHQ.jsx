@@ -8,6 +8,7 @@ import OverviewTab from "@/components/partnership/OverviewTab";
 import AgendaTab from "@/components/partnership/AgendaTab";
 import OutstandingTasksTab from "@/components/partnership/OutstandingTasksTab";
 import FilesTab from "@/components/partnership/FilesTab";
+import LeadsTab from "@/components/partnership/leads/LeadsTab";
 import TimelineTab from "@/components/partnership/TimelineTab";
 import SectionView from "@/components/partnership/SectionView";
 import SectionPanel from "@/components/partnership/SectionPanel";
@@ -106,6 +107,7 @@ export default function PartnershipHQ() {
               {view === "agenda" && <AgendaTab data={data} userName={userName} />}
               {view === "tasks" && <OutstandingTasksTab data={data} />}
               {view === "files" && <FilesTab data={data} />}
+              {view === "leads" && <LeadsTab data={data} userName={userName} />}
               {view === "section" && activeSection && (
                 <SectionView
                   section={activeSection}

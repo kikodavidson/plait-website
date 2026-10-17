@@ -1,0 +1,97 @@
+{
+  "name": "PartnershipLeadActivity",
+  "type": "object",
+  "properties": {
+    "lead_id": {
+      "type": "string",
+      "description": "ID of the parent PartnershipLead"
+    },
+    "body": {
+      "type": "string",
+      "description": "Activity or note text, e.g. 'Sent DM on IG'"
+    },
+    "author": {
+      "type": "string",
+      "description": "Display name of the partner who added the entry"
+    },
+    "workspace": {
+      "type": "string",
+      "default": "partnership",
+      "description": "Workspace scope marker used by RLS"
+    }
+  },
+  "required": [
+    "lead_id",
+    "body"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "data.workspace": "{{user.data.client_slug}}"
+        },
+        {
+          "data.workspace": {
+            "$in": "{{user.data.workspaces}}"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "create": {
+      "$or": [
+        {
+          "data.workspace": "{{user.data.client_slug}}"
+        },
+        {
+          "data.workspace": {
+            "$in": "{{user.data.workspaces}}"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "data.workspace": "{{user.data.client_slug}}"
+        },
+        {
+          "data.workspace": {
+            "$in": "{{user.data.workspaces}}"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "data.workspace": "{{user.data.client_slug}}"
+        },
+        {
+          "data.workspace": {
+            "$in": "{{user.data.workspaces}}"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}

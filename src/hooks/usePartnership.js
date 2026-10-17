@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { base44 } from "@/api/base44Client";
+import { statusLabel } from "@/components/partnership/leads/leadMeta";
 
 const WORKSPACE = "partnership";
 const DEFAULT_FOLDERS = [
@@ -23,6 +24,8 @@ export default function usePartnership() {
   const [ideas, setIdeas] = useState(null);
   const [assets, setAssets] = useState(null);
   const [folders, setFolders] = useState(null);
+  const [leads, setLeads] = useState(null);
+  const [leadActivities, setLeadActivities] = useState(null);
   const [pending, setPending] = useState(0);
 
   const loadTabs = useCallback(async () => setTabs(byOrder(await base44.entities.PartnershipTab.list())), []);
@@ -44,6 +47,11 @@ export default function usePartnership() {
   const loadVersions = useCallback(async () => setVersions(byNewest(await base44.entities.PartnershipVersion.list())), []);
   const loadIdeas = useCallback(async () => setIdeas(await base44.entities.PartnershipIdea.list()), []);
   const loadAssets = useCallback(async () => setAssets(await base44.entities.PartnershipAsset.list()), []);
+  const loadLeads = useCallback(async () => setLeads(await base44.entities.PartnershipLead.list()), []);
+  const loadLeadActivities = useCallback(
+    async () => setLeadActivities(await base44.entities.PartnershipLeadActivity.list()),
+    []
+  );
 
   useEffect(() => {
     loadTabs().catch(() => setTabs([]));
@@ -55,6 +63,8 @@ export default function usePartnership() {
     loadVersions().catch(() => setVersions([]));
     loadIdeas().catch(() => setIdeas([]));
     loadAssets().catch(() => setAssets([]));
+    loadLeads().catch(() => setLeads([]));
+    loadLeadActivities().catch(() => setLeadActivities([]));
     const subs = [
       base44.entities.PartnershipTab.subscribe(() => { loadTabs().catch(() => {}); }),
       base44.entities.PartnershipFolder.subscribe(() => { loadFolders().catch(() => {}); }),
@@ -65,9 +75,11 @@ export default function usePartnership() {
       base44.entities.PartnershipVersion.subscribe(() => { loadVersions().catch(() => {}); }),
       base44.entities.PartnershipIdea.subscribe(() => { loadIdeas().catch(() => {}); }),
       base44.entities.PartnershipAsset.subscribe(() => { loadAssets().catch(() => {}); }),
+      base44.entities.PartnershipLead.subscribe(() => { loadLeads().catch(() => {}); }),
+      base44.entities.PartnershipLeadActivity.subscribe(() => { loadLeadActivities().catch(() => {}); }),
     ];
     return () => subs.forEach((unsub) => unsub && unsub());
-  }, [loadTabs, loadSections, loadNotes, loadTasks, loadQuestions, loadVersions, loadIdeas, loadAssets, loadFolders]);
+  }, [loadTabs, loadSections, loadNotes, loadTasks, loadQuestions, loadVersions, loadIdeas, loadAssets, loadFolders, loadLeads, loadLeadActivities]);
 
   const run = useCallback(async (fn) => {
     setPending((n) => n + 1);
@@ -387,6 +399,52 @@ export default function usePartnership() {
     await base44.entities.PartnershipAsset.update(id, patch);
   }), [run]);
 
+  // ----- leads -----
+  const addLead = useCallback((values) => run(async () => {
+    const created = await base44.entities.PartnershipLead.create({ workspace: WORKSPACE, ...values });
+    setLeads((prev) => [created, ...(prev || [])]);
+    return created;
+  }), [run]);
+
+  const importLeads = useCallback((records) => run(async () => {
+    const res = await base44.entities.PartnershipLead.bulkCreate(
+      records.map((r) => ({ workspace: WORKSPACE, ...r }))
+    );
+    const created = Array.isArray(res) ? res : res?.records || [];
+    setLeads((prev) => [...created, ...(prev || [])]);
+    return created.length;
+  }), [run]);
+
+  const updateLead = useCallback((id, patch, author) => run(async () => {
+    const existing = (leads || []).find((l) => l.id === id);
+    replaceIn(setLeads, id, patch);
+    await base44.entities.PartnershipLead.update(id, patch);
+    // Changing status logs itself so the timeline stays honest.
+    if (patch.status && existing && existing.status !== patch.status) {
+      const entry = await base44.entities.PartnershipLeadActivity.create({
+        lead_id: id,
+        body: `Status changed to ${statusLabel(patch.status)}`,
+        author: author || "",
+        workspace: WORKSPACE,
+      });
+      setLeadActivities((prev) => [entry, ...(prev || [])]);
+    }
+  }), [leads, run]);
+
+  const deleteLead = useCallback((id) => run(async () => {
+    await base44.entities.PartnershipLeadActivity.deleteMany({ lead_id: id });
+    await base44.entities.PartnershipLead.delete(id);
+    setLeads((prev) => (prev || []).filter((l) => l.id !== id));
+    setLeadActivities((prev) => (prev || []).filter((a) => a.lead_id !== id));
+  }), [run]);
+
+  const addLeadActivity = useCallback((leadId, body, author) => run(async () => {
+    const entry = await base44.entities.PartnershipLeadActivity.create({
+      lead_id: leadId, body, author, workspace: WORKSPACE,
+    });
+    setLeadActivities((prev) => [entry, ...(prev || [])]);
+  }), [run]);
+
   return {
     tabs: tabs || [],
     sections: sections || [],
@@ -395,7 +453,7 @@ export default function usePartnership() {
     questions: questions || [],
     versions: versions || [],
     ideas: ideas || [],
-    loaded: tabs !== null && sections !== null && notes !== null && tasks !== null && questions !== null && versions !== null && ideas !== null && assets !== null && folders !== null,
+    loaded: tabs !== null && sections !== null && notes !== null && tasks !== null && questions !== null && versions !== null && ideas !== null && assets !== null && folders !== null && leads !== null && leadActivities !== null,
     saving: pending > 0,
     addTab, renameTab, moveTab, deleteTab,
     addSection, renameSection, moveSection, deleteSection,
@@ -408,5 +466,8 @@ export default function usePartnership() {
     assets: assets || [],
     addFolder, renameFolder, moveFolder, deleteFolder,
     addAsset, deleteAsset, updateAsset,
+    leads: leads || [],
+    leadActivities: leadActivities || [],
+    addLead, importLeads, updateLead, deleteLead, addLeadActivity,
   };
 }

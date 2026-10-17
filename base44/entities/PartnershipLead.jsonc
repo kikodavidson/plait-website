@@ -1,0 +1,157 @@
+{
+  "name": "PartnershipLead",
+  "type": "object",
+  "properties": {
+    "brand_name": {
+      "type": "string",
+      "description": "Brand name"
+    },
+    "website": {
+      "type": "string",
+      "description": "Brand website URL"
+    },
+    "contact_name": {
+      "type": "string",
+      "description": "Contact name"
+    },
+    "contact_email": {
+      "type": "string",
+      "description": "Contact email"
+    },
+    "contact_phone": {
+      "type": "string",
+      "description": "Contact phone (optional)"
+    },
+    "social_link": {
+      "type": "string",
+      "description": "Instagram or other social profile link"
+    },
+    "industry": {
+      "type": "string",
+      "description": "Industry, e.g. Beauty, Supplements, Home, Apps"
+    },
+    "source": {
+      "type": "string",
+      "enum": [
+        "max_list",
+        "luke_list",
+        "referral",
+        "inbound",
+        "other"
+      ],
+      "default": "other",
+      "description": "Where the lead came from"
+    },
+    "owner": {
+      "type": "string",
+      "enum": [
+        "Luke",
+        "Max"
+      ],
+      "description": "Who owns the lead"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "new",
+        "researching",
+        "reached_out",
+        "replied",
+        "call_booked",
+        "proposal_sent",
+        "won",
+        "lost",
+        "not_a_fit"
+      ],
+      "default": "new",
+      "description": "Pipeline status"
+    },
+    "next_follow_up": {
+      "type": "string",
+      "format": "date",
+      "description": "Next follow up date"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Free-form notes"
+    },
+    "workspace": {
+      "type": "string",
+      "default": "partnership",
+      "description": "Workspace scope marker used by RLS"
+    }
+  },
+  "required": [
+    "brand_name"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "data.workspace": "{{user.data.client_slug}}"
+        },
+        {
+          "data.workspace": {
+            "$in": "{{user.data.workspaces}}"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "create": {
+      "$or": [
+        {
+          "data.workspace": "{{user.data.client_slug}}"
+        },
+        {
+          "data.workspace": {
+            "$in": "{{user.data.workspaces}}"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "data.workspace": "{{user.data.client_slug}}"
+        },
+        {
+          "data.workspace": {
+            "$in": "{{user.data.workspaces}}"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "data.workspace": "{{user.data.client_slug}}"
+        },
+        {
+          "data.workspace": {
+            "$in": "{{user.data.workspaces}}"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}
