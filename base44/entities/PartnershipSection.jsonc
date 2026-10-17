@@ -30,6 +30,10 @@
       "type": "string",
       "description": "The current working content for this section"
     },
+    "guiding_question": {
+      "type": "string",
+      "description": "Custom guiding question shown while the section has no final content"
+    },
     "approved_luke": {
       "type": "boolean",
       "default": false,

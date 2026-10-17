@@ -13,6 +13,7 @@ export default function usePartnership() {
   const [tasks, setTasks] = useState(null);
   const [questions, setQuestions] = useState(null);
   const [versions, setVersions] = useState(null);
+  const [ideas, setIdeas] = useState(null);
   const [pending, setPending] = useState(0);
 
   const loadTabs = useCallback(async () => setTabs(byOrder(await base44.entities.PartnershipTab.list())), []);
@@ -21,6 +22,7 @@ export default function usePartnership() {
   const loadTasks = useCallback(async () => setTasks(byOrder(await base44.entities.PartnershipTask.list())), []);
   const loadQuestions = useCallback(async () => setQuestions(byOrder(await base44.entities.PartnershipQuestion.list())), []);
   const loadVersions = useCallback(async () => setVersions(byNewest(await base44.entities.PartnershipVersion.list())), []);
+  const loadIdeas = useCallback(async () => setIdeas(await base44.entities.PartnershipIdea.list()), []);
 
   useEffect(() => {
     loadTabs().catch(() => setTabs([]));
@@ -29,6 +31,7 @@ export default function usePartnership() {
     loadTasks().catch(() => setTasks([]));
     loadQuestions().catch(() => setQuestions([]));
     loadVersions().catch(() => setVersions([]));
+    loadIdeas().catch(() => setIdeas([]));
     const subs = [
       base44.entities.PartnershipTab.subscribe(() => { loadTabs().catch(() => {}); }),
       base44.entities.PartnershipSection.subscribe(() => { loadSections().catch(() => {}); }),
@@ -36,9 +39,10 @@ export default function usePartnership() {
       base44.entities.PartnershipTask.subscribe(() => { loadTasks().catch(() => {}); }),
       base44.entities.PartnershipQuestion.subscribe(() => { loadQuestions().catch(() => {}); }),
       base44.entities.PartnershipVersion.subscribe(() => { loadVersions().catch(() => {}); }),
+      base44.entities.PartnershipIdea.subscribe(() => { loadIdeas().catch(() => {}); }),
     ];
     return () => subs.forEach((unsub) => unsub && unsub());
-  }, [loadTabs, loadSections, loadNotes, loadTasks, loadQuestions, loadVersions]);
+  }, [loadTabs, loadSections, loadNotes, loadTasks, loadQuestions, loadVersions, loadIdeas]);
 
   const run = useCallback(async (fn) => {
     setPending((n) => n + 1);
@@ -90,6 +94,7 @@ export default function usePartnership() {
     await base44.entities.PartnershipTask.deleteMany({ tab_id: id });
     await base44.entities.PartnershipQuestion.deleteMany({ tab_id: id });
     await base44.entities.PartnershipVersion.deleteMany({ tab_id: id });
+    await base44.entities.PartnershipIdea.deleteMany({ tab_id: id });
     await base44.entities.PartnershipSection.deleteMany({ tab_id: id });
     await base44.entities.PartnershipTab.delete(id);
     setTabs((prev) => (prev || []).filter((t) => t.id !== id));
@@ -98,6 +103,7 @@ export default function usePartnership() {
     setTasks((prev) => (prev || []).filter((t) => t.tab_id !== id));
     setQuestions((prev) => (prev || []).filter((q) => q.tab_id !== id));
     setVersions((prev) => (prev || []).filter((v) => v.tab_id !== id));
+    setIdeas((prev) => (prev || []).filter((i) => i.tab_id !== id));
   }), [run]);
 
   // ----- sections -----
@@ -140,12 +146,14 @@ export default function usePartnership() {
     await base44.entities.PartnershipTask.deleteMany({ section_id: id });
     await base44.entities.PartnershipQuestion.deleteMany({ section_id: id });
     await base44.entities.PartnershipVersion.deleteMany({ section_id: id });
+    await base44.entities.PartnershipIdea.deleteMany({ section_id: id });
     await base44.entities.PartnershipSection.delete(id);
     setSections((prev) => (prev || []).filter((s) => s.id !== id));
     setNotes((prev) => (prev || []).filter((n) => n.section_id !== id));
     setTasks((prev) => (prev || []).filter((t) => t.section_id !== id));
     setQuestions((prev) => (prev || []).filter((q) => q.section_id !== id));
     setVersions((prev) => (prev || []).filter((v) => v.section_id !== id));
+    setIdeas((prev) => (prev || []).filter((i) => i.section_id !== id));
   }), [run]);
 
   const patchSection = useCallback((id, patch) => run(async () => {
@@ -200,6 +208,37 @@ export default function usePartnership() {
     replaceIn(setSections, id, updated);
     setVersions((prev) => [v, ...(prev || [])]);
   }), [sections, run]);
+
+  // ----- idea board -----
+  const addIdea = useCallback((section, text, author) => run(async () => {
+    const created = await base44.entities.PartnershipIdea.create({
+      tab_id: section.tab_id, section_id: section.id, text, author, workspace: WORKSPACE,
+    });
+    setIdeas((prev) => [created, ...(prev || [])]);
+  }), [run]);
+
+  const deleteIdea = useCallback((id) => run(async () => {
+    await base44.entities.PartnershipIdea.delete(id);
+    setIdeas((prev) => (prev || []).filter((i) => i.id !== id));
+  }), [run]);
+
+  const voteIdea = useCallback((id, partner, vote) => run(async () => {
+    const key = partner === "Luke" ? "vote_luke" : "vote_max";
+    const existing = (ideas || []).find((i) => i.id === id);
+    const next = existing && existing[key] === vote ? null : vote; // click again to clear
+    replaceIn(setIdeas, id, { [key]: next });
+    await base44.entities.PartnershipIdea.update(id, { [key]: next });
+  }), [ideas, run]);
+
+  const makeFinal = useCallback((idea) => run(async () => {
+    const updated = await base44.entities.PartnershipSection.update(idea.section_id, {
+      content: idea.text, stage: "draft", approved_luke: false, approved_max: false,
+    });
+    replaceIn(setSections, idea.section_id, updated);
+  }), [run]);
+
+  const setGuidingQuestion = useCallback((id, guiding_question) =>
+    patchSection(id, { guiding_question }), [patchSection]);
 
   // ----- discussion log -----
   const addEntry = useCallback((sectionId, tabId, body, author) => run(async () => {
@@ -263,11 +302,13 @@ export default function usePartnership() {
     tasks: tasks || [],
     questions: questions || [],
     versions: versions || [],
-    loaded: tabs !== null && sections !== null && notes !== null && tasks !== null && questions !== null && versions !== null,
+    ideas: ideas || [],
+    loaded: tabs !== null && sections !== null && notes !== null && tasks !== null && questions !== null && versions !== null && ideas !== null,
     saving: pending > 0,
     addTab, renameTab, moveTab, deleteTab,
     addSection, renameSection, moveSection, deleteSection,
     setStage, saveContent, approve, unapprove, reopen,
+    addIdea, deleteIdea, voteIdea, makeFinal, setGuidingQuestion,
     addEntry, deleteEntry,
     addTask, updateTask, deleteTask,
     addQuestion, updateQuestion, deleteQuestion, questionToLog,

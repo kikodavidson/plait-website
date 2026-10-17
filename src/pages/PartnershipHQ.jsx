@@ -111,6 +111,7 @@ export default function PartnershipHQ() {
                   tabName={tabName}
                   data={data}
                   userName={userName}
+                  user={user}
                   onDeleted={() => {
                     setSectionId(null);
                     setView("overview");
