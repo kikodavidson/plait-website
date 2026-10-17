@@ -247,6 +247,11 @@ export default function usePartnership() {
     setIdeas((prev) => (prev || []).filter((i) => i.id !== id));
   }), [run]);
 
+  const updateIdea = useCallback((id, patch) => run(async () => {
+    replaceIn(setIdeas, id, patch);
+    await base44.entities.PartnershipIdea.update(id, patch);
+  }), [run]);
+
   const voteIdea = useCallback((id, partner, vote) => run(async () => {
     const key = partner === "Luke" ? "vote_luke" : "vote_max";
     const existing = (ideas || []).find((i) => i.id === id);
@@ -395,7 +400,7 @@ export default function usePartnership() {
     addTab, renameTab, moveTab, deleteTab,
     addSection, renameSection, moveSection, deleteSection,
     setStage, saveContent, approve, unapprove, reopen,
-    addIdea, deleteIdea, voteIdea, makeFinal, setGuidingQuestion,
+    addIdea, deleteIdea, updateIdea, voteIdea, makeFinal, setGuidingQuestion,
     addEntry, updateEntry, deleteEntry,
     addTask, updateTask, deleteTask,
     addQuestion, updateQuestion, deleteQuestion, questionToLog,
