@@ -29,8 +29,18 @@ export default function InvitePartnerDialog({ open, onClose }) {
       try {
         const users = await base44.entities.User.list();
         const existing = users.find((x) => x.email?.toLowerCase() === emailAddr);
-        if (existing && existing.role !== "admin" && !(existing.client_slug || existing.data?.client_slug)) {
-          await base44.entities.User.update(existing.id, { client_slug: "partnership" });
+        if (existing && existing.role !== "admin") {
+          const currentSlug = existing.client_slug || existing.data?.client_slug;
+          const currentWorkspaces = existing.workspaces || existing.data?.workspaces || [];
+          if (!currentSlug && !currentWorkspaces.includes("partnership")) {
+            // No workspace yet: link the account directly to the partnership.
+            await base44.entities.User.update(existing.id, { client_slug: "partnership" });
+          } else if (currentSlug !== "partnership" && !currentWorkspaces.includes("partnership")) {
+            // Already belongs to another workspace: add partnership on top of it.
+            await base44.entities.User.update(existing.id, {
+              workspaces: Array.from(new Set([...currentWorkspaces, "partnership"])),
+            });
+          }
         }
       } catch (e) {
         console.error("user lookup failed", e);

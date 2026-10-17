@@ -11,6 +11,13 @@
     "client_slug": {
       "type": "string",
       "description": "The slug of the Client this user belongs to. Empty/null for admin users."
+    },
+    "workspaces": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "All workspace slugs this user belongs to (e.g. a client portal plus 'partnership')."
     }
   },
   "required": [

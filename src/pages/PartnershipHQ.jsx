@@ -41,8 +41,9 @@ export default function PartnershipHQ() {
   }
 
   const slug = user?.client_slug || user?.data?.client_slug;
+  const workspaces = user?.workspaces || user?.data?.workspaces || [];
   if (!user) return <SignInWall />;
-  if (user.role !== "admin" && slug !== "partnership") return <NoAccess />;
+  if (user.role !== "admin" && slug !== "partnership" && !workspaces.includes("partnership")) return <NoAccess />;
 
   const first = (user.full_name || user.email || "").split(" ")[0];
   const userName = ["Luke", "Max"].includes(first) ? first : user.role === "admin" ? "Luke" : "Max";

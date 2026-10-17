@@ -28,7 +28,7 @@ export default async function (req) {
   const p = pending[0];
   const role = p.role || "client";
   try {
-    await base44.asServiceRole.entities.User.update(user.id, { client_slug: p.client_slug, role });
+    await base44.asServiceRole.entities.User.update(user.id, { client_slug: p.client_slug, role, workspaces: [p.client_slug] });
   } catch (e) {
     return Response.json({ ok: false, reason: "update_failed", error: e.message }, { status: 500 });
   }
