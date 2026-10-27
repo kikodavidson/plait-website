@@ -1,0 +1,160 @@
+{
+  "name": "PartnershipVibeItem",
+  "type": "object",
+  "properties": {
+    "phase": {
+      "type": "string",
+      "enum": [
+        "foundation",
+        "collect",
+        "directions",
+        "pick",
+        "build",
+        "lock"
+      ],
+      "description": "Which vibe board phase this item belongs to"
+    },
+    "item_type": {
+      "type": "string",
+      "enum": [
+        "link",
+        "image",
+        "direction",
+        "color",
+        "font"
+      ],
+      "description": "What kind of item: a reference link, uploaded image, named direction, brand color, or font"
+    },
+    "title": {
+      "type": "string",
+      "description": "Display name (link title, direction name, color name, font name)"
+    },
+    "body": {
+      "type": "string",
+      "description": "Description or notes for the item (e.g. direction description, font usage note)"
+    },
+    "url": {
+      "type": "string",
+      "description": "External URL for link items"
+    },
+    "file_uri": {
+      "type": "string",
+      "description": "Private storage URI of an uploaded reference image"
+    },
+    "color_hex": {
+      "type": "string",
+      "description": "Hex value for color items, e.g. #619e80"
+    },
+    "vote_luke": {
+      "type": "string",
+      "enum": [
+        "love",
+        "maybe",
+        "no"
+      ],
+      "description": "Luke's vote on a direction"
+    },
+    "vote_max": {
+      "type": "string",
+      "enum": [
+        "love",
+        "maybe",
+        "no"
+      ],
+      "description": "Max's vote on a direction"
+    },
+    "chosen": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether this direction is the committed one"
+    },
+    "order": {
+      "type": "number",
+      "description": "Sort order within the phase"
+    },
+    "added_by": {
+      "type": "string",
+      "description": "Display name of the partner who added the item"
+    },
+    "workspace": {
+      "type": "string",
+      "default": "partnership",
+      "description": "Workspace scope marker used by RLS"
+    }
+  },
+  "required": [
+    "phase",
+    "item_type",
+    "title"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "data.workspace": "{{user.data.client_slug}}"
+        },
+        {
+          "data.workspace": {
+            "$in": "{{user.data.workspaces}}"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "create": {
+      "$or": [
+        {
+          "data.workspace": "{{user.data.client_slug}}"
+        },
+        {
+          "data.workspace": {
+            "$in": "{{user.data.workspaces}}"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "data.workspace": "{{user.data.client_slug}}"
+        },
+        {
+          "data.workspace": {
+            "$in": "{{user.data.workspaces}}"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "data.workspace": "{{user.data.client_slug}}"
+        },
+        {
+          "data.workspace": {
+            "$in": "{{user.data.workspaces}}"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}

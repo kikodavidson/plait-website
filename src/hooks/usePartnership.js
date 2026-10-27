@@ -26,6 +26,8 @@ export default function usePartnership() {
   const [folders, setFolders] = useState(null);
   const [leads, setLeads] = useState(null);
   const [leadActivities, setLeadActivities] = useState(null);
+  const [vibePhases, setVibePhases] = useState(null);
+  const [vibeItems, setVibeItems] = useState(null);
   const [pending, setPending] = useState(0);
 
   const loadTabs = useCallback(async () => setTabs(byOrder(await base44.entities.PartnershipTab.list())), []);
@@ -52,6 +54,14 @@ export default function usePartnership() {
     async () => setLeadActivities(await base44.entities.PartnershipLeadActivity.list()),
     []
   );
+  const loadVibePhases = useCallback(
+    async () => setVibePhases(await base44.entities.PartnershipVibePhase.list()),
+    []
+  );
+  const loadVibeItems = useCallback(
+    async () => setVibeItems(await base44.entities.PartnershipVibeItem.list()),
+    []
+  );
 
   useEffect(() => {
     loadTabs().catch(() => setTabs([]));
@@ -65,6 +75,8 @@ export default function usePartnership() {
     loadAssets().catch(() => setAssets([]));
     loadLeads().catch(() => setLeads([]));
     loadLeadActivities().catch(() => setLeadActivities([]));
+    loadVibePhases().catch(() => setVibePhases([]));
+    loadVibeItems().catch(() => setVibeItems([]));
     const subs = [
       base44.entities.PartnershipTab.subscribe(() => { loadTabs().catch(() => {}); }),
       base44.entities.PartnershipFolder.subscribe(() => { loadFolders().catch(() => {}); }),
@@ -77,9 +89,11 @@ export default function usePartnership() {
       base44.entities.PartnershipAsset.subscribe(() => { loadAssets().catch(() => {}); }),
       base44.entities.PartnershipLead.subscribe(() => { loadLeads().catch(() => {}); }),
       base44.entities.PartnershipLeadActivity.subscribe(() => { loadLeadActivities().catch(() => {}); }),
+      base44.entities.PartnershipVibePhase.subscribe(() => { loadVibePhases().catch(() => {}); }),
+      base44.entities.PartnershipVibeItem.subscribe(() => { loadVibeItems().catch(() => {}); }),
     ];
     return () => subs.forEach((unsub) => unsub && unsub());
-  }, [loadTabs, loadSections, loadNotes, loadTasks, loadQuestions, loadVersions, loadIdeas, loadAssets, loadFolders, loadLeads, loadLeadActivities]);
+  }, [loadTabs, loadSections, loadNotes, loadTasks, loadQuestions, loadVersions, loadIdeas, loadAssets, loadFolders, loadLeads, loadLeadActivities, loadVibePhases, loadVibeItems]);
 
   const run = useCallback(async (fn) => {
     setPending((n) => n + 1);
@@ -445,6 +459,28 @@ export default function usePartnership() {
     setLeadActivities((prev) => [entry, ...(prev || [])]);
   }), [run]);
 
+  // ----- brand vibe board -----
+  const addVibeItem = useCallback((values) => run(async () => {
+    const created = await base44.entities.PartnershipVibeItem.create({ workspace: WORKSPACE, ...values });
+    setVibeItems((prev) => [...(prev || []), created]);
+    return created;
+  }), [run]);
+
+  const updateVibeItem = useCallback((id, patch) => run(async () => {
+    setVibeItems((prev) => (prev || []).map((it) => (it.id === id ? { ...it, ...patch } : it)));
+    await base44.entities.PartnershipVibeItem.update(id, patch);
+  }), [run]);
+
+  const deleteVibeItem = useCallback((id) => run(async () => {
+    await base44.entities.PartnershipVibeItem.delete(id);
+    setVibeItems((prev) => (prev || []).filter((it) => it.id !== id));
+  }), [run]);
+
+  const updateVibePhase = useCallback((id, patch) => run(async () => {
+    setVibePhases((prev) => (prev || []).map((p) => (p.id === id ? { ...p, ...patch } : p)));
+    await base44.entities.PartnershipVibePhase.update(id, patch);
+  }), [run]);
+
   return {
     tabs: tabs || [],
     sections: sections || [],
@@ -453,7 +489,7 @@ export default function usePartnership() {
     questions: questions || [],
     versions: versions || [],
     ideas: ideas || [],
-    loaded: tabs !== null && sections !== null && notes !== null && tasks !== null && questions !== null && versions !== null && ideas !== null && assets !== null && folders !== null && leads !== null && leadActivities !== null,
+    loaded: tabs !== null && sections !== null && notes !== null && tasks !== null && questions !== null && versions !== null && ideas !== null && assets !== null && folders !== null && leads !== null && leadActivities !== null && vibePhases !== null && vibeItems !== null,
     saving: pending > 0,
     addTab, renameTab, moveTab, deleteTab,
     addSection, renameSection, moveSection, deleteSection,
@@ -469,5 +505,8 @@ export default function usePartnership() {
     leads: leads || [],
     leadActivities: leadActivities || [],
     addLead, importLeads, updateLead, deleteLead, addLeadActivity,
+    vibePhases: vibePhases || [],
+    vibeItems: vibeItems || [],
+    addVibeItem, updateVibeItem, deleteVibeItem, updateVibePhase,
   };
 }
