@@ -64,6 +64,11 @@ export default function MoodSection({
 }) {
   const secRef = useRef(null);
   const [dragOver, setDragOver] = useState(false);
+  // Which grid the pointer is over: pastes and drops land in that grid.
+  const targetSubRef = useRef(sub);
+  const setTarget = (v) => () => {
+    targetSubRef.current = v;
+  };
 
   const addFiles = (files, targetSub = sub) => {
     const imgs = files.filter((f) => f && f.type && f.type.startsWith("image/"));
@@ -81,11 +86,11 @@ export default function MoodSection({
     setDragOver(false);
     const dt = e.dataTransfer;
     if (dt.files && dt.files.length) {
-      addFiles([...dt.files]);
+      addFiles([...dt.files], targetSubRef.current);
       return;
     }
     const url = (dt.getData("text/uri-list") || dt.getData("text/plain") || "").trim();
-    if (/^https?:\/\/.+/i.test(url)) addTextUrl(url);
+    if (/^https?:\/\/.+/i.test(url)) addTextUrl(url, targetSubRef.current);
   };
 
   const onPaste = (e) => {
@@ -95,13 +100,13 @@ export default function MoodSection({
       .filter(Boolean);
     if (files.length) {
       e.preventDefault();
-      addFiles(files);
+      addFiles(files, targetSubRef.current);
       return;
     }
     const text = (e.clipboardData?.getData("text") || "").trim();
     if (/^https?:\/\/.+/i.test(text)) {
       e.preventDefault();
-      addTextUrl(text);
+      addTextUrl(text, targetSubRef.current);
     }
   };
 
@@ -128,7 +133,11 @@ export default function MoodSection({
       </h2>
       <p className="mt-2 text-[15px] text-[#8a857c]">{desc}</p>
 
-      <div className={gridCls}>
+      <div
+        className={gridCls}
+        onMouseEnter={setTarget(sub)}
+        onDragEnter={setTarget(sub)}
+      >
         {items.map((i) => (
           <MoodImage
             key={i.id}
@@ -149,7 +158,11 @@ export default function MoodSection({
           <h3 className="text-[clamp(20px,3vw,28px)] font-bold tracking-tight text-[#1a1a1a]">
             NOT US
           </h3>
-          <div className={gridCls}>
+          <div
+            className={gridCls}
+            onMouseEnter={setTarget(ANTI_SUB)}
+            onDragEnter={setTarget(ANTI_SUB)}
+          >
             {antiItems.map((i) => (
               <MoodImage
                 key={i.id}
