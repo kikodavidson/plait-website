@@ -9,7 +9,6 @@ import {
   HelpCircle,
   Home,
   ListTodo,
-  Palette,
   Pencil,
   Plus,
   Trash2,
@@ -178,12 +177,6 @@ export default function DocsSidebar({
           count={data.leads.filter(notContacted).length}
           active={view === "leads"}
           onClick={() => pickView("leads")}
-        />
-        <NavItem
-          icon={Palette}
-          label="Brand Vibe Board"
-          active={view === "vibe"}
-          onClick={() => pickView("vibe")}
         />
       </nav>
 
