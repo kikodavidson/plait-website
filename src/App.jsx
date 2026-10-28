@@ -36,6 +36,8 @@ import Principles from './pages/Principles';
 import PartnershipHQ from './pages/PartnershipHQ';
 import AttributionDashboard from './pages/attribution/Dashboard';
 import AttributionProjectPage from './pages/attribution/ProjectPage';
+import VibeDashboard from './pages/VibeDashboard';
+import VibeBoardCanvas from './pages/VibeBoardCanvas';
 import { useEffect } from 'react';
 import { base44 } from "@/api/base44Client";
 
@@ -125,6 +127,8 @@ const AuthenticatedApp = () => {
         <Route path="/access-not-setup" element={<AccessNotSetUp />} />
         <Route path="/attribution" element={<AttributionDashboard />} />
         <Route path="/attribution/:projectId" element={<AttributionProjectPage />} />
+        <Route path="/vibe" element={<VibeDashboard />} />
+        <Route path="/vibe/:boardId" element={<VibeBoardCanvas />} />
         <Route path="/principles" element={<Principles />} />
       </Route>
       <Route path="*" element={<PageNotFound />} />

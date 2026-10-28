@@ -1,0 +1,96 @@
+{
+  "name": "VibeBoard",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Board title"
+    },
+    "heading_font": {
+      "type": "string",
+      "description": "Chosen heading font family name"
+    },
+    "body_font": {
+      "type": "string",
+      "description": "Chosen body font family name"
+    },
+    "workspace": {
+      "type": "string",
+      "default": "partnership",
+      "description": "Workspace scope marker used by RLS"
+    }
+  },
+  "required": [
+    "name"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "data.workspace": "{{user.data.client_slug}}"
+        },
+        {
+          "data.workspace": {
+            "$in": "{{user.data.workspaces}}"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "create": {
+      "$or": [
+        {
+          "data.workspace": "{{user.data.client_slug}}"
+        },
+        {
+          "data.workspace": {
+            "$in": "{{user.data.workspaces}}"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "data.workspace": "{{user.data.client_slug}}"
+        },
+        {
+          "data.workspace": {
+            "$in": "{{user.data.workspaces}}"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "data.workspace": "{{user.data.client_slug}}"
+        },
+        {
+          "data.workspace": {
+            "$in": "{{user.data.workspaces}}"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}

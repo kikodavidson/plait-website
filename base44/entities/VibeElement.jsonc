@@ -1,0 +1,107 @@
+{
+  "name": "VibeElement",
+  "type": "object",
+  "properties": {
+    "board_id": {
+      "type": "string",
+      "description": "ID of the parent VibeBoard"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "image",
+        "color",
+        "text"
+      ],
+      "description": "Element kind: web image URL, color swatch, or typographic text card"
+    },
+    "value": {
+      "type": "string",
+      "description": "The image URL, HEX color code, or the text/keyword itself"
+    },
+    "label": {
+      "type": "string",
+      "description": "Optional label, e.g. color swatch name"
+    },
+    "workspace": {
+      "type": "string",
+      "default": "partnership",
+      "description": "Workspace scope marker used by RLS"
+    }
+  },
+  "required": [
+    "board_id",
+    "type",
+    "value"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "data.workspace": "{{user.data.client_slug}}"
+        },
+        {
+          "data.workspace": {
+            "$in": "{{user.data.workspaces}}"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "create": {
+      "$or": [
+        {
+          "data.workspace": "{{user.data.client_slug}}"
+        },
+        {
+          "data.workspace": {
+            "$in": "{{user.data.workspaces}}"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "data.workspace": "{{user.data.client_slug}}"
+        },
+        {
+          "data.workspace": {
+            "$in": "{{user.data.workspaces}}"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "data.workspace": "{{user.data.client_slug}}"
+        },
+        {
+          "data.workspace": {
+            "$in": "{{user.data.workspaces}}"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}
