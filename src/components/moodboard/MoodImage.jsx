@@ -6,7 +6,7 @@ const inputCls =
   "w-full border-b border-[#d5d1c8] bg-transparent py-1 text-[13px] text-[#1a1a1a] outline-none placeholder:text-[#b5b0a6] focus:border-[#1a1a1a]";
 
 /** One tile: image, pulsing loading state, failed-domain state, hover overlay with votes. */
-export default function MoodImage({ item, userName, fresh, faded, onVote, onMetaSave, onMetaDone }) {
+export default function MoodImage({ item, userName, fresh, faded, onVote, onDelete, onMetaSave, onMetaDone }) {
   const [tapped, setTapped] = useState(false);
   const [why, setWhy] = useState(item.note || "");
   const [hexText, setHexText] = useState((item.hex_codes || []).join(" "));
@@ -62,8 +62,11 @@ export default function MoodImage({ item, userName, fresh, faded, onVote, onMeta
             <Heart className={`h-3.5 w-3.5 ${myVote === "love" ? "fill-[#e0245e]" : ""}`} />
           </button>
           <button
-            onClick={(e) => vote(e, "cut")}
-            aria-label="Cut"
+            onClick={(e) => {
+              e.stopPropagation();
+              onDelete();
+            }}
+            aria-label="Remove"
             className={`flex h-7 w-7 items-center justify-center rounded-full transition-colors ${
               myVote === "cut"
                 ? "bg-white text-[#1a1a1a]"

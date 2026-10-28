@@ -58,6 +58,7 @@ export default function MoodSection({
   onAddImages,
   onAddLink,
   onVote,
+  onDelete,
   onMetaSave,
   onMetaDone,
 }) {
@@ -135,6 +136,7 @@ export default function MoodSection({
             userName={userName}
             fresh={freshIds.has(i.id)}
             onVote={(v) => onVote(i, v)}
+            onDelete={() => onDelete(i)}
             onMetaSave={(p) => onMetaSave(i, p)}
             onMetaDone={() => onMetaDone(i.id)}
           />
@@ -156,6 +158,7 @@ export default function MoodSection({
                 faded
                 fresh={freshIds.has(i.id)}
                 onVote={(v) => onVote(i, v)}
+                onDelete={() => onDelete(i)}
                 onMetaSave={(p) => onMetaSave(i, p)}
                 onMetaDone={() => onMetaDone(i.id)}
               />

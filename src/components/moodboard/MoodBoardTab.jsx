@@ -15,6 +15,7 @@ export default function MoodBoardTab({ userName }) {
     loading,
     addItem,
     updateItem,
+    deleteItem,
     addWord,
     updateWord,
     deleteWord,
@@ -125,6 +126,7 @@ export default function MoodBoardTab({ userName }) {
                 onAddImages={addImages}
                 onAddLink={addLink}
                 onVote={vote}
+                onDelete={(item) => deleteItem(item.id)}
                 onMetaSave={(item, patch) => updateItem(item.id, patch)}
                 onMetaDone={clearFresh}
               />
