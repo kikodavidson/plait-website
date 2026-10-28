@@ -2,7 +2,7 @@
 export const SECTIONS = [
   {
     level: "mood",
-    title: "MOOD",
+    title: "SITE EXAMPLE",
     desc: "How it feels — imagery, filters, textures, lighting.",
     sub: "Imagery",
   },
