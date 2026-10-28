@@ -18,12 +18,6 @@ export const SECTIONS = [
     desc: "Who we want to learn from, and what we are NOT.",
     sub: "Brands We Love",
   },
-  {
-    level: "tech",
-    title: "TECH",
-    desc: "How we show our work — dashboards, reporting, site UI.",
-    sub: "Dashboards and Reporting",
-  },
 ];
 
 /** Sub section used for the NOT US row inside BRANDS WE ADMIRE. */
