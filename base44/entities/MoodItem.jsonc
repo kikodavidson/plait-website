@@ -18,7 +18,24 @@
     },
     "image_url": {
       "type": "string",
-      "description": "Public URL of the reference image (uploaded, dropped, or pasted)"
+      "description": "Public URL of the image (uploaded file, pasted image, saved screenshot, or OG preview)"
+    },
+    "link_url": {
+      "type": "string",
+      "description": "Website link this reference was added from"
+    },
+    "domain": {
+      "type": "string",
+      "description": "Hostname of the linked site, shown on the card"
+    },
+    "fetch_status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "ready",
+        "failed"
+      ],
+      "description": "Screenshot fetch status for link references"
     },
     "note": {
       "type": "string",
@@ -72,7 +89,6 @@
   "required": [
     "level",
     "sub_section",
-    "image_url",
     "added_by"
   ],
   "rls": {

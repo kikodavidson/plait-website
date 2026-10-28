@@ -2,32 +2,50 @@ import React, { useRef, useState } from "react";
 import { Plus } from "lucide-react";
 import MoodImage from "@/components/moodboard/MoodImage";
 import { ANTI_SUB } from "@/lib/moodBoardConfig";
+import { isImageLink } from "@/lib/linkScreenshot";
 
-function AddTile({ onPick, label }) {
-  const ref = useRef(null);
-  return (
+/** The + tile: opens a single "Paste a link" input. */
+function LinkTile({ onSubmit, label }) {
+  const [open, setOpen] = useState(false);
+  const [draft, setDraft] = useState("");
+
+  const submit = () => {
+    const v = draft.trim();
+    setDraft("");
+    setOpen(false);
+    if (/^https?:\/\/.+/i.test(v)) onSubmit(v);
+  };
+
+  return open ? (
+    <div className="mb-2 flex aspect-square w-full items-center justify-center bg-[#e3dfd7] px-4">
+      <input
+        autoFocus
+        value={draft}
+        onChange={(e) => setDraft(e.target.value)}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") submit();
+          if (e.key === "Escape") {
+            setDraft("");
+            setOpen(false);
+          }
+        }}
+        placeholder="Paste a link"
+        aria-label={label}
+        className="w-full border-b border-[#1a1a1a] bg-transparent text-center text-[14px] text-[#1a1a1a] outline-none placeholder:text-[#8a857c]"
+      />
+    </div>
+  ) : (
     <button
-      onClick={() => ref.current?.click()}
+      onClick={() => setOpen(true)}
       aria-label={label}
       className="mb-2 flex aspect-square w-full items-center justify-center bg-[#ece9e3] text-[#8a857c] transition-colors hover:bg-[#e3dfd7] hover:text-[#1a1a1a]"
     >
       <Plus className="h-7 w-7" />
-      <input
-        ref={ref}
-        type="file"
-        accept="image/*"
-        multiple
-        className="hidden"
-        onChange={(e) => {
-          onPick([...e.target.files]);
-          e.target.value = "";
-        }}
-      />
     </button>
   );
 }
 
-/** One board section: tight masonry grid, + tile, drag-drop and paste support. */
+/** One board section: tight masonry grid, + link tile, drag-drop and paste support. */
 export default function MoodSection({
   level,
   title,
@@ -38,6 +56,7 @@ export default function MoodSection({
   antiItems,
   freshIds,
   onAddImages,
+  onAddLink,
   onVote,
   onMetaSave,
   onMetaDone,
@@ -50,7 +69,11 @@ export default function MoodSection({
     if (imgs.length) onAddImages(level, targetSub, imgs.map((file) => ({ file })));
   };
 
-  const addUrl = (url, targetSub = sub) => onAddImages(level, targetSub, [{ url }]);
+  const addTextUrl = (url, targetSub = sub) => {
+    const v = url.trim();
+    if (isImageLink(v)) onAddImages(level, targetSub, [{ url: v }]);
+    else onAddLink(level, targetSub, v);
+  };
 
   const onDrop = (e) => {
     e.preventDefault();
@@ -61,7 +84,7 @@ export default function MoodSection({
       return;
     }
     const url = (dt.getData("text/uri-list") || dt.getData("text/plain") || "").trim();
-    if (/^https?:\/\/.+/i.test(url)) addUrl(url);
+    if (/^https?:\/\/.+/i.test(url)) addTextUrl(url);
   };
 
   const onPaste = (e) => {
@@ -77,7 +100,7 @@ export default function MoodSection({
     const text = (e.clipboardData?.getData("text") || "").trim();
     if (/^https?:\/\/.+/i.test(text)) {
       e.preventDefault();
-      addUrl(text);
+      addTextUrl(text);
     }
   };
 
@@ -116,7 +139,7 @@ export default function MoodSection({
             onMetaDone={() => onMetaDone(i.id)}
           />
         ))}
-        <AddTile onPick={(f) => addFiles(f)} label={`Add image to ${title}`} />
+        <LinkTile onSubmit={(link) => addTextUrl(link)} label={`Add a link to ${title}`} />
       </div>
 
       {level === "brands" && (
@@ -137,7 +160,10 @@ export default function MoodSection({
                 onMetaDone={() => onMetaDone(i.id)}
               />
             ))}
-            <AddTile onPick={(f) => addFiles(f, ANTI_SUB)} label="Add image to NOT US" />
+            <LinkTile
+              onSubmit={(link) => addTextUrl(link, ANTI_SUB)}
+              label="Add a link to NOT US"
+            />
           </div>
         </div>
       )}

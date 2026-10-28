@@ -1,10 +1,11 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Loader2 } from "lucide-react";
 import { base44 } from "@/api/base44Client";
 import FeelWordsHeadline from "@/components/moodboard/FeelWordsHeadline";
 import MoodSection from "@/components/moodboard/MoodSection";
 import { useMoodBoard } from "@/hooks/useMoodBoard";
 import { ANTI_SUB, SECTIONS, voteStatus } from "@/lib/moodBoardConfig";
+import { domainFor, resolveLinkImage } from "@/lib/linkScreenshot";
 
 /** Brand Mood Board: one continuous visual page — feel words, four sections, votes. */
 export default function MoodBoardTab({ userName }) {
@@ -53,6 +54,44 @@ export default function MoodBoardTab({ userName }) {
     updateItem(item.id, { [key]: current === v ? null : v });
   };
 
+  const processingRef = useRef(new Set());
+
+  const processLink = async (item) => {
+    if (processingRef.current.has(item.id)) return;
+    processingRef.current.add(item.id);
+    try {
+      const img = await resolveLinkImage(item.link_url);
+      await updateItem(
+        item.id,
+        img ? { image_url: img, fetch_status: "ready" } : { fetch_status: "failed" }
+      );
+    } catch (e) {
+      await updateItem(item.id, { fetch_status: "failed" });
+    } finally {
+      processingRef.current.delete(item.id);
+    }
+  };
+
+  const addLink = async (level, sub, link) => {
+    const created = await addItem({
+      level,
+      sub_section: sub,
+      added_by: userName,
+      link_url: link,
+      domain: domainFor(link),
+      fetch_status: "pending",
+    });
+    markFresh(created.id);
+    processLink(created);
+  };
+
+  // Resume any link screenshots still pending from a previous session.
+  useEffect(() => {
+    items
+      .filter((i) => i.link_url && !i.image_url && i.fetch_status !== "failed")
+      .forEach((i) => processLink(i));
+  }, [items]);
+
   return (
     <div className="fade-in -mx-5 bg-[#F7F5F0] px-5 pb-24 pt-4 sm:-mx-8 sm:px-8">
       {loading ? (
@@ -84,6 +123,7 @@ export default function MoodBoardTab({ userName }) {
                 }
                 freshIds={freshIds}
                 onAddImages={addImages}
+                onAddLink={addLink}
                 onVote={vote}
                 onMetaSave={(item, patch) => updateItem(item.id, patch)}
                 onMetaDone={clearFresh}
