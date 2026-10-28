@@ -20,25 +20,6 @@ export const isImageLink = (url) =>
  * Returns null when both fail.
  */
 export async function resolveLinkImage(link) {
-  const encoded = encodeURIComponent(link);
-  const shotUrl = `https://api.microlink.io/?url=${encoded}&screenshot=true&meta=false&embed=screenshot.url&screenshot.width=1440&screenshot.height=900`;
-  try {
-    const res = await fetch(shotUrl);
-    if (!res.ok) throw new Error("screenshot failed");
-    const blob = await res.blob();
-    const { file_url } = await base44.integrations.Core.UploadPublicFile({
-      file: new File([blob], "site.png", { type: blob.type || "image/png" }),
-    });
-    return file_url;
-  } catch (e) {
-    try {
-      const res = await fetch(`https://api.microlink.io/?url=${encoded}`);
-      const json = await res.json();
-      const og = json?.data?.image?.url;
-      if (og) return og;
-    } catch (e2) {
-      // fall through
-    }
-    return null;
-  }
+  const res = await base44.functions.invoke("resolveSitePreview", { url: link });
+  return res.data?.image_url || null;
 }

@@ -4,7 +4,7 @@ import { base44 } from "@/api/base44Client";
 import FeelWordsHeadline from "@/components/moodboard/FeelWordsHeadline";
 import MoodSection from "@/components/moodboard/MoodSection";
 import { useMoodBoard } from "@/hooks/useMoodBoard";
-import { ANTI_SUB, SECTIONS, voteStatus } from "@/lib/moodBoardConfig";
+import { SECTIONS, voteStatus } from "@/lib/moodBoardConfig";
 import { domainFor, resolveLinkImage } from "@/lib/linkScreenshot";
 
 /** Brand Mood Board: one continuous visual page — feel words, four sections, votes. */
@@ -116,12 +116,7 @@ export default function MoodBoardTab({ userName }) {
                 key={s.level}
                 {...s}
                 userName={userName}
-                items={visible.filter((i) => i.level === s.level && i.sub_section !== ANTI_SUB)}
-                antiItems={
-                  s.level === "brands"
-                    ? visible.filter((i) => i.level === "brands" && i.sub_section === ANTI_SUB)
-                    : []
-                }
+                items={visible.filter((i) => i.level === s.level && i.sub_section === s.sub)}
                 freshIds={freshIds}
                 onAddImages={addImages}
                 onAddLink={addLink}

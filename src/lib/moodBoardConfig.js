@@ -15,8 +15,14 @@ export const SECTIONS = [
   {
     level: "brands",
     title: "BRANDS WE ADMIRE",
-    desc: "Who we want to learn from, and what we are NOT.",
+    desc: "Who we want to learn from.",
     sub: "Brands We Love",
+  },
+  {
+    level: "brands",
+    title: "NOT US",
+    desc: "What we are NOT — looks and brands we want to steer away from.",
+    sub: "Anti Board",
   },
 ];
 

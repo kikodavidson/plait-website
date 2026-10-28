@@ -53,7 +53,6 @@ export default function MoodSection({
   sub,
   userName,
   items,
-  antiItems,
   freshIds,
   onAddImages,
   onAddLink,
@@ -69,6 +68,7 @@ export default function MoodSection({
   const setTarget = (v) => () => {
     targetSubRef.current = v;
   };
+  const isAnti = sub === ANTI_SUB;
 
   const addFiles = (files, targetSub = sub) => {
     const imgs = files.filter((f) => f && f.type && f.type.startsWith("image/"));
@@ -143,6 +143,7 @@ export default function MoodSection({
             key={i.id}
             item={i}
             userName={userName}
+            faded={isAnti}
             fresh={freshIds.has(i.id)}
             onVote={(v) => onVote(i, v)}
             onDelete={() => onDelete(i)}
@@ -153,36 +154,6 @@ export default function MoodSection({
         <LinkTile onSubmit={(link) => addTextUrl(link)} label={`Add a link to ${title}`} />
       </div>
 
-      {level === "brands" && (
-        <div className="mt-10">
-          <h3 className="text-[clamp(20px,3vw,28px)] font-bold tracking-tight text-[#1a1a1a]">
-            NOT US
-          </h3>
-          <div
-            className={gridCls}
-            onMouseEnter={setTarget(ANTI_SUB)}
-            onDragEnter={setTarget(ANTI_SUB)}
-          >
-            {antiItems.map((i) => (
-              <MoodImage
-                key={i.id}
-                item={i}
-                userName={userName}
-                faded
-                fresh={freshIds.has(i.id)}
-                onVote={(v) => onVote(i, v)}
-                onDelete={() => onDelete(i)}
-                onMetaSave={(p) => onMetaSave(i, p)}
-                onMetaDone={() => onMetaDone(i.id)}
-              />
-            ))}
-            <LinkTile
-              onSubmit={(link) => addTextUrl(link, ANTI_SUB)}
-              label="Add a link to NOT US"
-            />
-          </div>
-        </div>
-      )}
     </section>
   );
 }
