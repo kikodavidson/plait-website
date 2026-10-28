@@ -10,23 +10,34 @@
         "brands",
         "tech"
       ],
-      "description": "Board level: Mood, Identity, Brands We Admire, or Tech"
+      "description": "Board section: Mood, Identity, Brands We Admire, or Tech"
     },
     "sub_section": {
       "type": "string",
-      "description": "Sub section within the level, e.g. Imagery, Fonts, Brands We Love"
+      "description": "Sub section, e.g. Imagery, Fonts, Brands We Love, Anti Board (NOT US)"
     },
     "image_url": {
       "type": "string",
-      "description": "Public URL of the reference image (uploaded or pasted)"
+      "description": "Public URL of the reference image (uploaded, dropped, or pasted)"
+    },
+    "note": {
+      "type": "string",
+      "description": "Optional why note"
+    },
+    "hex_codes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Optional hex color codes shown as a swatch strip under the image"
+    },
+    "font_name": {
+      "type": "string",
+      "description": "Optional font name, rendered as a large sample under the image"
     },
     "source_link": {
       "type": "string",
       "description": "Optional source link for the reference"
-    },
-    "note": {
-      "type": "string",
-      "description": "Why I like it - short required explanation"
     },
     "added_by": {
       "type": "string",
@@ -62,7 +73,6 @@
     "level",
     "sub_section",
     "image_url",
-    "note",
     "added_by"
   ],
   "rls": {

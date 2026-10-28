@@ -1,32 +1,38 @@
-/** Mood board structure: levels, their sub sections, and vote-status helpers. */
-export const LEVELS = {
-  mood: {
-    label: "Mood",
-    question: "How it feels",
-    subs: ["Imagery", "Filters and Color Grading", "Textures", "Lighting"],
+/** Mood board structure: the four stacked sections and vote-status helpers. */
+export const SECTIONS = [
+  {
+    level: "mood",
+    title: "MOOD",
+    desc: "How it feels — imagery, filters, textures, lighting.",
+    sub: "Imagery",
   },
-  identity: {
-    label: "Identity",
-    question: "How it looks",
-    subs: ["Fonts", "Color Palettes", "Logos and Wordmarks"],
+  {
+    level: "identity",
+    title: "IDENTITY",
+    desc: "How it looks — fonts, colors, logos.",
+    sub: "Fonts",
   },
-  brands: {
-    label: "Brands We Admire",
-    question: "Who we want to be like (and not)",
-    subs: ["Brands We Love", "Anti Board"],
+  {
+    level: "brands",
+    title: "BRANDS WE ADMIRE",
+    desc: "Who we want to learn from — and what we are NOT.",
+    sub: "Brands We Love",
   },
-  tech: {
-    label: "Tech",
-    question: "How we show our work",
-    subs: ["Dashboards and Reporting", "Website UI", "Product and App Interfaces"],
+  {
+    level: "tech",
+    title: "TECH",
+    desc: "How we show our work — dashboards, reporting, site UI.",
+    sub: "Dashboards and Reporting",
   },
-};
+];
 
-export const LEVEL_ORDER = ["mood", "identity", "brands", "tech"];
+/** Sub section used for the NOT US row inside BRANDS WE ADMIRE. */
+export const ANTI_SUB = "Anti Board";
 
-export const ALL_SUBS = LEVEL_ORDER.flatMap((id) => LEVELS[id].subs);
+/** Sample text rendered when a font name is set on an identity image. */
+export const SAMPLE_TEXT = "Riptide / Milestone / Click Together";
 
-/** Vote status: both (both love), cut (both cut), split (disagree or partial), none. */
+/** Vote status: both (both love), cut (both cut — hidden from the board), split, none. */
 export function voteStatus(item) {
   const l = item.vote_luke;
   const m = item.vote_max;
@@ -35,10 +41,3 @@ export function voteStatus(item) {
   if (!l && !m) return "none";
   return "split";
 }
-
-export const STATUS_LABEL = {
-  both: "Both Love",
-  cut: "Cut",
-  split: "Split",
-  none: "No votes yet",
-};

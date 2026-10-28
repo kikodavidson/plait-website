@@ -57,6 +57,10 @@ export function useMoodBoard() {
     []
   );
 
+  const updateWord = useCallback(async (id, patch) => {
+    await base44.entities.MoodFeelWord.update(id, patch);
+  }, []);
+
   const deleteWord = useCallback(async (id) => {
     await base44.entities.MoodFeelWord.delete(id);
     setWords((prev) => (prev || []).filter((w) => w.id !== id));
@@ -70,6 +74,7 @@ export function useMoodBoard() {
     updateItem,
     deleteItem,
     addWord,
+    updateWord,
     deleteWord,
   };
 }
