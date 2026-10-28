@@ -181,9 +181,9 @@ export default function DocsSidebar({
         />
         <NavItem
           icon={Palette}
-          label="Brand Vibe Board"
-          active={view === "vibe"}
-          onClick={() => pickView("vibe")}
+          label="Mood Board"
+          active={view === "mood"}
+          onClick={() => pickView("mood")}
         />
       </nav>
 

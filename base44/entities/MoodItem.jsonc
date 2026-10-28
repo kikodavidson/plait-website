@@ -1,27 +1,56 @@
 {
-  "name": "VibeElement",
+  "name": "MoodItem",
   "type": "object",
   "properties": {
-    "board_id": {
-      "type": "string",
-      "description": "ID of the parent VibeBoard"
-    },
-    "type": {
+    "level": {
       "type": "string",
       "enum": [
-        "image",
-        "color",
-        "text"
+        "mood",
+        "identity",
+        "brands",
+        "tech"
       ],
-      "description": "Element kind: web image URL, color swatch, or typographic text card"
+      "description": "Board level: Mood, Identity, Brands We Admire, or Tech"
     },
-    "value": {
+    "sub_section": {
       "type": "string",
-      "description": "The image URL, HEX color code, or the text/keyword itself"
+      "description": "Sub section within the level, e.g. Imagery, Fonts, Brands We Love"
     },
-    "label": {
+    "image_url": {
       "type": "string",
-      "description": "Optional label, e.g. color swatch name"
+      "description": "Public URL of the reference image (uploaded or pasted)"
+    },
+    "source_link": {
+      "type": "string",
+      "description": "Optional source link for the reference"
+    },
+    "note": {
+      "type": "string",
+      "description": "Why I like it - short required explanation"
+    },
+    "added_by": {
+      "type": "string",
+      "enum": [
+        "Luke",
+        "Max"
+      ],
+      "description": "Which partner added the reference"
+    },
+    "vote_luke": {
+      "type": "string",
+      "enum": [
+        "love",
+        "cut"
+      ],
+      "description": "Luke's vote: love or cut (unset = no vote yet)"
+    },
+    "vote_max": {
+      "type": "string",
+      "enum": [
+        "love",
+        "cut"
+      ],
+      "description": "Max's vote: love or cut (unset = no vote yet)"
     },
     "workspace": {
       "type": "string",
@@ -30,9 +59,11 @@
     }
   },
   "required": [
-    "board_id",
-    "type",
-    "value"
+    "level",
+    "sub_section",
+    "image_url",
+    "note",
+    "added_by"
   ],
   "rls": {
     "read": {

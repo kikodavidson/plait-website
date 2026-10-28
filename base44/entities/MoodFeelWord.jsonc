@@ -1,18 +1,22 @@
 {
-  "name": "VibeBoard",
+  "name": "MoodFeelWord",
   "type": "object",
   "properties": {
-    "name": {
+    "word": {
       "type": "string",
-      "description": "Board title"
+      "description": "The feel word, e.g. Warm, Editorial, Sharp"
     },
-    "heading_font": {
+    "added_by": {
       "type": "string",
-      "description": "Chosen heading font family name"
+      "enum": [
+        "Luke",
+        "Max"
+      ],
+      "description": "Which partner added the word"
     },
-    "body_font": {
-      "type": "string",
-      "description": "Chosen body font family name"
+    "order": {
+      "type": "number",
+      "description": "Sort order of the chip"
     },
     "workspace": {
       "type": "string",
@@ -21,7 +25,8 @@
     }
   },
   "required": [
-    "name"
+    "word",
+    "added_by"
   ],
   "rls": {
     "read": {
