@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { base44 } from "@/api/base44Client";
-import { Plus, ShieldAlert, LogOut, Loader2, FolderDown, Eye } from "lucide-react";
+import { Plus, ShieldAlert, LogOut, Loader2, FolderDown, Eye, FileText } from "lucide-react";
 import ClientLogoCard from "@/components/admin/ClientLogoCard";
 import ClientDialog from "@/components/admin/ClientDialog";
 import { WavesShaderBackground } from "@/components/ui/waves-shader-background";
@@ -89,6 +89,10 @@ export default function Clients() {
           <div className="flex items-center rounded-full border border-white/15 p-1">
             <button onClick={() => navigate("/library")} className="inline-flex items-center gap-2 text-sm font-medium text-white/70 hover:text-white px-3.5 py-1.5 rounded-full hover:bg-white/10">
               <FolderDown className="w-4 h-4" /> Swipe library
+            </button>
+            <div className="w-px h-5 bg-white/15" />
+            <button onClick={() => navigate("/admin/reports")} className="inline-flex items-center gap-2 text-sm font-medium text-white/70 hover:text-white px-3.5 py-1.5 rounded-full hover:bg-white/10">
+              <FileText className="w-4 h-4" /> Reports
             </button>
             <div className="w-px h-5 bg-white/15" />
             <button onClick={() => navigate("/client")} className="inline-flex items-center gap-2 text-sm font-medium text-white/70 hover:text-white px-3.5 py-1.5 rounded-full hover:bg-white/10">

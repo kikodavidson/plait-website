@@ -34,6 +34,8 @@ import ShopifyChecklist from './pages/ShopifyChecklist';
 import AccessNotSetUp from './pages/AccessNotSetUp';
 import Principles from './pages/Principles';
 import PartnershipHQ from './pages/PartnershipHQ';
+import ReportView from './pages/ReportView';
+import AdminReports from './pages/admin/Reports';
 import AttributionDashboard from './pages/attribution/Dashboard';
 import AttributionProjectPage from './pages/attribution/ProjectPage';
 import { useEffect } from 'react';
@@ -100,6 +102,7 @@ const AuthenticatedApp = () => {
       <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/reset-password" element={<ResetPassword />} />
       <Route path="/partnership" element={<PartnershipHQ />} />
+      <Route path="/r/:code" element={<ReportView />} />
       <Route element={<Layout />}>
         <Route path="/" element={<Home />} />
         <Route path="/services" element={<Services />} />
@@ -121,6 +124,7 @@ const AuthenticatedApp = () => {
         <Route path="/library" element={<Library />} />
         <Route path="/admin/clients" element={<Clients />} />
         <Route path="/admin/clients/:clientId" element={<ClientBuilder />} />
+        <Route path="/admin/reports" element={<AdminReports />} />
         <Route path="/shopify-builds" element={<ShopifyChecklist />} />
         <Route path="/access-not-setup" element={<AccessNotSetUp />} />
         <Route path="/attribution" element={<AttributionDashboard />} />

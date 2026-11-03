@@ -1,0 +1,58 @@
+{
+  "name": "Report",
+  "type": "object",
+  "properties": {
+    "code": {
+      "type": "string",
+      "description": "Unguessable 8-character code used in the public link /r/<code>"
+    },
+    "client_name": {
+      "type": "string",
+      "description": "Client the report is for"
+    },
+    "report_title": {
+      "type": "string",
+      "description": "Report title shown in the admin list"
+    },
+    "date_range": {
+      "type": "string",
+      "description": "Reporting period, e.g. 'Oct 1 - Oct 31, 2026'"
+    },
+    "file_url": {
+      "type": "string",
+      "description": "Public URL of the self-contained HTML report file"
+    },
+    "file_name": {
+      "type": "string",
+      "description": "Original uploaded file name"
+    }
+  },
+  "required": [
+    "code",
+    "client_name",
+    "report_title",
+    "file_url"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}
