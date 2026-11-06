@@ -10,7 +10,6 @@ import OutstandingTasksTab from "@/components/partnership/OutstandingTasksTab";
 import FilesTab from "@/components/partnership/FilesTab";
 import LeadsTab from "@/components/partnership/leads/LeadsTab";
 import MoodBoardTab from "@/components/moodboard/MoodBoardTab";
-import GoToMarketDoc from "@/components/partnership/GoToMarketDoc";
 import TimelineTab from "@/components/partnership/TimelineTab";
 import SectionView from "@/components/partnership/SectionView";
 import SectionPanel from "@/components/partnership/SectionPanel";
@@ -111,7 +110,6 @@ export default function PartnershipHQ() {
               {view === "files" && <FilesTab data={data} />}
               {view === "leads" && <LeadsTab data={data} userName={userName} />}
               {view === "mood" && <MoodBoardTab userName={userName} />}
-              {view === "gtm" && <GoToMarketDoc data={data} />}
               {view === "section" && activeSection && (
                 <SectionView
                   section={activeSection}

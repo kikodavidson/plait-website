@@ -34,6 +34,7 @@ import ShopifyChecklist from './pages/ShopifyChecklist';
 import AccessNotSetUp from './pages/AccessNotSetUp';
 import Principles from './pages/Principles';
 import PartnershipHQ from './pages/PartnershipHQ';
+import GoToMarket from './pages/GoToMarket';
 import ReportView from './pages/ReportView';
 import AdminReports from './pages/admin/Reports';
 import AttributionDashboard from './pages/attribution/Dashboard';
@@ -102,6 +103,7 @@ const AuthenticatedApp = () => {
       <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/reset-password" element={<ResetPassword />} />
       <Route path="/partnership" element={<PartnershipHQ />} />
+      <Route path="/partnership/gtm" element={<GoToMarket />} />
       <Route path="/r/:code" element={<ReportView />} />
       <Route element={<Layout />}>
         <Route path="/" element={<Home />} />
