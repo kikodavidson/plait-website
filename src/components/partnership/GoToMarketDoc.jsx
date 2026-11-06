@@ -53,11 +53,10 @@ export default function GoToMarketDoc({ data }) {
           className="mt-9 text-[34px] leading-[1.1] sm:text-[42px]"
           style={{ WebkitTextFillColor: "#1a1a1a" }}
         >
-          Everything we&apos;ve locked in
+          Locked and loaded
         </h1>
         <p className="mt-3 max-w-xl text-[15px] leading-[1.6] text-[#6b6b6b]">
-          The finished decisions behind the business, as they stand. Only work that has final
-          approval shows up here.
+          Finalized decisions
         </p>
         <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-1 text-[12px] text-[#9a9a9a]">
           <span>{total} locked in</span>
