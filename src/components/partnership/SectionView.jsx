@@ -7,7 +7,6 @@ import {
   History,
   MoreHorizontal,
   Pencil,
-  RotateCcw,
   Trash2,
 } from "lucide-react";
 import SectionStepper from "./SectionStepper";
@@ -33,19 +32,8 @@ export default function SectionView({ section, tabName, data, userName, user, on
   const locked = section.stage === "locked";
   const hasContent = !!(section.content || "").trim();
   const myKey = userName === "Luke" ? "approved_luke" : userName === "Max" ? "approved_max" : null;
-  const myApproved = myKey ? !!section[myKey] : false;
-  const otherKey = myKey === "approved_luke" ? "approved_max" : "approved_luke";
-  const otherApproved = !!section[otherKey];
-  const waitingOnMe = !locked && myKey && !myApproved && otherApproved;
-  const partners = [
-    { name: "Luke", approved: !!section.approved_luke },
-    { name: "Max", approved: !!section.approved_max },
-  ];
-  const status = locked
-    ? "Locked by both"
-    : partners.some((p) => p.approved)
-      ? `Waiting on ${partners.find((p) => !p.approved).name}`
-      : "No approvals yet";
+  const approver = section.approved_luke ? "Luke" : section.approved_max ? "Max" : null;
+  const status = locked ? (approver ? `Locked by ${approver}` : "Locked") : "No approvals yet";
   const ideas = data.ideas.filter((i) => i.section_id === section.id);
 
   const commitRename = () => {
@@ -167,26 +155,18 @@ export default function SectionView({ section, tabName, data, userName, user, on
       {/* Approvals */}
       <div className="mt-5 flex flex-wrap items-center gap-3">
         {locked && <ReopenControl section={section} data={data} />}
-        {!locked && myKey && !myApproved && hasContent && (
+        {!locked && myKey && hasContent && (
           <button
             onClick={() => data.approve(section.id, userName)}
             className="inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-[14px] font-semibold hover:opacity-90"
             style={{ backgroundColor: ACCENT, color: ACCENT_TEXT }}
           >
-            <Check className="h-4 w-4" /> {waitingOnMe ? "Approve and lock" : "Approve"}
-          </button>
-        )}
-        {!locked && myKey && myApproved && (
-          <button
-            onClick={() => data.unapprove(section.id, userName)}
-            className="inline-flex items-center gap-1.5 rounded-full border border-[#e5e2dc] px-4 py-2 text-[14px] transition-colors hover:border-[#b0532f] hover:text-[#b0532f]"
-          >
-            <RotateCcw className="h-3.5 w-3.5" /> Withdraw approval
+            <Check className="h-4 w-4" /> Lock it in
           </button>
         )}
         {!locked && !hasContent && (
           <p className="text-[12px] text-[#9a9a9a]">
-            Approve appears once there's a final version.
+            Lock it in once there's a final version.
           </p>
         )}
         <button

@@ -26,9 +26,7 @@ export default function ApprovalsBar({ section }) {
     { name: "Max", approved: !!section.approved_max },
   ];
   const locked = section.stage === "locked";
-  const waiting = !locked && partners.some((p) => p.approved)
-    ? partners.find((p) => !p.approved).name
-    : null;
+  const approver = section.approved_luke ? "Luke" : section.approved_max ? "Max" : null;
 
   return (
     <div className="mt-3 flex flex-wrap items-center gap-3">
@@ -40,11 +38,12 @@ export default function ApprovalsBar({ section }) {
           </span>
         ))}
       </div>
-      {locked && <span className="text-[12px] font-semibold text-[#3d6b52]">Locked by both</span>}
-      {waiting && <span className="text-[12px] text-[#8a6100]">Waiting on {waiting}</span>}
-      {!locked && !waiting && partners.every((p) => !p.approved) && (
-        <span className="text-[12px] text-[#9a9a9a]">No approvals yet</span>
+      {locked && (
+        <span className="text-[12px] font-semibold text-[#3d6b52]">
+          Locked{approver ? ` by ${approver}` : ""}
+        </span>
       )}
+      {!locked && <span className="text-[12px] text-[#9a9a9a]">Not locked yet</span>}
     </div>
   );
 }

@@ -36,6 +36,15 @@
       ],
       "description": "Max's vote on the idea"
     },
+    "locked": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether this idea has been locked in as part of the decision (crossed out on the board)"
+    },
+    "locked_by": {
+      "type": "string",
+      "description": "Display name of the partner who locked the idea in"
+    },
     "workspace": {
       "type": "string",
       "default": "partnership",

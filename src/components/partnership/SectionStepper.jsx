@@ -13,7 +13,7 @@ export default function SectionStepper({ section, onSet }) {
         {STAGE_ORDER.map((st, i) => {
           const isCurrent = st === section.stage;
           const done = i < current;
-          const clickable = !locked && st !== "locked";
+          const clickable = !locked;
           return (
             <React.Fragment key={st}>
               {i > 0 && (
@@ -25,7 +25,7 @@ export default function SectionStepper({ section, onSet }) {
               <button
                 disabled={!clickable}
                 onClick={() => clickable && onSet(st)}
-                title={clickable ? `Move to ${STAGES[st].label}` : "Locked needs both approvals"}
+                title={clickable ? `Move to ${STAGES[st].label}` : "Reopen to change the stage"}
                 className="inline-flex items-center gap-1.5 disabled:cursor-default"
               >
                 <span
@@ -51,7 +51,7 @@ export default function SectionStepper({ section, onSet }) {
       <p className="mt-3 text-[12px] text-white/35">
         {locked
           ? "Locked — reopen to change the stage."
-          : "Click a stage to move there. Locked needs both approvals."}
+          : "Click a stage to move there. Either of you can lock it."}
       </p>
     </div>
   );

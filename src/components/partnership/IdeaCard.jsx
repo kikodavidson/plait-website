@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Heart, Minus, Trash2, X, ArrowUpToLine, Pencil } from "lucide-react";
+import { Heart, Minus, Trash2, X, Lock, Unlock, Pencil } from "lucide-react";
 import moment from "moment";
 import { ACCENT, ACCENT_TEXT } from "./accent";
 
@@ -26,9 +26,13 @@ export default function IdeaCard({ idea, data, userName }) {
 
   return (
     <div
-      className="rounded-2xl border border-[#e5e2dc] bg-white p-4 transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-md sm:p-5"
+      className={`rounded-2xl border p-4 transition-all duration-200 ease-out sm:p-5 ${
+        idea.locked
+          ? "border-[#e8e4dd] bg-[#faf9f7]"
+          : "border-[#e5e2dc] bg-white hover:-translate-y-0.5 hover:shadow-md"
+      }`}
       style={
-        bothLove
+        bothLove && !idea.locked
           ? { border: `1px solid ${ACCENT}`, boxShadow: `0 0 0 1px ${ACCENT}55, 0 10px 30px -10px ${ACCENT}66` }
           : undefined
       }
@@ -67,11 +71,20 @@ export default function IdeaCard({ idea, data, userName }) {
           </div>
         </div>
       ) : (
-        <p className="whitespace-pre-wrap text-[15px] leading-[1.6] text-[#1a1a1a]">{idea.text}</p>
+        <p
+          className={`whitespace-pre-wrap text-[15px] leading-[1.6] ${
+            idea.locked
+              ? "text-[#9a9a9a] line-through decoration-[#c0bbb2] decoration-1"
+              : "text-[#1a1a1a]"
+          }`}
+        >
+          {idea.text}
+        </p>
       )}
       <p className="mt-2 text-[12px] text-[#9a9a9a]">
         Added by {idea.author}
         {idea.created_date ? ` · ${moment(idea.created_date).format("MMM D")}` : ""}
+        {idea.locked ? ` · Locked in${idea.locked_by ? ` by ${idea.locked_by}` : ""}` : ""}
       </p>
 
       <div className="mt-3 flex flex-wrap items-center gap-1.5">
@@ -101,11 +114,20 @@ export default function IdeaCard({ idea, data, userName }) {
 
       <div className="mt-3 flex items-center justify-between gap-2 border-t border-[#f0eeea] pt-3">
         <button
-          onClick={() => data.makeFinal(idea)}
+          onClick={() => data.lockIdea(idea, userName)}
           className="inline-flex items-center gap-1.5 text-[13px] font-semibold transition-opacity hover:opacity-75"
-          style={{ color: ACCENT_TEXT === "#0c130e" ? "#0c5c34" : ACCENT }}
+          style={{ color: idea.locked ? "#9a9a9a" : "#0c5c34" }}
+          title={idea.locked ? "Unlock to bring this idea back" : "Lock this idea in"}
         >
-          <ArrowUpToLine className="h-3.5 w-3.5" /> Make this the final version
+          {idea.locked ? (
+            <>
+              <Unlock className="h-3.5 w-3.5" /> Locked in
+            </>
+          ) : (
+            <>
+              <Lock className="h-3.5 w-3.5" /> Lock in
+            </>
+          )}
         </button>
         <div className="flex items-center gap-1">
           {!editing && (

@@ -31,7 +31,7 @@ export default function ReopenControl({ section, data }) {
             Cancel
           </button>
         </div>
-        <p className="mt-1.5 text-[12px] text-[#9a9a9a]">Moves back to In Discussion and clears both approvals.</p>
+        <p className="mt-1.5 text-[12px] text-[#9a9a9a]">Moves back to In Discussion and clears the lock.</p>
       </div>
     );
   }

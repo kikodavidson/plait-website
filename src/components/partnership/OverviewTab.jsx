@@ -23,10 +23,6 @@ const Card = ({ title, children, className, glow = "green" }) => (
 
 export default function OverviewTab({ data, userName, onSelectTab }) {
   const { tabs, sections, versions, tasks, questions } = data;
-  const myKey = userName === "Luke" ? "approved_luke" : "approved_max";
-  const otherKey = userName === "Luke" ? "approved_max" : "approved_luke";
-  const otherName = userName === "Luke" ? "Max" : "Luke";
-  const needsMe = sections.filter((s) => s.stage !== "locked" && s[otherKey] && !s[myKey]);
   const locked = sections.filter((s) => s.stage === "locked");
   const reopens = versions.filter((v) => v.kind === "reopen").slice(0, 5);
   const dueThisWeek = tasks.filter((t) => {
@@ -64,23 +60,6 @@ export default function OverviewTab({ data, userName, onSelectTab }) {
             </div>
           );
         })}
-      </Card>
-
-      <Card title="Needs your approval" glow="blush">
-        {needsMe.length === 0 ? (
-          <p className="text-[15px] text-[#6b6b6b]">Nothing waiting on you right now.</p>
-        ) : (
-          <ul className="space-y-2.5">
-            {needsMe.map((s) => (
-              <li key={s.id}>
-                <button onClick={() => onSelectTab(s.tab_id)} className="w-full text-left">
-                  <p className="text-[14px] font-semibold">{s.name}</p>
-                  <p className="text-[12px] text-[#6b6b6b]">{tabName(s.tab_id)} · {otherName} approved</p>
-                </button>
-              </li>
-            ))}
-          </ul>
-        )}
       </Card>
 
       <Card title="Recently reopened" glow="amber">

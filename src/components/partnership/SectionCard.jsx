@@ -13,9 +13,6 @@ export default function SectionCard({ section, data, userName }) {
   const [historyOpen, setHistoryOpen] = useState(false);
   const locked = section.stage === "locked";
   const myKey = userName === "Luke" ? "approved_luke" : userName === "Max" ? "approved_max" : null;
-  const myApproved = myKey ? !!section[myKey] : false;
-  const otherApproved = !!section[myKey === "approved_luke" ? "approved_max" : "approved_luke"];
-  const waitingOnMe = !locked && myKey && !myApproved && otherApproved;
 
   return (
     <div className={`rounded-2xl border p-5 sm:p-6 ${locked ? "border-[#619e80] bg-[#fbfdfc]" : "border-[#e5e2dc]"}`}>
@@ -35,20 +32,12 @@ export default function SectionCard({ section, data, userName }) {
       <SectionContent section={section} data={data} />
       <div className="mt-4">
         {locked && <ReopenControl section={section} data={data} />}
-        {!locked && myKey && !myApproved && (
+        {!locked && myKey && (section.content || "").trim() && (
           <button
             onClick={() => data.approve(section.id, userName)}
             className="inline-flex items-center gap-1.5 rounded-full bg-[#619e80] px-4 py-2 text-[14px] font-semibold text-white hover:opacity-90"
           >
-            <Check className="h-4 w-4" /> {waitingOnMe ? "Approve and lock" : "Approve"}
-          </button>
-        )}
-        {!locked && myKey && myApproved && (
-          <button
-            onClick={() => data.unapprove(section.id, userName)}
-            className="rounded-full border border-[#e5e2dc] px-4 py-2 text-[14px] hover:border-[#b0532f] hover:text-[#b0532f]"
-          >
-            Withdraw approval
+            <Check className="h-4 w-4" /> Lock it in
           </button>
         )}
       </div>

@@ -25,9 +25,12 @@ export default function IdeaBoard({ section, data, userName, ideas, composerOpen
   };
 
   const loves = (i) => ["vote_luke", "vote_max"].filter((k) => i[k] === "love").length;
+  // Locked ideas sink to the bottom so what's left to decide stays up top.
   const sorted = [...ideas].sort(
     (a, b) =>
-      loves(b) - loves(a) || new Date(b.created_date || 0) - new Date(a.created_date || 0)
+      (a.locked ? 1 : 0) - (b.locked ? 1 : 0) ||
+      loves(b) - loves(a) ||
+      new Date(b.created_date || 0) - new Date(a.created_date || 0)
   );
 
   return (

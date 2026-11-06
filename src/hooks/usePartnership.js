@@ -198,10 +198,23 @@ export default function usePartnership() {
     await base44.entities.PartnershipSection.update(id, patch);
   }), [run]);
 
+  // Any single partner can lock a section — one signature is enough.
   const setStage = useCallback((id, stage) => {
-    if (stage === "locked") return; // locking only happens through both approvals
-    return patchSection(id, { stage, approved_luke: false, approved_max: false });
-  }, [patchSection]);
+    if (stage !== "locked") {
+      return patchSection(id, { stage, approved_luke: false, approved_max: false });
+    }
+    const s = (sections || []).find((x) => x.id === id);
+    return run(async () => {
+      if (!s || s.stage === "locked") return;
+      const updated = await base44.entities.PartnershipSection.update(id, { stage: "locked" });
+      replaceIn(setSections, id, updated);
+      const v = await base44.entities.PartnershipVersion.create({
+        section_id: id, tab_id: s.tab_id, kind: "locked", content: s.content || "",
+        approved_by: [], workspace: WORKSPACE,
+      });
+      setVersions((prev) => [v, ...(prev || [])]);
+    });
+  }, [sections, patchSection, run]);
 
   const saveContent = useCallback((id, content) => {
     const s = (sections || []).find((x) => x.id === id);
@@ -209,23 +222,21 @@ export default function usePartnership() {
     return patchSection(id, { content, approved_luke: false, approved_max: false });
   }, [sections, patchSection]);
 
+  // One approval locks the section straight away — no second sign-off needed.
   const approve = useCallback((id, me) => run(async () => {
     const s = (sections || []).find((x) => x.id === id);
     if (!s || s.stage === "locked") return;
     const key = me === "Luke" ? "approved_luke" : me === "Max" ? "approved_max" : null;
     if (!key) return;
-    const otherKey = key === "approved_luke" ? "approved_max" : "approved_luke";
-    const patch = { [key]: true };
-    if (s[otherKey]) patch.stage = "locked";
-    const updated = await base44.entities.PartnershipSection.update(id, patch);
+    const updated = await base44.entities.PartnershipSection.update(id, {
+      [key]: true, stage: "locked",
+    });
     replaceIn(setSections, id, updated);
-    if (patch.stage === "locked") {
-      const v = await base44.entities.PartnershipVersion.create({
-        section_id: id, tab_id: s.tab_id, kind: "locked",
-        content: s.content || "", approved_by: ["Luke", "Max"], workspace: WORKSPACE,
-      });
-      setVersions((prev) => [v, ...(prev || [])]);
-    }
+    const v = await base44.entities.PartnershipVersion.create({
+      section_id: id, tab_id: s.tab_id, kind: "locked",
+      content: s.content || "", approved_by: [me], workspace: WORKSPACE,
+    });
+    setVersions((prev) => [v, ...(prev || [])]);
   }), [sections, run]);
 
   const unapprove = useCallback((id, me) => {
@@ -272,12 +283,28 @@ export default function usePartnership() {
     await base44.entities.PartnershipIdea.update(id, { [key]: next });
   }), [ideas, run]);
 
-  const makeFinal = useCallback((idea) => run(async () => {
-    const updated = await base44.entities.PartnershipSection.update(idea.section_id, {
-      content: idea.text, stage: "draft", approved_luke: false, approved_max: false,
-    });
+  // Locking any number of ideas: the locked ones become the section's final version.
+  const lockIdea = useCallback((idea, me) => run(async () => {
+    const locked = !idea.locked;
+    const patch = { locked, locked_by: locked ? me : null };
+    replaceIn(setIdeas, idea.id, patch);
+    await base44.entities.PartnershipIdea.update(idea.id, patch);
+
+    const lockedNow = (ideas || [])
+      .map((i) => (i.id === idea.id ? { ...i, ...patch } : i))
+      .filter((i) => i.section_id === idea.section_id && i.locked)
+      .sort((a, b) => new Date(a.created_date || 0) - new Date(b.created_date || 0));
+    const section = (sections || []).find((s) => s.id === idea.section_id);
+    if (!section) return;
+    const sectionPatch = {
+      content: lockedNow.map((i) => i.text).join("\n\n"),
+      approved_luke: false,
+      approved_max: false,
+    };
+    if (section.stage !== "locked" && lockedNow.length) sectionPatch.stage = "draft";
+    const updated = await base44.entities.PartnershipSection.update(idea.section_id, sectionPatch);
     replaceIn(setSections, idea.section_id, updated);
-  }), [run]);
+  }), [ideas, sections, run]);
 
   const setGuidingQuestion = useCallback((id, guiding_question) =>
     patchSection(id, { guiding_question }), [patchSection]);
@@ -458,7 +485,7 @@ export default function usePartnership() {
     addTab, renameTab, moveTab, deleteTab,
     addSection, renameSection, moveSection, deleteSection,
     setStage, saveContent, approve, unapprove, reopen,
-    addIdea, deleteIdea, updateIdea, voteIdea, makeFinal, setGuidingQuestion,
+    addIdea, deleteIdea, updateIdea, voteIdea, lockIdea, setGuidingQuestion,
     addEntry, updateEntry, deleteEntry,
     addTask, updateTask, deleteTask,
     addQuestion, updateQuestion, deleteQuestion, questionToLog,

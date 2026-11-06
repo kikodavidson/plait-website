@@ -38,7 +38,7 @@ export default function FinalVersionBlock({ section, data }) {
           >
             Cancel
           </button>
-          <span className="text-[12px] text-[#9a9a9a]">Saving clears both approvals.</span>
+          <span className="text-[12px] text-[#9a9a9a]">Saving resets the lock-in.</span>
         </div>
       </div>
     );
