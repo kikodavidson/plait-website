@@ -142,7 +142,15 @@ export default function SectionView({ section, tabName, data, userName, user, on
       {/* Final version or guided empty state */}
       <div className="mt-6">
         {hasContent ? (
-          <FinalVersionBlock section={section} data={data} />
+          <>
+            <FinalVersionBlock section={section} data={data} />
+            {ideas.length > 0 && (
+              <p className="mt-2 text-[12px] text-[#9a9a9a]">
+                {ideas.filter((i) => i.locked).length} of {ideas.length} ideas locked in · lock in
+                as many as you like from the board below.
+              </p>
+            )}
+          </>
         ) : (
           <GuidedEmptyState
             section={section}

@@ -296,14 +296,24 @@ export default function usePartnership() {
       .sort((a, b) => new Date(a.created_date || 0) - new Date(b.created_date || 0));
     const section = (sections || []).find((s) => s.id === idea.section_id);
     if (!section) return;
-    const sectionPatch = {
-      content: lockedNow.map((i) => i.text).join("\n\n"),
-      approved_luke: false,
-      approved_max: false,
-    };
-    if (section.stage !== "locked" && lockedNow.length) sectionPatch.stage = "draft";
+    const isLocked = section.stage === "locked";
+    const sectionPatch = { content: lockedNow.map((i) => i.text).join("\n\n") };
+    if (!isLocked) {
+      sectionPatch.approved_luke = false;
+      sectionPatch.approved_max = false;
+      if (lockedNow.length) sectionPatch.stage = "draft";
+    }
     const updated = await base44.entities.PartnershipSection.update(idea.section_id, sectionPatch);
     replaceIn(setSections, idea.section_id, updated);
+
+    // Still locked and still adding to it: snapshot the new final version.
+    if (isLocked && lockedNow.length) {
+      const v = await base44.entities.PartnershipVersion.create({
+        section_id: idea.section_id, tab_id: section.tab_id, kind: "locked",
+        content: sectionPatch.content, approved_by: [me], workspace: WORKSPACE,
+      });
+      setVersions((prev) => [v, ...(prev || [])]);
+    }
   }), [ideas, sections, run]);
 
   const setGuidingQuestion = useCallback((id, guiding_question) =>

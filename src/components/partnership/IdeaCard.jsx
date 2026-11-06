@@ -115,8 +115,12 @@ export default function IdeaCard({ idea, data, userName }) {
       <div className="mt-3 flex items-center justify-between gap-2 border-t border-[#f0eeea] pt-3">
         <button
           onClick={() => data.lockIdea(idea, userName)}
-          className="inline-flex items-center gap-1.5 text-[13px] font-semibold transition-opacity hover:opacity-75"
-          style={{ color: idea.locked ? "#9a9a9a" : "#0c5c34" }}
+          className="inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-[12.5px] font-semibold transition-colors"
+          style={
+            idea.locked
+              ? { borderColor: "#e5e2dc", color: "#9a9a9a" }
+              : { borderColor: ACCENT, color: "#0c5c34", backgroundColor: "rgba(97,158,128,0.10)" }
+          }
           title={idea.locked ? "Unlock to bring this idea back" : "Lock this idea in"}
         >
           {idea.locked ? (
