@@ -1,6 +1,7 @@
 import React from "react";
 import moment from "moment";
 import { ACCENT } from "./accent";
+import { STAGES } from "./stageMeta";
 
 const lockedLabel = (section) =>
   section.approved_luke ? "Luke" : section.approved_max ? "Max" : null;
@@ -25,6 +26,15 @@ export default function GoToMarketDoc({ data }) {
     .filter((g) => g.items.length > 0);
 
   const total = groups.reduce((n, g) => n + g.items.length, 0);
+
+  const openGroups = tabs
+    .map((tab) => ({
+      tab,
+      items: sections.filter((s) => s.tab_id === tab.id && s.stage !== "locked"),
+    }))
+    .filter((g) => g.items.length > 0);
+
+  const openTotal = openGroups.reduce((n, g) => n + g.items.length, 0);
 
   return (
     <div className="fade-in">
@@ -94,6 +104,45 @@ export default function GoToMarketDoc({ data }) {
           ))}
         </div>
 
+        {/* Still-open work, kept below everything that is finished */}
+        {openTotal > 0 && (
+          <div className="mt-14 border-t border-[#eae6dd] pt-8">
+            <p className="text-[11px] font-extrabold uppercase tracking-[0.24em] text-[#9a9a9a]">
+              Still to be finalized
+            </p>
+            <p className="mt-2 text-[13px] text-[#a8a29a]">
+              {openTotal} {openTotal === 1 ? "section" : "sections"} left to lock in.
+            </p>
+            <div className="mt-6 space-y-8">
+              {openGroups.map(({ tab, items }) => (
+                <section key={tab.id}>
+                  <p className="text-[11px] font-extrabold uppercase tracking-[0.24em] text-[#b7b1a7]">
+                    {tab.name}
+                  </p>
+                  <div className="mt-3">
+                    {items.map((s) => (
+                      <div
+                        key={s.id}
+                        className="flex items-baseline justify-between gap-3 border-t border-[#f0ece4] py-2.5"
+                      >
+                        <p className="text-[15px] leading-snug text-[#8a8a8a]">{s.name}</p>
+                        <span
+                          className="shrink-0 rounded-full px-2 py-0.5 text-[11px]"
+                          style={{
+                            backgroundColor: (STAGES[s.stage] || STAGES.not_started).tint,
+                            color: (STAGES[s.stage] || STAGES.not_started).text,
+                          }}
+                        >
+                          {(STAGES[s.stage] || STAGES.not_started).label}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </section>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
