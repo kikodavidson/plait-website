@@ -13,8 +13,8 @@ const lockedLabel = (section) =>
  */
 export default function GoToMarketDoc({ data }) {
   const { tabs, sections, versions } = data;
-  const [collapsed, setCollapsed] = useState({});
-  const toggle = (key) => setCollapsed((c) => ({ ...c, [key]: !c[key] }));
+  const [expanded, setExpanded] = useState({});
+  const toggle = (key) => setExpanded((e) => ({ ...e, [key]: !e[key] }));
 
   const lockedDate = (sectionId) => {
     const v = versions.find((x) => x.section_id === sectionId && x.kind === "locked");
@@ -86,7 +86,7 @@ export default function GoToMarketDoc({ data }) {
 
           {groups.map(({ tab, items }) => {
             const key = `locked-${tab.id}`;
-            const isCollapsed = !!collapsed[key];
+            const isCollapsed = !expanded[key];
             return (
               <section key={tab.id}>
                 <button
@@ -139,7 +139,7 @@ export default function GoToMarketDoc({ data }) {
             <div className="mt-6 space-y-8">
               {openGroups.map(({ tab, items }) => {
                 const key = `open-${tab.id}`;
-                const isCollapsed = !!collapsed[key];
+                const isCollapsed = !expanded[key];
                 return (
                   <section key={tab.id}>
                     <button
