@@ -5,6 +5,7 @@ import {
   ChevronDown,
   ChevronRight,
   Clock,
+  FileText,
   Folder,
   HelpCircle,
   Home,
@@ -171,6 +172,12 @@ export default function DocsSidebar({
     <div className="text-[#1a1a1a]">
       <nav className="space-y-0.5">
         <NavItem icon={Home} label="Overview" active={view === "overview"} onClick={() => pickView("overview")} />
+        <NavItem
+          icon={FileText}
+          label="Go-to-market"
+          active={view === "gtm"}
+          onClick={() => pickView("gtm")}
+        />
         <NavItem icon={Clock} label="Timeline" active={view === "timeline"} onClick={() => pickView("timeline")} />
         <NavItem
           icon={Users}
