@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import moment from "moment";
+import { ChevronDown } from "lucide-react";
 import { ACCENT } from "./accent";
 import { STAGES } from "./stageMeta";
 
@@ -12,6 +13,8 @@ const lockedLabel = (section) =>
  */
 export default function GoToMarketDoc({ data }) {
   const { tabs, sections, versions } = data;
+  const [collapsed, setCollapsed] = useState({});
+  const toggle = (key) => setCollapsed((c) => ({ ...c, [key]: !c[key] }));
 
   const lockedDate = (sectionId) => {
     const v = versions.find((x) => x.section_id === sectionId && x.kind === "locked");
@@ -81,27 +84,47 @@ export default function GoToMarketDoc({ data }) {
             </p>
           )}
 
-          {groups.map(({ tab, items }) => (
-            <section key={tab.id}>
-              <p className="text-[11px] font-extrabold uppercase tracking-[0.24em] text-[#619e80]">
-                {tab.name}
-              </p>
-              <div className="mt-4 space-y-7">
-                {items.map((s) => (
-                  <div key={s.id} className="border-t border-[#eae6dd] pt-5">
-                    <h2 className="text-[20px] leading-snug">{s.name}</h2>
-                    <p className="mt-2 whitespace-pre-wrap text-[16px] leading-[1.7] text-[#2d2d2d]">
-                      {s.content}
-                    </p>
-                    <p className="mt-2 text-[12px] text-[#a8a29a]">
-                      Locked{lockedLabel(s) ? ` by ${lockedLabel(s)}` : ""}
-                      {lockedDate(s.id) ? ` · ${lockedDate(s.id)}` : ""}
-                    </p>
+          {groups.map(({ tab, items }) => {
+            const key = `locked-${tab.id}`;
+            const isCollapsed = !!collapsed[key];
+            return (
+              <section key={tab.id}>
+                <button
+                  onClick={() => toggle(key)}
+                  className="flex w-full items-center justify-between gap-4 border-b border-[#eae6dd] pb-3 text-left"
+                  aria-expanded={!isCollapsed}
+                >
+                  <span className="text-[26px] font-extrabold uppercase leading-none tracking-[0.16em] text-[#619e80] sm:text-[30px]">
+                    {tab.name}
+                  </span>
+                  <ChevronDown
+                    className={`h-5 w-5 shrink-0 transition-transform ${
+                      isCollapsed ? "-rotate-90" : ""
+                    }`}
+                    style={{ color: "#b3aea4" }}
+                  />
+                </button>
+                {!isCollapsed && (
+                  <div className="mt-6 space-y-8">
+                    {items.map((s) => (
+                      <div key={s.id}>
+                        <p className="text-[17px] font-extrabold leading-snug text-[#1a1a1a]">
+                          {s.name}
+                        </p>
+                        <p className="mt-2 whitespace-pre-wrap text-[16px] leading-[1.7] text-[#2d2d2d]">
+                          {s.content}
+                        </p>
+                        <p className="mt-2 text-[12px] text-[#a8a29a]">
+                          Locked{lockedLabel(s) ? ` by ${lockedLabel(s)}` : ""}
+                          {lockedDate(s.id) ? ` · ${lockedDate(s.id)}` : ""}
+                        </p>
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
-            </section>
-          ))}
+                )}
+              </section>
+            );
+          })}
         </div>
 
         {/* Still-open work, kept below everything that is finished */}
@@ -114,32 +137,50 @@ export default function GoToMarketDoc({ data }) {
               {openTotal} {openTotal === 1 ? "section" : "sections"} left to lock in.
             </p>
             <div className="mt-6 space-y-8">
-              {openGroups.map(({ tab, items }) => (
-                <section key={tab.id}>
-                  <p className="text-[11px] font-extrabold uppercase tracking-[0.24em] text-[#b7b1a7]">
-                    {tab.name}
-                  </p>
-                  <div className="mt-3">
-                    {items.map((s) => (
-                      <div
-                        key={s.id}
-                        className="flex items-baseline justify-between gap-3 border-t border-[#f0ece4] py-2.5"
-                      >
-                        <p className="text-[15px] leading-snug text-[#8a8a8a]">{s.name}</p>
-                        <span
-                          className="shrink-0 rounded-full px-2 py-0.5 text-[11px]"
-                          style={{
-                            backgroundColor: (STAGES[s.stage] || STAGES.not_started).tint,
-                            color: (STAGES[s.stage] || STAGES.not_started).text,
-                          }}
-                        >
-                          {(STAGES[s.stage] || STAGES.not_started).label}
-                        </span>
+              {openGroups.map(({ tab, items }) => {
+                const key = `open-${tab.id}`;
+                const isCollapsed = !!collapsed[key];
+                return (
+                  <section key={tab.id}>
+                    <button
+                      onClick={() => toggle(key)}
+                      className="flex w-full items-center justify-between gap-4 border-b border-[#f0ece4] pb-2 text-left"
+                      aria-expanded={!isCollapsed}
+                    >
+                      <span className="text-[19px] font-extrabold uppercase leading-none tracking-[0.16em] text-[#b7b1a7]">
+                        {tab.name}
+                      </span>
+                      <ChevronDown
+                        className={`h-4 w-4 shrink-0 transition-transform ${
+                          isCollapsed ? "-rotate-90" : ""
+                        }`}
+                        style={{ color: "#c9c3b9" }}
+                      />
+                    </button>
+                    {!isCollapsed && (
+                      <div className="mt-3">
+                        {items.map((s) => (
+                          <div
+                            key={s.id}
+                            className="flex items-baseline justify-between gap-3 border-t border-[#f0ece4] py-2.5"
+                          >
+                            <p className="text-[15px] leading-snug text-[#8a8a8a]">{s.name}</p>
+                            <span
+                              className="shrink-0 rounded-full px-2 py-0.5 text-[11px]"
+                              style={{
+                                backgroundColor: (STAGES[s.stage] || STAGES.not_started).tint,
+                                color: (STAGES[s.stage] || STAGES.not_started).text,
+                              }}
+                            >
+                              {(STAGES[s.stage] || STAGES.not_started).label}
+                            </span>
+                          </div>
+                        ))}
                       </div>
-                    ))}
-                  </div>
-                </section>
-              ))}
+                    )}
+                  </section>
+                );
+              })}
             </div>
           </div>
         )}
