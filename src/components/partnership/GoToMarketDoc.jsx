@@ -50,7 +50,7 @@ export default function GoToMarketDoc({ data }) {
         </div>
 
         <h1
-          className="mt-9 text-[34px] leading-[1.1] sm:text-[42px]"
+          className="mt-9 text-center text-[34px] uppercase leading-[1.1] sm:text-[42px]"
           style={{ WebkitTextFillColor: "#1a1a1a" }}
         >
           Locked and loaded
@@ -94,9 +94,6 @@ export default function GoToMarketDoc({ data }) {
           ))}
         </div>
 
-        <div className="mt-14 border-t border-[#eae6dd] pt-5 text-[12px] text-[#a8a29a]">
-          Drafts and open questions stay in the studio.
-        </div>
       </div>
     </div>
   );
