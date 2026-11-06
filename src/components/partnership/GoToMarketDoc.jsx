@@ -105,16 +105,19 @@ export default function GoToMarketDoc({ data }) {
                   />
                 </button>
                 {!isCollapsed && (
-                  <div className="mt-6 space-y-8">
+                  <div className="mt-5 space-y-3">
                     {items.map((s) => (
-                      <div key={s.id}>
+                      <div
+                        key={s.id}
+                        className="rounded-xl border border-[#ece7df] bg-[#f6f4ef] px-5 py-5"
+                      >
                         <p className="text-[17px] font-extrabold leading-snug text-[#1a1a1a]">
                           {s.name}
                         </p>
                         <p className="mt-2 whitespace-pre-wrap text-[16px] leading-[1.7] text-[#2d2d2d]">
                           {s.content}
                         </p>
-                        <p className="mt-2 text-[12px] text-[#a8a29a]">
+                        <p className="mt-3 text-[11px] uppercase tracking-[0.14em] text-[#a8a29a]">
                           Locked{lockedLabel(s) ? ` by ${lockedLabel(s)}` : ""}
                           {lockedDate(s.id) ? ` · ${lockedDate(s.id)}` : ""}
                         </p>
