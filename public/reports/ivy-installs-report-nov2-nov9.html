@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ivy Installs Report | Nov 2 to Nov 9</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --forest:#1F3A2E; --olive:#556B4F; --ivory:#F8F4E9; --taupe:#A89B86; --terracotta:#C75F3F;
+    --teal:#046877; --dark-teal:#00414B; --light-teal:#00A3BA; --turquoise:#00C4D4;
+    --card:#FFFDF8; --line:#E6DFCF; --text:#1F3A2E; --muted:#6F6656;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--ivory);color:var(--text);font-family:Inter,system-ui,sans-serif;font-size:15px;line-height:1.55}
+  .hero{background:linear-gradient(160deg,var(--forest) 0%,var(--dark-teal) 100%);color:var(--ivory);padding:56px 24px 64px}
+  .wrap{max-width:960px;margin:0 auto;padding:0 24px}
+  .hero .wrap{padding:0}
+  .brand{display:flex;align-items:center;gap:12px;margin-bottom:40px}
+  .brand-word{font-family:"Playfair Display",serif;font-size:26px;letter-spacing:.08em;line-height:1}
+  .brand-sub{font-size:10px;letter-spacing:.42em;opacity:.8;margin-top:4px}
+  .eyebrow{font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--turquoise);margin-bottom:14px}
+  h1{font-family:"Playfair Display",serif;font-weight:500;font-size:clamp(32px,5vw,48px);line-height:1.15;margin-bottom:16px}
+  .rule{width:56px;height:2px;background:var(--olive);margin:18px 0}
+  .hero p{max-width:620px;opacity:.88}
+  main{margin-top:-36px}
+  .kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .kpi{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 24px;box-shadow:0 6px 24px rgba(31,58,46,.06)}
+  .kpi .label{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+  .kpi .value{font-family:"Playfair Display",serif;font-size:38px;font-weight:500;margin-top:6px;color:var(--forest)}
+  .kpi .delta{font-size:12px;color:var(--teal);margin-top:4px;font-weight:500}
+  .kpi.accent{border-top:3px solid var(--teal)}
+  section{margin-top:56px}
+  h2{font-family:"Playfair Display",serif;font-weight:500;font-size:26px}
+  .section-label{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--olive);margin-bottom:6px}
+  .channels{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:22px}
+  .channel{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+  .channel-head{padding:18px 22px;color:var(--ivory);display:flex;justify-content:space-between;align-items:baseline}
+  .channel-head.meta{background:var(--teal)}
+  .channel-head.apple{background:var(--olive)}
+  .channel-head h3{font-family:"Playfair Display",serif;font-weight:500;font-size:20px}
+  .channel-head span{font-size:12px;opacity:.85}
+  .channel dl{display:grid;grid-template-columns:1fr auto;padding:8px 22px 14px}
+  .channel dt,.channel dd{padding:10px 0;border-bottom:1px solid var(--line)}
+  .channel dt{color:var(--muted)}
+  .channel dd{text-align:right;font-weight:500;font-variant-numeric:tabular-nums}
+  .channel dt:nth-last-of-type(1),.channel dd:last-of-type{border-bottom:none}
+  .channel .hl{font-family:"Playfair Display",serif;font-size:20px;color:var(--forest)}
+  .split{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin-top:16px}
+  .split-row{display:grid;grid-template-columns:90px 1fr;align-items:center;gap:14px;margin:10px 0}
+  .split-row .name{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  .bar{display:flex;height:30px;border-radius:8px;overflow:hidden;font-size:12px;font-weight:600;color:var(--ivory)}
+  .bar div{display:flex;align-items:center;padding:0 10px;white-space:nowrap}
+  .bar .m{background:var(--teal)} .bar .a{background:var(--olive)}
+  .legend{display:flex;gap:18px;font-size:12px;color:var(--muted);margin-top:6px}
+  .legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+  .tables{display:grid;grid-template-columns:1fr;gap:16px;margin-top:22px}
+  .tbl{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+  .tbl h3{font-family:"Playfair Display",serif;font-weight:500;font-size:18px;padding:16px 22px 4px}
+  .tbl .scroll{overflow-x:auto}
+  table{width:100%;border-collapse:collapse;font-size:14px;font-variant-numeric:tabular-nums}
+  th{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:500;text-align:right;padding:10px 22px;border-bottom:1px solid var(--line);white-space:nowrap}
+  td{text-align:right;padding:12px 22px;border-bottom:1px solid var(--line);white-space:nowrap}
+  th:first-child,td:first-child{text-align:left}
+  tr:last-child td{border-bottom:none}
+  td.dim{color:var(--taupe)}
+  .notes{list-style:none;margin-top:18px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:6px 24px}
+  .notes li{padding:14px 0 14px 22px;border-bottom:1px solid var(--line);position:relative;color:var(--muted)}
+  .notes li strong{color:var(--forest);font-weight:600}
+  .notes li:last-child{border-bottom:none}
+  .notes li::before{content:"";position:absolute;left:0;top:22px;width:8px;height:8px;border-radius:50%;background:var(--terracotta)}
+  .notes.means li::before{background:var(--teal)}
+  footer{margin:64px 0 40px;padding-top:20px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);display:flex;justify-content:space-between}
+  @media (max-width:720px){.kpis,.channels{grid-template-columns:1fr}.kpi .value{font-size:32px}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <div class="brand">
+      <img src="data:image/png;base64,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" alt="Ivy" style="height:52px;width:auto">
+      <div><div class="brand-word">IVY</div><div class="brand-sub">DATING</div></div>
+    </div>
+    <div class="eyebrow">Installs Report</div>
+    <h1>November 2 to November 9</h1>
+    <div class="rule"></div>
+    <p>First full week with the Meta SDK reporting installs. Meta and Apple Search Ads.</p>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="kpis">
+    <div class="kpi"><div class="label">Spend</div><div class="value">$900.43</div></div>
+    <div class="kpi"><div class="label">Installs</div><div class="value">170</div></div>
+    <div class="kpi accent"><div class="label">Blended cost per install</div><div class="value">$5.30</div><div class="delta">Down from $11.83 last report</div></div>
+  </div>
+
+  <section>
+    <div class="section-label">By channel</div>
+    <h2>Meta and Apple Search Ads</h2>
+    <div class="channels">
+      <div class="channel">
+        <div class="channel-head meta"><h3>Meta</h3><span>Nov 2 to Nov 8</span></div>
+        <dl>
+          <dt>Spend</dt><dd>$664.25</dd>
+          <dt>Installs</dt><dd>92</dd>
+          <dt>Cost per install</dt><dd class="hl">$7.22</dd>
+          <dt>Impressions</dt><dd>33,274</dd>
+          <dt>Link clicks</dt><dd>821</dd>
+          <dt>CTR</dt><dd>2.47%</dd>
+          <dt>Cost per click</dt><dd>$0.81</dd>
+        </dl>
+      </div>
+      <div class="channel">
+        <div class="channel-head apple"><h3>Apple Search Ads</h3><span>Nov 3 to Nov 9</span></div>
+        <dl>
+          <dt>Spend</dt><dd>$236.18</dd>
+          <dt>Installs</dt><dd>78</dd>
+          <dt>Cost per install</dt><dd class="hl">$3.03</dd>
+          <dt>New downloads</dt><dd>71</dd>
+          <dt>Redownloads</dt><dd>7</dd>
+          <dt>Impressions</dt><dd>3,885</dd>
+          <dt>Tap to install rate</dt><dd>48.8%</dd>
+          <dt>Cost per tap</dt><dd>$1.48</dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="split">
+      <div class="split-row"><div class="name">Spend</div>
+        <div class="bar"><div class="m" style="width:73.8%">Meta $664.25</div><div class="a" style="width:26.2%">$236.18</div></div></div>
+      <div class="split-row"><div class="name">Installs</div>
+        <div class="bar"><div class="m" style="width:54.1%">Meta 92</div><div class="a" style="width:45.9%">Apple 78</div></div></div>
+      <div class="legend"><span><i style="background:var(--teal)"></i>Meta</span><span><i style="background:var(--olive)"></i>Apple Search Ads</span></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">Breakdown</div>
+    <h2>Where the installs came from</h2>
+    <div class="tables">
+      <div class="tbl">
+        <h3>Meta by ad set</h3>
+        <div class="scroll"><table>
+          <thead><tr><th>Ad set</th><th>Spend</th><th>Installs</th><th>Cost per install</th><th>Link clicks</th><th>CTR</th></tr></thead>
+          <tbody>
+            <tr><td>BOFU Retargeting</td><td>$638.26</td><td>89</td><td>$7.17</td><td>502</td><td>1.60%</td></tr>
+            <tr><td>Single Men</td><td>$12.91</td><td>3</td><td>$4.30</td><td>230</td><td>20.44%</td></tr>
+            <tr><td>Single Women</td><td>$13.08</td><td>0</td><td class="dim">n/a</td><td>89</td><td>10.39%</td></tr>
+          </tbody>
+        </table></div>
+      </div>
+      <div class="tbl">
+        <h3>Apple Search Ads by campaign</h3>
+        <div class="scroll"><table>
+          <thead><tr><th>Campaign</th><th>Spend</th><th>Installs</th><th>Cost per install</th><th>Taps</th><th>Tap to install</th></tr></thead>
+          <tbody>
+            <tr><td>Branded Search</td><td>$211.87</td><td>69</td><td>$3.07</td><td>146</td><td>47.3%</td></tr>
+            <tr><td>Discovery, Search Match</td><td>$11.19</td><td>7</td><td>$1.60</td><td>10</td><td>70.0%</td></tr>
+            <tr><td>Competitor Keywords</td><td>$2.96</td><td>1</td><td>$2.96</td><td>2</td><td>50.0%</td></tr>
+            <tr><td>Keyword Search, Manage Bids</td><td>$10.17</td><td>1</td><td>$10.17</td><td>2</td><td>50.0%</td></tr>
+          </tbody>
+        </table></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">Data notes</div>
+    <h2>Before you read too far into it</h2>
+    <ul class="notes">
+      <li>Meta covers Nov 2 to Nov 8 in the ad account's timezone. Apple covers Nov 3 to Nov 9 in UTC. The windows are offset by a day.</li>
+      <li>Meta can take up to 3 days to report iOS installs, so the last few days may still go up.</li>
+      <li>Apple counts 7 redownloads in its 78 installs. First time downloads from Apple are 71.</li>
+      <li>Active user data isn't included. AppsFlyer no longer provides Ivy conversion data.</li>
+    </ul>
+  </section>
+
+  <footer><span>Ivy Dating · Installs Report</span><span>Prepared Nov 9, 2026</span></footer>
+</main>
+</body>
+</html>
