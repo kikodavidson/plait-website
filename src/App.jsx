@@ -42,6 +42,9 @@ import AttributionProjectPage from './pages/attribution/ProjectPage';
 import { useEffect } from 'react';
 import { base44 } from "@/api/base44Client";
 
+// Login-free share links: client reports (/r/code) and the go-to-market doc.
+const isPublicSharePath = (path) => /^\/r\/[a-z0-9]+$/i.test(path) || path === "/partnership/gtm";
+
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin, isAuthenticated, user, checkUserAuth } = useAuth();
   const location = useLocation();
@@ -50,6 +53,7 @@ const AuthenticatedApp = () => {
   useEffect(() => {
     if (isLoadingAuth || isLoadingPublicSettings || authError || !isAuthenticated || !user) return;
     const path = location.pathname;
+    if (isPublicSharePath(path)) return;
     if (user.role === "admin") {
       // One-time redirect after Google OAuth so admins land in the builder.
       if (sessionStorage.getItem("plait_post_oauth") === "1") {
@@ -90,8 +94,11 @@ const AuthenticatedApp = () => {
     if (authError.type === 'user_not_registered') {
       return <UserNotRegisteredError />;
     } else if (authError.type === 'auth_required') {
-      navigateToLogin();
-      return null;
+      // Shared public links (client reports, go-to-market doc) must never bounce to a login.
+      if (!isPublicSharePath(location.pathname)) {
+        navigateToLogin();
+        return null;
+      }
     }
   }
 
