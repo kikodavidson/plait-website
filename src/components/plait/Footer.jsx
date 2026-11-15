@@ -24,8 +24,9 @@ export default function Footer() {
           </div>
           <LiquidMetalButton label="Get Started" onClick={() => navigate("/book")} />
         </div>
-        <div className={`border-t mt-10 pt-6 text-xs ${isDarkPage ? "border-white/10 text-white/40" : "border-gray-100 text-[#525252]"}`}>
-          © {new Date().getFullYear()} PLAIT. Luke Davidson. All rights reserved.
+        <div className={`border-t mt-10 pt-6 flex flex-wrap items-center justify-between gap-3 text-xs ${isDarkPage ? "border-white/10 text-white/40" : "border-gray-100 text-[#525252]"}`}>
+          <span>© {new Date().getFullYear()} PLAIT. Luke Davidson. All rights reserved.</span>
+          <Link to="/privacy" className={`transition-colors ${isDarkPage ? "hover:text-white" : "hover:text-[#0A0A0A]"}`}>Privacy Policy</Link>
         </div>
       </div>
     </footer>

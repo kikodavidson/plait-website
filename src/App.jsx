@@ -21,6 +21,7 @@ import GoogleAdsOnboarding from './pages/GoogleAdsOnboarding';
 import Book from './pages/Book';
 import Blog from './pages/Blog';
 import BlogPostDetail from './pages/BlogPostDetail';
+import Privacy from './pages/Privacy';
 import ProtectedRoute from '@/components/ProtectedRoute';
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -127,6 +128,7 @@ const AuthenticatedApp = () => {
         <Route path="/book" element={<Book />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:slug" element={<BlogPostDetail />} />
+        <Route path="/privacy" element={<Privacy />} />
       </Route>
       <Route element={<ProtectedRoute unauthenticatedElement={<Navigate to="/creativelogin" replace />} />}>
         <Route path="/client" element={<ClientPortal />} />
