@@ -62,11 +62,87 @@ export const SEED_TASKS = [
   { phase: "close_follow_up", title: "Build follow up email sequence after the free offer is delivered" },
 ];
 
-export const SEED_FEATURE = {
-  what_we_do: "Ad account audit",
+// The five things we sell on. Every feature row is tagged to one of them.
+export const CORE_BENEFITS = [
+  "Your better product beats the brands that outspend you",
+  "You make big moves without fear",
+  "You get your time back",
+  "Slow weeks stop scaring you",
+  "You stop second guessing your business",
+];
+
+// What we give away, not a service we sell.
+export const FREE_OFFER = {
+  title: "Ad account audit",
   what_they_get: "You know exactly where your money is leaking",
   why_they_care: "You stop wasting budget and know what to fix first.",
 };
+
+export const SEED_FEATURES = [
+  {
+    service: "Strategy",
+    what_we_do: "ICP development",
+    what_they_get: "Ads and copy speak to the right people",
+    why_they_care: "You stop second guessing your business",
+    core_benefit: "You stop second guessing your business",
+  },
+  {
+    service: "Strategy",
+    what_we_do: "Pricing strategy",
+    what_they_get: "More profit per sale",
+    why_they_care: "You stop second guessing your business",
+    core_benefit: "You stop second guessing your business",
+  },
+  {
+    service: "Paid ads",
+    what_we_do: "Meta, Google, TikTok, LinkedIn ads",
+    what_they_get: "Budget goes where buyers are",
+    why_they_care: "Your better product beats the brands that outspend you",
+    core_benefit: "Your better product beats the brands that outspend you",
+  },
+  {
+    service: "Paid ads",
+    what_we_do: "Targeting",
+    what_they_get: "Less wasted spend",
+    why_they_care: "Your better product beats the brands that outspend you",
+    core_benefit: "Your better product beats the brands that outspend you",
+  },
+  {
+    service: "Creative",
+    what_we_do: "Creative strategy and hooks",
+    what_they_get: "You stand out next to bigger brands",
+    why_they_care: "Your better product beats the brands that outspend you",
+    core_benefit: "Your better product beats the brands that outspend you",
+  },
+  {
+    service: "Website and conversion",
+    what_we_do: "Landing pages and site optimization",
+    what_they_get: "More visitors become buyers",
+    why_they_care: "Your better product beats the brands that outspend you",
+    core_benefit: "Your better product beats the brands that outspend you",
+  },
+  {
+    service: "Email and SMS",
+    what_we_do: "Flows and campaigns",
+    what_they_get: "Customers come back on their own",
+    why_they_care: "Slow weeks stop scaring you",
+    core_benefit: "Slow weeks stop scaring you",
+  },
+  {
+    service: "Tracking and data",
+    what_we_do: "Tracking, attribution, UTMs",
+    what_they_get: "You see what's working",
+    why_they_care: "You make big moves without fear",
+    core_benefit: "You make big moves without fear",
+  },
+  {
+    service: "One team",
+    what_we_do: "Full funnel management",
+    what_they_get: "Nothing falls through the cracks",
+    why_they_care: "You get your time back",
+    core_benefit: "You get your time back",
+  },
+];
 
 export const WORKSPACE = "partnership";
 

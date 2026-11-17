@@ -5,7 +5,7 @@ export const SECTIONS = [
   { id: "action-plan", label: "Action plan" },
   { id: "services", label: "Services", task: "List every service and deliverable we offer" },
   { id: "feature-benefit", label: "Feature to benefit", task: "Rewrite each one as the outcome the client gets" },
-  { id: "name-tester", label: "Name tester", task: "Write name options for each formula" },
+  { id: "name-tester", label: "Lead magnet", task: "Write name options for each formula" },
   { id: "funnel-map", label: "Funnel map", task: "Traffic source plan" },
   { id: "rules", label: "Rules" },
 ];

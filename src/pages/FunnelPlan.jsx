@@ -6,12 +6,13 @@ import NoAccess from "@/components/partnership/NoAccess";
 import FunnelHeader from "@/components/funnel/FunnelHeader";
 import PhaseBoard from "@/components/funnel/PhaseBoard";
 import ServicesList from "@/components/funnel/ServicesList";
-import FeatureTable from "@/components/funnel/FeatureTable";
+import FeatureToBenefit from "@/components/funnel/FeatureToBenefit";
+import FreeOfferCard from "@/components/funnel/FreeOfferCard";
 import NameTester from "@/components/funnel/NameTester";
 import FunnelMap from "@/components/funnel/FunnelMap";
 import StepPanel from "@/components/funnel/StepPanel";
 import RulesCard from "@/components/funnel/RulesCard";
-import { ACCENT, STATUS, STEPS } from "@/lib/funnelPlan";
+import { ACCENT, FREE_OFFER, STATUS, STEPS } from "@/lib/funnelPlan";
 import { SECTIONS, jumpToSection, nextStatus } from "@/lib/taskSections";
 import ChecklistLink from "@/components/funnel/ChecklistLink";
 
@@ -135,12 +136,12 @@ export default function FunnelPlan() {
           <SectionHead
             number="03 — Feature to benefit"
             title="Say it in their language"
-            blurb="Every deliverable, translated from what we do into what they get and why it matters."
+            blurb="The five things we sell on, then every row translated from what we do into what the business gets and how the owner's life changes."
             task={taskFor("feature-benefit")}
             onToggle={toggleTask}
           />
           <div className="mt-5">
-            <FeatureTable
+            <FeatureToBenefit
               features={data.features}
               onAdd={data.addFeature}
               onSave={data.updateFeature}
@@ -151,13 +152,14 @@ export default function FunnelPlan() {
 
         <section id="name-tester" className="mt-16 scroll-mt-20">
           <SectionHead
-            number="04 — Name tester"
+            number="04 — Lead magnet / free offer"
             title="Pick the name that pulls"
-            blurb="Four formulas, as many names as we can stand. Vote, log what the test said, and the top score lights up."
+            blurb="What we give away, then four formulas and as many names as we can stand. Vote, log what the test said, and the top score lights up."
             task={taskFor("name-tester")}
             onToggle={toggleTask}
           />
-          <div className="mt-5">
+          <div className="mt-5 space-y-4">
+            <FreeOfferCard offer={FREE_OFFER} />
             <NameTester
               names={data.names}
               onAdd={data.addName}

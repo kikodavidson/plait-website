@@ -2,17 +2,25 @@
   "name": "FunnelFeature",
   "type": "object",
   "properties": {
+    "service": {
+      "type": "string",
+      "description": "Service group this row belongs to, e.g. Strategy, Paid ads"
+    },
     "what_we_do": {
       "type": "string",
       "description": "The feature we deliver"
     },
     "what_they_get": {
       "type": "string",
-      "description": "The benefit the client receives"
+      "description": "The value it does for the business"
     },
     "why_they_care": {
       "type": "string",
-      "description": "Why it matters to them"
+      "description": "The benefit, how the owner's life changes"
+    },
+    "core_benefit": {
+      "type": "string",
+      "description": "Which of the five core benefits this row sells on"
     },
     "order": {
       "type": "number",

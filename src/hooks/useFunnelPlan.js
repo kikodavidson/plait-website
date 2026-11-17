@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { base44 } from "@/api/base44Client";
-import { SEED_TASKS, SEED_FEATURE, WORKSPACE, byOrder } from "@/lib/funnelPlan";
+import { SEED_TASKS, SEED_FEATURES, WORKSPACE, byOrder } from "@/lib/funnelPlan";
 
 const dedupeSeeds = (list) => {
   const seen = new Set();
@@ -33,7 +33,9 @@ const loadTasks = async () => {
 const loadFeatures = async () => {
   let list = byOrder(await base44.entities.FunnelFeature.list());
   if (list.length === 0) {
-    await base44.entities.FunnelFeature.create({ ...SEED_FEATURE, order: 1, workspace: WORKSPACE });
+    await base44.entities.FunnelFeature.bulkCreate(
+      SEED_FEATURES.map((row, i) => ({ ...row, order: i + 1, workspace: WORKSPACE }))
+    );
     list = byOrder(await base44.entities.FunnelFeature.list());
   }
   return list;
@@ -141,11 +143,12 @@ export default function useFunnelPlan() {
     }), [run]);
 
   // ----- feature / benefit -----
-  const addFeature = useCallback(() =>
+  const addFeature = useCallback((values = {}) =>
     run(async () => {
       const order = (features || []).reduce((max, f) => Math.max(max, f.order || 0), 0) + 1;
       const created = await base44.entities.FunnelFeature.create({
-        what_we_do: "", what_they_get: "", why_they_care: "", order, workspace: WORKSPACE,
+        service: "", what_we_do: "", what_they_get: "", why_they_care: "", core_benefit: "",
+        ...values, order, workspace: WORKSPACE,
       });
       setFeatures((prev) => byOrder([...(prev || []), created]));
       return created;
