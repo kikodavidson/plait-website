@@ -1,0 +1,123 @@
+{
+  "name": "FunnelNameIdea",
+  "type": "object",
+  "properties": {
+    "formula": {
+      "type": "string",
+      "enum": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "enumColors": [
+        "purple",
+        "blue",
+        "pink",
+        "yellow"
+      ],
+      "description": "Naming formula this idea follows"
+    },
+    "name": {
+      "type": "string",
+      "description": "The lead magnet name idea"
+    },
+    "votes_luke": {
+      "type": "number",
+      "default": 0,
+      "description": "Votes or test signals from Luke"
+    },
+    "votes_max": {
+      "type": "number",
+      "default": 0,
+      "description": "Votes or test signals from Max"
+    },
+    "test_note": {
+      "type": "string",
+      "description": "Test result or feedback note"
+    },
+    "order": {
+      "type": "number",
+      "description": "Sort order within the formula"
+    },
+    "workspace": {
+      "type": "string",
+      "default": "partnership",
+      "description": "Workspace scope marker used by RLS"
+    }
+  },
+  "required": [
+    "formula",
+    "name"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "data.workspace": "{{user.data.client_slug}}"
+        },
+        {
+          "data.workspace": {
+            "$in": "{{user.data.workspaces}}"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "create": {
+      "$or": [
+        {
+          "data.workspace": "{{user.data.client_slug}}"
+        },
+        {
+          "data.workspace": {
+            "$in": "{{user.data.workspaces}}"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "data.workspace": "{{user.data.client_slug}}"
+        },
+        {
+          "data.workspace": {
+            "$in": "{{user.data.workspaces}}"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "data.workspace": "{{user.data.client_slug}}"
+        },
+        {
+          "data.workspace": {
+            "$in": "{{user.data.workspaces}}"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}

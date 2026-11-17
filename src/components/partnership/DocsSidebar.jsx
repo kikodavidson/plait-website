@@ -181,6 +181,14 @@ export default function DocsSidebar({
           <FileText className="h-4 w-4 shrink-0 text-[#9a9a9a]" />
           <span className="flex-1 text-left">Go-to-market</span>
         </Link>
+        <Link
+          to="/partnership/funnel"
+          onClick={() => onClose && onClose()}
+          className="flex w-full items-center gap-2.5 rounded-lg px-2.5 py-1.5 text-[14px] text-[#3a3a3a] transition-colors hover:bg-[#f5f3f0]"
+        >
+          <ListTodo className="h-4 w-4 shrink-0 text-[#9a9a9a]" />
+          <span className="flex-1 text-left">Mile 27 funnel plan</span>
+        </Link>
         <NavItem icon={Clock} label="Timeline" active={view === "timeline"} onClick={() => pickView("timeline")} />
         <NavItem
           icon={Users}

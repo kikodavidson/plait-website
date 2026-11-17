@@ -1,0 +1,174 @@
+{
+  "name": "FunnelTask",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "What needs doing"
+    },
+    "phase": {
+      "type": "string",
+      "enum": [
+        "finish_line",
+        "pick_offer",
+        "name_it",
+        "build_funnel",
+        "close_follow_up"
+      ],
+      "enumColors": [
+        "purple",
+        "blue",
+        "pink",
+        "yellow",
+        "green"
+      ],
+      "description": "Which phase of the funnel plan this task belongs to"
+    },
+    "owner": {
+      "type": "string",
+      "enum": [
+        "Luke",
+        "Max",
+        "Both"
+      ],
+      "enumColors": [
+        "blue",
+        "purple",
+        "gray"
+      ],
+      "default": "Both",
+      "description": "Who owns the task"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "not_started",
+        "in_progress",
+        "done"
+      ],
+      "enumColors": [
+        "gray",
+        "yellow",
+        "green"
+      ],
+      "default": "not_started",
+      "description": "Not started, In progress, or Done"
+    },
+    "due_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Optional due date"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Working notes for the task"
+    },
+    "order": {
+      "type": "number",
+      "description": "Sort order within the phase"
+    },
+    "funnel_step": {
+      "type": "string",
+      "enum": [
+        "traffic",
+        "opt_in",
+        "authority",
+        "application",
+        "booking",
+        "call"
+      ],
+      "enumColors": [
+        "blue",
+        "purple",
+        "pink",
+        "yellow",
+        "green",
+        "gray"
+      ],
+      "description": "Optional funnel map step this task feeds"
+    },
+    "seed_key": {
+      "type": "string",
+      "description": "Marker for preloaded tasks, keeps the starter board from duplicating"
+    },
+    "workspace": {
+      "type": "string",
+      "default": "partnership",
+      "description": "Workspace scope marker used by RLS"
+    }
+  },
+  "required": [
+    "title",
+    "phase"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "data.workspace": "{{user.data.client_slug}}"
+        },
+        {
+          "data.workspace": {
+            "$in": "{{user.data.workspaces}}"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "create": {
+      "$or": [
+        {
+          "data.workspace": "{{user.data.client_slug}}"
+        },
+        {
+          "data.workspace": {
+            "$in": "{{user.data.workspaces}}"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "data.workspace": "{{user.data.client_slug}}"
+        },
+        {
+          "data.workspace": {
+            "$in": "{{user.data.workspaces}}"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "data.workspace": "{{user.data.client_slug}}"
+        },
+        {
+          "data.workspace": {
+            "$in": "{{user.data.workspaces}}"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}
