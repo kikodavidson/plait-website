@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { X } from "lucide-react";
-import { PHASES, OWNERS, STEPS, ACCENT } from "@/lib/funnelPlan";
+import { PHASES, OWNERS, STEPS } from "@/lib/funnelPlan";
 
 const field =
-  "w-full rounded-xl border border-[#2C2C31] bg-[#0F0F11] px-3 py-2.5 text-sm text-white outline-none placeholder:text-[#5A5C55] focus:border-[#C8FF3D]";
-const label = "mb-1.5 block text-[10px] uppercase tracking-[0.18em] text-[#8E9089]";
+  "w-full rounded-xl border border-[#e5e2dc] bg-white px-3 py-2.5 text-sm text-[#1a1a1a] outline-none placeholder:text-[#b3aea6] focus:border-[#619e80]";
+const label = "mb-1.5 block text-[10px] uppercase tracking-[0.18em] text-[#9a9a9a]";
 
 const blank = (phase) => ({
   title: "",
@@ -56,16 +56,16 @@ export default function TaskDialog({ open, task, defaultPhase, onClose, onSave }
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/75 sm:items-center sm:p-6">
+    <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/30 sm:items-center sm:p-6">
       <form
         onSubmit={submit}
-        className="max-h-[92vh] w-full overflow-y-auto rounded-t-3xl border border-[#2C2C31] bg-[#141416] p-5 sm:max-w-lg sm:rounded-3xl sm:p-6"
+        className="max-h-[92vh] w-full overflow-y-auto rounded-t-3xl border border-[#e5e2dc] bg-white p-5 sm:max-w-lg sm:rounded-3xl sm:p-6"
       >
         <div className="flex items-center justify-between">
-          <p className="text-[11px] font-extrabold uppercase tracking-[0.24em]" style={{ color: ACCENT }}>
+          <p className="text-[11px] font-extrabold uppercase tracking-[0.24em] text-[#619e80]">
             {task ? "Edit task" : "New task"}
           </p>
-          <button type="button" onClick={onClose} className="rounded-lg p-1.5 text-[#8E9089] hover:text-white" aria-label="Close">
+          <button type="button" onClick={onClose} className="rounded-lg p-1.5 text-[#9a9a9a] hover:text-[#1a1a1a]" aria-label="Close">
             <X className="h-4 w-4" />
           </button>
         </div>
@@ -118,7 +118,6 @@ export default function TaskDialog({ open, task, defaultPhase, onClose, onSave }
                 value={form.due_date}
                 onChange={(e) => set("due_date", e.target.value)}
                 className={field}
-                style={{ colorScheme: "dark" }}
               />
             </div>
           </div>
@@ -151,14 +150,13 @@ export default function TaskDialog({ open, task, defaultPhase, onClose, onSave }
           <button
             type="button"
             onClick={onClose}
-            className="flex-1 rounded-xl border border-[#2C2C31] px-4 py-2.5 text-sm font-bold text-[#A9ACA2] hover:text-white"
+            className="flex-1 rounded-xl border border-[#e5e2dc] px-4 py-2.5 text-sm font-bold text-[#6b6b6b] hover:text-[#1a1a1a]"
           >
             Cancel
           </button>
           <button
             type="submit"
-            className="flex-1 rounded-xl px-4 py-2.5 text-sm font-extrabold text-black"
-            style={{ backgroundColor: ACCENT }}
+            className="flex-1 rounded-xl bg-[#619e80] px-4 py-2.5 text-sm font-bold text-white transition-opacity hover:opacity-90"
           >
             Save
           </button>

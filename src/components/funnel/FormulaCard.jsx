@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Plus } from "lucide-react";
-import { ACCENT } from "@/lib/funnelPlan";
 import NameIdeaRow from "./NameIdeaRow";
 
 export default function FormulaCard({ formula, ideas, topId, onAdd, onVote, onNote, onDelete }) {
@@ -13,22 +12,19 @@ export default function FormulaCard({ formula, ideas, topId, onAdd, onVote, onNo
   };
 
   return (
-    <div className="flex flex-col rounded-3xl border border-[#26262A] bg-[#141416] p-5">
+    <div className="flex flex-col rounded-2xl border border-[#e5e2dc] bg-white p-5">
       <div className="flex items-start gap-3">
-        <span
-          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl text-[15px] font-extrabold text-black"
-          style={{ backgroundColor: ACCENT }}
-        >
+        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#eef5f1] text-[15px] font-extrabold text-[#3d6b52]">
           {formula.key}
         </span>
         <div className="min-w-0">
-          <p className="text-[14px] font-extrabold leading-tight text-white">{formula.title}</p>
-          <p className="mt-1 text-[11px] leading-snug text-[#8E9089]">{formula.hint}</p>
+          <p className="text-[14px] font-extrabold leading-tight text-[#1a1a1a]">{formula.title}</p>
+          <p className="mt-1 text-[11px] leading-snug text-[#9a9a9a]">{formula.hint}</p>
         </div>
       </div>
 
       <div className="mt-4 flex-1 space-y-2">
-        {ideas.length === 0 && <p className="text-[12px] text-[#5A5C55]">No names yet. Drop a few in.</p>}
+        {ideas.length === 0 && <p className="text-[12px] text-[#9a9a9a]">No names yet. Drop a few in.</p>}
         {ideas.map((idea) => (
           <NameIdeaRow
             key={idea.id}
@@ -47,12 +43,11 @@ export default function FormulaCard({ formula, ideas, topId, onAdd, onVote, onNo
           onChange={(e) => setName(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && submit()}
           placeholder="Add a name"
-          className="min-w-0 flex-1 rounded-xl border border-[#2C2C31] bg-[#0F0F11] px-3 py-2 text-sm text-white outline-none placeholder:text-[#5A5C55] focus:border-[#C8FF3D]"
+          className="min-w-0 flex-1 rounded-xl border border-[#e5e2dc] bg-white px-3 py-2 text-sm text-[#1a1a1a] outline-none placeholder:text-[#b3aea6] focus:border-[#619e80]"
         />
         <button
           onClick={submit}
-          className="rounded-xl px-3 text-black"
-          style={{ backgroundColor: ACCENT }}
+          className="rounded-xl bg-[#619e80] px-3 text-white transition-opacity hover:opacity-90"
           aria-label="Add name"
         >
           <Plus className="h-4 w-4" />

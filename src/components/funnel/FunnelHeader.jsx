@@ -10,11 +10,11 @@ export default function FunnelHeader({ overall, done, total, saving }) {
       <div className="flex flex-wrap items-center justify-between gap-3">
         <Link
           to="/partnership"
-          className="inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] text-[#8E9089] transition-colors hover:text-white"
+          className="inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] text-[#9a9a9a] transition-colors hover:text-[#1a1a1a]"
         >
           <ArrowLeft className="h-3.5 w-3.5" /> Partnership HQ
         </Link>
-        <span className="text-[10px] uppercase tracking-[0.2em] text-[#5A5C55]">
+        <span className="text-[10px] uppercase tracking-[0.2em] text-[#b3aea6]">
           {saving ? "Saving…" : "Live"}
         </span>
       </div>
@@ -23,12 +23,12 @@ export default function FunnelHeader({ overall, done, total, saving }) {
         Mile 27
       </p>
       <h1
-        className="mt-3 text-[42px] font-extrabold uppercase leading-[0.95] text-white sm:text-7xl"
-        style={{ WebkitTextFillColor: "#ffffff", backgroundImage: "none" }}
+        className="mt-3 text-[38px] font-extrabold uppercase leading-[0.95] text-[#1a1a1a] sm:text-6xl"
+        style={{ WebkitTextFillColor: "#1a1a1a", backgroundImage: "none" }}
       >
         Funnel Plan
       </h1>
-      <p className="mt-4 max-w-xl text-[13px] leading-relaxed text-[#A9ACA2] sm:text-sm">
+      <p className="mt-4 max-w-xl text-[13px] leading-relaxed text-[#6b6b6b] sm:text-sm">
         The lead magnet funnel, end to end. One board, both of us on it, nothing living in a text thread.
       </p>
 
@@ -36,7 +36,7 @@ export default function FunnelHeader({ overall, done, total, saving }) {
         <div className="min-w-[200px] flex-1">
           <ProgressBar value={overall} />
         </div>
-        <span className="text-[12px] font-bold text-white">
+        <span className="text-[12px] font-bold text-[#1a1a1a]">
           {done} / {total} done · {overall}%
         </span>
       </div>

@@ -21,12 +21,12 @@ const SectionHead = ({ number, title, blurb, task, onToggle }) => (
       {number}
     </p>
     <h2
-      className="mt-2 text-3xl font-extrabold leading-tight text-white sm:text-4xl"
-      style={{ WebkitTextFillColor: "#ffffff", backgroundImage: "none" }}
+      className="mt-2 text-3xl font-extrabold leading-tight text-[#1a1a1a] sm:text-4xl"
+      style={{ WebkitTextFillColor: "#1a1a1a", backgroundImage: "none" }}
     >
       {title}
     </h2>
-    {blurb && <p className="mt-2 max-w-2xl text-[13px] leading-relaxed text-[#A9ACA2]">{blurb}</p>}
+    {blurb && <p className="mt-2 max-w-2xl text-[13px] leading-relaxed text-[#6b6b6b]">{blurb}</p>}
     {task && <ChecklistLink task={task} onToggle={onToggle} />}
   </div>
 );
@@ -46,8 +46,8 @@ export default function FunnelPlan() {
 
   if (isLoadingAuth) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-[#0B0B0C]">
-        <div className="h-7 w-7 animate-spin rounded-full border-4 border-[#26262A] border-t-[#C8FF3D]" />
+      <div className="flex min-h-screen items-center justify-center bg-white">
+        <div className="h-7 w-7 animate-spin rounded-full border-4 border-[#e5e2dc] border-t-[#619e80]" />
       </div>
     );
   }
@@ -77,24 +77,24 @@ export default function FunnelPlan() {
 
   if (!data.loaded) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-[#0B0B0C]">
-        <div className="h-7 w-7 animate-spin rounded-full border-4 border-[#26262A] border-t-[#C8FF3D]" />
+      <div className="flex min-h-screen items-center justify-center bg-white">
+        <div className="h-7 w-7 animate-spin rounded-full border-4 border-[#e5e2dc] border-t-[#619e80]" />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-[#0B0B0C] text-white">
+    <div className="min-h-screen bg-white text-[#1a1a1a]">
       <div className="mx-auto max-w-6xl px-4 pb-24 pt-8 sm:px-6 sm:pt-10">
         <FunnelHeader overall={overall} done={done} total={total} saving={data.saving} />
 
-        <div className="sticky top-0 z-20 -mx-4 mt-8 border-b border-[#1C1C20] bg-[#0B0B0C]/95 px-4 py-3 backdrop-blur sm:-mx-6 sm:px-6">
+        <div className="sticky top-0 z-20 -mx-4 mt-8 border-b border-[#efece8] bg-white/95 px-4 py-3 backdrop-blur sm:-mx-6 sm:px-6">
           <div className="flex gap-2 overflow-x-auto no-scrollbar">
             {SECTIONS.map((section) => (
               <a
                 key={section.id}
                 href={`#${section.id}`}
-                className="shrink-0 rounded-full border border-[#26262A] px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.16em] text-[#A9ACA2] transition-colors hover:border-[#C8FF3D] hover:text-white"
+                className="shrink-0 rounded-full border border-[#e5e2dc] px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.16em] text-[#6b6b6b] transition-colors hover:border-[#619e80] hover:text-[#1a1a1a]"
               >
                 {section.label}
               </a>

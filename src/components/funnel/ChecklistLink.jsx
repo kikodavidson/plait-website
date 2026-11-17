@@ -11,11 +11,11 @@ export default function ChecklistLink({ task, onToggle }) {
 
   return (
     <div className="mt-4 flex flex-wrap items-center gap-2">
-      <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#8E9089]">Action plan</span>
+      <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#9a9a9a]">Action plan</span>
       <button
         onClick={() => onToggle(nextStatus[task.status] || "in_progress")}
         title="Click to change status"
-        className="flex items-center gap-2 rounded-full border border-[#2C2C31] px-3 py-1.5 text-[11px] font-bold text-[#A9ACA2] transition-colors hover:border-[#C8FF3D] hover:text-white"
+        className="flex items-center gap-2 rounded-full border border-[#e5e2dc] bg-white px-3 py-1.5 text-[11px] font-bold text-[#6b6b6b] transition-colors hover:border-[#619e80] hover:text-[#1a1a1a]"
       >
         <span
           className="h-3 w-3 shrink-0 rounded-full border-2"

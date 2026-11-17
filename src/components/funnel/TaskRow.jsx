@@ -6,7 +6,7 @@ import { sectionForTask } from "@/lib/taskSections";
 import TaskComments from "./TaskComments";
 
 const NEXT = { not_started: "in_progress", in_progress: "done", done: "not_started" };
-const action = "rounded-lg p-1.5 text-[#5A5C55] transition-colors hover:bg-[#222226] hover:text-white";
+const action = "rounded-lg p-1.5 text-[#b3aea6] transition-colors hover:bg-[#f4f2ef] hover:text-[#1a1a1a]";
 
 export default function TaskRow({ task, comments, onPatch, onEdit, onDelete, onMove, onAddComment, onJump }) {
   const [showComments, setShowComments] = useState(false);
@@ -15,7 +15,7 @@ export default function TaskRow({ task, comments, onPatch, onEdit, onDelete, onM
   const section = sectionForTask(task.title);
 
   return (
-    <div className="rounded-2xl border border-[#26262A] bg-[#0F0F11] p-3">
+    <div className="rounded-xl border border-[#efece8] bg-[#faf9f7] p-3">
       <div className="flex items-start gap-3">
         <button
           onClick={() => onPatch({ status: NEXT[task.status] || "in_progress" })}
@@ -27,29 +27,28 @@ export default function TaskRow({ task, comments, onPatch, onEdit, onDelete, onM
 
         <div className="min-w-0 flex-1">
           <p
-            className={`text-[15px] font-extrabold leading-snug ${
-              task.status === "done" ? "text-white/35 line-through" : "text-white"
+            className={`text-[15px] font-bold leading-snug ${
+              task.status === "done" ? "text-[#9a9a9a] line-through" : "text-[#1a1a1a]"
             }`}
           >
             {task.title}
           </p>
-          <div className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 text-[10px] uppercase tracking-[0.16em] text-[#8E9089]">
+          <div className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 text-[10px] uppercase tracking-[0.16em] text-[#9a9a9a]">
             <span>{task.owner || "Both"}</span>
             <span style={{ color: status.text }}>{status.label}</span>
             {task.due_date && <span>{moment(task.due_date).format("MMM D")}</span>}
-            {stepLabel && <span style={{ color: ACCENT }}>{stepLabel}</span>}
+            {stepLabel && <span className="text-[#3d6b52]">{stepLabel}</span>}
           </div>
           {section && (
             <button
               onClick={() => onJump && onJump(section.id)}
-              className="mt-2 inline-flex items-center gap-1 rounded-full border border-[#2C2C31] px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.14em] transition-colors hover:border-[#C8FF3D] hover:text-white"
-              style={{ color: ACCENT }}
+              className="mt-2 inline-flex items-center gap-1 rounded-full border border-[#e5e2dc] bg-white px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-[#3d6b52] transition-colors hover:border-[#619e80]"
             >
               {section.label} <ArrowRight className="h-3 w-3" />
             </button>
           )}
           {task.notes && (
-            <p className="mt-2 whitespace-pre-wrap text-[12px] leading-relaxed text-[#A9ACA2]">{task.notes}</p>
+            <p className="mt-2 whitespace-pre-wrap text-[12px] leading-relaxed text-[#6b6b6b]">{task.notes}</p>
           )}
         </div>
 

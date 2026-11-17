@@ -1,4 +1,4 @@
-export const ACCENT = "#C8FF3D";
+export const ACCENT = "#619e80";
 
 export const PHASES = [
   { key: "finish_line", number: "01", label: "Finish line language" },
@@ -18,9 +18,9 @@ export const STEPS = [
 ];
 
 export const STATUS = {
-  not_started: { label: "Not started", dot: "#5A5C55", text: "#A9ACA2" },
-  in_progress: { label: "In progress", dot: "#F0C64A", text: "#F0C64A" },
-  done: { label: "Done", dot: ACCENT, text: ACCENT },
+  not_started: { label: "Not started", dot: "#c9c4bb", text: "#9a9a9a" },
+  in_progress: { label: "In progress", dot: "#e0a92e", text: "#a3781a" },
+  done: { label: "Done", dot: ACCENT, text: "#3d6b52" },
 };
 
 export const OWNERS = ["Luke", "Max", "Both"];
