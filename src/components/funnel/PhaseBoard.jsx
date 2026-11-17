@@ -5,7 +5,7 @@ import TaskRow from "./TaskRow";
 import TaskDialog from "./TaskDialog";
 import ProgressBar from "./ProgressBar";
 
-export default function PhaseBoard({ data, userName }) {
+export default function PhaseBoard({ data, userName, onJump }) {
   const [dialog, setDialog] = useState({ open: false, task: null, phase: PHASES[0].key });
 
   const openNew = (phase) => setDialog({ open: true, task: null, phase });
@@ -64,6 +64,7 @@ export default function PhaseBoard({ data, userName }) {
                     if (window.confirm("Delete this task and its comments?")) data.deleteTask(task.id);
                   }}
                   onMove={(dir) => data.moveTask(task.id, dir)}
+                  onJump={onJump}
                   onAddComment={(body) => data.addComment(task.id, body, userName)}
                 />
               ))}

@@ -11,18 +11,11 @@ import NameTester from "@/components/funnel/NameTester";
 import FunnelMap from "@/components/funnel/FunnelMap";
 import StepPanel from "@/components/funnel/StepPanel";
 import RulesCard from "@/components/funnel/RulesCard";
-import { ACCENT, STEPS } from "@/lib/funnelPlan";
+import { ACCENT, STATUS, STEPS } from "@/lib/funnelPlan";
+import { SECTIONS, jumpToSection, nextStatus } from "@/lib/taskSections";
+import ChecklistLink from "@/components/funnel/ChecklistLink";
 
-const SECTIONS = [
-  { id: "action-plan", label: "Action plan" },
-  { id: "services", label: "Services" },
-  { id: "feature-benefit", label: "Feature to benefit" },
-  { id: "name-tester", label: "Name tester" },
-  { id: "funnel-map", label: "Funnel map" },
-  { id: "rules", label: "Rules" },
-];
-
-const SectionHead = ({ number, title, blurb }) => (
+const SectionHead = ({ number, title, blurb, task, onToggle }) => (
   <div>
     <p className="text-[10px] font-extrabold uppercase tracking-[0.3em]" style={{ color: ACCENT }}>
       {number}
@@ -34,6 +27,7 @@ const SectionHead = ({ number, title, blurb }) => (
       {title}
     </h2>
     {blurb && <p className="mt-2 max-w-2xl text-[13px] leading-relaxed text-[#A9ACA2]">{blurb}</p>}
+    {task && <ChecklistLink task={task} onToggle={onToggle} />}
   </div>
 );
 
@@ -74,6 +68,13 @@ export default function FunnelPlan() {
   const stepNote = data.stepNotes.find((n) => n.step === step);
   const linkedTasks = data.tasks.filter((t) => t.funnel_step === step);
 
+  // The action-plan task a section is the working content for, so the two stay together.
+  const taskFor = (id) => {
+    const section = SECTIONS.find((s) => s.id === id);
+    return section && section.task ? data.tasks.find((t) => t.title === section.task) : null;
+  };
+  const toggleTask = (task) => data.updateTask(task.id, { status: nextStatus[task.status] || "in_progress" });
+
   if (!data.loaded) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-[#0B0B0C]">
@@ -108,7 +109,7 @@ export default function FunnelPlan() {
             blurb="Tap the circle to move a task along, the arrows to reorder, the speech bubble to talk about it."
           />
           <div className="mt-5">
-            <PhaseBoard data={data} userName={userName} />
+            <PhaseBoard data={data} userName={userName} onJump={jumpToSection} />
           </div>
         </section>
 
@@ -117,6 +118,8 @@ export default function FunnelPlan() {
             number="02 — Services & deliverables"
             title="What we actually sell"
             blurb="Every service with the deliverables inside it. Click a line to edit, Enter to add another deliverable."
+            task={taskFor("services")}
+            onToggle={toggleTask}
           />
           <div className="mt-5">
             <ServicesList
@@ -133,6 +136,8 @@ export default function FunnelPlan() {
             number="03 — Feature to benefit"
             title="Say it in their language"
             blurb="Every deliverable, translated from what we do into what they get and why it matters."
+            task={taskFor("feature-benefit")}
+            onToggle={toggleTask}
           />
           <div className="mt-5">
             <FeatureTable
@@ -149,6 +154,8 @@ export default function FunnelPlan() {
             number="04 — Name tester"
             title="Pick the name that pulls"
             blurb="Four formulas, as many names as we can stand. Vote, log what the test said, and the top score lights up."
+            task={taskFor("name-tester")}
+            onToggle={toggleTask}
           />
           <div className="mt-5">
             <NameTester
@@ -166,6 +173,8 @@ export default function FunnelPlan() {
             number="05 — Funnel map"
             title="The path from stranger to call"
             blurb="Tap a step to see the tasks feeding it and leave the notes for that stage."
+            task={taskFor("funnel-map")}
+            onToggle={toggleTask}
           />
           <div className="mt-5">
             <FunnelMap tasks={data.tasks} selected={step} onSelect={setStep} />

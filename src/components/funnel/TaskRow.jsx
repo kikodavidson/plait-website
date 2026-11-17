@@ -1,16 +1,18 @@
 import React, { useState } from "react";
 import moment from "moment";
-import { ArrowDown, ArrowUp, MessageSquare, Pencil, Trash2 } from "lucide-react";
+import { ArrowDown, ArrowRight, ArrowUp, MessageSquare, Pencil, Trash2 } from "lucide-react";
 import { ACCENT, STATUS, STEPS } from "@/lib/funnelPlan";
+import { sectionForTask } from "@/lib/taskSections";
 import TaskComments from "./TaskComments";
 
 const NEXT = { not_started: "in_progress", in_progress: "done", done: "not_started" };
 const action = "rounded-lg p-1.5 text-[#5A5C55] transition-colors hover:bg-[#222226] hover:text-white";
 
-export default function TaskRow({ task, comments, onPatch, onEdit, onDelete, onMove, onAddComment }) {
+export default function TaskRow({ task, comments, onPatch, onEdit, onDelete, onMove, onAddComment, onJump }) {
   const [showComments, setShowComments] = useState(false);
   const status = STATUS[task.status] || STATUS.not_started;
   const stepLabel = (STEPS.find((s) => s.key === task.funnel_step) || {}).label;
+  const section = sectionForTask(task.title);
 
   return (
     <div className="rounded-2xl border border-[#26262A] bg-[#0F0F11] p-3">
@@ -37,6 +39,15 @@ export default function TaskRow({ task, comments, onPatch, onEdit, onDelete, onM
             {task.due_date && <span>{moment(task.due_date).format("MMM D")}</span>}
             {stepLabel && <span style={{ color: ACCENT }}>{stepLabel}</span>}
           </div>
+          {section && (
+            <button
+              onClick={() => onJump && onJump(section.id)}
+              className="mt-2 inline-flex items-center gap-1 rounded-full border border-[#2C2C31] px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.14em] transition-colors hover:border-[#C8FF3D] hover:text-white"
+              style={{ color: ACCENT }}
+            >
+              {section.label} <ArrowRight className="h-3 w-3" />
+            </button>
+          )}
           {task.notes && (
             <p className="mt-2 whitespace-pre-wrap text-[12px] leading-relaxed text-[#A9ACA2]">{task.notes}</p>
           )}
