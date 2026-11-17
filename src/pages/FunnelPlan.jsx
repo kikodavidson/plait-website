@@ -5,6 +5,7 @@ import SignInWall from "@/components/partnership/SignInWall";
 import NoAccess from "@/components/partnership/NoAccess";
 import FunnelHeader from "@/components/funnel/FunnelHeader";
 import PhaseBoard from "@/components/funnel/PhaseBoard";
+import ServicesList from "@/components/funnel/ServicesList";
 import FeatureTable from "@/components/funnel/FeatureTable";
 import NameTester from "@/components/funnel/NameTester";
 import FunnelMap from "@/components/funnel/FunnelMap";
@@ -14,6 +15,7 @@ import { ACCENT, STEPS } from "@/lib/funnelPlan";
 
 const SECTIONS = [
   { id: "action-plan", label: "Action plan" },
+  { id: "services", label: "Services" },
   { id: "feature-benefit", label: "Feature to benefit" },
   { id: "name-tester", label: "Name tester" },
   { id: "funnel-map", label: "Funnel map" },
@@ -110,9 +112,25 @@ export default function FunnelPlan() {
           </div>
         </section>
 
+        <section id="services" className="mt-16 scroll-mt-20">
+          <SectionHead
+            number="02 — Services & deliverables"
+            title="What we actually sell"
+            blurb="Every service with the deliverables inside it. Click a line to edit, Enter to add another deliverable."
+          />
+          <div className="mt-5">
+            <ServicesList
+              services={data.services}
+              onAdd={data.addService}
+              onSave={data.updateService}
+              onDelete={data.deleteService}
+            />
+          </div>
+        </section>
+
         <section id="feature-benefit" className="mt-16 scroll-mt-20">
           <SectionHead
-            number="02 — Feature to benefit"
+            number="03 — Feature to benefit"
             title="Say it in their language"
             blurb="Every deliverable, translated from what we do into what they get and why it matters."
           />
@@ -128,7 +146,7 @@ export default function FunnelPlan() {
 
         <section id="name-tester" className="mt-16 scroll-mt-20">
           <SectionHead
-            number="03 — Name tester"
+            number="04 — Name tester"
             title="Pick the name that pulls"
             blurb="Four formulas, as many names as we can stand. Vote, log what the test said, and the top score lights up."
           />
@@ -145,7 +163,7 @@ export default function FunnelPlan() {
 
         <section id="funnel-map" className="mt-16 scroll-mt-20">
           <SectionHead
-            number="04 — Funnel map"
+            number="05 — Funnel map"
             title="The path from stranger to call"
             blurb="Tap a step to see the tasks feeding it and leave the notes for that stage."
           />
@@ -166,7 +184,7 @@ export default function FunnelPlan() {
         </section>
 
         <section id="rules" className="mt-16 scroll-mt-20">
-          <SectionHead number="05 — Rules we follow" title="The non-negotiables" />
+          <SectionHead number="06 — Rules we follow" title="The non-negotiables" />
           <div className="mt-5">
             <RulesCard />
           </div>

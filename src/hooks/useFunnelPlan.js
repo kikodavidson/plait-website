@@ -43,6 +43,7 @@ export default function useFunnelPlan() {
   const [tasks, setTasks] = useState(null);
   const [comments, setComments] = useState(null);
   const [features, setFeatures] = useState(null);
+  const [services, setServices] = useState(null);
   const [names, setNames] = useState(null);
   const [stepNotes, setStepNotes] = useState(null);
   const [pending, setPending] = useState(0);
@@ -53,6 +54,7 @@ export default function useFunnelPlan() {
       .then((l) => setComments([...l].sort((a, b) => new Date(a.created_date) - new Date(b.created_date))))
       .catch(() => setComments([]));
     loadFeatures().then(setFeatures).catch(() => setFeatures([]));
+    base44.entities.FunnelService.list().then((l) => setServices(byOrder(l))).catch(() => setServices([]));
     base44.entities.FunnelNameIdea.list().then((l) => setNames(byOrder(l))).catch(() => setNames([]));
     base44.entities.FunnelStepNote.list().then(setStepNotes).catch(() => setStepNotes([]));
 
@@ -64,6 +66,9 @@ export default function useFunnelPlan() {
           .catch(() => {})
       ),
       base44.entities.FunnelFeature.subscribe(() => loadFeatures().then(setFeatures).catch(() => {})),
+      base44.entities.FunnelService.subscribe(() =>
+        base44.entities.FunnelService.list().then((l) => setServices(byOrder(l))).catch(() => {})
+      ),
       base44.entities.FunnelNameIdea.subscribe(() =>
         base44.entities.FunnelNameIdea.list().then((l) => setNames(byOrder(l))).catch(() => {})
       ),
@@ -158,6 +163,29 @@ export default function useFunnelPlan() {
       setFeatures((prev) => (prev || []).filter((f) => f.id !== id));
     }), [run]);
 
+  // ----- services / deliverables -----
+  const addService = useCallback(() =>
+    run(async () => {
+      const order = (services || []).reduce((max, s) => Math.max(max, s.order || 0), 0) + 1;
+      const created = await base44.entities.FunnelService.create({
+        name: "New service", deliverables: [], order, workspace: WORKSPACE,
+      });
+      setServices((prev) => byOrder([...(prev || []), created]));
+      return created;
+    }), [services, run]);
+
+  const updateService = useCallback((id, patch) =>
+    run(async () => {
+      setServices((prev) => (prev || []).map((s) => (s.id === id ? { ...s, ...patch } : s)));
+      await base44.entities.FunnelService.update(id, patch);
+    }), [run]);
+
+  const deleteService = useCallback((id) =>
+    run(async () => {
+      await base44.entities.FunnelService.delete(id);
+      setServices((prev) => (prev || []).filter((s) => s.id !== id));
+    }), [run]);
+
   // ----- name ideas -----
   const addName = useCallback((formula, name) =>
     run(async () => {
@@ -210,12 +238,16 @@ export default function useFunnelPlan() {
     tasks: tasks || [],
     comments: comments || [],
     features: features || [],
+    services: services || [],
     names: names || [],
     stepNotes: stepNotes || [],
-    loaded: tasks !== null && comments !== null && features !== null && names !== null && stepNotes !== null,
+    loaded:
+      tasks !== null && comments !== null && features !== null &&
+      services !== null && names !== null && stepNotes !== null,
     saving: pending > 0,
     addTask, updateTask, deleteTask, moveTask, addComment,
     addFeature, updateFeature, deleteFeature,
+    addService, updateService, deleteService,
     addName, updateName, deleteName, voteName,
     saveStepNotes,
   };
