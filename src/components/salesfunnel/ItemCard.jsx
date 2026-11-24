@@ -7,7 +7,6 @@ const selectClass =
 
 export default function ItemCard({ item, editor, onSave }) {
   const [answer, setAnswer] = useState(item.answer || "");
-  const [discuss, setDiscuss] = useState(!!item.need_discuss);
   const timer = useRef(null);
   const area = useRef(null);
   const focused = useRef(false);
@@ -15,10 +14,6 @@ export default function ItemCard({ item, editor, onSave }) {
   useEffect(() => {
     if (!focused.current) setAnswer(item.answer || "");
   }, [item.answer]);
-
-  useEffect(() => {
-    setDiscuss(!!item.need_discuss);
-  }, [item.need_discuss]);
 
   useEffect(() => {
     const el = area.current;
@@ -47,27 +42,8 @@ export default function ItemCard({ item, editor, onSave }) {
       : "No edits yet";
 
   return (
-    <div
-      id={`item-${item.id}`}
-      className={`scroll-mt-24 rounded-xl border p-3 transition-colors ${
-        discuss ? "border-[#f0b27a] bg-[#fffaf3]" : "border-[#efece8] bg-[#faf9f7]"
-      }`}
-    >
-      <div className="flex flex-wrap items-start justify-between gap-2">
-        <p className="text-[14px] font-bold leading-snug text-[#1a1a1a]">{item.title}</p>
-        <label className="flex shrink-0 cursor-pointer items-center gap-1.5 text-[11px] text-[#6b6b6b]">
-          <input
-            type="checkbox"
-            checked={discuss}
-            onChange={(e) => {
-              setDiscuss(e.target.checked);
-              onSave({ need_discuss: e.target.checked }, editor);
-            }}
-            className="h-3.5 w-3.5 accent-[#d97706]"
-          />
-          Need to discuss
-        </label>
-      </div>
+    <div className="rounded-xl border border-[#efece8] bg-[#faf9f7] p-3">
+      <p className="text-[14px] font-bold leading-snug text-[#1a1a1a]">{item.title}</p>
 
       <textarea
         ref={area}
@@ -88,9 +64,9 @@ export default function ItemCard({ item, editor, onSave }) {
           className={selectClass}
           style={{ color: (STATUS[item.status] || STATUS.not_started).text }}
         >
-          {Object.entries(STATUS).map(([key, meta2]) => (
+          {Object.entries(STATUS).map(([key, status]) => (
             <option key={key} value={key}>
-              {meta2.label}
+              {status.label}
             </option>
           ))}
         </select>

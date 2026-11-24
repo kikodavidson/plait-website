@@ -6,7 +6,6 @@ import NoAccess from "@/components/partnership/NoAccess";
 import BuilderHeader from "@/components/salesfunnel/BuilderHeader";
 import SectionCard from "@/components/salesfunnel/SectionCard";
 import OpenQuestions from "@/components/salesfunnel/OpenQuestions";
-import ToDiscuss from "@/components/salesfunnel/ToDiscuss";
 import { SECTIONS, byOrder } from "@/lib/salesFunnel";
 
 export default function SalesFunnelBuilder() {
@@ -65,14 +64,13 @@ export default function SalesFunnelBuilder() {
               ))}
             </div>
 
-            <div className="mt-12 grid items-start gap-4 lg:grid-cols-2">
+            <div className="mt-12">
               <OpenQuestions
                 questions={data.questions}
                 onAdd={data.addQuestion}
                 onToggle={data.toggleQuestion}
                 author={editor}
               />
-              <ToDiscuss items={data.items} />
             </div>
           </>
         )}
