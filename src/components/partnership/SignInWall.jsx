@@ -7,7 +7,7 @@ import GoogleIcon from "@/components/GoogleIcon";
 const inputClass =
   "w-full rounded-lg border border-[#dcd5c9] bg-white px-3.5 py-2.5 text-[15px] text-[#1a1a1a] outline-none focus:border-[#2d2d2d]";
 
-export default function SignInWall() {
+export default function SignInWall({ returnTo = "/partnership" }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -19,14 +19,14 @@ export default function SignInWall() {
     setLoading(true);
     try {
       await base44.auth.loginViaEmailPassword(email.trim(), password);
-      window.location.href = "/partnership";
+      window.location.href = returnTo;
     } catch (err) {
       setError(err.message || "Invalid email or password");
       setLoading(false);
     }
   };
 
-  const google = () => base44.auth.loginWithProvider("google", "/partnership");
+  const google = () => base44.auth.loginWithProvider("google", returnTo);
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-white px-6">
@@ -86,7 +86,7 @@ export default function SignInWall() {
         </form>
 
         <div className="mt-5 flex items-center justify-between text-[13px] text-[#6b6b6b]">
-          <Link to="/register?returnTo=%2Fpartnership" className="underline">
+          <Link to={`/register?returnTo=${encodeURIComponent(returnTo)}`} className="underline">
             Create an account
           </Link>
           <Link to="/forgot-password" className="underline">

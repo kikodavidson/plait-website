@@ -1,0 +1,148 @@
+{
+  "name": "SalesFunnelItem",
+  "type": "object",
+  "properties": {
+    "section": {
+      "type": "string",
+      "description": "Section key, e.g. our_message, lead_magnet"
+    },
+    "title": {
+      "type": "string",
+      "description": "Name of the item"
+    },
+    "answer": {
+      "type": "string",
+      "description": "Our answer for this item"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "not_started",
+        "in_progress",
+        "done"
+      ],
+      "enumColors": [
+        "gray",
+        "yellow",
+        "green"
+      ],
+      "default": "not_started",
+      "description": "Not Started, In Progress, or Done"
+    },
+    "owner": {
+      "type": "string",
+      "enum": [
+        "Luke",
+        "Max",
+        "Both"
+      ],
+      "enumColors": [
+        "blue",
+        "purple",
+        "gray"
+      ],
+      "default": "Both",
+      "description": "Who owns this item"
+    },
+    "need_discuss": {
+      "type": "boolean",
+      "default": false,
+      "description": "Flagged to talk through on a call"
+    },
+    "last_editor": {
+      "type": "string",
+      "description": "Display name of the partner who edited it last"
+    },
+    "edited_at": {
+      "type": "string",
+      "description": "When it was last edited"
+    },
+    "order": {
+      "type": "number",
+      "description": "Sort order within the section"
+    },
+    "seed_key": {
+      "type": "string",
+      "description": "Marker for preloaded items, keeps the starter list from duplicating"
+    },
+    "workspace": {
+      "type": "string",
+      "default": "partnership",
+      "description": "Workspace scope marker used by RLS"
+    }
+  },
+  "required": [
+    "section",
+    "title"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "data.workspace": "{{user.data.client_slug}}"
+        },
+        {
+          "data.workspace": {
+            "$in": "{{user.data.workspaces}}"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "create": {
+      "$or": [
+        {
+          "data.workspace": "{{user.data.client_slug}}"
+        },
+        {
+          "data.workspace": {
+            "$in": "{{user.data.workspaces}}"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "data.workspace": "{{user.data.client_slug}}"
+        },
+        {
+          "data.workspace": {
+            "$in": "{{user.data.workspaces}}"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "data.workspace": "{{user.data.client_slug}}"
+        },
+        {
+          "data.workspace": {
+            "$in": "{{user.data.workspaces}}"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}

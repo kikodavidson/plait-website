@@ -37,6 +37,7 @@ import Principles from './pages/Principles';
 import PartnershipHQ from './pages/PartnershipHQ';
 import GoToMarket from './pages/GoToMarket';
 import FunnelPlan from './pages/FunnelPlan';
+import SalesFunnelBuilder from './pages/SalesFunnelBuilder';
 import ReportView from './pages/ReportView';
 import AdminReports from './pages/admin/Reports';
 import AttributionDashboard from './pages/attribution/Dashboard';
@@ -114,6 +115,7 @@ const AuthenticatedApp = () => {
       <Route path="/partnership" element={<PartnershipHQ />} />
       <Route path="/partnership/gtm" element={<GoToMarket />} />
       <Route path="/partnership/funnel" element={<FunnelPlan />} />
+      <Route path="/partnership/sales-funnel" element={<SalesFunnelBuilder />} />
       <Route path="/r/:code" element={<ReportView />} />
       <Route element={<Layout />}>
         <Route path="/" element={<Home />} />
