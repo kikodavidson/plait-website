@@ -34,8 +34,6 @@ import ClientBuilder from './pages/ClientBuilder';
 import ShopifyChecklist from './pages/ShopifyChecklist';
 import AccessNotSetUp from './pages/AccessNotSetUp';
 import Principles from './pages/Principles';
-import Apply from './pages/Apply';
-import ApplyAdmin from './pages/ApplyAdmin';
 import PartnershipHQ from './pages/PartnershipHQ';
 import GoToMarket from './pages/GoToMarket';
 import FunnelPlan from './pages/FunnelPlan';
@@ -48,7 +46,7 @@ import { base44 } from "@/api/base44Client";
 
 // Login-free share links: client reports (/r/code) and the go-to-market doc.
 const isPublicSharePath = (path) =>
-  /^\/r\/[a-z0-9]+$/i.test(path) || path === "/partnership/gtm" || path === "/apply";
+  /^\/r\/[a-z0-9]+$/i.test(path) || path === "/partnership/gtm";
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin, isAuthenticated, user, checkUserAuth } = useAuth();
@@ -119,7 +117,6 @@ const AuthenticatedApp = () => {
       <Route path="/partnership/funnel" element={<FunnelPlan />} />
       <Route path="/partnership/sales-funnel" element={<Navigate to="/partnership/funnel" replace />} />
       <Route path="/r/:code" element={<ReportView />} />
-      <Route path="/apply" element={<Apply />} />
       <Route element={<Layout />}>
         <Route path="/" element={<Home />} />
         <Route path="/services" element={<Services />} />
@@ -148,7 +145,6 @@ const AuthenticatedApp = () => {
         <Route path="/attribution" element={<AttributionDashboard />} />
         <Route path="/attribution/:projectId" element={<AttributionProjectPage />} />
         <Route path="/principles" element={<Principles />} />
-        <Route path="/apply/admin" element={<ApplyAdmin />} />
       </Route>
       <Route path="*" element={<PageNotFound />} />
     </Routes>
