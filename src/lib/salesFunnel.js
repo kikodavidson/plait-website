@@ -79,7 +79,7 @@ export const SECTIONS = [
     number: "07",
     title: "Proof",
     description: "Results that back up what we say.",
-    items: ["Extern case study", "Other case studies to write"],
+    items: [],
   },
 ];
 
