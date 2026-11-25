@@ -36,21 +36,8 @@ export const SECTIONS = [
     ],
   },
   {
-    key: "traffic",
-    number: "03",
-    title: "Traffic",
-    description: "Cold outreach and organic content. No paid ads.",
-    items: [
-      "Lead list source and criteria",
-      "First message",
-      "Follow up messages",
-      "Daily send target",
-      "Organic posting plan for Luke and Max",
-    ],
-  },
-  {
     key: "action_funnel",
-    number: "04",
+    number: "03",
     title: "Action Funnel",
     description: "The steps from interest to booked call.",
     items: [
@@ -63,7 +50,7 @@ export const SECTIONS = [
   },
   {
     key: "close",
-    number: "05",
+    number: "04",
     title: "The Close",
     description: "Clear ask, exact next step, reason to act now.",
     items: [
@@ -75,14 +62,14 @@ export const SECTIONS = [
   },
   {
     key: "follow_up",
-    number: "06",
+    number: "05",
     title: "Follow Up",
     description: "For people who opted in but didn't book.",
     items: ["Email flow outline", "Number of emails and timing"],
   },
   {
     key: "proof",
-    number: "07",
+    number: "06",
     title: "Proof",
     description: "Results that back up what we say.",
     items: ["Extern case study", "Other case studies to write"],
