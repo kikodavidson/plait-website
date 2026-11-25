@@ -65,7 +65,7 @@ export const SECTIONS = [
     number: "05",
     title: "Follow Up",
     description: "For people who opted in but didn't book.",
-    items: ["Email flow outline", "Number of emails and timing"],
+    items: ["Email flow and timing"],
   },
   {
     key: "proof",
