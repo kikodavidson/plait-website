@@ -36,8 +36,15 @@ export const SECTIONS = [
     ],
   },
   {
-    key: "action_funnel",
+    key: "traffic",
     number: "03",
+    title: "Traffic",
+    description: "How we get in front of people.",
+    items: ["Ways to get traffic"],
+  },
+  {
+    key: "action_funnel",
+    number: "04",
     title: "Action Funnel",
     description: "The steps from interest to booked call.",
     items: [
@@ -50,7 +57,7 @@ export const SECTIONS = [
   },
   {
     key: "close",
-    number: "04",
+    number: "05",
     title: "The Close",
     description: "Clear ask, exact next step, reason to act now.",
     items: [
@@ -62,14 +69,14 @@ export const SECTIONS = [
   },
   {
     key: "follow_up",
-    number: "05",
+    number: "06",
     title: "Follow Up",
     description: "For people who opted in but didn't book.",
     items: ["Email flow and timing"],
   },
   {
     key: "proof",
-    number: "06",
+    number: "07",
     title: "Proof",
     description: "Results that back up what we say.",
     items: ["Extern case study", "Other case studies to write"],
