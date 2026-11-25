@@ -16,7 +16,7 @@ export const SECTIONS = [
     title: "Our Message",
     description: "If this is weak, everything after it is weak.",
     items: [
-      "Finish line (how a client's life is different after working with us)",
+      "Finish line",
       "Feature to benefit list",
       "Ideal client and spend floor",
     ],
@@ -27,10 +27,10 @@ export const SECTIONS = [
     title: "Lead Magnet",
     description: "What we give away for free to start the conversation.",
     items: [
-      "Type (reveal a problem)",
-      "How we deliver it (Loom teardown and guide)",
+      "Type",
+      "How we deliver it",
       "What we show vs what we hold back",
-      "Name options (list 3 to 4)",
+      "Name options",
       "Winning name",
       "Who qualifies for the teardown",
     ],
@@ -70,7 +70,7 @@ export const SECTIONS = [
       "Main CTA",
       "Next step wording",
       "Reason to act now",
-      "Where CTAs appear (before, inside, after the magnet)",
+      "Where CTAs appear",
     ],
   },
   {
