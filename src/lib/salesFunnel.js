@@ -22,8 +22,15 @@ export const SECTIONS = [
     ],
   },
   {
-    key: "lead_magnet",
+    key: "traffic",
     number: "02",
+    title: "Traffic",
+    description: "How we get in front of people.",
+    items: ["Ways to get traffic"],
+  },
+  {
+    key: "lead_magnet",
+    number: "03",
     title: "Lead Magnet",
     description: "What we give away for free to start the conversation.",
     items: [
@@ -34,13 +41,6 @@ export const SECTIONS = [
       "Winning name",
       "Who qualifies for the teardown",
     ],
-  },
-  {
-    key: "traffic",
-    number: "03",
-    title: "Traffic",
-    description: "How we get in front of people.",
-    items: ["Ways to get traffic"],
   },
   {
     key: "action_funnel",
