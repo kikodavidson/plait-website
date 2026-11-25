@@ -1,0 +1,275 @@
+{
+  "name": "ApplyLead",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Applicant name"
+    },
+    "email": {
+      "type": "string",
+      "description": "Applicant email"
+    },
+    "company": {
+      "type": "string",
+      "description": "Company name"
+    },
+    "website": {
+      "type": "string",
+      "description": "Company website URL"
+    },
+    "role": {
+      "type": "string",
+      "enum": [
+        "founder",
+        "marketing_lead",
+        "other"
+      ],
+      "enumColors": [
+        "blue",
+        "purple",
+        "gray"
+      ],
+      "description": "Applicant role"
+    },
+    "sells": {
+      "type": "string",
+      "enum": [
+        "ecommerce",
+        "saas",
+        "app",
+        "other"
+      ],
+      "enumColors": [
+        "blue",
+        "purple",
+        "pink",
+        "gray"
+      ],
+      "description": "What the business sells"
+    },
+    "stage": {
+      "type": "string",
+      "enum": [
+        "pre_launch",
+        "under_year",
+        "established"
+      ],
+      "enumColors": [
+        "blue",
+        "yellow",
+        "green"
+      ],
+      "description": "Business stage"
+    },
+    "ad_spend": {
+      "type": "string",
+      "enum": [
+        "none",
+        "under_5k",
+        "5k_15k",
+        "15k_30k",
+        "30k_100k",
+        "100k_plus"
+      ],
+      "enumColors": [
+        "gray",
+        "blue",
+        "blue",
+        "green",
+        "yellow",
+        "red"
+      ],
+      "description": "Current monthly ad spend"
+    },
+    "budget_6mo": {
+      "type": "string",
+      "enum": [
+        "under_10k",
+        "10k_25k",
+        "25k_50k",
+        "50k_plus"
+      ],
+      "enumColors": [
+        "gray",
+        "blue",
+        "yellow",
+        "green"
+      ],
+      "description": "Marketing budget for the next 6 months"
+    },
+    "differentiator": {
+      "type": "string",
+      "description": "What makes the product different"
+    },
+    "margins": {
+      "type": "string",
+      "enum": [
+        "under_30",
+        "30_50",
+        "50_70",
+        "over_70",
+        "unsure"
+      ],
+      "enumColors": [
+        "red",
+        "yellow",
+        "blue",
+        "green",
+        "gray"
+      ],
+      "description": "Roughly what their margins are"
+    },
+    "adjust_pricing": {
+      "type": "string",
+      "enum": [
+        "yes",
+        "no",
+        "maybe"
+      ],
+      "enumColors": [
+        "green",
+        "red",
+        "yellow"
+      ],
+      "description": "Willing to adjust pricing for better margins"
+    },
+    "profit_timing": {
+      "type": "string",
+      "enum": [
+        "first_month",
+        "within_3_months",
+        "long_term"
+      ],
+      "enumColors": [
+        "red",
+        "yellow",
+        "green"
+      ],
+      "description": "When they expect ads to be profitable"
+    },
+    "agencies": {
+      "type": "string",
+      "enum": [
+        "0",
+        "1",
+        "2",
+        "3+"
+      ],
+      "enumColors": [
+        "green",
+        "blue",
+        "yellow",
+        "red"
+      ],
+      "description": "Agencies worked with in the last 2 years"
+    },
+    "looking_for": {
+      "type": "string",
+      "enum": [
+        "run_it",
+        "partner"
+      ],
+      "enumColors": [
+        "gray",
+        "green"
+      ],
+      "description": "Someone to run what they say, or a strategy partner"
+    },
+    "share_numbers": {
+      "type": "string",
+      "enum": [
+        "yes",
+        "no"
+      ],
+      "enumColors": [
+        "green",
+        "red"
+      ],
+      "description": "Open to sharing past ad and sales numbers"
+    },
+    "growth_blocker": {
+      "type": "string",
+      "description": "Biggest thing holding growth back"
+    },
+    "result": {
+      "type": "string",
+      "enum": [
+        "qualified",
+        "review",
+        "not_fit"
+      ],
+      "enumColors": [
+        "green",
+        "yellow",
+        "gray"
+      ],
+      "description": "Scored result"
+    },
+    "completed": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the form was finished"
+    },
+    "submit_code": {
+      "type": "string",
+      "description": "Random code that lets the anonymous applicant update their own draft"
+    },
+    "notified": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the partners have been emailed"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "new",
+        "contacted",
+        "call_booked",
+        "client",
+        "passed"
+      ],
+      "enumColors": [
+        "gray",
+        "blue",
+        "purple",
+        "green",
+        "gray"
+      ],
+      "default": "new",
+      "description": "Follow-up status"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Partner notes"
+    }
+  },
+  "required": [
+    "name",
+    "email",
+    "company",
+    "website"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}
