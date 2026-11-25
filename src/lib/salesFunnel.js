@@ -43,21 +43,8 @@ export const SECTIONS = [
     ],
   },
   {
-    key: "action_funnel",
-    number: "04",
-    title: "Action Funnel",
-    description: "The steps from interest to booked call.",
-    items: [
-      "Opt in page",
-      "Authority video script",
-      "Application form questions",
-      "Calendar booking setup",
-      "Call script",
-    ],
-  },
-  {
     key: "close",
-    number: "05",
+    number: "04",
     title: "The Close",
     description: "Clear ask, exact next step, reason to act now.",
     items: [
@@ -69,14 +56,14 @@ export const SECTIONS = [
   },
   {
     key: "follow_up",
-    number: "06",
+    number: "05",
     title: "Follow Up",
     description: "For people who opted in but didn't book.",
     items: ["Email flow and timing"],
   },
   {
     key: "proof",
-    number: "07",
+    number: "06",
     title: "Proof",
     description: "Results that back up what we say.",
     items: [],
